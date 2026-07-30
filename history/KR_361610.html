@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>에스케이아이이테크놀로지 주식회사 — 2026-Q3</title>
+  <style>
+:root {
+  --bg: #f5f7fb; --panel: #ffffff; --card: #ffffff; --text: #1e293b;
+  --muted: #64748b; --accent: #0284c7; --accent-2: #059669; --border: #e2e8f0;
+  --soft: #f1f5f9; --soft-2: #eef2ff; --brand-navy: #1e3a5f;
+}
+* { box-sizing: border-box; }
+body { margin:0; font-family:"Segoe UI","Malgun Gothic",sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
+.wrap { max-width: 1140px; margin: 0 auto; padding: 28px 20px 48px; }
+h1 { margin: 0 0 6px; font-size: 1.85rem; color:#0f172a; }
+h1.brand-title { color: var(--brand-navy); }
+.sub { color: var(--muted); margin-bottom: 20px; }
+.nav { display:flex; gap:8px; flex-wrap:wrap; margin-bottom: 20px; }
+.nav a { padding:8px 12px; border-radius:10px; background:var(--card); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.85rem; }
+.nav a.active, .nav a:hover { border-color:var(--brand-navy); color:var(--brand-navy); background:#eef2ff; }
+.home-section {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:18px 20px; margin-bottom:16px; box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+.home-section-head { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px; flex-wrap:wrap; }
+.home-section-head h2 { margin:0; font-size:1.15rem; color:var(--brand-navy); }
+.home-co-list { display:flex; flex-direction:column; gap:10px; }
+.home-co-row {
+  display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+  padding:12px 14px; border:1px solid var(--border); border-radius:12px; background:#fff;
+}
+.home-co-main { display:flex; align-items:center; gap:8px; flex:1; min-width:160px; }
+.home-co-links { display:flex; gap:8px; flex-wrap:wrap; }
+.home-co-links a {
+  padding:6px 10px; border-radius:8px; border:1px solid var(--border);
+  text-decoration:none; color:var(--brand-navy); font-size:0.82rem; background:var(--soft);
+}
+.home-co-links a:hover { border-color:var(--accent); background:#e0f2fe; }
+.co-logo { width:28px; height:28px; border-radius:6px; object-fit:contain; background:#fff; border:1px solid var(--border); }
+.co-logo-fallback {
+  width:28px; height:28px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center;
+  background:var(--brand-navy); color:#fff; font-size:0.85rem; font-weight:700;
+}
+.home-hist-stats { display:flex; gap:18px; margin-top:8px; color:var(--muted); }
+.home-hist-stats strong { color:var(--brand-navy); font-size:1.2rem; margin-right:4px; }
+.mega-notes { margin:8px 0 12px; padding-left:18px; color:var(--muted); font-size:0.88rem; }
+.ai-summary-box {
+  background:#f8fafc; border:1px solid var(--border); border-left:4px solid var(--brand-navy);
+  border-radius:12px; padding:14px 16px; margin:14px 0;
+}
+.ai-summary-box pre { white-space:pre-wrap; font-family:inherit; font-size:0.9rem; color:#334155; margin:8px 0 0; }
+.ai-summary-box.compact { padding:10px 12px; margin:8px 0 0; }
+.home-ai-ul { margin:8px 0 0; padding-left:18px; color:#334155; font-size:0.88rem; }
+.home-ai-ul li { margin:4px 0; }
+.home-ai-ul .ai-k {
+  display:inline-block; min-width:5.5rem; color:var(--brand-navy); font-weight:600; font-size:0.8rem;
+}
+.hero {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 55%, #ecfdf5 100%);
+  border:1px solid var(--border); border-radius:16px; padding:28px; margin-bottom:24px;
+  box-shadow:0 1px 2px rgba(15,23,42,.04);
+}
+.entry-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin-top:18px; }
+.entry {
+  display:block; background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:22px; text-decoration:none; color:inherit; transition:border-color .15s, box-shadow .15s;
+  box-shadow:0 1px 2px rgba(15,23,42,.04);
+}
+.entry:hover { border-color: var(--accent); box-shadow:0 4px 12px rgba(2,132,199,.08); }
+.entry h2 { margin:0 0 8px; font-size:1.35rem; color:var(--accent-2); }
+.entry p { margin:0; color:var(--muted); font-size:0.92rem; }
+.entry .count { margin-top:12px; font-size:1.6rem; font-weight:700; color:var(--accent); }
+.tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; position:sticky; top:0; z-index:5;
+  background:rgba(245,247,251,.94); backdrop-filter:blur(8px); padding:10px 0; border-bottom:1px solid var(--border); }
+.tabs button {
+  border:1px solid var(--border); background:var(--card); color:var(--text);
+  padding:8px 12px; border-radius:8px; cursor:pointer; font-size:0.85rem;
+}
+.tabs button.active { border-color:var(--accent); color:var(--accent); background:#e0f2fe; }
+.tab-panel { display:none; }
+.tab-panel.active { display:block; }
+.tab-desc { color:var(--muted); font-size:0.9rem; margin-bottom:14px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; }
+.card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px; box-shadow:0 1px 2px rgba(15,23,42,.03); }
+.card-head { display:flex; justify-content:space-between; gap:8px; margin-bottom:10px; }
+.card h3 { margin:0; font-size:1rem; }
+.tag { font-size:0.7rem; background:#e0f2fe; color:#0369a1; padding:3px 8px; border-radius:6px; white-space:nowrap; }
+.tag.intl { background:#d1fae5; color:#047857; }
+.module-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; margin-bottom:12px; }
+.mod-stat { background:var(--soft); border-radius:8px; padding:8px 6px; text-align:center; font-size:0.72rem; color:var(--muted); }
+.mod-stat strong { display:block; font-size:1.05rem; color:var(--text); }
+.btn { display:inline-block; padding:9px 12px; border-radius:10px; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; font-size:0.88rem; border:none; cursor:pointer; }
+.btn.secondary { background:#10b981; color:#fff; }
+.empty { color:var(--muted); font-style:italic; }
+.deal-kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px; margin-bottom:18px; }
+.deal-kpi { background:var(--card); border:1px solid var(--border); border-left:4px solid var(--c,#0284c7);
+  border-radius:10px; padding:12px 14px; text-decoration:none; color:inherit; }
+.deal-kpi-label { font-size:0.85rem; }
+.deal-kpi-count { font-size:1.7rem; font-weight:700; color:var(--c,#0284c7); }
+.deal-kpi-en { font-size:0.72rem; color:var(--muted); }
+.deal-section { background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:16px 18px; margin-bottom:14px; scroll-margin-top:70px; }
+.deal-section h3 { margin:0 0 12px; font-size:1.05rem; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.deal-section h3 .dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
+.deal-section h3 small { color:var(--muted); font-weight:400; font-size:0.8rem; }
+.deal-section h3 em { margin-left:auto; font-style:normal; color:var(--accent); font-size:0.85rem; }
+.deal-item { padding:12px 0; border-bottom:1px solid var(--border); }
+.deal-item:last-child { border-bottom:none; }
+.deal-item-top { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:4px; }
+.pill { color:#fff; font-size:0.7rem; padding:2px 8px; border-radius:4px; }
+.src { font-size:0.72rem; color:var(--muted); background:var(--soft); padding:2px 6px; border-radius:4px; }
+.co { font-size:0.78rem; color:var(--accent-2); }
+.deal-title { font-weight:600; margin-bottom:4px; }
+.deal-meta { font-size:0.8rem; color:var(--muted); margin-bottom:4px; }
+.deal-sum { font-size:0.88rem; color:#475569; margin:6px 0; }
+a { color:var(--accent); }
+.chart-box { background:var(--soft); border-radius:10px; padding:10px; margin:8px 0 12px; border:1px solid var(--border); }
+table.fin { width:100%; border-collapse:collapse; font-size:0.8rem; }
+table.fin th, table.fin td { border-bottom:1px solid var(--border); padding:0.4rem 0.3rem; text-align:right; }
+table.fin th:first-child, table.fin td:first-child { text-align:left; }
+table.fin th { color:var(--muted); }
+.price-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; margin-top:14px; }
+.price-chip { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px; }
+.price-chip.intl { border-color:#a7f3d0; }
+.pc-name { font-size:0.78rem; color:var(--muted); margin-bottom:4px; }
+.pc-price { font-size:1.15rem; font-weight:700; }
+.pc-chg { font-size:0.8rem; margin-top:2px; }
+.pc-chg.up { color:#059669; }
+.pc-chg.down { color:#dc2626; }
+.mod-stat em { display:block; font-size:0.65rem; color:#d97706; font-style:normal; }
+.geo-tag { display:inline-block; background:#ffedd5; color:#9a3412; font-size:0.7rem; padding:2px 8px; border-radius:4px; font-weight:600; }
+.bm-banner { background:#fff7ed; border:1px solid #fdba74; border-radius:12px; padding:12px 14px; margin-bottom:14px; }
+table.fin tr.bm-row td { background:#fffbeb; color:#92400e; font-weight:600; }
+.debt-ratio { color:#d97706; font-weight:700; }
+.markets-panel {
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 45%, #f0f9ff 100%);
+  border:1px solid var(--border); border-radius:16px; padding:20px 22px; margin-bottom:20px;
+}
+.markets-head { display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
+.markets-section-label { font-size:0.78rem; color:#047857; margin:12px 0 8px; letter-spacing:0.02em; }
+.mkt-chip { background:#fff; border:1px solid var(--border); border-radius:12px; padding:12px; }
+.mkt-chip.commodity { border-color:#f59e0b; }
+.mkt-chip.index { border-color:#38bdf8; }
+.mkt-chip.fx { border-color:#06b6d4; }
+.mkt-chip.rate { border-color:#8b5cf6; }
+.mkt-unit { font-size:0.72rem; color:var(--muted); font-weight:500; }
+.mkt-note { font-size:0.7rem; color:var(--muted); margin-top:6px; line-height:1.35; }
+.power-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px 18px; margin-bottom:14px; }
+.power-card h3 { margin:0 0 8px; font-size:1.05rem; color:var(--accent-2); }
+.power-label { font-size:0.78rem; color:#047857; margin:12px 0 6px; }
+.power-list { margin:0; padding-left:1.1rem; color:#334155; font-size:0.9rem; }
+.power-list li { margin-bottom:4px; }
+.export-box { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px; margin:14px 0 20px; }
+.export-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+.email-form { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:10px; }
+.email-form input[type=email],
+.email-form input[type=text],
+.email-form select {
+  flex:1; min-width:180px; padding:10px 12px; border-radius:8px;
+  border:1px solid var(--border); background:#fff; color:var(--text);
+}
+.email-form button { border:none; cursor:pointer; }
+.briefing-list { margin-top:12px; display:flex; flex-direction:column; gap:12px; }
+.briefing-card {
+  background:#fff; border:1px solid var(--border); border-radius:12px; padding:14px 16px;
+}
+.briefing-card-head { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:6px; }
+.briefing-badge {
+  font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:6px;
+  background:#e0f2fe; color:#0369a1;
+}
+.briefing-badge.status-pending { color:#b45309; background:#fef3c7; }
+.briefing-badge.status-sent { color:#047857; background:#d1fae5; }
+.briefing-badge.status-rejected { color:#b91c1c; background:#fee2e2; }
+.briefing-badge.status-failed { color:#c2410c; background:#ffedd5; }
+.briefing-preview {
+  white-space:pre-wrap; font-size:0.78rem; color:#475569; background:var(--soft);
+  border:1px solid var(--border); border-radius:8px; padding:10px; margin:8px 0; max-height:140px; overflow:auto;
+}
+.tag-row { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+.impact-hint { font-size:0.78rem; color:#b45309; margin:4px 0 6px; }
+.focus-line { color:#047857; font-size:0.9rem; margin:0 0 10px; }
+.fin-sub { margin:14px 0 8px; font-size:0.95rem; color:var(--accent-2); }
+.mkt-chart-card { background:#fff; border:1px solid var(--border); border-radius:12px; padding:12px; }
+.mkt-chart-card.commodity { border-color:#f59e0b; }
+.mkt-chart-card.fx { border-color:#06b6d4; }
+.mkt-chart-card.rate { border-color:#8b5cf6; }
+.mkt-chart-card.index { border-color:#38bdf8; }
+.mkt-mini-chart { height:110px; margin-top:8px; }
+.deal-wrap-v2 .deal-hero {
+  display:flex; flex-wrap:wrap; justify-content:space-between; gap:14px; align-items:flex-end;
+  background:linear-gradient(135deg,#ffffff,#f0f9ff); border:1px solid var(--border);
+  border-radius:14px; padding:16px 18px; margin-bottom:12px;
+}
+.deal-hero-title { margin:0 0 6px; font-size:1.25rem; color:var(--accent-2); }
+.deal-filter-bar {
+  position:sticky; top:8px; z-index:20; display:flex; flex-wrap:wrap; gap:8px;
+  background:rgba(255,255,255,.96); border:1px solid var(--border); border-radius:12px;
+  padding:10px 12px; margin-bottom:14px; backdrop-filter:blur(6px);
+}
+.deal-filter {
+  border:1px solid var(--border); background:#fff; color:var(--text);
+  border-radius:10px; padding:10px 14px; cursor:pointer; font-size:0.9rem;
+  border-left:4px solid var(--c,#64748b);
+}
+.deal-filter em { font-style:normal; font-weight:700; color:var(--c,#0284c7); margin-left:6px; }
+.deal-filter.active { background:#e0f2fe; box-shadow:0 0 0 1px var(--c,#0284c7); color:#0f172a; }
+.deal-panel { margin-bottom:16px; }
+.deal-panel-head {
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  margin-bottom:12px; padding-bottom:8px; border-bottom:2px solid var(--c,#0284c7);
+}
+.deal-panel-head h3 { margin:0; font-size:1.15rem; }
+.deal-panel-head small { color:var(--muted); font-weight:400; margin-left:8px; }
+.deal-panel-count { color:var(--c,#0284c7); font-weight:700; font-size:1rem; }
+.deal-card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; }
+.deal-card {
+  display:flex; background:#fff; border:1px solid var(--border); border-radius:12px; overflow:hidden;
+  min-height:140px; box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+.deal-card-bar { width:6px; flex-shrink:0; }
+.deal-card-body { padding:14px 16px; flex:1; }
+.deal-card .deal-title { font-size:1.05rem; line-height:1.45; margin-bottom:6px; }
+.deal-card .deal-sum { font-size:0.92rem; line-height:1.5; color:#475569; }
+.deal-link { display:inline-block; margin-top:10px; font-weight:600; color:var(--accent); }
+.deal-nav { display:flex; flex-wrap:wrap; gap:8px; }
+.deal-nav-btn {
+  display:flex; align-items:center; gap:8px; text-decoration:none; color:var(--text);
+  background:#fff; border:1px solid var(--border); border-left:4px solid var(--c,#0284c7);
+  border-radius:10px; padding:8px 12px; font-size:0.85rem;
+}
+.deal-nav-btn span { color:var(--c,#0284c7); font-weight:700; font-size:1.05rem; }
+.deal-section-v2 { scroll-margin-top:90px; }
+footer { margin-top:28px; text-align:center; color:var(--muted); font-size:0.85rem; }
+@media (max-width:600px){ .module-grid { grid-template-columns:repeat(3,1fr); } }
+
+.hist-arch-grid { display:flex; flex-wrap:wrap; gap:14px; align-items:center; }
+.hist-arch-col { flex:1; min-width:200px; background:var(--soft); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+.hist-arch-arrow { color:var(--accent); font-weight:700; font-size:0.85rem; }
+.hist-kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; margin:14px 0 18px; }
+.hist-kpi { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px 14px; }
+.hist-kpi strong { display:block; font-size:1.5rem; color:var(--accent); }
+.hist-kpi span { font-size:0.78rem; color:var(--muted); }
+.hist-event-head { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:6px; }
+.hist-details { margin-top:10px; }
+.hist-details summary { cursor:pointer; color:var(--accent); font-weight:600; font-size:0.9rem; }
+.hist-src-block { margin-top:10px; padding-top:8px; border-top:1px solid var(--border); }
+.hist-src-label { font-size:0.8rem; color:var(--accent-2); margin-bottom:6px; font-weight:600; }
+.hist-src-label em { font-style:normal; color:var(--accent); margin-left:4px; }
+.hist-ev-list { margin:0; padding-left:1.1rem; }
+.hist-ev-item { margin-bottom:8px; }
+.hist-co h3 { font-size:1.05rem; }
+.hist-cat-tabs { margin-bottom:14px; }
+.hist-cat-tab {
+  border:1px solid var(--border); background:var(--card); color:var(--text);
+  padding:10px 14px; border-radius:10px; cursor:pointer; font-size:0.9rem;
+  border-left:4px solid var(--c,#64748b);
+}
+.hist-cat-tab small { color:var(--muted); margin-left:4px; font-size:0.75rem; }
+.hist-cat-tab em { font-style:normal; font-weight:700; color:var(--c,#0284c7); margin-left:6px; }
+.hist-cat-tab.active { background:#e0f2fe; box-shadow:0 0 0 1px var(--c,#0284c7); color:#0f172a; }
+.hist-year-focus {
+  display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:0 0 14px;
+}
+.hist-focus-btn {
+  border:1px solid var(--border); background:#fff; color:var(--text);
+  border-radius:8px; padding:6px 12px; cursor:pointer; font-size:0.82rem;
+}
+.hist-focus-btn.active { border-color:var(--accent); color:var(--accent); background:#e0f2fe; }
+.hist-basis {
+  display:inline-block; font-size:0.72rem; font-weight:600;
+  background:#e0f2fe; color:#0369a1; padding:2px 8px; border-radius:6px;
+}
+.hist-tl { margin-top:8px; }
+.hist-tl-year { margin-bottom:22px; }
+.hist-tl-year-label {
+  display:inline-block; font-size:1.05rem; font-weight:700; color:var(--accent-2);
+  background:#ecfdf5; border:1px solid var(--border); border-radius:8px;
+  padding:4px 12px; margin-bottom:12px;
+}
+.hist-tl-year-label em { font-style:normal; color:var(--accent); margin-left:6px; font-size:0.9rem; }
+.hist-tl-empty { color:var(--muted); font-size:0.85rem; font-style:italic; margin:0 0 0 12px; }
+.hist-tl-rail {
+  position:relative; margin-left:12px; padding-left:28px;
+  border-left:2px solid #cbd5e1;
+}
+.hist-tl-item {
+  position:relative; margin-bottom:16px;
+}
+.hist-tl-item::before {
+  content:''; position:absolute; left:-36px; top:10px;
+  width:12px; height:12px; border-radius:50%;
+  background:var(--c,#0284c7); border:2px solid #fff;
+  box-shadow:0 0 0 2px var(--c,#0284c7);
+}
+.hist-tl-date {
+  font-size:0.8rem; color:var(--muted); font-weight:600; margin-bottom:4px;
+  letter-spacing:0.02em;
+}
+.hist-tl-card {
+  background:#fff; border:1px solid var(--border); border-radius:12px;
+  padding:12px 14px; border-left:3px solid var(--c,#0284c7);
+  box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+</style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <a href="../index.html" class="">홈</a>
+      <a href="../domestic.html" class="">국내</a>
+      <a href="../international.html" class="">해외</a>
+      <a href="../markets.html" class="">시장</a>
+      <a href="../power.html" class="">전력시장</a>
+      <a href="../mega_projects.html" class="">메가 프로젝트</a>
+      <a href="../history.html" class="active">히스토리 DB</a>
+    </nav>
+    
+        <p><a href="../history.html">← 히스토리 DB 목록</a></p>
+        <h1>에스케이아이이테크놀로지 주식회사</h1>
+        <p class="sub"><span class="tag">국내</span>
+          KR:361610 · 실적 5년 · 이벤트 8건</p>
+        
+    <div class="ai-summary-box">
+      <strong>Gemini AI 요약</strong>
+      <span class="deal-meta"> · gemini-flash-latest · 2026-07-23T09:58:03Z</span>
+      <pre>**1) 한줄 요약**  
+SK아이이테크놀로지는 대규모 영업적자와 실적 악화 상황 속에서 종속회사 지분 취득·처분, 유상증자, 단기차입금 증대, 생산중단 공시 등을 통해 재무 유동성 확보 및 자산·사업 구조 재편을 추진하고 있습니다. (공시/뉴스)
+
+---
+
+**2) 핵심 전략 축**  
+* **종속회사 유상증자 지원 및 지분 취득**: 종속회사에 대한 유상증자 결정 및 타법인 주식/출자증권 취득 결정을 지속 공시하며 자회사 자금 지원과 지분 구조를 조정함. (공시)
+* **자산 효율화를 위한 지분 처분**: 타법인 주식 및 출자증권 처분 결정을 공시하여 자유 유동성 확보 및 자산 재편을 도모함. (공시)
+* **단기 유동성 확보 및 차입 관리**: 단기차입금 증가 결정을 공시하여 소요 자금과 유동성 대응력을 확보하고자 함. (공시)
+* **생산 및 사업 조정**: 생산중단 공시 및 주력 사업 영역(LiBS/CCS, FCW 등) 중심의 효율화 조치를 실행함. (공시/IR)
+
+---
+
+**3) 실적과의 연결**  
+* **실적 추이**: 2021년(매출 6,038억 원, 영업이익 892억 원)과 2023년(매출 6,496억 원, 영업이익 320억 원)에는 흑자를 기록했으나, 2024년(매출 2,179억 원, 영업이익 -2,910억 원)과 2025년(매출 2,619억 원, 영업이익 -2,464억 원)에는 매출 급감과 함께 심각한 적자로 전환됨. (공시)
+* **전략 연결**: 매출 축소 및 영업적자 폭 확대 등 실적 악화 상황이 지속되면서 단기차입금 증가, 생산중단 공시, 자산 처분 및 취득 등 유동성 관리와 재무 구조 조정을 위한 전략적 대응 공시가 집중됨. (공시)
+
+---
+
+**4) 리스크/관찰 포인트**  
+* **신용등급 하향 및 자금조달 리스크**: 전기차 수요 부진과 투자 부담으로 나이스신용평가 기준 신용등급이 A에서 A-로 하향 조정되었으며, 한국기업평가로부터 부정적 평가를 받음에 따라 향후 자금조달 환경 악화 리스크가 존재함. (뉴스)
+* **생산중단 및 재무 안정성 회복 여부**: 단기차입금 증가와 생산중단 결정이 재무 안정성 및 실적 반등으로 이어질 수 있는지 관찰 필요. (공시)
+* **MOU/수주 실적 관련**: 제공된 자료 내 구체적인 MOU 체결 및 추가 수주 금액에 대한 상세 내용은 확인되지 않음. (자료 없음)</pre>
+      
+    </div>
+    
+        
+    <div class="card" style="margin-bottom:14px">
+      <h3 style="margin:0 0 8px">연도별 실적 <span class="sub">(억원 · 막대=매출/영업이익, 선=영업이익률)</span></h3>
+      <div class="chart-box"><canvas id="fin_KR_361610" height="140"></canvas></div>
+      <table class="fin">
+        <thead><tr>
+          <th>연도</th><th>매출</th><th>영업이익</th><th>순이익</th><th>영업이익률</th><th>출처</th>
+        </tr></thead>
+        <tbody><tr><td>2021</td><td>6,038</td><td>892</td><td>954</td><td>14.77%</td><td>dart</td></tr><tr><td>2022</td><td>5,858</td><td>-523</td><td>-297</td><td>-8.93%</td><td>dart</td></tr><tr><td>2023</td><td>6,496</td><td>320</td><td>822</td><td>4.93%</td><td>dart</td></tr><tr><td>2024</td><td>2,179</td><td>-2,910</td><td>-2,466</td><td>-134%</td><td>dart</td></tr><tr><td>2025</td><td>2,619</td><td>-2,464</td><td>-2,114</td><td>-94.08%</td><td>dart</td></tr></tbody>
+      </table>
+      <p class="sub" style="margin:8px 0 0">영업이익률 = 영업이익 ÷ 매출 × 100 (DB 값 없으면 계산)</p>
+    </div>
+    
+        
+    <div class="card hist-timeline-card">
+      <h3 style="margin:0 0 10px">전략 이벤트 타임라인</h3>
+      <p class="tab-desc">기본: <strong>전체</strong> 탭 · 데이터 전 기간(2026–2026).
+        기간 보기에서 <strong>2026 / 2025 / 2024 …</strong> 연도별로 좁힐 수 있습니다.</p>
+      <div class="tabs hist-cat-tabs"><button type='button' class='hist-cat-tab active' data-tab='hist-tab-all' style='--c:#38bdf8'>전체 <small>전 기간</small> <em>8</em></button><button type='button' class='hist-cat-tab' data-tab='hist-tab-orders' style='--c:#3d8bfd'>수주 <small>계약·수주</small> <em>0</em></button><button type='button' class='hist-cat-tab' data-tab='hist-tab-strategy' style='--c:#9b59b6'>전략 <small>MOU·제휴·인수</small> <em>3</em></button><button type='button' class='hist-cat-tab' data-tab='hist-tab-investment' style='--c:#20c997'>투자 <small>투자·지분</small> <em>5</em></button></div>
+      <div id='hist-tab-all' class='tab-panel active'><p class='tab-desc'>전체 · 데이터 기준 2026–2026 (오래된 → 최근). 날짜가 불명확하면 뉴스·애널 등 <strong>자료 기준</strong>을 표시합니다.</p><div class='hist-year-focus' data-panel='hist-tab-all'><span class='sub'>기간 보기:</span> <button type='button' class='hist-focus-btn active' data-focus='all'>전체</button><button type='button' class='hist-focus-btn' data-focus='2026'>2026</button><button type='button' class='hist-focus-btn' data-focus='undated'>날짜 미상</button></div><div class="hist-tl">
+                <section class="hist-tl-year" data-year="2026">
+                  <div class="hist-tl-year-label">2026 <em>5</em></div>
+                  <div class="hist-tl-rail">
+    <article class="hist-tl-item" data-event-year="2026" style="--c:#20c997">
+      <div class="hist-tl-date">2026-04-29（공시 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#20c997">투자</span>
+          <span class='hist-basis'>공시 기준</span>
+          <span class="src">근거 1건 · 공시</span>
+        </div>
+        <div class="deal-title">유상증자결정(종속회사의주요경영사항)</div>
+        
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>공시 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260429800839" target="_blank" rel="noopener">유상증자결정(종속회사의주요경영사항)</a><div class='deal-meta'>2026-04-29</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="2026" style="--c:#20c997">
+      <div class="hist-tl-date">2026-04-29（공시 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#20c997">투자</span>
+          <span class='hist-basis'>공시 기준</span>
+          <span class="src">근거 1건 · 공시</span>
+        </div>
+        <div class="deal-title">타법인주식및출자증권취득결정</div>
+        
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>공시 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260429800738" target="_blank" rel="noopener">타법인주식및출자증권취득결정</a><div class='deal-meta'>2026-04-29</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="2026" style="--c:#20c997">
+      <div class="hist-tl-date">2026-05-27（공시 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#20c997">투자</span>
+          <span class='hist-basis'>공시 기준</span>
+          <span class="src">근거 2건 · 공시</span>
+        </div>
+        <div class="deal-title">타법인주식및출자증권처분결정</div>
+        
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>공시 <em>2</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260527801055" target="_blank" rel="noopener">타법인주식및출자증권처분결정</a><div class='deal-meta'>2026-05-27</div></li><li class='hist-ev-item'><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260527800750" target="_blank" rel="noopener">타법인주식및출자증권취득결정</a><div class='deal-meta'>2026-05-27</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="2026" style="--c:#20c997">
+      <div class="hist-tl-date">2026-06-26（공시 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#20c997">투자</span>
+          <span class='hist-basis'>공시 기준</span>
+          <span class="src">근거 1건 · 공시</span>
+        </div>
+        <div class="deal-title">유상증자결정(종속회사의주요경영사항)</div>
+        
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>공시 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260626800939" target="_blank" rel="noopener">유상증자결정(종속회사의주요경영사항)</a><div class='deal-meta'>2026-06-26</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="2026" style="--c:#20c997">
+      <div class="hist-tl-date">2026-06-26（공시 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#20c997">투자</span>
+          <span class='hist-basis'>공시 기준</span>
+          <span class="src">근거 10건 · 공시 · 뉴스 · 애널 보고서 · IR</span>
+        </div>
+        <div class="deal-title">[기재정정]타법인주식및출자증권취득결정</div>
+        <div class='deal-sum'>투자전략실 / Weekly / TGIF / vol. 184 2026. 7. 3 vol. 184 2026. 7. 3 투자전략실 / Weekly / TGIF / vol. 184 2026. 7. 3 Weekly TGIF Trend, Geopolitical, Vol. 184 Indicators on Fridays 미국 성장률은 상승, 내용은 부실 고용 안정에는 시간이 필요 C ontents Point 1. Macro Weekly 3 Point 2. Chart of the week 4 Point 3 다음 주 금융시장 주요 이벤트 및 경제 지표 5 Point 4 Global FX Monitor 6 Point 5 Global Macro Monitor 8 Point 6 Global Bond Monitor 10 투자전략실 </div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>공시 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260626800803" target="_blank" rel="noopener">[기재정정]타법인주식및출자증권취득결정</a><div class='deal-meta'>2026-06-26</div></li></ul></div><div class='hist-src-block'><div class='hist-src-label'>애널 보고서 <em>3</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://consensus.hankyung.com/analysis/downpdf?report_idx=650457" target="_blank" rel="noopener">[TGIF] 미국 성장률은 상승, 내용은 부실</a><div class='deal-meta'>2026-07-03 · C:\Users\USER\Desktop\ai_project\data\domestic\361610\consensus\650457.pdf</div><div class='deal-sum'>투자전략실 / Weekly / TGIF / vol. 184 2026. 7. 3 vol. 184 2026. 7. 3 투자전략실 / Weekly / TGIF / vol. 184 2026. 7. 3 Weekly TGIF Trend, Geopolitical, Vol. 184 Indicators on Fridays 미국 성장률은 상승, 내용은 부실 고용 안정에는 시간이 필요 C ontents Point 1. Macro Weekly 3 Point 2. Chart of the week 4 Point 3 다음 </div></li><li class='hist-ev-item'><a href="https://consensus.hankyung.com/analysis/downpdf?report_idx=650454" target="_blank" rel="noopener">삼성전자(005930) 실적 전망치 상향 조정 지속</a><div class='deal-meta'>2026-07-03 · C:\Users\USER\Desktop\ai_project\data\domestic\361610\consensus\650454.pdf</div><div class='deal-sum'>[반도체] 송명섭2122-9207 mssong@imfnsec.com 삼성전자(005930) [투자포인트] 실적 전망치 상향 조정 지속 ■ 삼성전자의 2Q26 영업이익 전망치를 기존의 76.1조원에서 80.0조원으로 상향 조정한다. 또한 당사는 FY26 영업이익에대한전망치도기존의340조원에서360조원으로상향했다.이는2Q26과3Q26의DRAM,NAND ASP 상승폭이 확대되기 때문이다. 당사의 채널 체크에 따르면 2Q26 DRAM Blended ASP는 40% 이상, Buy(Maintain) NAND</div></li><li class='hist-ev-item'><a href="https://consensus.hankyung.com/analysis/downpdf?report_idx=650453" target="_blank" rel="noopener">패키지기판 업종 이슈코멘트 : ① 메모리기판 판가인하, ② 삼성전기 투자 공시 관련</a><div class='deal-meta'>2026-07-03 · C:\Users\USER\Desktop\ai_project\data\domestic\361610\consensus\650453.pdf</div><div class='deal-sum'>2026.07.03 전기전자 (Overweight) 패키지기판 업종 이슈코멘트: Issue Comment ① 메모리기판 판가인하, ② 삼성전기 투자 공시 관련 Overweight 1] 메모리 패키지기판 판가 인하 가능성 관련 전일 메타發 인프라 투자 지속성 우려로 PCB 업종의 주가가 크게 하락했다. 일본 및 대만의 해외 기판 업체들 대비 유독 대덕전자, 심텍, 해성디에스 등 국내 업체들의 하락폭이 유독 가팔랐는데, 중견 메모리 PCB 업체에 대한 판가 인하 가능성이 제기된 것이 주된 원인 중 하</div></li></ul></div><div class='hist-src-block'><div class='hist-src-label'>뉴스 <em>2</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://n.news.naver.com/mnews/article/015/0005305160?sid=101" target="_blank" rel="noopener">곳간 빈 석유화학·배터리…&#x27;신용등급 줄강등&#x27; 된서리</a><div class='deal-sum'>나이스신용평가는 에코프로,SK아이이테크놀로지(SKIET) 등의 신용등급을 A에서 A-로 한 단계씩 하향 조정했고 엘앤에프의 등급 전망을 부정적으로 내렸다. 대규모 투자로 재무 부담이 커진 가운데 전기차 수요 부진으로 재무 안정성이 개선되기 어렵다는 이유에서다. 저축은행과 부동산 신탁사 등급도...</div></li><li class='hist-ev-item'><a href="https://n.news.naver.com/mnews/article/079/0004161539?sid=101" target="_blank" rel="noopener">불장 올라탄 개미…주식계좌 1억개 돌파, 올해만 천 만개 늘었다</a><div class='deal-sum'>실제 코로나19 이후인 2021년에는SK아이이테크놀로지, SK바이오사이언스, SK바이오팜 등 대형 IPO가 잇따르며 활동계좌가 1년 새 2200만개 이상 증가했다. 올해 상반기 IPO 시장은 지난해만큼 뜨겁지는 않았지만, 일부 새내기주가 상장 첫날 &#x27;따따블&#x27;을 기록하며 투자자들의 관심을 모았다. 증권사들의 투자자...</div></li></ul></div><div class='hist-src-block'><div class='hist-src-label'>IR <em>4</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="http://skietechnology.co.kr/ir/dart.asp" target="_blank" rel="noopener">공시/DART</a><div class='deal-sum'>투자정보 — 기업지배구조,주식,재무,IR,공시정보 등 투자정보현황을 확인하실 수 있습니다.</div></li><li class='hist-ev-item'><a href="http://skietechnology.co.kr/ir/earning.asp" target="_blank" rel="noopener">실적발표</a><div class='deal-sum'>투자정보 — 기업지배구조,주식,재무,IR,공시정보 등 투자정보현황을 확인하실 수 있습니다.</div></li><li class='hist-ev-item'><a href="http://www.skietechnology.com/ir/ir_notice.asp" target="_blank" rel="noopener">IR공지</a><div class='deal-sum'>투자정보 — 기업지배구조,주식,재무,IR,공시정보 등 투자정보현황을 확인하실 수 있습니다.</div></li><li class='hist-ev-item'><a href="http://www.skietechnology.com/ir/earning.asp" target="_blank" rel="noopener">실적발표</a><div class='deal-sum'>투자정보 — 기업지배구조,주식,재무,IR,공시정보 등 투자정보현황을 확인하실 수 있습니다.</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    </div>
+                </section>
+                
+            <section class="hist-tl-year" data-year="undated">
+              <div class="hist-tl-year-label">날짜 미상 <em>3</em></div>
+              <div class="hist-tl-rail">
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#a855f7">
+      <div class="hist-tl-date">날짜 미상（IR 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#a855f7">인수·M&amp;A</span>
+          <span class='hist-basis'>IR 자료 기준</span>
+          <span class="src">근거 1건 · IR</span>
+        </div>
+        <div class="deal-title">IR (search)</div>
+        <div class='deal-sum'>SK ie technology Co., Ltd. - Investor Relations &amp; Filings Listed IPO May 2021 Ticker · 361610 ISIN · KR7361610009 LEI · 988400ZA9LM3JZBI5088 KO Manufacturing Open in API Overview Filings 294 Market data Peer group API Filings indexed 294 across all filing types Latest filing 2026-06-26 Capital/Financing Update Country KR South Korea Listing KO 361610 · 1 venue → About SK ie technology Co., Ltd. ht</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>IR <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://financialreports.eu/companies/sk-ie-technology-co-ltd/" target="_blank" rel="noopener">IR (search)</a><div class='deal-sum'>SK ie technology Co., Ltd. - Investor Relations &amp; Filings Listed IPO May 2021 Ticker · 361610 ISIN · KR7361610009 LEI · 988400ZA9LM3JZBI5088 KO Manufacturing Open in API Overview Filings 294 Market data Peer group API Filings indexed 294 across all filing types Latest filing 2026</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#e67e22">
+      <div class="hist-tl-date">날짜 미상（IR 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#e67e22">MOU·협약</span>
+          <span class='hist-basis'>IR 자료 기준</span>
+          <span class="src">근거 1건 · IR</span>
+        </div>
+        <div class="deal-title">ESG Performance</div>
+        <div class='deal-sum'>ESG Performance &lt; Sustainability &lt; SK ie technology Gnb Go Subsidiaries Go Company Company Company introduction, investors, sustainability, press and more. Introduction Overview Business Culture (SKMS) History Business Introduction LiBS/CCS FCW(Transparent PI/Hardcoating) Workplace Press Newsroom Promotion Video SKIET News Close company menu Sustainability Sustainability SK ESG (Environment, Socia</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>IR <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="http://eng.skietechnology.com/together/esgper.asp" target="_blank" rel="noopener">ESG Performance</a><div class='deal-sum'>ESG Performance &lt; Sustainability &lt; SK ie technology Gnb Go Subsidiaries Go Company Company Company introduction, investors, sustainability, press and more. Introduction Overview Business Culture (SKMS) History Business Introduction LiBS/CCS FCW(Transparent PI/Hardcoating) Workpla</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#e67e22">
+      <div class="hist-tl-date">날짜 미상（IR 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#e67e22">MOU·협약</span>
+          <span class='hist-basis'>IR 자료 기준</span>
+          <span class="src">근거 1건 · IR</span>
+        </div>
+        <div class="deal-title">IR (search)</div>
+        <div class='deal-sum'>Earnings Reports &lt; IR Information &lt; Investors &lt; SK ie technology Gnb Go Subsidiaries Go Company Company Company introduction, investors, sustainability, press and more. Introduction Overview Business Culture (SKMS) History Business Introduction LiBS/CCS FCW(Transparent PI/Hardcoating) Workplace Press Newsroom Promotion Video SKIET News Close company menu Sustainability Sustainability SK ESG (Envir</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>IR <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="http://eng.skietechnology.com/ir/earning.asp" target="_blank" rel="noopener">IR (search)</a><div class='deal-sum'>Earnings Reports &lt; IR Information &lt; Investors &lt; SK ie technology Gnb Go Subsidiaries Go Company Company Company introduction, investors, sustainability, press and more. Introduction Overview Business Culture (SKMS) History Business Introduction LiBS/CCS FCW(Transparent PI/Hardcoa</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    </div>
+            </section>
+            </div></div><div id='hist-tab-orders' class='tab-panel'><p class='empty'>수주 관련 이벤트가 없습니다.</p></div><div id='hist-tab-strategy' class='tab-panel'><p class='tab-desc'>전략 · 데이터 기준 날짜 미상 포함 (오래된 → 최근). 날짜가 불명확하면 뉴스·애널 등 <strong>자료 기준</strong>을 표시합니다.</p><div class='hist-year-focus' data-panel='hist-tab-strategy'><span class='sub'>기간 보기:</span> <button type='button' class='hist-focus-btn active' data-focus='all'>전체</button><button type='button' class='hist-focus-btn' data-focus='undated'>날짜 미상</button></div><div class="hist-tl">
+            <section class="hist-tl-year" data-year="undated">
+              <div class="hist-tl-year-label">날짜 미상 <em>3</em></div>
+              <div class="hist-tl-rail">
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#a855f7">
+      <div class="hist-tl-date">날짜 미상（IR 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#a855f7">인수·M&amp;A</span>
+          <span class='hist-basis'>IR 자료 기준</span>
+          <span class="src">근거 1건 · IR</span>
+        </div>
+        <div class="deal-title">IR (search)</div>
+        <div class='deal-sum'>SK ie technology Co., Ltd. - Investor Relations &amp; Filings Listed IPO May 2021 Ticker · 361610 ISIN · KR7361610009 LEI · 988400ZA9LM3JZBI5088 KO Manufacturing Open in API Overview Filings 294 Market data Peer group API Filings indexed 294 across all filing types Latest filing 2026-06-26 Capital/Financing Update Country KR South Korea Listing KO 361610 · 1 venue → About SK ie technology Co., Ltd. ht</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>IR <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://financialreports.eu/companies/sk-ie-technology-co-ltd/" target="_blank" rel="noopener">IR (search)</a><div class='deal-sum'>SK ie technology Co., Ltd. - Investor Relations &amp; Filings Listed IPO May 2021 Ticker · 361610 ISIN · KR7361610009 LEI · 988400ZA9LM3JZBI5088 KO Manufacturing Open in API Overview Filings 294 Market data Peer group API Filings indexed 294 across all filing types Latest filing 2026</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#e67e22">
+      <div class="hist-tl-date">날짜 미상（IR 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#e67e22">MOU·협약</span>
+          <span class='hist-basis'>IR 자료 기준</span>
+          <span class="src">근거 1건 · IR</span>
+        </div>
+        <div class="deal-title">ESG Performance</div>
+        <div class='deal-sum'>ESG Performance &lt; Sustainability &lt; SK ie technology Gnb Go Subsidiaries Go Company Company Company introduction, investors, sustainability, press and more. Introduction Overview Business Culture (SKMS) History Business Introduction LiBS/CCS FCW(Transparent PI/Hardcoating) Workplace Press Newsroom Promotion Video SKIET News Close company menu Sustainability Sustainability SK ESG (Environment, Socia</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>IR <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="http://eng.skietechnology.com/together/esgper.asp" target="_blank" rel="noopener">ESG Performance</a><div class='deal-sum'>ESG Performance &lt; Sustainability &lt; SK ie technology Gnb Go Subsidiaries Go Company Company Company introduction, investors, sustainability, press and more. Introduction Overview Business Culture (SKMS) History Business Introduction LiBS/CCS FCW(Transparent PI/Hardcoating) Workpla</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#e67e22">
+      <div class="hist-tl-date">날짜 미상（IR 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#e67e22">MOU·협약</span>
+          <span class='hist-basis'>IR 자료 기준</span>
+          <span class="src">근거 1건 · IR</span>
+        </div>
+        <div class="deal-title">IR (search)</div>
+        <div class='deal-sum'>Earnings Reports &lt; IR Information &lt; Investors &lt; SK ie technology Gnb Go Subsidiaries Go Company Company Company introduction, investors, sustainability, press and more. Introduction Overview Business Culture (SKMS) History Business Introduction LiBS/CCS FCW(Transparent PI/Hardcoating) Workplace Press Newsroom Promotion Video SKIET News Close company menu Sustainability Sustainability SK ESG (Envir</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>IR <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="http://eng.skietechnology.com/ir/earning.asp" target="_blank" rel="noopener">IR (search)</a><div class='deal-sum'>Earnings Reports &lt; IR Information &lt; Investors &lt; SK ie technology Gnb Go Subsidiaries Go Company Company Company introduction, investors, sustainability, press and more. Introduction Overview Business Culture (SKMS) History Business Introduction LiBS/CCS FCW(Transparent PI/Hardcoa</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    </div>
+            </section>
+            </div></div><div id='hist-tab-investment' class='tab-panel'><p class='tab-desc'>투자 · 데이터 기준 2026–2026 (오래된 → 최근). 날짜가 불명확하면 뉴스·애널 등 <strong>자료 기준</strong>을 표시합니다.</p><div class='hist-year-focus' data-panel='hist-tab-investment'><span class='sub'>기간 보기:</span> <button type='button' class='hist-focus-btn active' data-focus='all'>전체</button><button type='button' class='hist-focus-btn' data-focus='2026'>2026</button></div><div class="hist-tl">
+                <section class="hist-tl-year" data-year="2026">
+                  <div class="hist-tl-year-label">2026 <em>5</em></div>
+                  <div class="hist-tl-rail">
+    <article class="hist-tl-item" data-event-year="2026" style="--c:#20c997">
+      <div class="hist-tl-date">2026-04-29（공시 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#20c997">투자</span>
+          <span class='hist-basis'>공시 기준</span>
+          <span class="src">근거 1건 · 공시</span>
+        </div>
+        <div class="deal-title">유상증자결정(종속회사의주요경영사항)</div>
+        
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>공시 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260429800839" target="_blank" rel="noopener">유상증자결정(종속회사의주요경영사항)</a><div class='deal-meta'>2026-04-29</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="2026" style="--c:#20c997">
+      <div class="hist-tl-date">2026-04-29（공시 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#20c997">투자</span>
+          <span class='hist-basis'>공시 기준</span>
+          <span class="src">근거 1건 · 공시</span>
+        </div>
+        <div class="deal-title">타법인주식및출자증권취득결정</div>
+        
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>공시 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260429800738" target="_blank" rel="noopener">타법인주식및출자증권취득결정</a><div class='deal-meta'>2026-04-29</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="2026" style="--c:#20c997">
+      <div class="hist-tl-date">2026-05-27（공시 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#20c997">투자</span>
+          <span class='hist-basis'>공시 기준</span>
+          <span class="src">근거 2건 · 공시</span>
+        </div>
+        <div class="deal-title">타법인주식및출자증권처분결정</div>
+        
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>공시 <em>2</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260527801055" target="_blank" rel="noopener">타법인주식및출자증권처분결정</a><div class='deal-meta'>2026-05-27</div></li><li class='hist-ev-item'><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260527800750" target="_blank" rel="noopener">타법인주식및출자증권취득결정</a><div class='deal-meta'>2026-05-27</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="2026" style="--c:#20c997">
+      <div class="hist-tl-date">2026-06-26（공시 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#20c997">투자</span>
+          <span class='hist-basis'>공시 기준</span>
+          <span class="src">근거 1건 · 공시</span>
+        </div>
+        <div class="deal-title">유상증자결정(종속회사의주요경영사항)</div>
+        
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>공시 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260626800939" target="_blank" rel="noopener">유상증자결정(종속회사의주요경영사항)</a><div class='deal-meta'>2026-06-26</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="2026" style="--c:#20c997">
+      <div class="hist-tl-date">2026-06-26（공시 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#20c997">투자</span>
+          <span class='hist-basis'>공시 기준</span>
+          <span class="src">근거 10건 · 공시 · 뉴스 · 애널 보고서 · IR</span>
+        </div>
+        <div class="deal-title">[기재정정]타법인주식및출자증권취득결정</div>
+        <div class='deal-sum'>투자전략실 / Weekly / TGIF / vol. 184 2026. 7. 3 vol. 184 2026. 7. 3 투자전략실 / Weekly / TGIF / vol. 184 2026. 7. 3 Weekly TGIF Trend, Geopolitical, Vol. 184 Indicators on Fridays 미국 성장률은 상승, 내용은 부실 고용 안정에는 시간이 필요 C ontents Point 1. Macro Weekly 3 Point 2. Chart of the week 4 Point 3 다음 주 금융시장 주요 이벤트 및 경제 지표 5 Point 4 Global FX Monitor 6 Point 5 Global Macro Monitor 8 Point 6 Global Bond Monitor 10 투자전략실 </div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>공시 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260626800803" target="_blank" rel="noopener">[기재정정]타법인주식및출자증권취득결정</a><div class='deal-meta'>2026-06-26</div></li></ul></div><div class='hist-src-block'><div class='hist-src-label'>애널 보고서 <em>3</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://consensus.hankyung.com/analysis/downpdf?report_idx=650457" target="_blank" rel="noopener">[TGIF] 미국 성장률은 상승, 내용은 부실</a><div class='deal-meta'>2026-07-03 · C:\Users\USER\Desktop\ai_project\data\domestic\361610\consensus\650457.pdf</div><div class='deal-sum'>투자전략실 / Weekly / TGIF / vol. 184 2026. 7. 3 vol. 184 2026. 7. 3 투자전략실 / Weekly / TGIF / vol. 184 2026. 7. 3 Weekly TGIF Trend, Geopolitical, Vol. 184 Indicators on Fridays 미국 성장률은 상승, 내용은 부실 고용 안정에는 시간이 필요 C ontents Point 1. Macro Weekly 3 Point 2. Chart of the week 4 Point 3 다음 </div></li><li class='hist-ev-item'><a href="https://consensus.hankyung.com/analysis/downpdf?report_idx=650454" target="_blank" rel="noopener">삼성전자(005930) 실적 전망치 상향 조정 지속</a><div class='deal-meta'>2026-07-03 · C:\Users\USER\Desktop\ai_project\data\domestic\361610\consensus\650454.pdf</div><div class='deal-sum'>[반도체] 송명섭2122-9207 mssong@imfnsec.com 삼성전자(005930) [투자포인트] 실적 전망치 상향 조정 지속 ■ 삼성전자의 2Q26 영업이익 전망치를 기존의 76.1조원에서 80.0조원으로 상향 조정한다. 또한 당사는 FY26 영업이익에대한전망치도기존의340조원에서360조원으로상향했다.이는2Q26과3Q26의DRAM,NAND ASP 상승폭이 확대되기 때문이다. 당사의 채널 체크에 따르면 2Q26 DRAM Blended ASP는 40% 이상, Buy(Maintain) NAND</div></li><li class='hist-ev-item'><a href="https://consensus.hankyung.com/analysis/downpdf?report_idx=650453" target="_blank" rel="noopener">패키지기판 업종 이슈코멘트 : ① 메모리기판 판가인하, ② 삼성전기 투자 공시 관련</a><div class='deal-meta'>2026-07-03 · C:\Users\USER\Desktop\ai_project\data\domestic\361610\consensus\650453.pdf</div><div class='deal-sum'>2026.07.03 전기전자 (Overweight) 패키지기판 업종 이슈코멘트: Issue Comment ① 메모리기판 판가인하, ② 삼성전기 투자 공시 관련 Overweight 1] 메모리 패키지기판 판가 인하 가능성 관련 전일 메타發 인프라 투자 지속성 우려로 PCB 업종의 주가가 크게 하락했다. 일본 및 대만의 해외 기판 업체들 대비 유독 대덕전자, 심텍, 해성디에스 등 국내 업체들의 하락폭이 유독 가팔랐는데, 중견 메모리 PCB 업체에 대한 판가 인하 가능성이 제기된 것이 주된 원인 중 하</div></li></ul></div><div class='hist-src-block'><div class='hist-src-label'>뉴스 <em>2</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://n.news.naver.com/mnews/article/015/0005305160?sid=101" target="_blank" rel="noopener">곳간 빈 석유화학·배터리…&#x27;신용등급 줄강등&#x27; 된서리</a><div class='deal-sum'>나이스신용평가는 에코프로,SK아이이테크놀로지(SKIET) 등의 신용등급을 A에서 A-로 한 단계씩 하향 조정했고 엘앤에프의 등급 전망을 부정적으로 내렸다. 대규모 투자로 재무 부담이 커진 가운데 전기차 수요 부진으로 재무 안정성이 개선되기 어렵다는 이유에서다. 저축은행과 부동산 신탁사 등급도...</div></li><li class='hist-ev-item'><a href="https://n.news.naver.com/mnews/article/079/0004161539?sid=101" target="_blank" rel="noopener">불장 올라탄 개미…주식계좌 1억개 돌파, 올해만 천 만개 늘었다</a><div class='deal-sum'>실제 코로나19 이후인 2021년에는SK아이이테크놀로지, SK바이오사이언스, SK바이오팜 등 대형 IPO가 잇따르며 활동계좌가 1년 새 2200만개 이상 증가했다. 올해 상반기 IPO 시장은 지난해만큼 뜨겁지는 않았지만, 일부 새내기주가 상장 첫날 &#x27;따따블&#x27;을 기록하며 투자자들의 관심을 모았다. 증권사들의 투자자...</div></li></ul></div><div class='hist-src-block'><div class='hist-src-label'>IR <em>4</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="http://skietechnology.co.kr/ir/dart.asp" target="_blank" rel="noopener">공시/DART</a><div class='deal-sum'>투자정보 — 기업지배구조,주식,재무,IR,공시정보 등 투자정보현황을 확인하실 수 있습니다.</div></li><li class='hist-ev-item'><a href="http://skietechnology.co.kr/ir/earning.asp" target="_blank" rel="noopener">실적발표</a><div class='deal-sum'>투자정보 — 기업지배구조,주식,재무,IR,공시정보 등 투자정보현황을 확인하실 수 있습니다.</div></li><li class='hist-ev-item'><a href="http://www.skietechnology.com/ir/ir_notice.asp" target="_blank" rel="noopener">IR공지</a><div class='deal-sum'>투자정보 — 기업지배구조,주식,재무,IR,공시정보 등 투자정보현황을 확인하실 수 있습니다.</div></li><li class='hist-ev-item'><a href="http://www.skietechnology.com/ir/earning.asp" target="_blank" rel="noopener">실적발표</a><div class='deal-sum'>투자정보 — 기업지배구조,주식,재무,IR,공시정보 등 투자정보현황을 확인하실 수 있습니다.</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    </div>
+                </section>
+                </div></div>
+    </div>
+    <script>
+      (function() {
+        function applyFocus(panel, mode) {
+          if (!panel) return;
+          panel.querySelectorAll('.hist-focus-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.focus === mode);
+          });
+          panel.querySelectorAll('.hist-tl-year').forEach(sec => {
+            const y = sec.dataset.year;
+            if (mode === 'all') {
+              sec.style.display = '';
+              return;
+            }
+            sec.style.display = (y === mode) ? '' : 'none';
+          });
+        }
+        document.querySelectorAll('.hist-year-focus').forEach(bar => {
+          bar.querySelectorAll('.hist-focus-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+              const panel = document.getElementById(bar.dataset.panel);
+              applyFocus(panel, btn.dataset.focus);
+            });
+          });
+        });
+      })();
+    </script>
+    
+        
+    <footer>갱신 2026-07-24 16:28 · 2026-Q3 · 기업 전략 동향 AI 트래커</footer>
+  </div>
+  <script>
+    function activateTab(id) {
+      if (!id) return;
+      const btn = document.querySelector('.tabs button[data-tab="' + id + '"]');
+      const panel = document.getElementById(id);
+      if (!btn || !panel) return;
+      document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      panel.classList.add('active');
+    }
+    document.querySelectorAll('.tabs button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activateTab(btn.dataset.tab);
+        if (btn.dataset.tab) history.replaceState(null, '', '#' + btn.dataset.tab);
+      });
+    });
+    if (location.hash) activateTab(location.hash.replace(/^#/, ''));
+  </script>
+  <script>
+    (function(){
+      const el = document.getElementById("fin_KR_361610");
+      if (!el || typeof Chart === 'undefined') return;
+      const d = {"labels": ["2021", "2022", "2023", "2024", "2025"], "revenue": [6037.67421, 5857.98633, 6495.68305, 2178.64619, 2618.74278], "op": [891.75689, -522.95439, 320.2792, -2909.94179, -2463.64302], "margin": [14.77, -8.93, 4.93, -133.57, -94.08], "unit": "억원"};
+      new Chart(el, {
+        data: {
+          labels: d.labels,
+          datasets: [
+            {
+              type: 'bar',
+              label: '매출',
+              data: d.revenue,
+              backgroundColor: 'rgba(56,189,248,0.55)',
+              borderColor: '#38bdf8',
+              borderWidth: 1,
+              yAxisID: 'y',
+              order: 2
+            },
+            {
+              type: 'bar',
+              label: '영업이익',
+              data: d.op,
+              backgroundColor: 'rgba(52,211,153,0.55)',
+              borderColor: '#34d399',
+              borderWidth: 1,
+              yAxisID: 'y',
+              order: 2
+            },
+            {
+              type: 'line',
+              label: '영업이익률(%)',
+              data: d.margin,
+              borderColor: '#fbbf24',
+              backgroundColor: 'rgba(251,191,36,0.15)',
+              tension: 0.25,
+              pointRadius: 4,
+              pointBackgroundColor: '#fbbf24',
+              yAxisID: 'y1',
+              order: 1
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: { labels: { color: '#9ca3af' } },
+            tooltip: {
+              callbacks: {
+                label: function(ctx) {
+                  const v = ctx.parsed.y;
+                  if (v == null) return ctx.dataset.label + ': —';
+                  if (ctx.dataset.yAxisID === 'y1') return ctx.dataset.label + ': ' + v.toFixed(2) + '%';
+                  return ctx.dataset.label + ': ' + Number(v).toLocaleString(undefined, {maximumFractionDigits: 1});
+                }
+              }
+            }
+          },
+          scales: {
+            x: { ticks: { color: '#9ca3af' }, grid: { color: '#1f2937' } },
+            y: {
+              position: 'left',
+              ticks: { color: '#9ca3af' },
+              grid: { color: '#1f2937' },
+              title: { display: true, text: d.unit, color: '#9ca3af' }
+            },
+            y1: {
+              position: 'right',
+              ticks: {
+                color: '#fbbf24',
+                callback: function(v) { return v + '%'; }
+              },
+              grid: { drawOnChartArea: false },
+              title: { display: true, text: '영업이익률 (%)', color: '#fbbf24' }
+            }
+          }
+        }
+      });
+    })();
+    </script>
+</body>
+</html>
