@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>국내 — 2026-Q3</title>
+  <style>
+:root {
+  --bg: #f5f7fb; --panel: #ffffff; --card: #ffffff; --text: #1e293b;
+  --muted: #64748b; --accent: #0284c7; --accent-2: #059669; --border: #e2e8f0;
+  --soft: #f1f5f9; --soft-2: #eef2ff; --brand-navy: #1e3a5f;
+}
+* { box-sizing: border-box; }
+body { margin:0; font-family:"Segoe UI","Malgun Gothic",sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
+.wrap { max-width: 1140px; margin: 0 auto; padding: 28px 20px 48px; }
+h1 { margin: 0 0 6px; font-size: 1.85rem; color:#0f172a; }
+h1.brand-title { color: var(--brand-navy); }
+.sub { color: var(--muted); margin-bottom: 20px; }
+.nav { display:flex; gap:8px; flex-wrap:wrap; margin-bottom: 20px; }
+.nav a { padding:8px 12px; border-radius:10px; background:var(--card); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.85rem; }
+.nav a.active, .nav a:hover { border-color:var(--brand-navy); color:var(--brand-navy); background:#eef2ff; }
+.home-section {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:18px 20px; margin-bottom:16px; box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+.home-split {
+  display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start; margin-bottom:16px;
+}
+.home-split > .home-section { margin-bottom:0; min-width:0; }
+.home-col-kr { border-top:3px solid #0284c7; }
+.home-col-intl { border-top:3px solid #0d9488; }
+@media (max-width:960px) {
+  .home-split { grid-template-columns:1fr; }
+}
+.home-section-head { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px; flex-wrap:wrap; }
+.home-section-head h2 { margin:0; font-size:1.15rem; color:var(--brand-navy); }
+.home-co-list { display:flex; flex-direction:column; gap:10px; }
+.home-co-row {
+  display:flex; flex-direction:column; align-items:stretch; gap:10px;
+  padding:12px 14px; border:1px solid var(--border); border-radius:12px; background:#fff;
+}
+.home-co-top {
+  display:grid; grid-template-columns:28px minmax(0,1fr); gap:8px 12px; align-items:center;
+}
+.home-co-main {
+  display:flex; align-items:center; gap:8px; min-width:0;
+}
+.home-co-main strong {
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:0.95rem;
+}
+.home-co-links {
+  grid-column:1 / -1; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:6px;
+}
+.home-co-links a,
+.home-tab-btn {
+  display:block; width:100%; text-align:center; padding:7px 4px; border-radius:8px; border:1px solid var(--border);
+  text-decoration:none; color:var(--brand-navy); font-size:0.78rem; font-weight:600; background:var(--soft);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; cursor:pointer;
+  font-family:inherit;
+}
+.home-co-links a:hover,
+.home-tab-btn:hover { border-color:var(--accent); background:#e0f2fe; }
+.home-tab-btn.active {
+  border-color:var(--accent); color:#fff; background:var(--accent);
+}
+.home-tab-panels { margin-top:2px; }
+.home-tab-panel {
+  border:1px solid var(--border); border-radius:10px; background:#f8fafc;
+  padding:10px 12px; margin-top:4px;
+}
+.home-tab-panel-head {
+  display:flex; justify-content:space-between; align-items:center; gap:8px;
+  margin-bottom:8px;
+}
+.home-tab-panel-head strong { font-size:0.88rem; color:var(--brand-navy); }
+.home-tab-more {
+  font-size:0.78rem; font-weight:600; color:var(--accent); text-decoration:none; white-space:nowrap;
+}
+.home-tab-more:hover { text-decoration:underline; }
+.home-prev-item { padding:6px 0; border-bottom:1px solid var(--border); }
+.home-prev-item:last-child { border-bottom:none; }
+.home-prev-fin { font-size:0.78rem; margin-top:4px; }
+@media (max-width:520px) {
+  .home-co-links { grid-template-columns:repeat(2, minmax(0,1fr)); }
+}
+.co-logo { width:28px; height:28px; border-radius:6px; object-fit:contain; background:#fff; border:1px solid var(--border); }
+.co-logo-fallback {
+  width:28px; height:28px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center;
+  background:var(--brand-navy); color:#fff; font-size:0.85rem; font-weight:700;
+}
+.ov-card-head .co-logo,
+.ov-card-head .co-logo-fallback,
+.co-page-head .co-logo,
+.co-page-head .co-logo-fallback {
+  width:36px; height:36px; flex-shrink:0;
+}
+.co-page-head {
+  display:flex; align-items:center; gap:12px; margin:0 0 10px;
+}
+.co-page-head h1 { margin:0; }
+.co-page-head .sub { margin:4px 0 0; }
+.home-hist-stats { display:flex; gap:18px; margin-top:8px; color:var(--muted); }
+.home-hist-stats strong { color:var(--brand-navy); font-size:1.2rem; margin-right:4px; }
+.mega-notes { margin:8px 0 12px; padding-left:18px; color:var(--muted); font-size:0.88rem; }
+.mega-tabs button em { font-style:normal; font-weight:700; color:var(--accent); margin-left:4px; }
+.mega-ind-box {
+  background:linear-gradient(135deg,#ffffff,#f0f9ff); border:1px solid var(--border);
+  border-radius:14px; padding:16px 18px; margin-bottom:14px;
+}
+.mega-ai-ul { margin:8px 0 0; padding-left:18px; color:#334155; font-size:0.92rem; }
+.mega-ai-ul li { margin:5px 0; }
+.mega-news-grid { display:grid; grid-template-columns:1fr; gap:12px; }
+.mega-news-card {
+  background:#fff; border:1px solid var(--border); border-radius:12px; padding:14px 16px;
+}
+.mega-news-title {
+  display:block; font-weight:700; color:var(--accent); text-decoration:none; font-size:1rem; line-height:1.4;
+}
+.mega-news-title:hover { text-decoration:underline; color:var(--brand-navy); }
+.mega-news-sum { margin-top:8px; }
+.mega-news-sum .mega-ai-ul { font-size:0.88rem; color:#475569; }
+@media (min-width:900px) {
+  .mega-news-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+}
+.ai-summary-box {
+  background:#f8fafc; border:1px solid var(--border); border-left:4px solid var(--brand-navy);
+  border-radius:12px; padding:14px 16px; margin:14px 0;
+}
+.ai-summary-box pre { white-space:pre-wrap; font-family:inherit; font-size:0.9rem; color:#334155; margin:8px 0 0; }
+.ai-summary-box.compact { padding:10px 12px; margin:8px 0 0; }
+.home-ai-ul {
+  list-style:none; margin:8px 0 0; padding:0; color:#334155; font-size:0.88rem;
+  display:flex; flex-direction:column; gap:6px;
+}
+.home-ai-ul li {
+  display:grid; grid-template-columns:5.75rem minmax(0,1fr) auto;
+  gap:8px; align-items:start; margin:0; line-height:1.45;
+}
+.home-ai-ul .ai-k {
+  display:block; color:var(--brand-navy); font-weight:600; font-size:0.78rem;
+  text-align:left; padding-top:1px;
+}
+.home-ai-ul a.ai-news {
+  font-size:0.75rem; font-weight:600; color:var(--accent);
+  text-decoration:none; border-bottom:1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  white-space:nowrap; align-self:start; margin-top:1px;
+}
+.home-ai-ul a.ai-news:hover { color:var(--accent-2); border-bottom-color:var(--accent-2); }
+@media (max-width:520px) {
+  .home-ai-ul li { grid-template-columns:4.5rem minmax(0,1fr); }
+  .home-ai-ul a.ai-news { grid-column:2; justify-self:start; }
+}
+.strategy-brief-list { display:flex; flex-direction:column; gap:16px; }
+.ov-list { display:flex; flex-direction:column; gap:18px; }
+.ov-card {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:0; box-shadow:0 1px 2px rgba(15,23,42,.03); overflow:hidden;
+}
+.ov-fold { margin:0; }
+.ov-fold > summary.ov-card-head {
+  list-style:none; cursor:pointer; display:flex; align-items:center; gap:12px;
+  flex-wrap:wrap; margin:0; padding:14px 18px; border-bottom:1px solid transparent;
+  user-select:none;
+}
+.ov-fold > summary.ov-card-head::-webkit-details-marker { display:none; }
+.ov-fold[open] > summary.ov-card-head {
+  border-bottom-color:var(--border); margin-bottom:0;
+}
+.ov-fold-hint {
+  flex-shrink:0; width:28px; height:28px; border-radius:8px;
+  border:1px solid var(--border); background:#f8fafc; color:var(--muted);
+  display:inline-flex; align-items:center; justify-content:center; font-size:0.75rem;
+}
+.ov-fold-hint::before { content:"▸"; }
+.ov-fold[open] .ov-fold-hint::before { content:"▾"; }
+.ov-card-body { padding:14px 18px 16px; }
+.ov-card-titles { flex:1; min-width:140px; }
+.ov-name {
+  font-size:1.15rem; font-weight:700; color:var(--brand-navy); text-decoration:none;
+}
+.ov-name:hover { color:var(--accent); }
+.ov-mcap { text-align:right; }
+.ov-mcap-label { display:block; font-size:0.72rem; color:var(--muted); }
+.ov-mcap strong { font-size:1.05rem; color:#92400e; }
+.ov-grid {
+  display:grid; grid-template-columns:1.2fr 1fr; gap:14px; margin-bottom:12px;
+}
+@media (max-width:800px) { .ov-grid { grid-template-columns:1fr; } }
+.ov-block h4 { margin:0 0 8px; font-size:0.9rem; color:var(--accent-2); }
+.ov-fin { width:100%; border-collapse:collapse; font-size:0.82rem; }
+.ov-fin th, .ov-fin td {
+  border-bottom:1px solid var(--border); padding:6px 8px; text-align:right;
+}
+.ov-fin th:first-child, .ov-fin td:first-child { text-align:left; }
+.ov-fin th { color:var(--muted); font-weight:600; background:#f8fafc; }
+.ov-chart-wrap { height:140px; position:relative; }
+.ov-chart-wrap.ov-chart-lg { height:260px; min-height:260px; }
+.ov-mini-tabs {
+  display:flex; flex-wrap:wrap; gap:6px; margin:0 0 10px;
+}
+.ov-mini-tabs button {
+  border:1px solid var(--border); background:#fff; border-radius:8px;
+  padding:6px 10px; font-size:0.78rem; cursor:pointer; color:var(--text);
+}
+.ov-mini-tabs button.active {
+  border-color:var(--accent); background:#e0f2fe; color:var(--accent); font-weight:700;
+}
+.ov-cat-panel { display:none; }
+.ov-cat-panel.active { display:block; }
+.ov-ls-block {
+  background:linear-gradient(135deg,#fffbeb,#fff); border:1px solid #f59e0b;
+  border-radius:12px; padding:12px 14px; margin-top:8px;
+}
+.ov-ls-block h4 { color:#92400e !important; }
+.ov-ls-meta { margin:0 0 8px !important; font-size:0.75rem; color:#92400e; }
+.ov-ls-prose-wrap { display:flex; flex-direction:column; gap:10px; }
+.ov-ls-prose {
+  margin:0; font-size:0.9rem; line-height:1.65; color:var(--text);
+  text-align:justify;
+}
+.ov-fact-summary {
+  margin:6px 0 2px; padding:6px 8px; border-left:3px solid #0e7490;
+  background:#f0f9ff; font-size:0.82rem; line-height:1.55; color:#0f172a;
+}
+.ov-fact-label {
+  display:inline-block; font-weight:700; color:#0e7490; margin-right:6px;
+  font-size:0.72rem; letter-spacing:0.02em;
+}
+.weekly-report {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:16px 18px; margin:12px 0 16px;
+}
+.weekly-head {
+  display:flex; align-items:flex-start; justify-content:space-between;
+  gap:12px; flex-wrap:wrap; margin-bottom:4px;
+}
+.weekly-head h3 { margin:0; }
+.weekly-dl { display:flex; gap:8px; flex-wrap:wrap; }
+.btn-dl {
+  display:inline-block; padding:6px 12px; border-radius:8px; font-size:0.78rem;
+  font-weight:700; text-decoration:none; color:#fff; background:var(--brand-navy);
+  border:1px solid var(--brand-navy);
+}
+.btn-dl:hover { background:#0c4a6e; }
+.btn-dl-word { background:#0369a1; border-color:#0369a1; }
+.weekly-fold {
+  margin:10px 0 0; padding:0; border:1px solid var(--border); border-radius:10px;
+  background:#fafbfc;
+}
+.weekly-fold > summary.weekly-fold-sum {
+  list-style:none; cursor:pointer; padding:10px 12px;
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+  font-weight:700; color:var(--brand-navy);
+}
+.weekly-fold > summary.weekly-fold-sum::-webkit-details-marker { display:none; }
+.weekly-fold > summary.weekly-fold-sum::before {
+  content:"▾"; color:var(--muted); font-size:0.85rem; margin-right:6px;
+}
+.weekly-fold:not([open]) > summary.weekly-fold-sum::before { content:"▸"; }
+.weekly-fold-title { font-size:0.95rem; }
+.weekly-fold-meta {
+  font-size:0.72rem; font-weight:600; color:var(--muted);
+  background:#e2e8f0; padding:2px 8px; border-radius:999px;
+}
+.weekly-fold-body { padding:4px 12px 12px 28px; }
+.weekly-fold .empty { margin:0; padding:4px 0 8px; }
+.weekly-detail-tabs { margin-top:8px; padding-top:8px; border-top:2px solid var(--border); }
+.item-date {
+  display:inline-block; margin-left:6px; padding:1px 7px; border-radius:4px;
+  font-size:0.72rem; font-weight:600; color:#475569; background:#f1f5f9;
+  vertical-align:baseline; white-space:nowrap;
+}
+.weekly-sec { margin:14px 0; padding-top:10px; border-top:1px solid var(--border); }
+.weekly-sec:first-of-type { border-top:none; padding-top:0; }
+.weekly-sec h4 { margin:0 0 8px; font-size:0.95rem; color:var(--brand-navy); }
+.weekly-ai { margin-bottom:8px; }
+ul.rpt-l1 {
+  list-style:disc; margin:6px 0 0; padding-left:1.2rem; color:#0f172a; font-size:0.92rem;
+}
+ul.rpt-l1 > li { margin:6px 0; line-height:1.45; display:list-item; }
+ul.rpt-l1 ul.rpt-l2 { display:block; margin:6px 0 0; clear:both; }
+ul.rpt-l2 ul.rpt-l3 { display:block; margin:4px 0 0; clear:both; }
+.ov-issue-ul > li { display:list-item; }
+ul.rpt-l2 {
+  list-style:none; margin:4px 0 0; padding-left:0.2rem; color:#334155; font-size:0.88rem;
+}
+ul.rpt-l2 > li {
+  position:relative; padding-left:1rem; margin:4px 0; line-height:1.4;
+}
+ul.rpt-l2 > li::before { content:"-"; position:absolute; left:0; color:#64748b; font-weight:700; }
+ul.rpt-l3 {
+  list-style:none; margin:3px 0 0; padding-left:0.15rem; color:#475569; font-size:0.84rem;
+}
+ul.rpt-l3 > li {
+  position:relative; padding-left:1.1rem; margin:3px 0; line-height:1.35;
+}
+ul.rpt-l3 > li::before { content:"✓"; position:absolute; left:0; color:#047857; font-weight:700; }
+.ov-news-ul { margin:0; padding-left:0; list-style:none; }
+.ov-news-li {
+  padding:8px 0; border-bottom:1px solid var(--border); font-size:0.9rem;
+}
+.ov-news-li:last-child { border-bottom:none; }
+.ov-news-li a { color:var(--brand-navy); text-decoration:none; font-weight:600; }
+.ov-news-li a:hover { color:var(--accent); }
+.ov-news-meta { margin-top:4px; font-size:0.75rem; color:var(--muted); }
+.ov-tag {
+  display:inline-block; margin:2px 4px 0 0; padding:1px 7px; border-radius:4px;
+  font-size:0.7rem; font-weight:700; background:#e0f2fe; color:#0369a1;
+}
+.ov-tag:nth-child(odd) { background:#ecfdf5; color:#047857; }
+.ov-more { margin:10px 0 0; text-align:right; }
+.ov-more a { font-weight:600; color:var(--accent); text-decoration:none; }
+.ov-sec { margin-bottom:16px; }
+.ov-sec h4 { margin:0 0 8px; font-size:0.95rem; color:var(--brand-navy); }
+.strategy-brief-card {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:16px 18px; box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+.strat-head {
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid var(--border);
+}
+.strat-title { display:flex; align-items:center; gap:8px; flex:1; min-width:140px; }
+.strat-title strong { font-size:1.05rem; }
+.strat-cat { margin-top:12px; }
+.strat-cat-head {
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+  margin-bottom:6px;
+}
+.strat-cat-head h4 {
+  margin:0; font-size:0.88rem; color:var(--brand-navy); font-weight:700;
+}
+.strat-ul {
+  list-style:none; margin:0; padding:0; color:#334155; font-size:0.88rem;
+  display:flex; flex-direction:column; gap:5px;
+}
+.strat-ul li {
+  display:grid; grid-template-columns:5.75rem minmax(0,1fr);
+  gap:8px; align-items:start; line-height:1.45;
+}
+.strat-ul.plain li { grid-template-columns:minmax(0,1fr); }
+.strat-k {
+  display:block; color:var(--brand-navy); font-weight:600; font-size:0.76rem;
+  padding-top:1px;
+}
+@media (max-width:520px) {
+  .strat-ul li { grid-template-columns:4.5rem minmax(0,1fr); }
+}
+.hero {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 55%, #ecfdf5 100%);
+  border:1px solid var(--border); border-radius:16px; padding:28px; margin-bottom:24px;
+  box-shadow:0 1px 2px rgba(15,23,42,.04);
+}
+.entry-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin-top:18px; }
+.entry {
+  display:block; background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:22px; text-decoration:none; color:inherit; transition:border-color .15s, box-shadow .15s;
+  box-shadow:0 1px 2px rgba(15,23,42,.04);
+}
+.entry:hover { border-color: var(--accent); box-shadow:0 4px 12px rgba(2,132,199,.08); }
+.entry h2 { margin:0 0 8px; font-size:1.35rem; color:var(--accent-2); }
+.entry p { margin:0; color:var(--muted); font-size:0.92rem; }
+.entry .count { margin-top:12px; font-size:1.6rem; font-weight:700; color:var(--accent); }
+.tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; position:sticky; top:0; z-index:5;
+  background:rgba(245,247,251,.94); backdrop-filter:blur(8px); padding:10px 0; border-bottom:1px solid var(--border); }
+.tabs button {
+  border:1px solid var(--border); background:var(--card); color:var(--text);
+  padding:8px 12px; border-radius:8px; cursor:pointer; font-size:0.85rem;
+}
+.tabs button.active { border-color:var(--accent); color:var(--accent); background:#e0f2fe; }
+.tab-panel { display:none; }
+.tab-panel.active { display:block; }
+.tab-desc { color:var(--muted); font-size:0.9rem; margin-bottom:14px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; }
+.card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px; box-shadow:0 1px 2px rgba(15,23,42,.03); }
+.card-head { display:flex; justify-content:space-between; gap:8px; margin-bottom:10px; }
+.card h3 { margin:0; font-size:1rem; }
+.tag { font-size:0.7rem; background:#e0f2fe; color:#0369a1; padding:3px 8px; border-radius:6px; white-space:nowrap; }
+.tag.intl { background:#d1fae5; color:#047857; }
+.module-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; margin-bottom:12px; }
+.mod-stat { background:var(--soft); border-radius:8px; padding:8px 6px; text-align:center; font-size:0.72rem; color:var(--muted); }
+.mod-stat strong { display:block; font-size:1.05rem; color:var(--text); }
+.btn { display:inline-block; padding:9px 12px; border-radius:10px; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; font-size:0.88rem; border:none; cursor:pointer; }
+.btn.secondary { background:#10b981; color:#fff; }
+.empty { color:var(--muted); font-style:italic; }
+.deal-kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px; margin-bottom:18px; }
+.deal-kpi { background:var(--card); border:1px solid var(--border); border-left:4px solid var(--c,#0284c7);
+  border-radius:10px; padding:12px 14px; text-decoration:none; color:inherit; }
+.deal-kpi-label { font-size:0.85rem; }
+.deal-kpi-count { font-size:1.7rem; font-weight:700; color:var(--c,#0284c7); }
+.deal-kpi-en { font-size:0.72rem; color:var(--muted); }
+.deal-section { background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:16px 18px; margin-bottom:14px; scroll-margin-top:70px; }
+.deal-section h3 { margin:0 0 12px; font-size:1.05rem; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.deal-section h3 .dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
+.deal-section h3 small { color:var(--muted); font-weight:400; font-size:0.8rem; }
+.deal-section h3 em { margin-left:auto; font-style:normal; color:var(--accent); font-size:0.85rem; }
+.deal-item { padding:12px 0; border-bottom:1px solid var(--border); }
+.deal-item:last-child { border-bottom:none; }
+.deal-item-top { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:4px; }
+.pill { color:#fff; font-size:0.7rem; padding:2px 8px; border-radius:4px; }
+.src { font-size:0.72rem; color:var(--muted); background:var(--soft); padding:2px 6px; border-radius:4px; }
+.co { font-size:0.78rem; color:var(--accent-2); }
+.deal-title { font-weight:600; margin-bottom:4px; }
+.deal-meta { font-size:0.8rem; color:var(--muted); margin-bottom:4px; }
+.deal-sum { font-size:0.88rem; color:#475569; margin:6px 0; }
+a { color:var(--accent); }
+.chart-box { background:var(--soft); border-radius:10px; padding:10px; margin:8px 0 12px; border:1px solid var(--border); }
+.ov-card-body .chart-box { height:220px; position:relative; }
+.index-hero { grid-column: 1 / -1; border-color:#99f6e4; background:linear-gradient(135deg,#fff,#f0fdfa); }
+table.fin { width:100%; border-collapse:collapse; font-size:0.8rem; }
+table.fin th, table.fin td { border-bottom:1px solid var(--border); padding:0.4rem 0.3rem; text-align:right; }
+table.fin th:first-child, table.fin td:first-child { text-align:left; }
+table.fin th { color:var(--muted); }
+.price-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; margin-top:14px; }
+.price-chip { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px; }
+.price-chip.intl { border-color:#a7f3d0; }
+.pc-name { font-size:0.78rem; color:var(--muted); margin-bottom:4px; }
+.pc-price { font-size:1.15rem; font-weight:700; }
+.pc-chg { font-size:0.8rem; margin-top:2px; }
+.pc-chg.up { color:#059669; }
+.pc-chg.down { color:#dc2626; }
+.mod-stat em { display:block; font-size:0.65rem; color:#d97706; font-style:normal; }
+.geo-tag { display:inline-block; background:#ffedd5; color:#9a3412; font-size:0.7rem; padding:2px 8px; border-radius:4px; font-weight:600; }
+.bm-banner { background:#fff7ed; border:1px solid #fdba74; border-radius:12px; padding:12px 14px; margin-bottom:14px; }
+table.fin tr.bm-row td { background:#fffbeb; color:#92400e; font-weight:600; }
+.debt-ratio { color:#d97706; font-weight:700; }
+.markets-panel {
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 45%, #f0f9ff 100%);
+  border:1px solid var(--border); border-radius:16px; padding:20px 22px; margin-bottom:20px;
+}
+.markets-head { display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
+.markets-section-label { font-size:0.78rem; color:#047857; margin:14px 0 8px; letter-spacing:0.02em; font-weight:600; }
+.mkt-chart-grid { display:grid; gap:12px; margin-bottom:6px; }
+.mkt-chart-grid.mkt-grid-2x2 { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+.mkt-chart-grid.mkt-grid-2 { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+@media (max-width:720px) {
+  .mkt-chart-grid.mkt-grid-2x2,
+  .mkt-chart-grid.mkt-grid-2 { grid-template-columns:1fr; }
+}
+.mkt-chip { background:#fff; border:1px solid var(--border); border-radius:12px; padding:12px; }
+.mkt-chip.commodity { border-color:#f59e0b; }
+.mkt-chip.index { border-color:#38bdf8; }
+.mkt-chip.fx { border-color:#06b6d4; }
+.mkt-chip.rate { border-color:#8b5cf6; }
+.mkt-unit { font-size:0.72rem; color:var(--muted); font-weight:500; }
+.mkt-note { font-size:0.7rem; color:var(--muted); margin-top:6px; line-height:1.35; }
+.power-badge {
+  display:inline-block; background:#fef3c7; color:#b45309; font-size:0.72rem;
+  font-weight:700; padding:2px 8px; border-radius:4px; margin-right:6px;
+}
+.power-sum-label {
+  margin-top:10px; font-size:0.78rem; font-weight:600; color:#047857;
+}
+.power-subtabs { position:static; background:transparent; backdrop-filter:none; margin-top:8px; }
+.tag-row { display:flex; flex-wrap:wrap; gap:6px; margin-top:4px; }
+.fin-sub { margin:16px 0 8px; font-size:0.95rem; color:var(--brand-navy); }
+.power-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px 18px; margin-bottom:14px; }
+.power-card h3 { margin:0 0 8px; font-size:1.05rem; color:var(--accent-2); }
+.power-overview-fold { padding:0; overflow:hidden; }
+.power-overview-sum {
+  list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between;
+  gap:12px; padding:14px 18px; user-select:none;
+}
+.power-overview-sum::-webkit-details-marker { display:none; }
+.power-overview-title { font-size:1.05rem; font-weight:700; color:var(--accent-2); }
+.power-overview-hint {
+  flex-shrink:0; font-size:0.78rem; font-weight:600; color:var(--muted);
+  display:inline-flex; align-items:center; gap:4px;
+}
+.power-overview-hint::before { content:attr(data-when-open); }
+.power-overview-fold:not([open]) .power-overview-hint::before { content:attr(data-when-closed); }
+.power-overview-hint::after {
+  content:""; width:0.45em; height:0.45em; border-right:2px solid currentColor;
+  border-bottom:2px solid currentColor; transform:rotate(-135deg); margin-top:3px;
+  transition:transform .15s ease;
+}
+.power-overview-fold:not([open]) .power-overview-hint::after {
+  transform:rotate(45deg); margin-top:-2px;
+}
+.power-overview-body { padding:0 18px 16px; border-top:1px solid var(--border); }
+.power-overview-sum:hover { background:#f8fafc; }
+.power-label { font-size:0.78rem; color:#047857; margin:12px 0 6px; }
+.power-list { margin:0; padding-left:1.1rem; color:#334155; font-size:0.9rem; }
+.power-list li { margin-bottom:4px; }
+.export-box { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px; margin:14px 0 20px; }
+.export-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+.email-form { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:10px; }
+.email-form input[type=email],
+.email-form input[type=text],
+.email-form select {
+  flex:1; min-width:180px; padding:10px 12px; border-radius:8px;
+  border:1px solid var(--border); background:#fff; color:var(--text);
+}
+.email-form button { border:none; cursor:pointer; }
+.briefing-list { margin-top:12px; display:flex; flex-direction:column; gap:12px; }
+.briefing-card {
+  background:#fff; border:1px solid var(--border); border-radius:12px; padding:14px 16px;
+}
+.briefing-card-head { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:6px; }
+.briefing-badge {
+  font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:6px;
+  background:#e0f2fe; color:#0369a1;
+}
+.briefing-badge.status-pending { color:#b45309; background:#fef3c7; }
+.briefing-badge.status-sent { color:#047857; background:#d1fae5; }
+.briefing-badge.status-rejected { color:#b91c1c; background:#fee2e2; }
+.briefing-badge.status-failed { color:#c2410c; background:#ffedd5; }
+.briefing-preview {
+  white-space:pre-wrap; font-size:0.78rem; color:#475569; background:var(--soft);
+  border:1px solid var(--border); border-radius:8px; padding:10px; margin:8px 0; max-height:140px; overflow:auto;
+}
+.tag-row { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+.impact-hint { font-size:0.78rem; color:#b45309; margin:4px 0 6px; }
+.focus-line { color:#047857; font-size:0.9rem; margin:0 0 10px; }
+.fin-sub { margin:14px 0 8px; font-size:0.95rem; color:var(--accent-2); }
+.mkt-chart-card {
+  background:#0f3d4c; border:1px solid #0a2a33; border-radius:12px; padding:14px 14px 10px;
+  color:#f8fafc; min-height:0;
+}
+.mkt-chart-card .pc-name { color:#e2e8f0; font-size:0.9rem; font-weight:600; margin-bottom:6px; }
+.mkt-chart-card .pc-price { color:#fff; font-size:1.25rem; font-weight:700; }
+.mkt-chart-card .mkt-unit { color:#94a3b8; }
+.mkt-chart-card .pc-chg.up { color:#6ee7b7; }
+.mkt-chart-card .pc-chg.down { color:#fca5a5; }
+.mkt-chart-card.commodity { border-color:#b45309; }
+.mkt-chart-card.fx { border-color:#0e7490; }
+.mkt-chart-card.rate { border-color:#6d28d9; }
+.mkt-chart-card.index { border-color:#0369a1; }
+.mkt-chart-card.mkt-priority { box-shadow:0 0 0 2px rgba(180,83,9,0.35); }
+.mkt-ls-tag {
+  display:inline-block; margin-left:6px; font-style:normal; font-size:0.65rem;
+  font-weight:700; color:#92400e; background:#fef3c7; padding:1px 6px; border-radius:4px;
+  vertical-align:middle;
+}
+.ls-metal-panel {
+  background:linear-gradient(135deg,#fffbeb,#fff); border:1px solid #f59e0b;
+  border-radius:14px; padding:14px 16px; margin:14px 0 10px;
+}
+.power-12th-panel {
+  background:linear-gradient(135deg,#fffbeb,#fff); border:1px solid #f59e0b;
+  border-radius:14px; padding:16px 18px; margin:14px 0 16px;
+}
+.power-12th-panel .card-head {
+  display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-bottom:4px;
+}
+.power-12th-panel .card-head h3 { margin:0; font-size:1.05rem; color:#92400e; }
+.power-12th-panel .mega-news-grid { margin-top:8px; }
+.mega-ai-ul.power-digest-ul li { line-height:1.5; }
+.mega-ai-ul a.ai-news {
+  display:inline; margin-left:6px; font-size:0.78rem; font-weight:700;
+  color:var(--accent); text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  white-space:nowrap;
+}
+.mega-ai-ul a.ai-news:hover { color:var(--accent-2); border-bottom-color:var(--accent-2); }
+.ls-metal-head {
+  display:flex; justify-content:space-between; align-items:baseline; gap:10px;
+  flex-wrap:wrap; margin-bottom:10px;
+}
+.ls-metal-head strong { color:#92400e; font-size:0.95rem; }
+.ls-metal-block { margin-top:10px; }
+.ls-metal-block h4 { margin:0 0 6px; font-size:0.88rem; color:var(--brand-navy); }
+.ls-metal-ul { margin:0; padding-left:18px; color:#334155; font-size:0.88rem; }
+.ls-metal-ul li { margin:5px 0; line-height:1.45; }
+.mkt-mini-chart { height:100px; margin-top:8px; background:rgba(255,255,255,.04); border-radius:8px; padding:4px; }
+.deal-wrap-v2 .deal-hero {
+  display:flex; flex-wrap:wrap; justify-content:space-between; gap:14px; align-items:flex-end;
+  background:linear-gradient(135deg,#ffffff,#f0f9ff); border:1px solid var(--border);
+  border-radius:14px; padding:16px 18px; margin-bottom:12px;
+}
+.deal-hero-title { margin:0 0 6px; font-size:1.25rem; color:var(--accent-2); }
+.deal-filter-bar {
+  position:sticky; top:8px; z-index:20; display:flex; flex-wrap:wrap; gap:8px;
+  background:rgba(255,255,255,.96); border:1px solid var(--border); border-radius:12px;
+  padding:10px 12px; margin-bottom:14px; backdrop-filter:blur(6px);
+}
+.deal-filter {
+  border:1px solid var(--border); background:#fff; color:var(--text);
+  border-radius:10px; padding:10px 14px; cursor:pointer; font-size:0.9rem;
+  border-left:4px solid var(--c,#64748b);
+}
+.deal-filter em { font-style:normal; font-weight:700; color:var(--c,#0284c7); margin-left:6px; }
+.deal-filter.active { background:#e0f2fe; box-shadow:0 0 0 1px var(--c,#0284c7); color:#0f172a; }
+.deal-panel { margin-bottom:16px; }
+.deal-panel-head {
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  margin-bottom:12px; padding-bottom:8px; border-bottom:2px solid var(--c,#0284c7);
+}
+.deal-panel-head h3 { margin:0; font-size:1.15rem; }
+.deal-panel-head small { color:var(--muted); font-weight:400; margin-left:8px; }
+.deal-panel-count { color:var(--c,#0284c7); font-weight:700; font-size:1rem; }
+.deal-card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; }
+.deal-card {
+  display:flex; background:#fff; border:1px solid var(--border); border-radius:12px; overflow:hidden;
+  min-height:140px; box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+.deal-card-bar { width:6px; flex-shrink:0; }
+.deal-card-body { padding:14px 16px; flex:1; }
+.deal-card .deal-title { font-size:1.05rem; line-height:1.45; margin-bottom:6px; }
+.deal-card .deal-sum { font-size:0.92rem; line-height:1.5; color:#475569; }
+.deal-link { display:inline-block; margin-top:10px; font-weight:600; color:var(--accent); }
+.deal-nav { display:flex; flex-wrap:wrap; gap:8px; }
+.deal-nav-btn {
+  display:flex; align-items:center; gap:8px; text-decoration:none; color:var(--text);
+  background:#fff; border:1px solid var(--border); border-left:4px solid var(--c,#0284c7);
+  border-radius:10px; padding:8px 12px; font-size:0.85rem;
+}
+.deal-nav-btn span { color:var(--c,#0284c7); font-weight:700; font-size:1.05rem; }
+.deal-section-v2 { scroll-margin-top:90px; }
+footer { margin-top:28px; text-align:center; color:var(--muted); font-size:0.85rem; }
+@media (max-width:600px){ .module-grid { grid-template-columns:repeat(3,1fr); } }
+</style>
+  
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <a href="index.html" class="">홈</a>
+      <a href="domestic.html" class="active">국내</a>
+      <a href="international.html" class="">해외</a>
+      <a href="markets.html" class="">지수/환율</a>
+      <a href="power.html" class="">전력시장</a>
+      <a href="mega_projects.html" class="">메가 프로젝트</a>
+      <a href="interest_topic.html" class="">관심주제 주간 브리핑</a>
+    </nav>
+    
+    <h1>국내</h1>
+    <p class="sub">기업 개요 · 시총·실적·최근 이슈 · 연도별 실적 · 주가</p>
+    
+<div class='export-box'>
+  <h3>국내 리포트 다운로드</h3>
+  <p class='deal-meta'>기업별 주요 경영이슈 · 자본시장 활동 · 밸류체인 · 수주/투자/MOU</p>
+  <p class='deal-meta'>서버 주소 <code>http://127.0.0.1:8765</code> 로 연 뒤 다운로드하세요.</p>
+  <div class='export-actions'>
+    <a class='btn' href='http://127.0.0.1:8765/exports/latest_domestic_report.txt' download>텍스트 다운로드</a>
+    <a class='btn secondary' href='http://127.0.0.1:8765/exports/latest_domestic_report.doc' download>Word 다운로드</a>
+  </div>
+</div>
+
+    <div class="tabs">
+      <button class="active" data-tab="tab-brief">기업 개요</button>
+      <button data-tab="tab-financials">연도별 실적 정리</button>
+      <button data-tab="tab-price">주가 데이터</button>
+    </div>
+    <div id="tab-brief" class="tab-panel active"><p class='tab-desc'>기업명·시가총액 클릭으로 실적·이슈·LS 시사점 접기/펼치기</p><div class='ov-list'>
+            <article class="ov-card">
+              <details class="ov-fold">
+                <summary class="ov-card-head">
+                  <img class='co-logo' src='assets/logos/poscofuturem.png' alt='' onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" /><span class='co-logo-fallback' style='display:none'>(</span>
+                  <div class="ov-card-titles">
+                    <a class="ov-name" href="companies/kr_003670.html#weekly" onclick="event.stopPropagation()">(주)포스코퓨처엠</a>
+                    <div class="deal-meta">003670 · 시가 146,000원</div>
+                  </div>
+                  <div class="ov-mcap">
+                    <span class="ov-mcap-label">시가총액</span>
+                    <strong>12.68조원</strong>
+                  </div>
+                  <span class="ov-fold-hint" aria-hidden="true"></span>
+                </summary>
+                <div class="ov-card-body">
+                  <div class="ov-block">
+                    <h4>실적 3개년 · 매출·영업이익·세전이익(억원) + 영업이익률(%)</h4>
+                    <div class="ov-chart-wrap ov-chart-lg"><canvas id="ov_fin_003670" height="260"></canvas></div>
+                  </div>
+                  <div class="ov-block ov-issue-block">
+                    <h4>최근 이슈</h4>
+                    <p class="deal-meta">탭당 핵심 ~4건 · 서브 불렛 2개 · 공시·IR·뉴스 히스토리(약 1년)</p>
+                    <div class="ov-mini-tabs"><button type='button' class='active' data-ovtab='mgmt'>주요 경영이슈</button><button type='button' class='' data-ovtab='capital'>자본시장 활동</button><button type='button' class='' data-ovtab='value'>밸류체인</button><button type='button' class='' data-ovtab='deals'>수주/투자/MOU</button></div>
+                    <div class='ov-cat-panel active' data-ovpanel='mgmt'><ul class='rpt-l1 ov-issue-ul'><li>포스코, 미래 먹거리로 에너지 추가 <a class='ai-news' href='https://n.news.naver.com/mnews/article/023/0003985436?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>사업·시장 함의</li><li>후속 IR·실적 점검 포인트</li></ul></li><li>포스코인터내셔널 지분 20% 매각 · 투자재원 조달 <span class='item-date'>2026-07-02</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/648/0000048593?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>포스코퓨처엠 등 상장자회사 경영권 유지 최소지분(50%) 기준</li><li>핵심 지표 변동 20% 반영</li></ul></li><li>기업설명회(IR)개최(안내공시) <span class='item-date'>2026-06-15</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260615800261' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>실적·가이던스·질의응답 중심 IR 커뮤니케이션 일정 공시</li><li>기관·애널리스트 대상 자본시장 소통 이벤트 반영</li></ul></li><li>임원ㆍ주요주주특정증권등소유상황보고서 <span class='item-date'>2026-06-17</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260617000052' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li></ul></div><div class='ov-cat-panel' data-ovpanel='capital'><ul class='rpt-l1 ov-issue-ul'><li>연결재무제표기준영업(잠정)실적(공정공시) <span class='item-date'>2026-04-30</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260430800421' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>공정공시 경로의 실적·경영계획 시장 공유</li><li>컨센서스·밸류에이션 재평가 입력 자료로 활용</li></ul></li><li>영업(잠정)실적(공정공시) <span class='item-date'>2026-04-30</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260430800418' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>공정공시 경로의 실적·경영계획 시장 공유</li><li>컨센서스·밸류에이션 재평가 입력 자료로 활용</li></ul></li><li>최대주주등소유주식변동신고서 <span class='item-date'>2026-05-12</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260512800888' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>주요주주·최대주주 지분율 변동 공시 반영</li><li>사업·시장 함의</li></ul></li><li>분기보고서 (2026.03) <span class='item-date'>2026-05-15</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515001405' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li></ul></div><div class='ov-cat-panel' data-ovpanel='value'><ul class='rpt-l1 ov-issue-ul'><li>배터리 소재사들, 고출력·수명연장 연구 <a class='ai-news' href='https://n.news.naver.com/mnews/article/015/0005305687?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>수명연장 연구</li><li>사업·시장 함의</li></ul></li><li>포스코홀딩스 상장자회사 지분율 50% 수준 하향 · 지주사 디스카운트 해소 <span class='item-date'>2026-07-02</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/366/0001176213?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>포스코퓨처엠 등 상장자회사 경영권 유지 최소지분(50%) 기준</li><li>핵심 지표 변동 50% 반영</li></ul></li><li>대규모기업집단현황공시[연1회공시및1/4분기용(개별회사)] <span class='item-date'>2026-05-28</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260528000667' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li><li>기업지배구조보고서공시 <span class='item-date'>2026-05-29</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260529800481' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>이사회·감사·주주권익 관련 거버넌스 포인트 점검</li><li>지분·밸류에이션 임팩트 포인트</li></ul></li></ul></div><div class='ov-cat-panel' data-ovpanel='deals'><ul class='rpt-l1 ov-issue-ul'><li>타법인주식및출자증권취득결정 <span class='item-date'>2026-04-27</span><ul class='rpt-l2'><li>사업·시장 함의</li><li>후속 IR·실적 점검 포인트</li></ul></li><li>포스코인터내셔널 지분 18% 매각 · 투자재원 조달 <span class='item-date'>2026-07-03</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/009/0005702261?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>지분 매각 통한 현금 약 2~3조원 확보 효과</li><li>포스코퓨처엠 등 상장자회사 경영권 유지 최소지분(50%) 기준</li></ul></li><li>포스코그룹 3년 17조 투자 · 리튬·에너지 사업 재편 <a class='ai-news' href='https://n.news.naver.com/mnews/article/009/0005702078?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>규모 17조원급 이벤트</li><li>포스코그룹 3년 17조 투자</li></ul></li><li>포스코홀딩스 상장자회사 지분율 50% 수준 하향 · 지주사 디스카운트 해소 <span class='item-date'>2026-07-02</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/082/0001388066?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>포스코퓨처엠 등 상장자회사 경영권 유지 최소지분(50%) 기준</li><li>핵심 지표 변동 50% 반영</li></ul></li></ul></div>
+                  </div>
+                  <div class="ov-block ov-ls-block">
+                    <h4>LS 그룹 추가 모니터링 포인트</h4>
+                    <p class='deal-meta ov-ls-meta'>LLM 미생성 — 규칙 기반 폴백</p><ul class='rpt-l1'><li>(주)포스코퓨처엠 원료·전구체 가격·장기계약 변동 → LLBS·MnM 조달원가·재고 리스크 추가 모니터링</li><li>(주)포스코퓨처엠 증설·지분·M&amp;A·CAPEX 일정 → LS 배터리 밸류체인 경쟁강도·파트너십 재평가 포인트</li><li>(주)포스코퓨처엠 제품·양산·스펙 변화 → LS 계열 밸류체인·고객 요구스펙 갭 모니터링</li><li>(주)포스코퓨처엠 분기 마진·가동률 추이 → 전방 수요 강도 간접지표로 주간 스캔</li></ul>
+                  </div>
+                  <p class="ov-more"><a href="companies/kr_003670.html#weekly">기업 상세 · 이번주 동향 →</a></p>
+                </div>
+              </details>
+            </article>
+            
+            <article class="ov-card">
+              <details class="ov-fold">
+                <summary class="ov-card-head">
+                  <img class='co-logo' src='https://www.google.com/s2/favicons?domain=samsungsdi.com&sz=64' alt='' onerror="this.onerror=null;this.src='https://icons.duckduckgo.com/ip3/samsungsdi.com.ico';this.addEventListener('error',function(){this.style.display='none';this.nextElementSibling.style.display='inline-flex'});" /><span class='co-logo-fallback' style='display:none'>삼</span>
+                  <div class="ov-card-titles">
+                    <a class="ov-name" href="companies/kr_006400.html#weekly" onclick="event.stopPropagation()">삼성SDI(주)</a>
+                    <div class="deal-meta">006400 · 시가 401,500원</div>
+                  </div>
+                  <div class="ov-mcap">
+                    <span class="ov-mcap-label">시가총액</span>
+                    <strong>34.65조원</strong>
+                  </div>
+                  <span class="ov-fold-hint" aria-hidden="true"></span>
+                </summary>
+                <div class="ov-card-body">
+                  <div class="ov-block">
+                    <h4>실적 3개년 · 매출·영업이익·세전이익(억원) + 영업이익률(%)</h4>
+                    <div class="ov-chart-wrap ov-chart-lg"><canvas id="ov_fin_006400" height="260"></canvas></div>
+                  </div>
+                  <div class="ov-block ov-issue-block">
+                    <h4>최근 이슈</h4>
+                    <p class="deal-meta">탭당 핵심 ~4건 · 서브 불렛 2개 · 공시·IR·뉴스 히스토리(약 1년)</p>
+                    <div class="ov-mini-tabs"><button type='button' class='active' data-ovtab='mgmt'>주요 경영이슈</button><button type='button' class='' data-ovtab='capital'>자본시장 활동</button><button type='button' class='' data-ovtab='value'>밸류체인</button><button type='button' class='' data-ovtab='deals'>수주/투자/MOU</button></div>
+                    <div class='ov-cat-panel active' data-ovpanel='mgmt'><ul class='rpt-l1 ov-issue-ul'><li>울산 첨단산업 허브 · 삼성SDI 등 대기업 투자 연계 <span class='item-date'>2026-07-03</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/082/0001388239?sid=102' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>울산시 인허가·규제 개선 등 행정 지원</li><li>지역 연계 투자 규모 140조원대</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> 울산시가 SK텔레콤, 현대자동차, 삼성SDI 등 대기업의 지역 투자에 맞춰 신속한 인허가 지원과 규제 개선 등 전폭적인 행정 지원에 나섭니다. 김상욱 울산시장은 3일 경상국립대학교 칠암캠퍼스에서 열린 ‘영남권 첨단산업 발전비전 국민보고회’에 참석했습니다.</p></li><li>영남권 425조 첨단·AI 투자 · 제조 거점 조성 <span class='item-date'>2026-07-03</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/020/0003731409?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>규모 425조원급 이벤트</li><li>영남권 425조 첨단</li></ul></li><li>기업지배구조보고서공시 <span class='item-date'>2026-06-01</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260601801676' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>이사회·감사·주주권익 관련 거버넌스 포인트 점검</li><li>지분·밸류에이션 임팩트 포인트</li></ul></li><li>대규모기업집단현황공시[연1회공시및1/4분기용(개별회사)] <span class='item-date'>2026-06-01</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260601000241' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li></ul></div><div class='ov-cat-panel' data-ovpanel='capital'><ul class='rpt-l1 ov-issue-ul'><li>기업설명회(IR)개최(안내공시) <span class='item-date'>2026-04-14</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260414800335' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>실적·가이던스·질의응답 중심 IR 커뮤니케이션 일정 공시</li><li>기관·애널리스트 대상 자본시장 소통 이벤트 반영</li></ul></li><li>특수관계 <span class='item-date'>2026-04-28</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260428000019' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>사업·시장 함의</li><li>특수관계 핵심 포인트</li></ul></li><li>연결재무제표기준영업(잠정)실적(공정공시) <span class='item-date'>2026-04-28</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260428800061' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>공정공시 경로의 실적·경영계획 시장 공유</li><li>컨센서스·밸류에이션 재평가 입력 자료로 활용</li></ul></li><li>분기보고서 (2026.03) <span class='item-date'>2026-05-15</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515002408' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li></ul></div><div class='ov-cat-panel' data-ovpanel='value'><ul class='rpt-l1 ov-issue-ul'><li>피지컬AI용 전고체배터리공개 <span class='item-date'>2026-01-01</span> <a class='ai-news' href='https://www.samsungsdi.co.kr/upload/download/ir/2026.1Q_IR_Final_Kr.pdf' target='_blank' rel='noopener'>IR</a><ul class='rpt-l2'><li>신규메모리업체 반도체패키징소재진입</li><li>美ESS 프로젝트수주확대</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> 美ESS 프로젝트수주확대 HEV용원형배터리프로젝트수주 신규메모리업체반도체패키징소재진입</p></li><li>신규메모리업체 반도체패키징소재진입 <span class='item-date'>2026-01-01</span> <a class='ai-news' href='https://www.samsungsdi.co.kr/upload/download/ir/2026.1Q_IR_Final_Kr.pdf' target='_blank' rel='noopener'>IR</a><ul class='rpt-l2'><li>피지컬AI용 전고체배터리공개</li><li>美ESS 프로젝트수주확대</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> 美ESS 프로젝트수주확대 HEV용원형배터리프로젝트수주 피지컬AI용전고체배터리공개</p></li><li>Non-PFE LFP 소재공급망구축 <span class='item-date'>2026-01-01</span> <a class='ai-news' href='https://www.samsungsdi.co.kr/upload/download/ir/2026.1Q_IR_Final_Kr.pdf' target='_blank' rel='noopener'>IR</a><ul class='rpt-l2'><li>피지컬AI용 전고체배터리공개</li><li>美ESS 프로젝트수주확대</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> Non-PFE LFP 소재 공급망을 구축하고 미국 ESS 프로젝트 및 HEV용 원형 배터리 프로젝트 수주를 확대했습니다. 이와 함께 피지컬 AI용 전고체 배터리를 공개했습니다.</p></li><li>울산 첨단산업 허브 · 삼성SDI 등 대기업 투자 연계 <span class='item-date'>2026-07-03</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/003/0014045908?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>지역 연계 투자 규모 312조원대</li><li>SKT·현대차·삼성SDI 등 대기업 투자 동시 추진</li></ul></li></ul></div><div class='ov-cat-panel' data-ovpanel='deals'><ul class='rpt-l1 ov-issue-ul'><li>美ESS 프로젝트수주확대 <span class='item-date'>2026-01-01</span> <a class='ai-news' href='https://www.samsungsdi.co.kr/upload/download/ir/2026.1Q_IR_Final_Kr.pdf' target='_blank' rel='noopener'>IR</a><ul class='rpt-l2'><li>HEV용 원형배터리 프로젝트수주</li><li>피지컬AI용 전고체배터리공개</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> HEV용원형배터리프로젝트수주 피지컬AI용전고체배터리공개 신규메모리업체반도체패키징소재진입</p></li><li>HEV용 원형배터리 프로젝트수주 <span class='item-date'>2026-01-01</span> <a class='ai-news' href='https://www.samsungsdi.co.kr/upload/download/ir/2026.1Q_IR_Final_Kr.pdf' target='_blank' rel='noopener'>IR</a><ul class='rpt-l2'><li>美ESS 프로젝트수주확대</li><li>피지컬AI용 전고체배터리공개</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> HEV용 원형배터리 프로젝트를 수주하고 미국 ESS 프로젝트 수주를 확대하였으며, 피지컬 AI용 전고체배터리를 공개했습니다. 이와 함께 신규 메모리 업체의 반도체 패키징 소재 시장에 진입했습니다.</p></li><li>Mercedes-Benz 공급계약체결 <span class='item-date'>2026-01-01</span> <a class='ai-news' href='https://www.samsungsdi.co.kr/upload/download/ir/2026.1Q_IR_Final_Kr.pdf' target='_blank' rel='noopener'>IR</a><ul class='rpt-l2'><li>美ESS 프로젝트수주확대</li><li>HEV용 원형배터리 프로젝트수주</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> 美ESS 프로젝트수주확대 HEV용원형배터리프로젝트수주 피지컬AI용전고체배터리공개</p></li><li>울산 첨단산업 허브 · 삼성SDI 등 대기업 투자 연계 <span class='item-date'>2026-07-03</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/469/0000940264?sid=105' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>지역 연계 투자 규모 200조원대</li><li>SKT·현대차·삼성SDI 등 대기업 투자 동시 추진</li></ul></li></ul></div>
+                  </div>
+                  <div class="ov-block ov-ls-block">
+                    <h4>LS 그룹 추가 모니터링 포인트</h4>
+                    <p class='deal-meta ov-ls-meta'>LLM · gemini:gemini-flash-latest · 2026-07-29T05:33:25Z</p><div class='ov-ls-prose-wrap'><p class='ov-ls-prose'>울산시가 삼성SDI 등 대기업의 지역 투자에 대응해 140조원대 투자 연계와 신속한 인허가 및 규제 개선 등 전폭적인 행정 지원을 추진하고 있습니다. 이러한 첨단산업 허브 조성과 대규모 설비 투자는 안정적인 전력 인프라 구축을 필수적으로 요구하므로, LS전선의 초고압 송전 및 전력케이블 네트워크와 LS일렉트릭의 전력기기, 배전, 스마트그리드 기술이 지역 설비 확충 과정에서 갖는 연계 관찰 포인트를 관찰 포인트로 정리된다.</p><p class='ov-ls-prose'>삼성SDI가 Non-PFE LFP 소재 공급망을 구축하고 Mercedes-Benz 공급계약 체결, HEV용 원형 배터리 프로젝트 수주 및 피지컬 AI용 전고체 배터리를 공개하는 등 소재와 제품 포트폴리오를 다변화하고 있습니다. 배터리 셀 업체의 소재 공급망 강화와 차세대 전지 개발 움직임에 따라, 양극재, 전구체, 리튬, 니켈 등 배터리 핵심 원료를 담당하는 LLBS의 소재 공급 구조와 비철 제련 및 원료 조달 역량을 갖춘 LS MnM의 밸류체인 대응 흐름을 주요 관찰 초점으로 설정할 수 있습니다.</p><p class='ov-ls-prose'>삼성SDI는 미국 ESS 프로젝트 수주를 확대하는 한편 분기보고서 공시, 영업실적 공정공시, IR 개최를 통해 주요 경영 성과를 자본시장에 지속적으로 전달하고 있습니다. 북미 ESS 프로젝트 수주 확대를 포함한 에너지 수주 잔고 증가는 전력 단에서 LS일렉트릭의 전력기기·배전·스마트그리드 시스템과 LS전선의 전력케이블 등 LS그룹 전력·에너지 밸류체인의 해외 사업 여건과 연결되어 모니터링할 관찰 포인트로 정리된다.</p></div>
+                  </div>
+                  <p class="ov-more"><a href="companies/kr_006400.html#weekly">기업 상세 · 이번주 동향 →</a></p>
+                </div>
+              </details>
+            </article>
+            
+            <article class="ov-card">
+              <details class="ov-fold">
+                <summary class="ov-card-head">
+                  <img class='co-logo' src='assets/logos/lnf.svg' alt='' onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" /><span class='co-logo-fallback' style='display:none'>(</span>
+                  <div class="ov-card-titles">
+                    <a class="ov-name" href="companies/kr_066970.html#weekly" onclick="event.stopPropagation()">(주)엘앤에프</a>
+                    <div class="deal-meta">066970 · 시가 91,500원</div>
+                  </div>
+                  <div class="ov-mcap">
+                    <span class="ov-mcap-label">시가총액</span>
+                    <strong>3.34조원</strong>
+                  </div>
+                  <span class="ov-fold-hint" aria-hidden="true"></span>
+                </summary>
+                <div class="ov-card-body">
+                  <div class="ov-block">
+                    <h4>실적 3개년 · 매출·영업이익·세전이익(억원) + 영업이익률(%)</h4>
+                    <div class="ov-chart-wrap ov-chart-lg"><canvas id="ov_fin_066970" height="260"></canvas></div>
+                  </div>
+                  <div class="ov-block ov-issue-block">
+                    <h4>최근 이슈</h4>
+                    <p class="deal-meta">탭당 핵심 ~4건 · 서브 불렛 2개 · 공시·IR·뉴스 히스토리(약 1년)</p>
+                    <div class="ov-mini-tabs"><button type='button' class='active' data-ovtab='mgmt'>주요 경영이슈</button><button type='button' class='' data-ovtab='capital'>자본시장 활동</button><button type='button' class='' data-ovtab='value'>밸류체인</button><button type='button' class='' data-ovtab='deals'>수주/투자/MOU</button></div>
+                    <div class='ov-cat-panel active' data-ovpanel='mgmt'><ul class='rpt-l1 ov-issue-ul'><li>네이버와 카카오의 지분율도 축소 <a class='ai-news' href='https://n.news.naver.com/mnews/article/009/0005702053?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>핵심 지표 변동 6.87% 반영</li><li>지분·밸류에이션 임팩트 포인트</li></ul></li><li>금전대여결정 <span class='item-date'>2026-05-27</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260527800580' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>특수관계인 거래·자금 이동 관련 공시</li><li>사업·시장 함의</li></ul></li><li>기업지배구조보고서공시 <span class='item-date'>2026-06-01</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260601801625' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>이사회·감사·주주권익 관련 거버넌스 포인트 점검</li><li>지분·밸류에이션 임팩트 포인트</li></ul></li><li>지속가능경영보고서등관련사항(자율공시) <span class='item-date'>2026-06-30</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260630800907' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>환경·탄소·공급망 리스크 공시 포인트</li><li>지분·밸류에이션 임팩트 포인트</li></ul></li></ul></div><div class='ov-cat-panel' data-ovpanel='capital'><ul class='rpt-l1 ov-issue-ul'><li>사업보고서 (2025.12) <span class='item-date'>2026-04-23</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260423000699' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li><li>기업설명회(IR)개최(안내공시) <span class='item-date'>2026-04-23</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260423800511' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>실적·가이던스·질의응답 중심 IR 커뮤니케이션 일정 공시</li><li>기관·애널리스트 대상 자본시장 소통 이벤트 반영</li></ul></li><li>연결재무제표기준영업(잠정)실적(공정공시) <span class='item-date'>2026-04-30</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260430800556' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>공정공시 경로의 실적·경영계획 시장 공유</li><li>컨센서스·밸류에이션 재평가 입력 자료로 활용</li></ul></li><li>풍문또는보도 해명 <span class='item-date'>2026-04-10</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260410800346' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li></ul></div><div class='ov-cat-panel' data-ovpanel='value'><ul class='rpt-l1 ov-issue-ul'><li>배터리 소재사들, 고출력·수명연장 연구 <a class='ai-news' href='https://n.news.naver.com/mnews/article/015/0005305687?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>수명연장 연구</li><li>사업·시장 함의</li></ul></li><li>임원ㆍ주요주주특정증권등소유상황보고서 <span class='item-date'>2026-05-14</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260514000962' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li><li>분기보고서 (2026.03) <span class='item-date'>2026-05-15</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515000918' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li><li>주식등의대량보유상황보고서(일반) <span class='item-date'>2026-05-27</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260527000607' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>주요주주·최대주주 지분율 변동 공시 반영</li><li>사업·시장 함의</li></ul></li></ul></div><div class='ov-cat-panel' data-ovpanel='deals'><ul class='rpt-l1 ov-issue-ul'><li>캐즘 이후 달라진 배터리 시장, 소재 경쟁력의 조건 <a class='ai-news' href='https://n.news.naver.com/mnews/article/030/0003443984?sid=105' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>캐즘 이후 달라진 배터리 시장</li><li>소재 경쟁력의 조건</li></ul></li><li>그러나 복수의 PCB 업체를 통해 확인한 결과, IDM으로부터의 메모리 패키지기판 판가 인하 요구는 없었으며, 가능성도 낮다는 언급이 공통적이 <span class='item-date'>2026-07-03</span><ul class='rpt-l2'><li>그러나 복수의 PCB 업체를 통해 확인한 결과</li><li>가능성도 낮다는 언급이 공통적이</li></ul></li><li>미국 성장률은 상승, 내용은 부실 <span class='item-date'>2026-07-03</span><ul class='rpt-l2'><li>Macro Weekly 3 Point 2</li><li>투자전략실 / Weekly / TGIF / vol</li></ul></li><li>사업보고서 (2025.12) <span class='item-date'>2026-04-23</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260423000414' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li></ul></div>
+                  </div>
+                  <div class="ov-block ov-ls-block">
+                    <h4>LS 그룹 추가 모니터링 포인트</h4>
+                    <p class='deal-meta ov-ls-meta'>LLM 미생성 — 규칙 기반 폴백</p><ul class='rpt-l1'><li>(주)엘앤에프 원료·전구체 가격·장기계약 변동 → LLBS·MnM 조달원가·재고 리스크 추가 모니터링</li><li>(주)엘앤에프 증설·지분·M&amp;A·CAPEX 일정 → LS 배터리 밸류체인 경쟁강도·파트너십 재평가 포인트</li><li>(주)엘앤에프 제품·양산·스펙 변화 → LS 계열 밸류체인·고객 요구스펙 갭 모니터링</li><li>(주)엘앤에프 분기 마진·가동률 추이 → 전방 수요 강도 간접지표로 주간 스캔</li></ul>
+                  </div>
+                  <p class="ov-more"><a href="companies/kr_066970.html#weekly">기업 상세 · 이번주 동향 →</a></p>
+                </div>
+              </details>
+            </article>
+            
+            <article class="ov-card">
+              <details class="ov-fold">
+                <summary class="ov-card-head">
+                  <img class='co-logo' src='https://www.google.com/s2/favicons?domain=ecopro.co.kr&sz=64' alt='' onerror="this.onerror=null;this.src='https://icons.duckduckgo.com/ip3/ecopro.co.kr.ico';this.addEventListener('error',function(){this.style.display='none';this.nextElementSibling.style.display='inline-flex'});" /><span class='co-logo-fallback' style='display:none'>(</span>
+                  <div class="ov-card-titles">
+                    <a class="ov-name" href="companies/kr_086520.html#weekly" onclick="event.stopPropagation()">(주)에코프로</a>
+                    <div class="deal-meta">086520 · 시가 79,400원</div>
+                  </div>
+                  <div class="ov-mcap">
+                    <span class="ov-mcap-label">시가총액</span>
+                    <strong>10.86조원</strong>
+                  </div>
+                  <span class="ov-fold-hint" aria-hidden="true"></span>
+                </summary>
+                <div class="ov-card-body">
+                  <div class="ov-block">
+                    <h4>실적 3개년 · 매출·영업이익·세전이익(억원) + 영업이익률(%)</h4>
+                    <div class="ov-chart-wrap ov-chart-lg"><canvas id="ov_fin_086520" height="260"></canvas></div>
+                  </div>
+                  <div class="ov-block ov-issue-block">
+                    <h4>최근 이슈</h4>
+                    <p class="deal-meta">탭당 핵심 ~4건 · 서브 불렛 2개 · 공시·IR·뉴스 히스토리(약 1년)</p>
+                    <div class="ov-mini-tabs"><button type='button' class='active' data-ovtab='mgmt'>주요 경영이슈</button><button type='button' class='' data-ovtab='capital'>자본시장 활동</button><button type='button' class='' data-ovtab='value'>밸류체인</button><button type='button' class='' data-ovtab='deals'>수주/투자/MOU</button></div>
+                    <div class='ov-cat-panel active' data-ovpanel='mgmt'><ul class='rpt-l1 ov-issue-ul'><li>에코프로의 2026년 1분기 실적발표회 자료 <a class='ai-news' href='https://www.ecopro.co.kr/sub020403/view/id/2085' target='_blank' rel='noopener'>IR</a><ul class='rpt-l2'><li>사업·시장 함의</li><li>후속 IR·실적 점검 포인트</li></ul></li><li>에코프로의 2025년 1분기 실적발표회 자료 <a class='ai-news' href='https://www.ecopro.co.kr/sub020403/view/id/1804' target='_blank' rel='noopener'>IR</a><ul class='rpt-l2'><li>사업·시장 함의</li><li>후속 IR·실적 점검 포인트</li></ul></li><li>에코프로 그룹사 2024년 3분기 실적발표회 자료 <a class='ai-news' href='https://www.ecopro.co.kr/sub020403/view/id/1660' target='_blank' rel='noopener'>IR</a><ul class='rpt-l2'><li>사업·시장 함의</li><li>후속 IR·실적 점검 포인트</li></ul></li><li>마감 직후 인기 검색 종목 20選 <span class='item-date'>2026-07-03</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/081/0003658249?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>사업·시장 함의</li><li>후속 IR·실적 점검 포인트</li></ul></li></ul></div><div class='ov-cat-panel' data-ovpanel='capital'><ul class='rpt-l1 ov-issue-ul'><li>기업설명회(IR)개최 <span class='item-date'>2026-04-06</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260406900900' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>실적·가이던스·질의응답 중심 IR 커뮤니케이션 일정 공시</li><li>기관·애널리스트 대상 자본시장 소통 이벤트 반영</li></ul></li><li>현금ㆍ현물배당결정(자회사의 주요경영사항) <span class='item-date'>2026-04-10</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260410900546' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>자본 구조·주주환원 관련 공시 이벤트</li><li>희석·오버행·현금흐름 영향 점검 포인트</li></ul></li><li>연결재무제표기준영업(잠정)실적(공정공시) <span class='item-date'>2026-04-29</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260429900354' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>공정공시 경로의 실적·경영계획 시장 공유</li><li>컨센서스·밸류에이션 재평가 입력 자료로 활용</li></ul></li><li>분기보고서 (2026.03) <span class='item-date'>2026-05-15</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515002641' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li></ul></div><div class='ov-cat-panel' data-ovpanel='value'><ul class='rpt-l1 ov-issue-ul'><li>시총 상위 종목 중에코프로(0.46%), 레인보우로보틱스(1.55%), 코오롱티슈진(3.67%), 원익IPS(1.14%), 리노공업(4.66%) 등이 상승 <span class='item-date'>2026-07-03</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/001/0016175249?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>시총 상위 종목 중에코프로(0.46%)</li><li>레인보우로보틱스(1.55%)</li></ul></li><li>대규모기업집단현황공시[연1회(동일인용)] <span class='item-date'>2026-05-29</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260529000410' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li><li>대규모기업집단현황공시[연1회공시및1/4분기용(대표회사)] <span class='item-date'>2026-05-29</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260529000163' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li><li>타법인주식및출자증권취득결정 <span class='item-date'>2026-06-30</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260630901037' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li></ul></div><div class='ov-cat-panel' data-ovpanel='deals'><ul class='rpt-l1 ov-issue-ul'><li>타법인주식및출자증권취득결정 <span class='item-date'>2026-06-24</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260624900694' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li><li>투자판단관련주요경영사항 (지주회사 적용예외) <span class='item-date'>2026-05-07</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260507900960' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li><li>에코프로비엠, 대규모 유증에 주가 <span class='item-date'>2026-07-03</span> <a class='ai-news' href='http://v.daum.net/v/20260703171834828' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>에코프로비엠</li><li>대규모 유증에 주가</li></ul></li><li>시가총액 상위 종목 가운데에코프로(0.46%), 레인보우로보틱스(1.55%), 코오롱티슈진(3.67%), 원익IPS(1.14%), 리노공업(4.66%)은 상승 <span class='item-date'>2026-07-03</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/016/0002665546?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>시가총액 상위 종목 가운데에코프로(0.46%)</li><li>레인보우로보틱스(1.55%)</li></ul></li></ul></div>
+                  </div>
+                  <div class="ov-block ov-ls-block">
+                    <h4>LS 그룹 추가 모니터링 포인트</h4>
+                    <p class='deal-meta ov-ls-meta'>LLM 미생성 — 규칙 기반 폴백</p><ul class='rpt-l1'><li>(주)에코프로 증설·지분·M&amp;A·CAPEX 일정 → LS 배터리 밸류체인 경쟁강도·파트너십 재평가 포인트</li><li>(주)에코프로 제품·양산·스펙 변화 → LS 계열 밸류체인·고객 요구스펙 갭 모니터링</li><li>(주)에코프로 분기 마진·가동률 추이 → 전방 수요 강도 간접지표로 주간 스캔</li><li>(주)에코프로 한경컨센서스·전자공시 반복 테마 → LS BD·투자검토 워치리스트 등재</li></ul>
+                  </div>
+                  <p class="ov-more"><a href="companies/kr_086520.html#weekly">기업 상세 · 이번주 동향 →</a></p>
+                </div>
+              </details>
+            </article>
+            
+            <article class="ov-card">
+              <details class="ov-fold">
+                <summary class="ov-card-head">
+                  <img class='co-logo' src='https://www.google.com/s2/favicons?domain=skietechnology.com&sz=64' alt='' onerror="this.onerror=null;this.src='https://icons.duckduckgo.com/ip3/skietechnology.com.ico';this.addEventListener('error',function(){this.style.display='none';this.nextElementSibling.style.display='inline-flex'});" /><span class='co-logo-fallback' style='display:none'>에</span>
+                  <div class="ov-card-titles">
+                    <a class="ov-name" href="companies/kr_361610.html#weekly" onclick="event.stopPropagation()">에스케이아이이테크놀로지 주식회사</a>
+                    <div class="deal-meta">361610 · 시가 16,000원</div>
+                  </div>
+                  <div class="ov-mcap">
+                    <span class="ov-mcap-label">시가총액</span>
+                    <strong>1.15조원</strong>
+                  </div>
+                  <span class="ov-fold-hint" aria-hidden="true"></span>
+                </summary>
+                <div class="ov-card-body">
+                  <div class="ov-block">
+                    <h4>실적 3개년 · 매출·영업이익·세전이익(억원) + 영업이익률(%)</h4>
+                    <div class="ov-chart-wrap ov-chart-lg"><canvas id="ov_fin_361610" height="260"></canvas></div>
+                  </div>
+                  <div class="ov-block ov-issue-block">
+                    <h4>최근 이슈</h4>
+                    <p class="deal-meta">탭당 핵심 ~4건 · 서브 불렛 2개 · 공시·IR·뉴스 히스토리(약 1년)</p>
+                    <div class="ov-mini-tabs"><button type='button' class='active' data-ovtab='mgmt'>주요 경영이슈</button><button type='button' class='' data-ovtab='capital'>자본시장 활동</button><button type='button' class='' data-ovtab='value'>밸류체인</button><button type='button' class='' data-ovtab='deals'>수주/투자/MOU</button></div>
+                    <div class='ov-cat-panel active' data-ovpanel='mgmt'><ul class='rpt-l1 ov-issue-ul'><li>2026년 분기별 경영실적발표회 안내 목록으로, 해당년도, 구분, 실적발표자료 제공 <a class='ai-news' href='http://www.skietechnology.com/ir/earning.asp' target='_blank' rel='noopener'>IR</a><ul class='rpt-l2'><li>실적발표 년도 선택</li><li>실적발표자료 제공</li></ul></li><li>삼성전자(005930)와 SK하이닉스(000660)는 외국인이 각각 3조 원 이상 순매도하면서 전일 대비 각각 4.86%, 1.68% 하락 <span class='item-date'>2026-06-29</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/421/0009030097?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>삼성전자(005930)와 SK하이닉스(000660)는 외국인이 각각 3조 원 이상 순매도하면서 전일 대비 각각 4.86%</li><li>1.68% 하락</li></ul></li><li>그간 소외됐던 이차전지주 큰 폭 올라 <span class='item-date'>2026-06-29</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/023/0003984737?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>코스닥 시장에서도 시가총액 2위 에코프로(23.69%)를 비롯해 에코프로비엠(15.56%)이 급등</li><li>SK아이이테크놀로지(19.53%), 엘앤에프(18.2%), 에코프로머티리얼즈(15.8%) 등 코스피 상장 이차전지 종목들도 가파르게 상승</li></ul></li></ul></div><div class='ov-cat-panel' data-ovpanel='capital'><ul class='rpt-l1 ov-issue-ul'><li>기업설명회(IR)개최(안내공시) <span class='item-date'>2026-04-22</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260422800485' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>실적·가이던스·질의응답 중심 IR 커뮤니케이션 일정 공시</li><li>기관·애널리스트 대상 자본시장 소통 이벤트 반영</li></ul></li><li>기업지배구조보고서공시 <span class='item-date'>2026-05-12</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260512800484' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>이사회·감사·주주권익 관련 거버넌스 포인트 점검</li><li>지분·밸류에이션 임팩트 포인트</li></ul></li><li>연결재무제표기준영업(잠정)실적(공정공시) <span class='item-date'>2026-05-13</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260513800773' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>공정공시 경로의 실적·경영계획 시장 공유</li><li>컨센서스·밸류에이션 재평가 입력 자료로 활용</li></ul></li><li>분기보고서 (2026.03) <span class='item-date'>2026-05-15</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515002149' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li></ul></div><div class='ov-cat-panel' data-ovpanel='value'><ul class='rpt-l1 ov-issue-ul'><li>investors, sustainability, press and more <a class='ai-news' href='http://eng.skietechnology.com/together/esgper.asp' target='_blank' rel='noopener'>IR</a><ul class='rpt-l2'><li>investors</li><li>sustainability</li></ul></li><li>생산중단 <span class='item-date'>2026-05-27</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260527800868' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li><li>유상증자결정(종속회사의주요경영사항) <span class='item-date'>2026-06-26</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260626800939' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>자본 구조·주주환원 관련 공시 이벤트</li><li>희석·오버행·현금흐름 영향 점검 포인트</li></ul></li><li>타법인주식및출자증권취득결정 <span class='item-date'>2026-06-26</span><ul class='rpt-l2'><li>Macro Weekly 3 Point 2</li><li>투자전략실 / Weekly / TGIF / vol</li></ul></li></ul></div><div class='ov-cat-panel' data-ovpanel='deals'><ul class='rpt-l1 ov-issue-ul'><li>타법인주식및출자증권처분결정 <span class='item-date'>2026-05-27</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260527801055' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li><li>타법인주식및출자증권취득결정 <span class='item-date'>2026-05-27</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260527800750' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li><li>단기차입금증가결정 <span class='item-date'>2026-05-07</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260507800483' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li><li>대규모기업집단현황공시[연1회공시및1/4분기용(개별회사)] <span class='item-date'>2026-05-29</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260529000644' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li></ul></div>
+                  </div>
+                  <div class="ov-block ov-ls-block">
+                    <h4>LS 그룹 추가 모니터링 포인트</h4>
+                    <p class='deal-meta ov-ls-meta'>LLM 미생성 — 규칙 기반 폴백</p><ul class='rpt-l1'><li>에스케이아이이테크놀로지 주식회사 고객·수주·출하 신호 → LS전선·일렉트릭 전력기자재·케이블 수요 선행 지표로 교차점검</li><li>에스케이아이이테크놀로지 주식회사 증설·지분·M&amp;A·CAPEX 일정 → LS 배터리 밸류체인 경쟁강도·파트너십 재평가 포인트</li><li>에스케이아이이테크놀로지 주식회사 제품·양산·스펙 변화 → LS 계열 밸류체인·고객 요구스펙 갭 모니터링</li><li>에스케이아이이테크놀로지 주식회사 연계 전력·ESS·계통 이슈 → LS 전력솔루션·전선 수주 파이프라인 선제 추적</li></ul>
+                  </div>
+                  <p class="ov-more"><a href="companies/kr_361610.html#weekly">기업 상세 · 이번주 동향 →</a></p>
+                </div>
+              </details>
+            </article>
+            
+            <article class="ov-card">
+              <details class="ov-fold">
+                <summary class="ov-card-head">
+                  <img class='co-logo' src='https://www.google.com/s2/favicons?domain=lgensol.com&sz=64' alt='' onerror="this.onerror=null;this.src='https://icons.duckduckgo.com/ip3/lgensol.com.ico';this.addEventListener('error',function(){this.style.display='none';this.nextElementSibling.style.display='inline-flex'});" /><span class='co-logo-fallback' style='display:none'>(</span>
+                  <div class="ov-card-titles">
+                    <a class="ov-name" href="companies/kr_373220.html#weekly" onclick="event.stopPropagation()">(주)엘지에너지솔루션</a>
+                    <div class="deal-meta">373220 · 시가 313,500원</div>
+                  </div>
+                  <div class="ov-mcap">
+                    <span class="ov-mcap-label">시가총액</span>
+                    <strong>77.92조원</strong>
+                  </div>
+                  <span class="ov-fold-hint" aria-hidden="true"></span>
+                </summary>
+                <div class="ov-card-body">
+                  <div class="ov-block">
+                    <h4>실적 3개년 · 매출·영업이익·세전이익(억원) + 영업이익률(%)</h4>
+                    <div class="ov-chart-wrap ov-chart-lg"><canvas id="ov_fin_373220" height="260"></canvas></div>
+                  </div>
+                  <div class="ov-block ov-issue-block">
+                    <h4>최근 이슈</h4>
+                    <p class="deal-meta">탭당 핵심 ~4건 · 서브 불렛 2개 · 공시·IR·뉴스 히스토리(약 1년)</p>
+                    <div class="ov-mini-tabs"><button type='button' class='active' data-ovtab='mgmt'>주요 경영이슈</button><button type='button' class='' data-ovtab='capital'>자본시장 활동</button><button type='button' class='' data-ovtab='value'>밸류체인</button><button type='button' class='' data-ovtab='deals'>수주/투자/MOU</button></div>
+                    <div class='ov-cat-panel active' data-ovpanel='mgmt'><ul class='rpt-l1 ov-issue-ul'><li>사업보고서 <a class='ai-news' href='https://www.lgensol.com/kr/investors/data-business-report' target='_blank' rel='noopener'>IR</a><ul class='rpt-l2'><li>사업·시장 함의</li><li>사업보고서 핵심 포인트</li></ul></li><li>SK스퀘어(4.20%), 삼성전기(3.27%), 현대차(2.07%),LG에너지솔루션(2.40%), 한화에어로스페이스(5.29%)도 상승 마감 <span class='item-date'>2026-07-03</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/016/0002665546?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>SK스퀘어(4.20%)</li><li>삼성전기(3.27%)</li></ul></li><li>코스닥도 장 막판 반등에 성공 <span class='item-date'>2026-07-03</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/138/0002233093?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>사업·시장 함의</li><li>후속 IR·실적 점검 포인트</li></ul></li><li>임원ㆍ주요주주특정증권등소유상황보고서 <span class='item-date'>2026-06-12</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260612000681' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li></ul></div><div class='ov-cat-panel' data-ovpanel='capital'><ul class='rpt-l1 ov-issue-ul'><li>기업설명회(IR)개최(안내공시) <span class='item-date'>2026-04-07</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260407800768' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>실적·가이던스·질의응답 중심 IR 커뮤니케이션 일정 공시</li><li>기관·애널리스트 대상 자본시장 소통 이벤트 반영</li></ul></li><li>특수관계인으로부터부동산임차 <span class='item-date'>2026-04-28</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260428000648' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>특수관계인 거래·자금 이동 관련 공시</li><li>사업·시장 함의</li></ul></li><li>연결재무제표기준영업(잠정)실적(공정공시) <span class='item-date'>2026-04-30</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260430800165' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>공정공시 경로의 실적·경영계획 시장 공유</li><li>컨센서스·밸류에이션 재평가 입력 자료로 활용</li></ul></li><li>분기보고서 (2026.03) <span class='item-date'>2026-05-14</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260514001046' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li></ul></div><div class='ov-cat-panel' data-ovpanel='value'><ul class='rpt-l1 ov-issue-ul'><li>한미 원자력동맹,에너지·산업동맹으로 확대 <span class='item-date'>2026-07-09</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/003/0014000242?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>한화에너지,엘지에너지솔루션, 삼성중공업, 효성중공업, 엘에스일렉트릭, 엘에스전선, 두산에너빌리티 등 전력·ESS·중전기기 분야 기업도 함께</li><li>한미 원자력동맹</li></ul></li><li>공정거래자율준수프로그램운영현황(안내공시) <span class='item-date'>2026-04-28</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260428800413' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li><li>대규모기업집단현황공시[연1회공시및1/4분기용(개별회사)] <span class='item-date'>2026-06-01</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260601001372' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li><li>기업지배구조보고서공시 <span class='item-date'>2026-06-01</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260601800822' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>이사회·감사·주주권익 관련 거버넌스 포인트 점검</li><li>지분·밸류에이션 임팩트 포인트</li></ul></li></ul></div><div class='ov-cat-panel' data-ovpanel='deals'><ul class='rpt-l1 ov-issue-ul'><li>NH농협은행, 상반기 포용금융에 1.9조원 지원 外 <span class='item-date'>2026-07-03</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/422/0000881257?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>상반기 포용금융에 1.9조원 지원 外</li><li>사업·시장 함의</li></ul></li><li>그러나 복수의 PCB 업체를 통해 확인한 결과, IDM으로부터의 메모리 패키지기판 판가 인하 요구는 없었으며, 가능성도 낮다는 언급이 공통적이 <span class='item-date'>2026-07-03</span><ul class='rpt-l2'><li>그러나 복수의 PCB 업체를 통해 확인한 결과</li><li>가능성도 낮다는 언급이 공통적이</li></ul></li><li>미국 성장률은 상승, 내용은 부실 <span class='item-date'>2026-07-03</span><ul class='rpt-l2'><li>Macro Weekly 3 Point 2</li><li>투자전략실 / Weekly / TGIF / vol</li></ul></li><li>유형자산처분결정(종속회사의주요경영사항) <span class='item-date'>2026-05-26</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260526800547' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li></ul></div>
+                  </div>
+                  <div class="ov-block ov-ls-block">
+                    <h4>LS 그룹 추가 모니터링 포인트</h4>
+                    <p class='deal-meta ov-ls-meta'>LLM 미생성 — 규칙 기반 폴백</p><ul class='rpt-l1'><li>(주)엘지에너지솔루션 고객·수주·출하 신호 → LS전선·일렉트릭 전력기자재·케이블 수요 선행 지표로 교차점검</li><li>(주)엘지에너지솔루션 증설·지분·M&amp;A·CAPEX 일정 → LS 배터리 밸류체인 경쟁강도·파트너십 재평가 포인트</li><li>(주)엘지에너지솔루션 제품·양산·스펙 변화 → LS 계열 밸류체인·고객 요구스펙 갭 모니터링</li><li>(주)엘지에너지솔루션 연계 전력·ESS·계통 이슈 → LS 전력솔루션·전선 수주 파이프라인 선제 추적</li></ul>
+                  </div>
+                  <p class="ov-more"><a href="companies/kr_373220.html#weekly">기업 상세 · 이번주 동향 →</a></p>
+                </div>
+              </details>
+            </article>
+            </div></div>
+    <div id="tab-financials" class="tab-panel"><p class='tab-desc'>회사명 클릭으로 상세 실적 접기/펼치기 · DART 연결 · 단위 억원 · 차트: 매출·영업이익·순이익(막대) + 영업이익률(선) · 하단 주황 행 = LS 벤치마크</p><div class='bm-banner'><strong>LS 연결 벤치마크</strong> <span class='pill' style='background:#b45309'>연결 CFS · 2025년(최신)</span><div class='deal-meta' style='margin-top:6px'>부채·차입 표 하단에 LS 2025 연결 벤치마크 고정 · 부채비율 225.5%</div></div><div class='ov-list'><article class='ov-card' data-fin='{&quot;years&quot;: [2020, 2021, 2022, 2023, 2024, 2025], &quot;rev&quot;: [1.566, 1.99, 3.302, 4.76, 3.7, 2.939], &quot;op&quot;: [0.06, 0.122, 0.166, 0.036, 0.001, 0.033], &quot;net&quot;: [0.03, 0.134, 0.122, 0.004, -0.231, 0.037], &quot;opm&quot;: [3.85, 6.12, 5.02, 0.75, 0.02, 1.12]}' id='wrap-fin_003670'><details class='ov-fold'><summary class='ov-card-head'><img class='co-logo' src='assets/logos/poscofuturem.png' alt='' onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" /><span class='co-logo-fallback' style='display:none'>(</span><div class='ov-card-titles'><span class='ov-name'>(주)포스코퓨처엠</span><div class='deal-meta'>003670 · 연간 실적 6개년</div></div><span class='ov-fold-hint' aria-hidden='true'></span></summary><div class='ov-card-body'><p class='sub' style='margin:0 0 8px'>막대=매출/영업이익/순이익 · 선=영업이익률 (부채·차입은 표만)</p><div class='chart-box'><canvas id='fin_003670' height='120'></canvas></div><h4 class='fin-sub'>손익</h4><table class='fin'><thead><tr><th>연도</th><th>매출</th><th>영업이익</th><th>영업%</th><th>세전이익</th><th>세전%</th><th>순이익</th><th>순이익%</th></tr></thead><tbody><tr><td>2020</td><td>15,662</td><td>603</td><td>3.9%</td><td>347</td><td>2.2%</td><td>297</td><td>1.9%</td></tr><tr><td>2021</td><td>19,895</td><td>1,217</td><td>6.1%</td><td>1,460</td><td>7.3%</td><td>1,338</td><td>6.7%</td></tr><tr><td>2022</td><td>33,019</td><td>1,659</td><td>5.0%</td><td>1,339</td><td>4.1%</td><td>1,219</td><td>3.7%</td></tr><tr><td>2023</td><td>47,599</td><td>359</td><td>0.8%</td><td>-161</td><td>-0.3%</td><td>44</td><td>0.1%</td></tr><tr><td>2024</td><td>36,999</td><td>7</td><td>0.0%</td><td>-4,319</td><td>-11.7%</td><td>-2,313</td><td>-6.2%</td></tr><tr><td>2025</td><td>29,387</td><td>328</td><td>1.1%</td><td>-99</td><td>-0.3%</td><td>365</td><td>1.2%</td></tr><tr class='bm-row'><td>LS 2025 (벤치)</td><td>318,700</td><td>10,526</td><td>3.3%</td><td>6,816</td><td>2.1%</td><td>4,851</td><td>1.5%</td></tr></tbody></table><h4 class='fin-sub'>부채·차입 (표만)</h4><table class='fin'><thead><tr><th>연도</th><th>차입금</th><th>부채총계</th><th>자본총계</th><th>부채비율</th></tr></thead><tbody><tr><td>2020</td><td>5,677</td><td>10,644</td><td>10,236</td><td class='debt-ratio'>104.0%</td></tr><tr><td>2021</td><td>12,069</td><td>14,841</td><td>24,384</td><td class='debt-ratio'>60.9%</td></tr><tr><td>2022</td><td>16,534</td><td>19,868</td><td>26,506</td><td class='debt-ratio'>75.0%</td></tr><tr><td>2023</td><td>32,255</td><td>37,231</td><td>26,115</td><td class='debt-ratio'>142.6%</td></tr><tr><td>2024</td><td>40,046</td><td>46,120</td><td>33,205</td><td class='debt-ratio'>138.9%</td></tr><tr><td>2025</td><td>47,481</td><td>46,318</td><td>45,121</td><td class='debt-ratio'>102.7%</td></tr><tr class='bm-row'><td>LS 2025 (벤치)</td><td>113,826</td><td>173,152</td><td>76,796</td><td class='debt-ratio'>225.5%</td></tr></tbody></table></div></details></article><article class='ov-card' data-fin='{&quot;years&quot;: [2020, 2021, 2022, 2023, 2024, 2025], &quot;rev&quot;: [11.295, 13.553, 20.124, 22.708, 16.592, 13.267], &quot;op&quot;: [0.671, 1.068, 1.808, 1.633, 0.363, -1.722], &quot;net&quot;: [0.631, 1.25, 2.039, 2.066, 0.576, -0.585], &quot;opm&quot;: [5.94, 7.88, 8.98, 7.19, 2.19, -12.98]}' id='wrap-fin_006400'><details class='ov-fold'><summary class='ov-card-head'><img class='co-logo' src='https://www.google.com/s2/favicons?domain=samsungsdi.com&sz=64' alt='' onerror="this.onerror=null;this.src='https://icons.duckduckgo.com/ip3/samsungsdi.com.ico';this.addEventListener('error',function(){this.style.display='none';this.nextElementSibling.style.display='inline-flex'});" /><span class='co-logo-fallback' style='display:none'>삼</span><div class='ov-card-titles'><span class='ov-name'>삼성SDI(주)</span><div class='deal-meta'>006400 · 연간 실적 6개년</div></div><span class='ov-fold-hint' aria-hidden='true'></span></summary><div class='ov-card-body'><p class='sub' style='margin:0 0 8px'>막대=매출/영업이익/순이익 · 선=영업이익률 (부채·차입은 표만)</p><div class='chart-box'><canvas id='fin_006400' height='120'></canvas></div><h4 class='fin-sub'>손익</h4><table class='fin'><thead><tr><th>연도</th><th>매출</th><th>영업이익</th><th>영업%</th><th>세전이익</th><th>세전%</th><th>순이익</th><th>순이익%</th></tr></thead><tbody><tr><td>2020</td><td>112,948</td><td>6,713</td><td>5.9%</td><td>8,034</td><td>7.1%</td><td>6,310</td><td>5.6%</td></tr><tr><td>2021</td><td>135,532</td><td>10,676</td><td>7.9%</td><td>16,633</td><td>12.3%</td><td>12,504</td><td>9.2%</td></tr><tr><td>2022</td><td>201,241</td><td>18,080</td><td>9.0%</td><td>26,523</td><td>13.2%</td><td>20,394</td><td>10.1%</td></tr><tr><td>2023</td><td>227,083</td><td>16,334</td><td>7.2%</td><td>24,861</td><td>10.9%</td><td>20,660</td><td>9.1%</td></tr><tr><td>2024</td><td>165,922</td><td>3,633</td><td>2.2%</td><td>5,273</td><td>3.2%</td><td>5,755</td><td>3.5%</td></tr><tr><td>2025</td><td>132,667</td><td>-17,224</td><td>-13.0%</td><td>-13,640</td><td>-10.3%</td><td>-5,849</td><td>-4.4%</td></tr><tr class='bm-row'><td>LS 2025 (벤치)</td><td>318,700</td><td>10,526</td><td>3.3%</td><td>6,816</td><td>2.1%</td><td>4,851</td><td>1.5%</td></tr></tbody></table><h4 class='fin-sub'>부채·차입 (표만)</h4><table class='fin'><thead><tr><th>연도</th><th>차입금</th><th>부채총계</th><th>자본총계</th><th>부채비율</th></tr></thead><tbody><tr><td>2020</td><td>39,118</td><td>81,753</td><td>133,589</td><td class='debt-ratio'>61.2%</td></tr><tr><td>2021</td><td>46,180</td><td>106,365</td><td>151,967</td><td class='debt-ratio'>70.0%</td></tr><tr><td>2022</td><td>51,482</td><td>130,400</td><td>172,175</td><td class='debt-ratio'>75.7%</td></tr><tr><td>2023</td><td>57,178</td><td>141,316</td><td>199,072</td><td class='debt-ratio'>71.0%</td></tr><tr><td>2024</td><td>115,779</td><td>190,301</td><td>215,672</td><td class='debt-ratio'>88.2%</td></tr><tr><td>2025</td><td>108,839</td><td>186,852</td><td>235,701</td><td class='debt-ratio'>79.3%</td></tr><tr class='bm-row'><td>LS 2025 (벤치)</td><td>113,826</td><td>173,152</td><td>76,796</td><td class='debt-ratio'>225.5%</td></tr></tbody></table></div></details></article><article class='ov-card' data-fin='{&quot;years&quot;: [2020, 2021, 2022, 2023, 2024, 2025], &quot;rev&quot;: [0.356, 0.971, 3.887, 4.644, 1.907, 2.155], &quot;op&quot;: [0.001, 0.044, 0.266, -0.222, -0.559, -0.157], &quot;net&quot;: [-0.015, -0.112, 0.271, -0.195, -0.381, -0.535], &quot;opm&quot;: [0.41, 4.56, 6.85, -4.79, -29.29, -7.28]}' id='wrap-fin_066970'><details class='ov-fold'><summary class='ov-card-head'><img class='co-logo' src='assets/logos/lnf.svg' alt='' onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" /><span class='co-logo-fallback' style='display:none'>(</span><div class='ov-card-titles'><span class='ov-name'>(주)엘앤에프</span><div class='deal-meta'>066970 · 연간 실적 6개년</div></div><span class='ov-fold-hint' aria-hidden='true'></span></summary><div class='ov-card-body'><p class='sub' style='margin:0 0 8px'>막대=매출/영업이익/순이익 · 선=영업이익률 (부채·차입은 표만)</p><div class='chart-box'><canvas id='fin_066970' height='120'></canvas></div><h4 class='fin-sub'>손익</h4><table class='fin'><thead><tr><th>연도</th><th>매출</th><th>영업이익</th><th>영업%</th><th>세전이익</th><th>세전%</th><th>순이익</th><th>순이익%</th></tr></thead><tbody><tr><td>2020</td><td>3,561</td><td>15</td><td>0.4%</td><td>-179</td><td>-5.0%</td><td>-150</td><td>-4.2%</td></tr><tr><td>2021</td><td>9,708</td><td>443</td><td>4.6%</td><td>-1,256</td><td>-12.9%</td><td>-1,123</td><td>-11.6%</td></tr><tr><td>2022</td><td>38,873</td><td>2,663</td><td>6.8%</td><td>3,405</td><td>8.8%</td><td>2,710</td><td>7.0%</td></tr><tr><td>2023</td><td>46,441</td><td>-2,223</td><td>-4.8%</td><td>-2,957</td><td>-6.4%</td><td>-1,949</td><td>-4.2%</td></tr><tr><td>2024</td><td>19,075</td><td>-5,587</td><td>-29.3%</td><td>-5,195</td><td>-27.2%</td><td>-3,807</td><td>-20.0%</td></tr><tr><td>2025</td><td>21,549</td><td>-1,568</td><td>-7.3%</td><td>-5,678</td><td>-26.4%</td><td>-5,347</td><td>-24.8%</td></tr><tr class='bm-row'><td>LS 2025 (벤치)</td><td>318,700</td><td>10,526</td><td>3.3%</td><td>6,816</td><td>2.1%</td><td>4,851</td><td>1.5%</td></tr></tbody></table><h4 class='fin-sub'>부채·차입 (표만)</h4><table class='fin'><thead><tr><th>연도</th><th>차입금</th><th>부채총계</th><th>자본총계</th><th>부채비율</th></tr></thead><tbody><tr><td>2020</td><td>2,191</td><td>2,686</td><td>1,976</td><td class='debt-ratio'>135.9%</td></tr><tr><td>2021</td><td>3,703</td><td>8,970</td><td>6,352</td><td class='debt-ratio'>141.2%</td></tr><tr><td>2022</td><td>9,232</td><td>17,386</td><td>12,853</td><td class='debt-ratio'>135.3%</td></tr><tr><td>2023</td><td>18,603</td><td>22,415</td><td>11,100</td><td class='debt-ratio'>201.9%</td></tr><tr><td>2024</td><td>18,154</td><td>20,765</td><td>7,233</td><td class='debt-ratio'>287.1%</td></tr><tr><td>2025</td><td>19,189</td><td>24,573</td><td>6,768</td><td class='debt-ratio'>363.1%</td></tr><tr class='bm-row'><td>LS 2025 (벤치)</td><td>113,826</td><td>173,152</td><td>76,796</td><td class='debt-ratio'>225.5%</td></tr></tbody></table></div></details></article><article class='ov-card' data-fin='{&quot;years&quot;: [2020, 2021, 2022, 2023, 2024, 2025], &quot;rev&quot;: [0.947, 1.504, 5.64, 7.26, 3.128, 3.413], &quot;op&quot;: [0.082, 0.086, 0.613, 0.298, -0.293, 0.214], &quot;net&quot;: [0.054, 0.279, 0.221, 0.135, -0.295, -0.106], &quot;opm&quot;: [8.7, 5.75, 10.87, 4.11, -9.37, 6.26]}' id='wrap-fin_086520'><details class='ov-fold'><summary class='ov-card-head'><img class='co-logo' src='https://www.google.com/s2/favicons?domain=ecopro.co.kr&sz=64' alt='' onerror="this.onerror=null;this.src='https://icons.duckduckgo.com/ip3/ecopro.co.kr.ico';this.addEventListener('error',function(){this.style.display='none';this.nextElementSibling.style.display='inline-flex'});" /><span class='co-logo-fallback' style='display:none'>(</span><div class='ov-card-titles'><span class='ov-name'>(주)에코프로</span><div class='deal-meta'>086520 · 연간 실적 6개년</div></div><span class='ov-fold-hint' aria-hidden='true'></span></summary><div class='ov-card-body'><p class='sub' style='margin:0 0 8px'>막대=매출/영업이익/순이익 · 선=영업이익률 (부채·차입은 표만)</p><div class='chart-box'><canvas id='fin_086520' height='120'></canvas></div><h4 class='fin-sub'>손익</h4><table class='fin'><thead><tr><th>연도</th><th>매출</th><th>영업이익</th><th>영업%</th><th>세전이익</th><th>세전%</th><th>순이익</th><th>순이익%</th></tr></thead><tbody><tr><td>2020</td><td>9,468</td><td>824</td><td>8.7%</td><td>597</td><td>6.3%</td><td>542</td><td>5.7%</td></tr><tr><td>2021</td><td>15,041</td><td>865</td><td>5.8%</td><td>-1,710</td><td>-11.4%</td><td>2,789</td><td>18.6%</td></tr><tr><td>2022</td><td>56,397</td><td>6,132</td><td>10.9%</td><td>3,066</td><td>5.4%</td><td>2,206</td><td>3.9%</td></tr><tr><td>2023</td><td>72,602</td><td>2,982</td><td>4.1%</td><td>1,442</td><td>2.0%</td><td>1,353</td><td>1.9%</td></tr><tr><td>2024</td><td>31,279</td><td>-2,930</td><td>-9.4%</td><td>-3,867</td><td>-12.4%</td><td>-2,954</td><td>-9.4%</td></tr><tr><td>2025</td><td>34,130</td><td>2,138</td><td>6.3%</td><td>-1,243</td><td>-3.6%</td><td>-1,055</td><td>-3.1%</td></tr><tr class='bm-row'><td>LS 2025 (벤치)</td><td>318,700</td><td>10,526</td><td>3.3%</td><td>6,816</td><td>2.1%</td><td>4,851</td><td>1.5%</td></tr></tbody></table><h4 class='fin-sub'>부채·차입 (표만)</h4><table class='fin'><thead><tr><th>연도</th><th>차입금</th><th>부채총계</th><th>자본총계</th><th>부채비율</th></tr></thead><tbody><tr><td>2020</td><td>6,948</td><td>6,945</td><td>5,887</td><td class='debt-ratio'>118.0%</td></tr><tr><td>2021</td><td>—</td><td>17,037</td><td>16,973</td><td class='debt-ratio'>100.4%</td></tr><tr><td>2022</td><td>—</td><td>28,240</td><td>25,218</td><td class='debt-ratio'>112.0%</td></tr><tr><td>2023</td><td>—</td><td>40,708</td><td>34,861</td><td class='debt-ratio'>116.8%</td></tr><tr><td>2024</td><td>—</td><td>42,998</td><td>38,385</td><td class='debt-ratio'>112.0%</td></tr><tr><td>2025</td><td>—</td><td>52,914</td><td>44,873</td><td class='debt-ratio'>117.9%</td></tr><tr class='bm-row'><td>LS 2025 (벤치)</td><td>113,826</td><td>173,152</td><td>76,796</td><td class='debt-ratio'>225.5%</td></tr></tbody></table></div></details></article><article class='ov-card' data-fin='{&quot;years&quot;: [2021, 2022, 2023, 2024, 2025], &quot;rev&quot;: [0.604, 0.586, 0.65, 0.218, 0.262], &quot;op&quot;: [0.089, -0.052, 0.032, -0.291, -0.246], &quot;net&quot;: [0.095, -0.03, 0.082, -0.247, -0.211], &quot;opm&quot;: [14.77, -8.93, 4.93, -133.57, -94.08]}' id='wrap-fin_361610'><details class='ov-fold'><summary class='ov-card-head'><img class='co-logo' src='https://www.google.com/s2/favicons?domain=skietechnology.com&sz=64' alt='' onerror="this.onerror=null;this.src='https://icons.duckduckgo.com/ip3/skietechnology.com.ico';this.addEventListener('error',function(){this.style.display='none';this.nextElementSibling.style.display='inline-flex'});" /><span class='co-logo-fallback' style='display:none'>에</span><div class='ov-card-titles'><span class='ov-name'>에스케이아이이테크놀로지 주식회사</span><div class='deal-meta'>361610 · 연간 실적 5개년</div></div><span class='ov-fold-hint' aria-hidden='true'></span></summary><div class='ov-card-body'><p class='sub' style='margin:0 0 8px'>막대=매출/영업이익/순이익 · 선=영업이익률 (부채·차입은 표만)</p><div class='chart-box'><canvas id='fin_361610' height='120'></canvas></div><h4 class='fin-sub'>손익</h4><table class='fin'><thead><tr><th>연도</th><th>매출</th><th>영업이익</th><th>영업%</th><th>세전이익</th><th>세전%</th><th>순이익</th><th>순이익%</th></tr></thead><tbody><tr><td>2021</td><td>6,038</td><td>892</td><td>14.8%</td><td>1,116</td><td>18.5%</td><td>954</td><td>15.8%</td></tr><tr><td>2022</td><td>5,858</td><td>-523</td><td>-8.9%</td><td>-346</td><td>-5.9%</td><td>-297</td><td>-5.1%</td></tr><tr><td>2023</td><td>6,496</td><td>320</td><td>4.9%</td><td>987</td><td>15.2%</td><td>822</td><td>12.7%</td></tr><tr><td>2024</td><td>2,179</td><td>-2,910</td><td>-133.6%</td><td>-3,133</td><td>-143.8%</td><td>-2,466</td><td>-113.2%</td></tr><tr><td>2025</td><td>2,619</td><td>-2,464</td><td>-94.1%</td><td>-3,238</td><td>-123.7%</td><td>-2,114</td><td>-80.7%</td></tr><tr class='bm-row'><td>LS 2025 (벤치)</td><td>318,700</td><td>10,526</td><td>3.3%</td><td>6,816</td><td>2.1%</td><td>4,851</td><td>1.5%</td></tr></tbody></table><h4 class='fin-sub'>부채·차입 (표만)</h4><table class='fin'><thead><tr><th>연도</th><th>차입금</th><th>부채총계</th><th>자본총계</th><th>부채비율</th></tr></thead><tbody><tr><td>2021</td><td>4,656</td><td>9,683</td><td>22,162</td><td class='debt-ratio'>43.7%</td></tr><tr><td>2022</td><td>8,924</td><td>13,227</td><td>21,747</td><td class='debt-ratio'>60.8%</td></tr><tr><td>2023</td><td>10,462</td><td>16,722</td><td>24,117</td><td class='debt-ratio'>69.3%</td></tr><tr><td>2024</td><td>24,000</td><td>18,256</td><td>23,246</td><td class='debt-ratio'>78.5%</td></tr><tr><td>2025</td><td>20,164</td><td>17,904</td><td>26,014</td><td class='debt-ratio'>68.8%</td></tr><tr class='bm-row'><td>LS 2025 (벤치)</td><td>113,826</td><td>173,152</td><td>76,796</td><td class='debt-ratio'>225.5%</td></tr></tbody></table></div></details></article><article class='ov-card' data-fin='{&quot;years&quot;: [2020, 2021, 2022, 2023, 2024, 2025], &quot;rev&quot;: [1.461, 17.852, 25.599, 33.745, 25.62, 23.672], &quot;op&quot;: [-0.475, 0.768, 1.214, 2.163, 0.575, 1.346], &quot;net&quot;: [-0.452, 0.93, 0.78, 1.638, 0.339, 0.081], &quot;opm&quot;: [-32.52, 4.3, 4.74, 6.41, 2.25, 5.69]}' id='wrap-fin_373220'><details class='ov-fold'><summary class='ov-card-head'><img class='co-logo' src='https://www.google.com/s2/favicons?domain=lgensol.com&sz=64' alt='' onerror="this.onerror=null;this.src='https://icons.duckduckgo.com/ip3/lgensol.com.ico';this.addEventListener('error',function(){this.style.display='none';this.nextElementSibling.style.display='inline-flex'});" /><span class='co-logo-fallback' style='display:none'>(</span><div class='ov-card-titles'><span class='ov-name'>(주)엘지에너지솔루션</span><div class='deal-meta'>373220 · 연간 실적 6개년</div></div><span class='ov-fold-hint' aria-hidden='true'></span></summary><div class='ov-card-body'><p class='sub' style='margin:0 0 8px'>막대=매출/영업이익/순이익 · 선=영업이익률 (부채·차입은 표만)</p><div class='chart-box'><canvas id='fin_373220' height='120'></canvas></div><h4 class='fin-sub'>손익</h4><table class='fin'><thead><tr><th>연도</th><th>매출</th><th>영업이익</th><th>영업%</th><th>세전이익</th><th>세전%</th><th>순이익</th><th>순이익%</th></tr></thead><tbody><tr><td>2020</td><td>14,611</td><td>-4,752</td><td>-32.5%</td><td>-6,049</td><td>-41.4%</td><td>-4,518</td><td>-30.9%</td></tr><tr><td>2021</td><td>178,519</td><td>7,685</td><td>4.3%</td><td>7,772</td><td>4.3%</td><td>9,299</td><td>5.2%</td></tr><tr><td>2022</td><td>255,986</td><td>12,137</td><td>4.7%</td><td>9,953</td><td>3.9%</td><td>7,798</td><td>3.0%</td></tr><tr><td>2023</td><td>337,455</td><td>21,632</td><td>6.4%</td><td>20,435</td><td>6.1%</td><td>16,380</td><td>4.8%</td></tr><tr><td>2024</td><td>256,196</td><td>5,754</td><td>2.2%</td><td>3,489</td><td>1.4%</td><td>3,386</td><td>1.3%</td></tr><tr><td>2025</td><td>236,718</td><td>13,461</td><td>5.7%</td><td>4,141</td><td>1.8%</td><td>808</td><td>0.3%</td></tr><tr class='bm-row'><td>LS 2025 (벤치)</td><td>318,700</td><td>10,526</td><td>3.3%</td><td>6,816</td><td>2.1%</td><td>4,851</td><td>1.5%</td></tr></tbody></table><h4 class='fin-sub'>부채·차입 (표만)</h4><table class='fin'><thead><tr><th>연도</th><th>차입금</th><th>부채총계</th><th>자본총계</th><th>부채비율</th></tr></thead><tbody><tr><td>2020</td><td>—</td><td>123,764</td><td>75,654</td><td class='debt-ratio'>163.6%</td></tr><tr><td>2021</td><td>—</td><td>150,218</td><td>87,424</td><td class='debt-ratio'>171.8%</td></tr><tr><td>2022</td><td>—</td><td>177,057</td><td>205,938</td><td class='debt-ratio'>86.0%</td></tr><tr><td>2023</td><td>—</td><td>210,636</td><td>243,735</td><td class='debt-ratio'>86.4%</td></tr><tr><td>2024</td><td>282,909</td><td>293,402</td><td>309,665</td><td class='debt-ratio'>94.8%</td></tr><tr><td>2025</td><td>383,380</td><td>378,263</td><td>293,217</td><td class='debt-ratio'>129.0%</td></tr><tr class='bm-row'><td>LS 2025 (벤치)</td><td>113,826</td><td>173,152</td><td>76,796</td><td class='debt-ratio'>225.5%</td></tr></tbody></table></div></details></article></div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+document.querySelectorAll('[data-fin]').forEach(el => {
+  const d = JSON.parse(el.getAttribute('data-fin'));
+  const canvas = el.querySelector('canvas');
+  if (!canvas) return;
+  const det = el.querySelector('details.ov-fold') || el.closest('details');
+  function draw() {
+    const existing = Chart.getChart(canvas);
+    if (existing) { existing.resize(); return; }
+    new Chart(canvas, {
+      type: 'bar',
+      data: {
+        labels: d.years,
+        datasets: [
+          { label: '매출(조)', data: d.rev, backgroundColor: 'rgba(56,189,248,0.7)', yAxisID: 'y' },
+          { label: '영업이익(조)', data: d.op, backgroundColor: 'rgba(52,211,153,0.7)', yAxisID: 'y' },
+          { label: '순이익(조)', data: d.net, backgroundColor: 'rgba(167,139,250,0.7)', yAxisID: 'y' },
+          { label: '영업이익률(%)', data: d.opm, type: 'line', borderColor: '#fbbf24',
+            backgroundColor: 'rgba(251,191,36,0.15)', yAxisID: 'y1', tension: 0.25, pointRadius: 3 }
+        ]
+      },
+      options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { legend: { labels: { color: '#334155' } } },
+        scales: {
+          x: { ticks: { color: '#64748b' } },
+          y: { ticks: { color: '#64748b' }, position: 'left', title: { display: true, text: '조원', color: '#64748b' } },
+          y1: { ticks: { color: '#b45309', callback: v => v + '%' }, position: 'right',
+                grid: { drawOnChartArea: false }, title: { display: true, text: '영업이익률 (%)', color: '#b45309' } }
+        } }
+    });
+  }
+  if (det) {
+    det.addEventListener('toggle', () => { if (det.open) setTimeout(draw, 40); });
+    if (det.open) draw();
+  } else {
+    draw();
+  }
+});
+</script>
+</div>
+    <div id="tab-price" class="tab-panel"><p class='tab-desc'>코스피(상단) · 국내 기업별 주가 흐름 (1년 · Yahoo Finance)</p><div class='grid'><div class='card index-hero'><div class='card-head'><h3>코스피</h3><span class='tag'>pt</span></div><p class='tab-desc' style='margin:0 0 8px'>6,690.62 <span class='pc-chg down'>-5.72%</span> · 3개월 · 2026-07-24 18:24</p><div class='chart-box'><canvas id='px_idx_kospi' height='120'></canvas></div></div><div class='card'><div class='card-head'><h3>(주)포스코퓨처엠</h3><span class='tag'>003670</span></div><p class='tab-desc' style='margin:0 0 8px'>최근 146,000원 · 1Y +13.4%</p><div class='chart-box'><canvas id='px_003670' height='100'></canvas></div><a class='btn' href='../domestic/reports/003670_2026-Q3.html'>리포트</a></div><div class='card'><div class='card-head'><h3>삼성SDI(주)</h3><span class='tag'>006400</span></div><p class='tab-desc' style='margin:0 0 8px'>최근 401,500원 · 1Y +129.9%</p><div class='chart-box'><canvas id='px_006400' height='100'></canvas></div><a class='btn' href='../domestic/reports/006400_2026-Q3.html'>리포트</a></div><div class='card'><div class='card-head'><h3>(주)엘앤에프</h3><span class='tag'>066970</span></div><p class='tab-desc' style='margin:0 0 8px'>최근 91,500원 · 1Y +75.3%</p><div class='chart-box'><canvas id='px_066970' height='100'></canvas></div><a class='btn' href='../domestic/reports/066970_2026-Q3.html'>리포트</a></div><div class='card'><div class='card-head'><h3>(주)에코프로</h3><span class='tag'>086520</span></div><p class='tab-desc' style='margin:0 0 8px'>최근 79,400원 · 1Y +67.9%</p><div class='chart-box'><canvas id='px_086520' height='100'></canvas></div><a class='btn' href='../domestic/reports/086520_2026-Q3.html'>리포트</a></div><div class='card'><div class='card-head'><h3>에스케이아이이테크놀로지 주식회사</h3><span class='tag'>361610</span></div><p class='tab-desc' style='margin:0 0 8px'>최근 16,000원 · 1Y -41.7%</p><div class='chart-box'><canvas id='px_361610' height='100'></canvas></div><a class='btn' href='../domestic/reports/361610_2026-Q3.html'>리포트</a></div><div class='card'><div class='card-head'><h3>(주)엘지에너지솔루션</h3><span class='tag'>373220</span></div><p class='tab-desc' style='margin:0 0 8px'>최근 313,500원 · 1Y +5.6%</p><div class='chart-box'><canvas id='px_373220' height='100'></canvas></div><a class='btn' href='../domestic/reports/373220_2026-Q3.html'>리포트</a></div></div><script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script><script>(()=>{const el=document.getElementById('px_idx_kospi'); if(!el) return;new Chart(el,{type:'line',data:{labels:["04-24", "04-27", "04-28", "04-29", "04-30", "05-04", "05-06", "05-07", "05-08", "05-11", "05-12", "05-13", "05-14", "05-15", "05-18", "05-19", "05-20", "05-21", "05-22", "05-26", "05-27", "05-28", "05-29", "06-01", "06-02", "06-04", "06-05", "06-08", "06-09", "06-10", "06-11", "06-12", "06-15", "06-16", "06-17", "06-18", "06-19", "06-22", "06-23", "06-24", "06-25", "06-26", "06-29", "06-30", "07-01", "07-02", "07-03", "07-06", "07-07", "07-08", "07-09", "07-10", "07-13", "07-14", "07-15", "07-16", "07-20", "07-21", "07-22", "07-23", "07-24"],datasets:[{label:'코스피',data:[6475.6299, 6615.0298, 6641.02, 6690.8999, 6598.8701, 6936.9902, 7384.5601, 7490.0498, 7498.0, 7822.2402, 7643.1499, 7844.0098, 7981.4102, 7493.1802, 7516.04, 7271.6602, 7208.9502, 7815.5898, 7847.71, 8047.5098, 8228.7002, 8185.29, 8476.1504, 8788.3799, 8801.4902, 8639.4102, 8160.5898, 7484.4102, 8096.9302, 7730.8198, 7763.9502, 8123.6201, 8545.9805, 8726.5996, 8864.2402, 9063.8398, 9052.4199, 9114.5498, 8203.8398, 8471.0195, 8930.2998, 8411.21, 8394.6504, 8476.4805, 8303.4102, 7648.0898, 8088.3398, 8051.3301, 7656.3101, 7246.79, 7291.9102, 7475.9399, 6806.9302, 6856.8301, 7284.4102, 6820.6001, 6516.27, 6747.9502, 6797.7002, 7096.8901, 6690.6201],borderColor:'#0d9488',backgroundColor:'rgba(13,148,136,0.12)',fill:true,pointRadius:0,tension:0.25,borderWidth:2}]}, options:{plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#9ca3af',maxTicksLimit:6}},y:{ticks:{color:'#9ca3af'}}}}});})();(()=>{const el=document.getElementById('px_003670'); if(!el) return;new Chart(el,{type:'line',data:{labels:["2025-06-26", "2025-07-01", "2025-07-04", "2025-07-09", "2025-07-14", "2025-07-17", "2025-07-22", "2025-07-25", "2025-07-30", "2025-08-04", "2025-08-07", "2025-08-12", "2025-08-18", "2025-08-21", "2025-08-26", "2025-08-29", "2025-09-03", "2025-09-08", "2025-09-11", "2025-09-16", "2025-09-22", "2025-09-25", "2025-09-30", "2025-10-10", "2025-10-15", "2025-10-20", "2025-10-23", "2025-10-28", "2025-10-31", "2025-11-05", "2025-11-10", "2025-11-13", "2025-11-18", "2025-11-21", "2025-11-26", "2025-12-01", "2025-12-04", "2025-12-09", "2025-12-12", "2025-12-17", "2025-12-22", "2025-12-26", "2026-01-02", "2026-01-07", "2026-01-12", "2026-01-15", "2026-01-20", "2026-01-23", "2026-01-28", "2026-02-02", "2026-02-05", "2026-02-10", "2026-02-13", "2026-02-23", "2026-02-26", "2026-03-04", "2026-03-09", "2026-03-12", "2026-03-17", "2026-03-20", "2026-03-25", "2026-03-30", "2026-04-02", "2026-04-07", "2026-04-10", "2026-04-15", "2026-04-20", "2026-04-23", "2026-04-28", "2026-05-04", "2026-05-08", "2026-05-13", "2026-05-18", "2026-05-21", "2026-05-27", "2026-06-01", "2026-06-05", "2026-06-10", "2026-06-15", "2026-06-18", "2026-06-23", "2026-06-26", "2026-07-01", "2026-07-06", "2026-07-09"],datasets:[{label:'종가',data:[128745.82, 124850.48, 131043.06, 123052.63, 137435.41, 131043.06, 149620.81, 148422.25, 147423.45, 136536.48, 151318.78, 157811.02, 155114.23, 152517.34, 154215.31, 141130.98, 134239.23, 132641.16, 130643.55, 131742.23, 141230.86, 145725.48, 143328.36, 146125.0, 173991.62, 195266.16, 203256.58, 240711.73, 216241.03, 213244.62, 209748.81, 220236.25, 199760.77, 192269.73, 204754.8, 208750.0, 204255.39, 223732.06, 221235.05, 210248.22, 195865.44, 195965.31, 176688.41, 179784.69, 187775.12, 195166.27, 204754.8, 213744.03, 239213.52, 217239.84, 225230.27, 220735.66, 223732.06, 225230.27, 246704.55, 184978.47, 202257.78, 210248.22, 192869.03, 198961.73, 202257.78, 214500.0, 213000.0, 209000.0, 217500.0, 217500.0, 236500.0, 246000.0, 263000.0, 267000.0, 290000.0, 251500.0, 232000.0, 232000.0, 229000.0, 231000.0, 209000.0, 187600.0, 210500.0, 202000.0, 172900.0, 160600.0, 170200.0, 159500.0, 146000.0],borderColor:'#38bdf8',pointRadius:0,tension:0.15}]}, options:{plugins:{legend:{display:false}},scales:{x:{display:false},y:{ticks:{color:'#9ca3af'}}}}});})();(()=>{const el=document.getElementById('px_006400'); if(!el) return;new Chart(el,{type:'line',data:{labels:["2025-06-26", "2025-07-01", "2025-07-04", "2025-07-09", "2025-07-14", "2025-07-17", "2025-07-22", "2025-07-25", "2025-07-30", "2025-08-04", "2025-08-07", "2025-08-12", "2025-08-18", "2025-08-21", "2025-08-26", "2025-08-29", "2025-09-03", "2025-09-08", "2025-09-11", "2025-09-16", "2025-09-22", "2025-09-25", "2025-09-30", "2025-10-10", "2025-10-15", "2025-10-20", "2025-10-23", "2025-10-28", "2025-10-31", "2025-11-05", "2025-11-10", "2025-11-13", "2025-11-18", "2025-11-21", "2025-11-26", "2025-12-01", "2025-12-04", "2025-12-09", "2025-12-12", "2025-12-17", "2025-12-22", "2025-12-26", "2026-01-02", "2026-01-07", "2026-01-12", "2026-01-15", "2026-01-20", "2026-01-23", "2026-01-28", "2026-02-02", "2026-02-05", "2026-02-10", "2026-02-13", "2026-02-23", "2026-02-26", "2026-03-04", "2026-03-09", "2026-03-12", "2026-03-17", "2026-03-20", "2026-03-25", "2026-03-30", "2026-04-02", "2026-04-07", "2026-04-10", "2026-04-15", "2026-04-20", "2026-04-23", "2026-04-28", "2026-05-04", "2026-05-08", "2026-05-13", "2026-05-18", "2026-05-21", "2026-05-27", "2026-06-01", "2026-06-05", "2026-06-10", "2026-06-15", "2026-06-18", "2026-06-23", "2026-06-26", "2026-07-01", "2026-07-06", "2026-07-09"],datasets:[{label:'종가',data:[174600.0, 178200.0, 181100.0, 170100.0, 181100.0, 179000.0, 181900.0, 189800.0, 206000.0, 193700.0, 217000.0, 221000.0, 219500.0, 215500.0, 221000.0, 207000.0, 201500.0, 199900.0, 198300.0, 204000.0, 207500.0, 210500.0, 205000.0, 207000.0, 221500.0, 260500.0, 258000.0, 312000.0, 322000.0, 325000.0, 315000.0, 334500.0, 301500.0, 288500.0, 304500.0, 299000.0, 302500.0, 310000.0, 308000.0, 295000.0, 282500.0, 274000.0, 262500.0, 270500.0, 278000.0, 291500.0, 326000.0, 373000.0, 396500.0, 356000.0, 385500.0, 381000.0, 374500.0, 391500.0, 449000.0, 351000.0, 389000.0, 400000.0, 389000.0, 400500.0, 404000.0, 412500.0, 443000.0, 456500.0, 481000.0, 471000.0, 538000.0, 630000.0, 680000.0, 705000.0, 678000.0, 634000.0, 613000.0, 616000.0, 630000.0, 652000.0, 568000.0, 496500.0, 553000.0, 522000.0, 469000.0, 455000.0, 491000.0, 451500.0, 401500.0],borderColor:'#38bdf8',pointRadius:0,tension:0.15}]}, options:{plugins:{legend:{display:false}},scales:{x:{display:false},y:{ticks:{color:'#9ca3af'}}}}});})();(()=>{const el=document.getElementById('px_066970'); if(!el) return;new Chart(el,{type:'line',data:{labels:["2025-06-26", "2025-07-01", "2025-07-04", "2025-07-09", "2025-07-14", "2025-07-17", "2025-07-22", "2025-07-25", "2025-07-30", "2025-08-04", "2025-08-07", "2025-08-12", "2025-08-18", "2025-08-21", "2025-08-26", "2025-08-29", "2025-09-03", "2025-09-08", "2025-09-11", "2025-09-16", "2025-09-22", "2025-09-25", "2025-09-30", "2025-10-10", "2025-10-15", "2025-10-20", "2025-10-23", "2025-10-28", "2025-10-31", "2025-11-05", "2025-11-10", "2025-11-13", "2025-11-18", "2025-11-21", "2025-11-26", "2025-12-01", "2025-12-04", "2025-12-09", "2025-12-12", "2025-12-17", "2025-12-22", "2025-12-26", "2026-01-02", "2026-01-07", "2026-01-12", "2026-01-15", "2026-01-20", "2026-01-23", "2026-01-28", "2026-02-02", "2026-02-05", "2026-02-10", "2026-02-13", "2026-02-23", "2026-02-26", "2026-03-04", "2026-03-09", "2026-03-12", "2026-03-17", "2026-03-20", "2026-03-25", "2026-03-30", "2026-04-02", "2026-04-07", "2026-04-10", "2026-04-15", "2026-04-20", "2026-04-23", "2026-04-28", "2026-05-04", "2026-05-08", "2026-05-13", "2026-05-18", "2026-05-21", "2026-05-27", "2026-06-01", "2026-06-05", "2026-06-10", "2026-06-15", "2026-06-18", "2026-06-23", "2026-06-26", "2026-07-01", "2026-07-06", "2026-07-09"],datasets:[{label:'종가',data:[52200.0, 50300.0, 53400.0, 52500.0, 56100.0, 55100.0, 61400.0, 65500.0, 72000.0, 65900.0, 72700.0, 84300.0, 84300.0, 86500.0, 80500.0, 66000.0, 61300.0, 62400.0, 63300.0, 70700.0, 77900.0, 76600.0, 74300.0, 71400.0, 82500.0, 114800.0, 113600.0, 146200.0, 122100.0, 125600.0, 124000.0, 141600.0, 125400.0, 119900.0, 124100.0, 128100.0, 123400.0, 132300.0, 128400.0, 118600.0, 107100.0, 103500.0, 94300.0, 100300.0, 112800.0, 115600.0, 114600.0, 120200.0, 136700.0, 123300.0, 117600.0, 118000.0, 113100.0, 114100.0, 124900.0, 93200.0, 113000.0, 111800.0, 110100.0, 112100.0, 145300.0, 155900.0, 161600.0, 185000.0, 186800.0, 170600.0, 183700.0, 189100.0, 205000.0, 213000.0, 195800.0, 169000.0, 160500.0, 155100.0, 149700.0, 155000.0, 139900.0, 126400.0, 141700.0, 127900.0, 112700.0, 98900.0, 110000.0, 103400.0, 91500.0],borderColor:'#38bdf8',pointRadius:0,tension:0.15}]}, options:{plugins:{legend:{display:false}},scales:{x:{display:false},y:{ticks:{color:'#9ca3af'}}}}});})();(()=>{const el=document.getElementById('px_086520'); if(!el) return;new Chart(el,{type:'line',data:{labels:["2025-06-26", "2025-07-01", "2025-07-04", "2025-07-09", "2025-07-14", "2025-07-17", "2025-07-22", "2025-07-25", "2025-07-30", "2025-08-04", "2025-08-07", "2025-08-12", "2025-08-18", "2025-08-21", "2025-08-26", "2025-08-29", "2025-09-03", "2025-09-08", "2025-09-11", "2025-09-16", "2025-09-22", "2025-09-25", "2025-09-30", "2025-10-10", "2025-10-15", "2025-10-20", "2025-10-23", "2025-10-28", "2025-10-31", "2025-11-05", "2025-11-10", "2025-11-13", "2025-11-18", "2025-11-21", "2025-11-26", "2025-12-01", "2025-12-04", "2025-12-09", "2025-12-12", "2025-12-17", "2025-12-22", "2025-12-26", "2026-01-02", "2026-01-07", "2026-01-12", "2026-01-15", "2026-01-20", "2026-01-23", "2026-01-28", "2026-02-02", "2026-02-05", "2026-02-10", "2026-02-13", "2026-02-23", "2026-02-26", "2026-03-04", "2026-03-09", "2026-03-12", "2026-03-17", "2026-03-20", "2026-03-25", "2026-03-30", "2026-04-02", "2026-04-07", "2026-04-10", "2026-04-15", "2026-04-20", "2026-04-23", "2026-04-28", "2026-05-04", "2026-05-08", "2026-05-13", "2026-05-18", "2026-05-21", "2026-05-27", "2026-06-01", "2026-06-05", "2026-06-10", "2026-06-15", "2026-06-18", "2026-06-23", "2026-06-26", "2026-07-01", "2026-07-06", "2026-07-09"],datasets:[{label:'종가',data:[47301.35, 45453.25, 46801.87, 44753.97, 47750.89, 46552.12, 47650.99, 50747.81, 50947.6, 47950.68, 51846.68, 57041.34, 56042.36, 54244.21, 55442.98, 50548.01, 49848.73, 49549.04, 48550.07, 49149.45, 49499.09, 50048.53, 47401.25, 46502.18, 50548.01, 77620.17, 81416.27, 97100.13, 87909.59, 92704.66, 87809.69, 94602.7, 81516.16, 78719.04, 83414.21, 92904.45, 91405.99, 117678.97, 111285.55, 103193.87, 97899.31, 96900.34, 88209.28, 92404.97, 93703.63, 94602.7, 98199.01, 105791.2, 168426.78, 162333.05, 167327.91, 155839.72, 150245.48, 169126.06, 184010.75, 133662.53, 163631.72, 157837.67, 149146.61, 150744.97, 151144.55, 146700.0, 142400.0, 144800.0, 146400.0, 147900.0, 155600.0, 157200.0, 161500.0, 155800.0, 155000.0, 135000.0, 126800.0, 129800.0, 142900.0, 130400.0, 118500.0, 105900.0, 124000.0, 117500.0, 103000.0, 95400.0, 93000.0, 85500.0, 79400.0],borderColor:'#38bdf8',pointRadius:0,tension:0.15}]}, options:{plugins:{legend:{display:false}},scales:{x:{display:false},y:{ticks:{color:'#9ca3af'}}}}});})();(()=>{const el=document.getElementById('px_361610'); if(!el) return;new Chart(el,{type:'line',data:{labels:["2025-06-26", "2025-07-01", "2025-07-04", "2025-07-09", "2025-07-14", "2025-07-17", "2025-07-22", "2025-07-25", "2025-07-30", "2025-08-04", "2025-08-07", "2025-08-12", "2025-08-18", "2025-08-21", "2025-08-26", "2025-08-29", "2025-09-03", "2025-09-08", "2025-09-11", "2025-09-16", "2025-09-22", "2025-09-25", "2025-09-30", "2025-10-10", "2025-10-15", "2025-10-20", "2025-10-23", "2025-10-28", "2025-10-31", "2025-11-05", "2025-11-10", "2025-11-13", "2025-11-18", "2025-11-21", "2025-11-26", "2025-12-01", "2025-12-04", "2025-12-09", "2025-12-12", "2025-12-17", "2025-12-22", "2025-12-26", "2026-01-02", "2026-01-07", "2026-01-12", "2026-01-15", "2026-01-20", "2026-01-23", "2026-01-28", "2026-02-02", "2026-02-05", "2026-02-10", "2026-02-13", "2026-02-23", "2026-02-26", "2026-03-04", "2026-03-09", "2026-03-12", "2026-03-17", "2026-03-20", "2026-03-25", "2026-03-30", "2026-04-02", "2026-04-07", "2026-04-10", "2026-04-15", "2026-04-20", "2026-04-23", "2026-04-28", "2026-05-04", "2026-05-08", "2026-05-13", "2026-05-18", "2026-05-21", "2026-05-27", "2026-06-01", "2026-06-05", "2026-06-10", "2026-06-15", "2026-06-18", "2026-06-23", "2026-06-26", "2026-07-01", "2026-07-06", "2026-07-09"],datasets:[{label:'종가',data:[27450.0, 27600.0, 28800.0, 28250.0, 27950.0, 27200.0, 29100.0, 28850.0, 29200.0, 26200.0, 28300.0, 28700.0, 30400.0, 29050.0, 29300.0, 27750.0, 27150.0, 27400.0, 27850.0, 28300.0, 28750.0, 28700.0, 26500.0, 26750.0, 29700.0, 33150.0, 31950.0, 34300.0, 30700.0, 29950.0, 29650.0, 32600.0, 29500.0, 28400.0, 28200.0, 28950.0, 29150.0, 30150.0, 30250.0, 28650.0, 27550.0, 26450.0, 24150.0, 24050.0, 23800.0, 24400.0, 25050.0, 26050.0, 27500.0, 25550.0, 25400.0, 25800.0, 25950.0, 26250.0, 27650.0, 20500.0, 22300.0, 22800.0, 22100.0, 22200.0, 22100.0, 22100.0, 21200.0, 22050.0, 23100.0, 22950.0, 24700.0, 26900.0, 26950.0, 26800.0, 26400.0, 22050.0, 20600.0, 20200.0, 19190.0, 18710.0, 17800.0, 16900.0, 19180.0, 18330.0, 16670.0, 14390.0, 16360.0, 15750.0, 16000.0],borderColor:'#38bdf8',pointRadius:0,tension:0.15}]}, options:{plugins:{legend:{display:false}},scales:{x:{display:false},y:{ticks:{color:'#9ca3af'}}}}});})();(()=>{const el=document.getElementById('px_373220'); if(!el) return;new Chart(el,{type:'line',data:{labels:["2025-06-26", "2025-07-01", "2025-07-04", "2025-07-09", "2025-07-14", "2025-07-17", "2025-07-22", "2025-07-25", "2025-07-30", "2025-08-04", "2025-08-07", "2025-08-12", "2025-08-18", "2025-08-21", "2025-08-26", "2025-08-29", "2025-09-03", "2025-09-08", "2025-09-11", "2025-09-16", "2025-09-22", "2025-09-25", "2025-09-30", "2025-10-10", "2025-10-15", "2025-10-20", "2025-10-23", "2025-10-28", "2025-10-31", "2025-11-05", "2025-11-10", "2025-11-13", "2025-11-18", "2025-11-21", "2025-11-26", "2025-12-01", "2025-12-04", "2025-12-09", "2025-12-12", "2025-12-17", "2025-12-22", "2025-12-26", "2026-01-02", "2026-01-07", "2026-01-12", "2026-01-15", "2026-01-20", "2026-01-23", "2026-01-28", "2026-02-02", "2026-02-05", "2026-02-10", "2026-02-13", "2026-02-23", "2026-02-26", "2026-03-04", "2026-03-09", "2026-03-12", "2026-03-17", "2026-03-20", "2026-03-25", "2026-03-30", "2026-04-02", "2026-04-07", "2026-04-10", "2026-04-15", "2026-04-20", "2026-04-23", "2026-04-28", "2026-05-04", "2026-05-08", "2026-05-13", "2026-05-18", "2026-05-21", "2026-05-27", "2026-06-01", "2026-06-05", "2026-06-10", "2026-06-15", "2026-06-18", "2026-06-23", "2026-06-26", "2026-07-01", "2026-07-06", "2026-07-09"],datasets:[{label:'종가',data:[297000.0, 297500.0, 310500.0, 305000.0, 315000.0, 317000.0, 333500.0, 363500.0, 393000.0, 375500.0, 386500.0, 388500.0, 383000.0, 372500.0, 381000.0, 352000.0, 348500.0, 343500.0, 350000.0, 349500.0, 349000.0, 361500.0, 347500.0, 359500.0, 386500.0, 432500.0, 447500.0, 510000.0, 473000.0, 464000.0, 465500.0, 484500.0, 443000.0, 425500.0, 435500.0, 413000.0, 410000.0, 443500.0, 445500.0, 415500.0, 389500.0, 383500.0, 361000.0, 370500.0, 379000.0, 392000.0, 403000.0, 412000.0, 431000.0, 380000.0, 395000.0, 390500.0, 395000.0, 396000.0, 427000.0, 347500.0, 359500.0, 384000.0, 380500.0, 375500.0, 394000.0, 410000.0, 404500.0, 408500.0, 412000.0, 408000.0, 429000.0, 466500.0, 472000.0, 472000.0, 476500.0, 430000.0, 408000.0, 401000.0, 383500.0, 455000.0, 414000.0, 385500.0, 420500.0, 400000.0, 362000.0, 331500.0, 348000.0, 354500.0, 313500.0],borderColor:'#38bdf8',pointRadius:0,tension:0.15}]}, options:{plugins:{legend:{display:false}},scales:{x:{display:false},y:{ticks:{color:'#9ca3af'}}}}});})();</script></div>
+    
+    <footer>갱신 2026-07-30 07:30 · 2026-Q3 · 기업 전략 동향 AI 트래커</footer>
+  </div>
+  <script>
+    function activateTab(id) {
+      if (!id) return;
+      const panel = document.getElementById(id);
+      if (!panel) return;
+      const btn = document.querySelector('button[data-tab="' + id + '"]');
+      if (!btn) return;
+      const scope = btn.closest('.tabs');
+      if (!scope) return;
+      const panelIds = [...scope.querySelectorAll(':scope > button[data-tab]')].map(b => b.dataset.tab);
+      scope.querySelectorAll(':scope > button[data-tab]').forEach(b => b.classList.remove('active'));
+      panelIds.forEach(pid => {
+        const p = document.getElementById(pid);
+        if (p && !p.classList.contains('hist-panel')) p.classList.remove('active');
+      });
+      btn.classList.add('active');
+      panel.classList.add('active');
+      requestAnimationFrame(() => {
+        if (typeof Chart === 'undefined') return;
+        panel.querySelectorAll('canvas').forEach(c => {
+          const ch = Chart.getChart(c);
+          if (ch) ch.resize();
+        });
+      });
+    }
+    document.querySelectorAll('.tabs').forEach(scope => {
+      scope.querySelectorAll(':scope > button[data-tab]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activateTab(btn.dataset.tab);
+          if (btn.dataset.tab) history.replaceState(null, '', '#' + btn.dataset.tab);
+        });
+      });
+    });
+    if (location.hash) activateTab(location.hash.replace(/^#/, ''));
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+(function(){
+  function bind(){
+    document.querySelectorAll('.ov-card').forEach(card=>{
+      const btns=[...card.querySelectorAll('[data-ovtab]')];
+      const panels=[...card.querySelectorAll('[data-ovpanel]')];
+      btns.forEach(btn=>{
+        btn.addEventListener('click',()=>{
+          const id=btn.getAttribute('data-ovtab');
+          btns.forEach(b=>b.classList.toggle('active', b===btn));
+          panels.forEach(p=>p.classList.toggle('active', p.getAttribute('data-ovpanel')===id));
+        });
+      });
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',bind);
+  else bind();
+})();
+(function(){
+  function draw(){
+    var el=document.getElementById("ov_fin_003670");
+    if(!el||typeof Chart==='undefined')return;
+    if(Chart.getChart(el)) return;
+    var P={"labels": ["2023", "2024", "2025"], "rev": [47599.0, 36999.0, 29387.0], "op": [359.0, 7.0, 328.0], "pretax": [-161.0, -4319.0, -99.0], "margins": [0.75, 0.02, 1.12]};
+    new Chart(el,{
+      type:'bar',
+      data:{
+        labels:P.labels,
+        datasets:[
+          {type:'bar',label:'매출',data:P.rev,backgroundColor:'rgba(14,116,144,.55)',
+            yAxisID:'y',order:3,barPercentage:0.75,categoryPercentage:0.65},
+          {type:'bar',label:'영업이익',data:P.op,backgroundColor:'rgba(3,105,161,.85)',
+            yAxisID:'y',order:2,barPercentage:0.75,categoryPercentage:0.65},
+          {type:'bar',label:'세전이익',data:P.pretax,backgroundColor:'rgba(245,158,11,.75)',
+            yAxisID:'y',order:2,barPercentage:0.75,categoryPercentage:0.65},
+          {type:'line',label:'영업이익률(%)',data:P.margins,borderColor:'#be123c',
+            backgroundColor:'rgba(190,18,60,.08)',tension:0.3,yAxisID:'y1',
+            spanGaps:true,order:1,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#be123c'}
+        ]
+      },
+      options:{
+        responsive:true,
+        maintainAspectRatio:false,
+        interaction:{mode:'index',intersect:false},
+        plugins:{
+          legend:{
+            position:'bottom',
+            labels:{
+              boxWidth:10,font:{size:11},padding:12,
+              sort:function(a,b){
+                var ord=['매출','영업이익','세전이익','영업이익률(%)'];
+                return ord.indexOf(a.text)-ord.indexOf(b.text);
+              }
+            }
+          },
+          tooltip:{
+            callbacks:{
+              label:function(ctx){
+                var v=ctx.parsed.y;
+                if(v==null) return ctx.dataset.label+': —';
+                if(ctx.dataset.yAxisID==='y1') return ctx.dataset.label+': '+v+'%';
+                return ctx.dataset.label+': '+Number(v).toLocaleString('ko-KR')+'억원';
+              }
+            }
+          }
+        },
+        scales:{
+          x:{grid:{display:false}},
+          y:{
+            position:'left',
+            title:{display:true,text:'억원',font:{size:11}},
+            grid:{color:'rgba(148,163,184,.2)'},
+            ticks:{callback:function(v){return Number(v).toLocaleString('ko-KR');}}
+          },
+          y1:{
+            position:'right',
+            title:{display:true,text:'영업이익률(%)',font:{size:11}},
+            grid:{drawOnChartArea:false},
+            ticks:{callback:function(v){return v+'%';}}
+          }
+        }
+      }
+    });
+  }
+  function bind(){
+    draw();
+    var el=document.getElementById("ov_fin_003670");
+    if(!el) return;
+    var det=el.closest('details.ov-fold');
+    if(!det) return;
+    det.addEventListener('toggle', function(){
+      if(!det.open) return;
+      draw();
+      var c=typeof Chart!=='undefined' ? Chart.getChart(el) : null;
+      if(c) setTimeout(function(){ c.resize(); }, 40);
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',bind);
+  else setTimeout(bind,0);
+})();
+(function(){
+  function draw(){
+    var el=document.getElementById("ov_fin_006400");
+    if(!el||typeof Chart==='undefined')return;
+    if(Chart.getChart(el)) return;
+    var P={"labels": ["2023", "2024", "2025"], "rev": [227083.0, 165922.0, 132667.0], "op": [16334.0, 3633.0, -17224.0], "pretax": [24861.0, 5273.0, -13640.0], "margins": [7.19, 2.19, -12.98]};
+    new Chart(el,{
+      type:'bar',
+      data:{
+        labels:P.labels,
+        datasets:[
+          {type:'bar',label:'매출',data:P.rev,backgroundColor:'rgba(14,116,144,.55)',
+            yAxisID:'y',order:3,barPercentage:0.75,categoryPercentage:0.65},
+          {type:'bar',label:'영업이익',data:P.op,backgroundColor:'rgba(3,105,161,.85)',
+            yAxisID:'y',order:2,barPercentage:0.75,categoryPercentage:0.65},
+          {type:'bar',label:'세전이익',data:P.pretax,backgroundColor:'rgba(245,158,11,.75)',
+            yAxisID:'y',order:2,barPercentage:0.75,categoryPercentage:0.65},
+          {type:'line',label:'영업이익률(%)',data:P.margins,borderColor:'#be123c',
+            backgroundColor:'rgba(190,18,60,.08)',tension:0.3,yAxisID:'y1',
+            spanGaps:true,order:1,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#be123c'}
+        ]
+      },
+      options:{
+        responsive:true,
+        maintainAspectRatio:false,
+        interaction:{mode:'index',intersect:false},
+        plugins:{
+          legend:{
+            position:'bottom',
+            labels:{
+              boxWidth:10,font:{size:11},padding:12,
+              sort:function(a,b){
+                var ord=['매출','영업이익','세전이익','영업이익률(%)'];
+                return ord.indexOf(a.text)-ord.indexOf(b.text);
+              }
+            }
+          },
+          tooltip:{
+            callbacks:{
+              label:function(ctx){
+                var v=ctx.parsed.y;
+                if(v==null) return ctx.dataset.label+': —';
+                if(ctx.dataset.yAxisID==='y1') return ctx.dataset.label+': '+v+'%';
+                return ctx.dataset.label+': '+Number(v).toLocaleString('ko-KR')+'억원';
+              }
+            }
+          }
+        },
+        scales:{
+          x:{grid:{display:false}},
+          y:{
+            position:'left',
+            title:{display:true,text:'억원',font:{size:11}},
+            grid:{color:'rgba(148,163,184,.2)'},
+            ticks:{callback:function(v){return Number(v).toLocaleString('ko-KR');}}
+          },
+          y1:{
+            position:'right',
+            title:{display:true,text:'영업이익률(%)',font:{size:11}},
+            grid:{drawOnChartArea:false},
+            ticks:{callback:function(v){return v+'%';}}
+          }
+        }
+      }
+    });
+  }
+  function bind(){
+    draw();
+    var el=document.getElementById("ov_fin_006400");
+    if(!el) return;
+    var det=el.closest('details.ov-fold');
+    if(!det) return;
+    det.addEventListener('toggle', function(){
+      if(!det.open) return;
+      draw();
+      var c=typeof Chart!=='undefined' ? Chart.getChart(el) : null;
+      if(c) setTimeout(function(){ c.resize(); }, 40);
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',bind);
+  else setTimeout(bind,0);
+})();
+(function(){
+  function draw(){
+    var el=document.getElementById("ov_fin_066970");
+    if(!el||typeof Chart==='undefined')return;
+    if(Chart.getChart(el)) return;
+    var P={"labels": ["2023", "2024", "2025"], "rev": [46441.0, 19075.0, 21549.0], "op": [-2223.0, -5587.0, -1568.0], "pretax": [-2957.0, -5195.0, -5678.0], "margins": [-4.79, -29.29, -7.28]};
+    new Chart(el,{
+      type:'bar',
+      data:{
+        labels:P.labels,
+        datasets:[
+          {type:'bar',label:'매출',data:P.rev,backgroundColor:'rgba(14,116,144,.55)',
+            yAxisID:'y',order:3,barPercentage:0.75,categoryPercentage:0.65},
+          {type:'bar',label:'영업이익',data:P.op,backgroundColor:'rgba(3,105,161,.85)',
+            yAxisID:'y',order:2,barPercentage:0.75,categoryPercentage:0.65},
+          {type:'bar',label:'세전이익',data:P.pretax,backgroundColor:'rgba(245,158,11,.75)',
+            yAxisID:'y',order:2,barPercentage:0.75,categoryPercentage:0.65},
+          {type:'line',label:'영업이익률(%)',data:P.margins,borderColor:'#be123c',
+            backgroundColor:'rgba(190,18,60,.08)',tension:0.3,yAxisID:'y1',
+            spanGaps:true,order:1,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#be123c'}
+        ]
+      },
+      options:{
+        responsive:true,
+        maintainAspectRatio:false,
+        interaction:{mode:'index',intersect:false},
+        plugins:{
+          legend:{
+            position:'bottom',
+            labels:{
+              boxWidth:10,font:{size:11},padding:12,
+              sort:function(a,b){
+                var ord=['매출','영업이익','세전이익','영업이익률(%)'];
+                return ord.indexOf(a.text)-ord.indexOf(b.text);
+              }
+            }
+          },
+          tooltip:{
+            callbacks:{
+              label:function(ctx){
+                var v=ctx.parsed.y;
+                if(v==null) return ctx.dataset.label+': —';
+                if(ctx.dataset.yAxisID==='y1') return ctx.dataset.label+': '+v+'%';
+                return ctx.dataset.label+': '+Number(v).toLocaleString('ko-KR')+'억원';
+              }
+            }
+          }
+        },
+        scales:{
+          x:{grid:{display:false}},
+          y:{
+            position:'left',
+            title:{display:true,text:'억원',font:{size:11}},
+            grid:{color:'rgba(148,163,184,.2)'},
+            ticks:{callback:function(v){return Number(v).toLocaleString('ko-KR');}}
+          },
+          y1:{
+            position:'right',
+            title:{display:true,text:'영업이익률(%)',font:{size:11}},
+            grid:{drawOnChartArea:false},
+            ticks:{callback:function(v){return v+'%';}}
+          }
+        }
+      }
+    });
+  }
+  function bind(){
+    draw();
+    var el=document.getElementById("ov_fin_066970");
+    if(!el) return;
+    var det=el.closest('details.ov-fold');
+    if(!det) return;
+    det.addEventListener('toggle', function(){
+      if(!det.open) return;
+      draw();
+      var c=typeof Chart!=='undefined' ? Chart.getChart(el) : null;
+      if(c) setTimeout(function(){ c.resize(); }, 40);
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',bind);
+  else setTimeout(bind,0);
+})();
+(function(){
+  function draw(){
+    var el=document.getElementById("ov_fin_086520");
+    if(!el||typeof Chart==='undefined')return;
+    if(Chart.getChart(el)) return;
+    var P={"labels": ["2023", "2024", "2025"], "rev": [72602.0, 31279.0, 34130.0], "op": [2982.0, -2930.0, 2138.0], "pretax": [1442.0, -3867.0, -1243.0], "margins": [4.11, -9.37, 6.26]};
+    new Chart(el,{
+      type:'bar',
+      data:{
+        labels:P.labels,
+        datasets:[
+          {type:'bar',label:'매출',data:P.rev,backgroundColor:'rgba(14,116,144,.55)',
+            yAxisID:'y',order:3,barPercentage:0.75,categoryPercentage:0.65},
+          {type:'bar',label:'영업이익',data:P.op,backgroundColor:'rgba(3,105,161,.85)',
+            yAxisID:'y',order:2,barPercentage:0.75,categoryPercentage:0.65},
+          {type:'bar',label:'세전이익',data:P.pretax,backgroundColor:'rgba(245,158,11,.75)',
+            yAxisID:'y',order:2,barPercentage:0.75,categoryPercentage:0.65},
+          {type:'line',label:'영업이익률(%)',data:P.margins,borderColor:'#be123c',
+            backgroundColor:'rgba(190,18,60,.08)',tension:0.3,yAxisID:'y1',
+            spanGaps:true,order:1,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#be123c'}
+        ]
+      },
+      options:{
+        responsive:true,
+        maintainAspectRatio:false,
+        interaction:{mode:'index',intersect:false},
+        plugins:{
+          legend:{
+            position:'bottom',
+            labels:{
+              boxWidth:10,font:{size:11},padding:12,
+              sort:function(a,b){
+                var ord=['매출','영업이익','세전이익','영업이익률(%)'];
+                return ord.indexOf(a.text)-ord.indexOf(b.text);
+              }
+            }
+          },
+          tooltip:{
+            callbacks:{
+              label:function(ctx){
+                var v=ctx.parsed.y;
+                if(v==null) return ctx.dataset.label+': —';
+                if(ctx.dataset.yAxisID==='y1') return ctx.dataset.label+': '+v+'%';
+                return ctx.dataset.label+': '+Number(v).toLocaleString('ko-KR')+'억원';
+              }
+            }
+          }
+        },
+        scales:{
+          x:{grid:{display:false}},
+          y:{
+            position:'left',
+            title:{display:true,text:'억원',font:{size:11}},
+            grid:{color:'rgba(148,163,184,.2)'},
+            ticks:{callback:function(v){return Number(v).toLocaleString('ko-KR');}}
+          },
+          y1:{
+            position:'right',
+            title:{display:true,text:'영업이익률(%)',font:{size:11}},
+            grid:{drawOnChartArea:false},
+            ticks:{callback:function(v){return v+'%';}}
+          }
+        }
+      }
+    });
+  }
+  function bind(){
+    draw();
+    var el=document.getElementById("ov_fin_086520");
+    if(!el) return;
+    var det=el.closest('details.ov-fold');
+    if(!det) return;
+    det.addEventListener('toggle', function(){
+      if(!det.open) return;
+      draw();
+      var c=typeof Chart!=='undefined' ? Chart.getChart(el) : null;
+      if(c) setTimeout(function(){ c.resize(); }, 40);
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',bind);
+  else setTimeout(bind,0);
+})();
+(function(){
+  function draw(){
+    var el=document.getElementById("ov_fin_361610");
+    if(!el||typeof Chart==='undefined')return;
+    if(Chart.getChart(el)) return;
+    var P={"labels": ["2023", "2024", "2025"], "rev": [6496.0, 2179.0, 2619.0], "op": [320.0, -2910.0, -2464.0], "pretax": [987.0, -3133.0, -3238.0], "margins": [4.93, -133.57, -94.08]};
+    new Chart(el,{
+      type:'bar',
+      data:{
+        labels:P.labels,
+        datasets:[
+          {type:'bar',label:'매출',data:P.rev,backgroundColor:'rgba(14,116,144,.55)',
+            yAxisID:'y',order:3,barPercentage:0.75,categoryPercentage:0.65},
+          {type:'bar',label:'영업이익',data:P.op,backgroundColor:'rgba(3,105,161,.85)',
+            yAxisID:'y',order:2,barPercentage:0.75,categoryPercentage:0.65},
+          {type:'bar',label:'세전이익',data:P.pretax,backgroundColor:'rgba(245,158,11,.75)',
+            yAxisID:'y',order:2,barPercentage:0.75,categoryPercentage:0.65},
+          {type:'line',label:'영업이익률(%)',data:P.margins,borderColor:'#be123c',
+            backgroundColor:'rgba(190,18,60,.08)',tension:0.3,yAxisID:'y1',
+            spanGaps:true,order:1,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#be123c'}
+        ]
+      },
+      options:{
+        responsive:true,
+        maintainAspectRatio:false,
+        interaction:{mode:'index',intersect:false},
+        plugins:{
+          legend:{
+            position:'bottom',
+            labels:{
+              boxWidth:10,font:{size:11},padding:12,
+              sort:function(a,b){
+                var ord=['매출','영업이익','세전이익','영업이익률(%)'];
+                return ord.indexOf(a.text)-ord.indexOf(b.text);
+              }
+            }
+          },
+          tooltip:{
+            callbacks:{
+              label:function(ctx){
+                var v=ctx.parsed.y;
+                if(v==null) return ctx.dataset.label+': —';
+                if(ctx.dataset.yAxisID==='y1') return ctx.dataset.label+': '+v+'%';
+                return ctx.dataset.label+': '+Number(v).toLocaleString('ko-KR')+'억원';
+              }
+            }
+          }
+        },
+        scales:{
+          x:{grid:{display:false}},
+          y:{
+            position:'left',
+            title:{display:true,text:'억원',font:{size:11}},
+            grid:{color:'rgba(148,163,184,.2)'},
+            ticks:{callback:function(v){return Number(v).toLocaleString('ko-KR');}}
+          },
+          y1:{
+            position:'right',
+            title:{display:true,text:'영업이익률(%)',font:{size:11}},
+            grid:{drawOnChartArea:false},
+            ticks:{callback:function(v){return v+'%';}}
+          }
+        }
+      }
+    });
+  }
+  function bind(){
+    draw();
+    var el=document.getElementById("ov_fin_361610");
+    if(!el) return;
+    var det=el.closest('details.ov-fold');
+    if(!det) return;
+    det.addEventListener('toggle', function(){
+      if(!det.open) return;
+      draw();
+      var c=typeof Chart!=='undefined' ? Chart.getChart(el) : null;
+      if(c) setTimeout(function(){ c.resize(); }, 40);
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',bind);
+  else setTimeout(bind,0);
+})();
+(function(){
+  function draw(){
+    var el=document.getElementById("ov_fin_373220");
+    if(!el||typeof Chart==='undefined')return;
+    if(Chart.getChart(el)) return;
+    var P={"labels": ["2023", "2024", "2025"], "rev": [337455.0, 256196.0, 236718.0], "op": [21632.0, 5754.0, 13461.0], "pretax": [20435.0, 3489.0, 4141.0], "margins": [6.41, 2.25, 5.69]};
+    new Chart(el,{
+      type:'bar',
+      data:{
+        labels:P.labels,
+        datasets:[
+          {type:'bar',label:'매출',data:P.rev,backgroundColor:'rgba(14,116,144,.55)',
+            yAxisID:'y',order:3,barPercentage:0.75,categoryPercentage:0.65},
+          {type:'bar',label:'영업이익',data:P.op,backgroundColor:'rgba(3,105,161,.85)',
+            yAxisID:'y',order:2,barPercentage:0.75,categoryPercentage:0.65},
+          {type:'bar',label:'세전이익',data:P.pretax,backgroundColor:'rgba(245,158,11,.75)',
+            yAxisID:'y',order:2,barPercentage:0.75,categoryPercentage:0.65},
+          {type:'line',label:'영업이익률(%)',data:P.margins,borderColor:'#be123c',
+            backgroundColor:'rgba(190,18,60,.08)',tension:0.3,yAxisID:'y1',
+            spanGaps:true,order:1,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#be123c'}
+        ]
+      },
+      options:{
+        responsive:true,
+        maintainAspectRatio:false,
+        interaction:{mode:'index',intersect:false},
+        plugins:{
+          legend:{
+            position:'bottom',
+            labels:{
+              boxWidth:10,font:{size:11},padding:12,
+              sort:function(a,b){
+                var ord=['매출','영업이익','세전이익','영업이익률(%)'];
+                return ord.indexOf(a.text)-ord.indexOf(b.text);
+              }
+            }
+          },
+          tooltip:{
+            callbacks:{
+              label:function(ctx){
+                var v=ctx.parsed.y;
+                if(v==null) return ctx.dataset.label+': —';
+                if(ctx.dataset.yAxisID==='y1') return ctx.dataset.label+': '+v+'%';
+                return ctx.dataset.label+': '+Number(v).toLocaleString('ko-KR')+'억원';
+              }
+            }
+          }
+        },
+        scales:{
+          x:{grid:{display:false}},
+          y:{
+            position:'left',
+            title:{display:true,text:'억원',font:{size:11}},
+            grid:{color:'rgba(148,163,184,.2)'},
+            ticks:{callback:function(v){return Number(v).toLocaleString('ko-KR');}}
+          },
+          y1:{
+            position:'right',
+            title:{display:true,text:'영업이익률(%)',font:{size:11}},
+            grid:{drawOnChartArea:false},
+            ticks:{callback:function(v){return v+'%';}}
+          }
+        }
+      }
+    });
+  }
+  function bind(){
+    draw();
+    var el=document.getElementById("ov_fin_373220");
+    if(!el) return;
+    var det=el.closest('details.ov-fold');
+    if(!det) return;
+    det.addEventListener('toggle', function(){
+      if(!det.open) return;
+      draw();
+      var c=typeof Chart!=='undefined' ? Chart.getChart(el) : null;
+      if(c) setTimeout(function(){ c.resize(); }, 40);
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',bind);
+  else setTimeout(bind,0);
+})();
+</script>
+</body>
+</html>
