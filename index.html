@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>홈 — 2026-Q3</title>
+  <style>
+:root {
+  --bg: #f5f7fb; --panel: #ffffff; --card: #ffffff; --text: #1e293b;
+  --muted: #64748b; --accent: #0284c7; --accent-2: #059669; --border: #e2e8f0;
+  --soft: #f1f5f9; --soft-2: #eef2ff; --brand-navy: #1e3a5f;
+}
+* { box-sizing: border-box; }
+body { margin:0; font-family:"Segoe UI","Malgun Gothic",sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
+.wrap { max-width: 1140px; margin: 0 auto; padding: 28px 20px 48px; }
+h1 { margin: 0 0 6px; font-size: 1.85rem; color:#0f172a; }
+h1.brand-title { color: var(--brand-navy); }
+.sub { color: var(--muted); margin-bottom: 20px; }
+.nav { display:flex; gap:8px; flex-wrap:wrap; margin-bottom: 20px; }
+.nav a { padding:8px 12px; border-radius:10px; background:var(--card); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.85rem; }
+.nav a.active, .nav a:hover { border-color:var(--brand-navy); color:var(--brand-navy); background:#eef2ff; }
+.home-section {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:18px 20px; margin-bottom:16px; box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+.home-split {
+  display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start; margin-bottom:16px;
+}
+.home-split > .home-section { margin-bottom:0; min-width:0; }
+.home-col-kr { border-top:3px solid #0284c7; }
+.home-col-intl { border-top:3px solid #0d9488; }
+@media (max-width:960px) {
+  .home-split { grid-template-columns:1fr; }
+}
+.home-section-head { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px; flex-wrap:wrap; }
+.home-section-head h2 { margin:0; font-size:1.15rem; color:var(--brand-navy); }
+.home-co-list { display:flex; flex-direction:column; gap:10px; }
+.home-co-row {
+  display:flex; flex-direction:column; align-items:stretch; gap:10px;
+  padding:12px 14px; border:1px solid var(--border); border-radius:12px; background:#fff;
+}
+.home-co-top {
+  display:grid; grid-template-columns:28px minmax(0,1fr); gap:8px 12px; align-items:center;
+}
+.home-co-main {
+  display:flex; align-items:center; gap:8px; min-width:0;
+}
+.home-co-main strong {
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:0.95rem;
+}
+.home-co-links {
+  grid-column:1 / -1; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:6px;
+}
+.home-co-links a,
+.home-tab-btn {
+  display:block; width:100%; text-align:center; padding:7px 4px; border-radius:8px; border:1px solid var(--border);
+  text-decoration:none; color:var(--brand-navy); font-size:0.78rem; font-weight:600; background:var(--soft);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; cursor:pointer;
+  font-family:inherit;
+}
+.home-co-links a:hover,
+.home-tab-btn:hover { border-color:var(--accent); background:#e0f2fe; }
+.home-tab-btn.active {
+  border-color:var(--accent); color:#fff; background:var(--accent);
+}
+.home-tab-panels { margin-top:2px; }
+.home-tab-panel {
+  border:1px solid var(--border); border-radius:10px; background:#f8fafc;
+  padding:10px 12px; margin-top:4px;
+}
+.home-tab-panel-head {
+  display:flex; justify-content:space-between; align-items:center; gap:8px;
+  margin-bottom:8px;
+}
+.home-tab-panel-head strong { font-size:0.88rem; color:var(--brand-navy); }
+.home-tab-more {
+  font-size:0.78rem; font-weight:600; color:var(--accent); text-decoration:none; white-space:nowrap;
+}
+.home-tab-more:hover { text-decoration:underline; }
+.home-prev-item { padding:6px 0; border-bottom:1px solid var(--border); }
+.home-prev-item:last-child { border-bottom:none; }
+.home-prev-fin { font-size:0.78rem; margin-top:4px; }
+@media (max-width:520px) {
+  .home-co-links { grid-template-columns:repeat(2, minmax(0,1fr)); }
+}
+.co-logo { width:28px; height:28px; border-radius:6px; object-fit:contain; background:#fff; border:1px solid var(--border); }
+.co-logo-fallback {
+  width:28px; height:28px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center;
+  background:var(--brand-navy); color:#fff; font-size:0.85rem; font-weight:700;
+}
+.ov-card-head .co-logo,
+.ov-card-head .co-logo-fallback,
+.co-page-head .co-logo,
+.co-page-head .co-logo-fallback {
+  width:36px; height:36px; flex-shrink:0;
+}
+.co-page-head {
+  display:flex; align-items:center; gap:12px; margin:0 0 10px;
+}
+.co-page-head h1 { margin:0; }
+.co-page-head .sub { margin:4px 0 0; }
+.home-hist-stats { display:flex; gap:18px; margin-top:8px; color:var(--muted); }
+.home-hist-stats strong { color:var(--brand-navy); font-size:1.2rem; margin-right:4px; }
+.mega-notes { margin:8px 0 12px; padding-left:18px; color:var(--muted); font-size:0.88rem; }
+.mega-tabs button em { font-style:normal; font-weight:700; color:var(--accent); margin-left:4px; }
+.mega-ind-box {
+  background:linear-gradient(135deg,#ffffff,#f0f9ff); border:1px solid var(--border);
+  border-radius:14px; padding:16px 18px; margin-bottom:14px;
+}
+.mega-ai-ul { margin:8px 0 0; padding-left:18px; color:#334155; font-size:0.92rem; }
+.mega-ai-ul li { margin:5px 0; }
+.mega-news-grid { display:grid; grid-template-columns:1fr; gap:12px; }
+.mega-news-card {
+  background:#fff; border:1px solid var(--border); border-radius:12px; padding:14px 16px;
+}
+.mega-news-title {
+  display:block; font-weight:700; color:var(--accent); text-decoration:none; font-size:1rem; line-height:1.4;
+}
+.mega-news-title:hover { text-decoration:underline; color:var(--brand-navy); }
+.mega-news-sum { margin-top:8px; }
+.mega-news-sum .mega-ai-ul { font-size:0.88rem; color:#475569; }
+@media (min-width:900px) {
+  .mega-news-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+}
+.ai-summary-box {
+  background:#f8fafc; border:1px solid var(--border); border-left:4px solid var(--brand-navy);
+  border-radius:12px; padding:14px 16px; margin:14px 0;
+}
+.ai-summary-box pre { white-space:pre-wrap; font-family:inherit; font-size:0.9rem; color:#334155; margin:8px 0 0; }
+.ai-summary-box.compact { padding:10px 12px; margin:8px 0 0; }
+.home-ai-ul {
+  list-style:none; margin:8px 0 0; padding:0; color:#334155; font-size:0.88rem;
+  display:flex; flex-direction:column; gap:6px;
+}
+.home-ai-ul li {
+  display:grid; grid-template-columns:5.75rem minmax(0,1fr) auto;
+  gap:8px; align-items:start; margin:0; line-height:1.45;
+}
+.home-ai-ul .ai-k {
+  display:block; color:var(--brand-navy); font-weight:600; font-size:0.78rem;
+  text-align:left; padding-top:1px;
+}
+.home-ai-ul a.ai-news {
+  font-size:0.75rem; font-weight:600; color:var(--accent);
+  text-decoration:none; border-bottom:1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  white-space:nowrap; align-self:start; margin-top:1px;
+}
+.home-ai-ul a.ai-news:hover { color:var(--accent-2); border-bottom-color:var(--accent-2); }
+@media (max-width:520px) {
+  .home-ai-ul li { grid-template-columns:4.5rem minmax(0,1fr); }
+  .home-ai-ul a.ai-news { grid-column:2; justify-self:start; }
+}
+.strategy-brief-list { display:flex; flex-direction:column; gap:16px; }
+.ov-list { display:flex; flex-direction:column; gap:18px; }
+.ov-card {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:0; box-shadow:0 1px 2px rgba(15,23,42,.03); overflow:hidden;
+}
+.ov-fold { margin:0; }
+.ov-fold > summary.ov-card-head {
+  list-style:none; cursor:pointer; display:flex; align-items:center; gap:12px;
+  flex-wrap:wrap; margin:0; padding:14px 18px; border-bottom:1px solid transparent;
+  user-select:none;
+}
+.ov-fold > summary.ov-card-head::-webkit-details-marker { display:none; }
+.ov-fold[open] > summary.ov-card-head {
+  border-bottom-color:var(--border); margin-bottom:0;
+}
+.ov-fold-hint {
+  flex-shrink:0; width:28px; height:28px; border-radius:8px;
+  border:1px solid var(--border); background:#f8fafc; color:var(--muted);
+  display:inline-flex; align-items:center; justify-content:center; font-size:0.75rem;
+}
+.ov-fold-hint::before { content:"▸"; }
+.ov-fold[open] .ov-fold-hint::before { content:"▾"; }
+.ov-card-body { padding:14px 18px 16px; }
+.ov-card-titles { flex:1; min-width:140px; }
+.ov-name {
+  font-size:1.15rem; font-weight:700; color:var(--brand-navy); text-decoration:none;
+}
+.ov-name:hover { color:var(--accent); }
+.ov-mcap { text-align:right; }
+.ov-mcap-label { display:block; font-size:0.72rem; color:var(--muted); }
+.ov-mcap strong { font-size:1.05rem; color:#92400e; }
+.ov-grid {
+  display:grid; grid-template-columns:1.2fr 1fr; gap:14px; margin-bottom:12px;
+}
+@media (max-width:800px) { .ov-grid { grid-template-columns:1fr; } }
+.ov-block h4 { margin:0 0 8px; font-size:0.9rem; color:var(--accent-2); }
+.ov-fin { width:100%; border-collapse:collapse; font-size:0.82rem; }
+.ov-fin th, .ov-fin td {
+  border-bottom:1px solid var(--border); padding:6px 8px; text-align:right;
+}
+.ov-fin th:first-child, .ov-fin td:first-child { text-align:left; }
+.ov-fin th { color:var(--muted); font-weight:600; background:#f8fafc; }
+.ov-chart-wrap { height:140px; position:relative; }
+.ov-chart-wrap.ov-chart-lg { height:260px; min-height:260px; }
+.ov-mini-tabs {
+  display:flex; flex-wrap:wrap; gap:6px; margin:0 0 10px;
+}
+.ov-mini-tabs button {
+  border:1px solid var(--border); background:#fff; border-radius:8px;
+  padding:6px 10px; font-size:0.78rem; cursor:pointer; color:var(--text);
+}
+.ov-mini-tabs button.active {
+  border-color:var(--accent); background:#e0f2fe; color:var(--accent); font-weight:700;
+}
+.ov-cat-panel { display:none; }
+.ov-cat-panel.active { display:block; }
+.ov-ls-block {
+  background:linear-gradient(135deg,#fffbeb,#fff); border:1px solid #f59e0b;
+  border-radius:12px; padding:12px 14px; margin-top:8px;
+}
+.ov-ls-block h4 { color:#92400e !important; }
+.ov-ls-meta { margin:0 0 8px !important; font-size:0.75rem; color:#92400e; }
+.ov-ls-prose-wrap { display:flex; flex-direction:column; gap:10px; }
+.ov-ls-prose {
+  margin:0; font-size:0.9rem; line-height:1.65; color:var(--text);
+  text-align:justify;
+}
+.ov-fact-summary {
+  margin:6px 0 2px; padding:6px 8px; border-left:3px solid #0e7490;
+  background:#f0f9ff; font-size:0.82rem; line-height:1.55; color:#0f172a;
+}
+.ov-fact-label {
+  display:inline-block; font-weight:700; color:#0e7490; margin-right:6px;
+  font-size:0.72rem; letter-spacing:0.02em;
+}
+.weekly-report {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:16px 18px; margin:12px 0 16px;
+}
+.weekly-head {
+  display:flex; align-items:flex-start; justify-content:space-between;
+  gap:12px; flex-wrap:wrap; margin-bottom:4px;
+}
+.weekly-head h3 { margin:0; }
+.weekly-dl { display:flex; gap:8px; flex-wrap:wrap; }
+.btn-dl {
+  display:inline-block; padding:6px 12px; border-radius:8px; font-size:0.78rem;
+  font-weight:700; text-decoration:none; color:#fff; background:var(--brand-navy);
+  border:1px solid var(--brand-navy);
+}
+.btn-dl:hover { background:#0c4a6e; }
+.btn-dl-word { background:#0369a1; border-color:#0369a1; }
+.weekly-fold {
+  margin:10px 0 0; padding:0; border:1px solid var(--border); border-radius:10px;
+  background:#fafbfc;
+}
+.weekly-fold > summary.weekly-fold-sum {
+  list-style:none; cursor:pointer; padding:10px 12px;
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+  font-weight:700; color:var(--brand-navy);
+}
+.weekly-fold > summary.weekly-fold-sum::-webkit-details-marker { display:none; }
+.weekly-fold > summary.weekly-fold-sum::before {
+  content:"▾"; color:var(--muted); font-size:0.85rem; margin-right:6px;
+}
+.weekly-fold:not([open]) > summary.weekly-fold-sum::before { content:"▸"; }
+.weekly-fold-title { font-size:0.95rem; }
+.weekly-fold-meta {
+  font-size:0.72rem; font-weight:600; color:var(--muted);
+  background:#e2e8f0; padding:2px 8px; border-radius:999px;
+}
+.weekly-fold-body { padding:4px 12px 12px 28px; }
+.weekly-fold .empty { margin:0; padding:4px 0 8px; }
+.weekly-detail-tabs { margin-top:8px; padding-top:8px; border-top:2px solid var(--border); }
+.item-date {
+  display:inline-block; margin-left:6px; padding:1px 7px; border-radius:4px;
+  font-size:0.72rem; font-weight:600; color:#475569; background:#f1f5f9;
+  vertical-align:baseline; white-space:nowrap;
+}
+.weekly-sec { margin:14px 0; padding-top:10px; border-top:1px solid var(--border); }
+.weekly-sec:first-of-type { border-top:none; padding-top:0; }
+.weekly-sec h4 { margin:0 0 8px; font-size:0.95rem; color:var(--brand-navy); }
+.weekly-ai { margin-bottom:8px; }
+ul.rpt-l1 {
+  list-style:disc; margin:6px 0 0; padding-left:1.2rem; color:#0f172a; font-size:0.92rem;
+}
+ul.rpt-l1 > li { margin:6px 0; line-height:1.45; display:list-item; }
+ul.rpt-l1 ul.rpt-l2 { display:block; margin:6px 0 0; clear:both; }
+ul.rpt-l2 ul.rpt-l3 { display:block; margin:4px 0 0; clear:both; }
+.ov-issue-ul > li { display:list-item; }
+ul.rpt-l2 {
+  list-style:none; margin:4px 0 0; padding-left:0.2rem; color:#334155; font-size:0.88rem;
+}
+ul.rpt-l2 > li {
+  position:relative; padding-left:1rem; margin:4px 0; line-height:1.4;
+}
+ul.rpt-l2 > li::before { content:"-"; position:absolute; left:0; color:#64748b; font-weight:700; }
+ul.rpt-l3 {
+  list-style:none; margin:3px 0 0; padding-left:0.15rem; color:#475569; font-size:0.84rem;
+}
+ul.rpt-l3 > li {
+  position:relative; padding-left:1.1rem; margin:3px 0; line-height:1.35;
+}
+ul.rpt-l3 > li::before { content:"✓"; position:absolute; left:0; color:#047857; font-weight:700; }
+.ov-news-ul { margin:0; padding-left:0; list-style:none; }
+.ov-news-li {
+  padding:8px 0; border-bottom:1px solid var(--border); font-size:0.9rem;
+}
+.ov-news-li:last-child { border-bottom:none; }
+.ov-news-li a { color:var(--brand-navy); text-decoration:none; font-weight:600; }
+.ov-news-li a:hover { color:var(--accent); }
+.ov-news-meta { margin-top:4px; font-size:0.75rem; color:var(--muted); }
+.ov-tag {
+  display:inline-block; margin:2px 4px 0 0; padding:1px 7px; border-radius:4px;
+  font-size:0.7rem; font-weight:700; background:#e0f2fe; color:#0369a1;
+}
+.ov-tag:nth-child(odd) { background:#ecfdf5; color:#047857; }
+.ov-more { margin:10px 0 0; text-align:right; }
+.ov-more a { font-weight:600; color:var(--accent); text-decoration:none; }
+.ov-sec { margin-bottom:16px; }
+.ov-sec h4 { margin:0 0 8px; font-size:0.95rem; color:var(--brand-navy); }
+.strategy-brief-card {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:16px 18px; box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+.strat-head {
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid var(--border);
+}
+.strat-title { display:flex; align-items:center; gap:8px; flex:1; min-width:140px; }
+.strat-title strong { font-size:1.05rem; }
+.strat-cat { margin-top:12px; }
+.strat-cat-head {
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+  margin-bottom:6px;
+}
+.strat-cat-head h4 {
+  margin:0; font-size:0.88rem; color:var(--brand-navy); font-weight:700;
+}
+.strat-ul {
+  list-style:none; margin:0; padding:0; color:#334155; font-size:0.88rem;
+  display:flex; flex-direction:column; gap:5px;
+}
+.strat-ul li {
+  display:grid; grid-template-columns:5.75rem minmax(0,1fr);
+  gap:8px; align-items:start; line-height:1.45;
+}
+.strat-ul.plain li { grid-template-columns:minmax(0,1fr); }
+.strat-k {
+  display:block; color:var(--brand-navy); font-weight:600; font-size:0.76rem;
+  padding-top:1px;
+}
+@media (max-width:520px) {
+  .strat-ul li { grid-template-columns:4.5rem minmax(0,1fr); }
+}
+.hero {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 55%, #ecfdf5 100%);
+  border:1px solid var(--border); border-radius:16px; padding:28px; margin-bottom:24px;
+  box-shadow:0 1px 2px rgba(15,23,42,.04);
+}
+.entry-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin-top:18px; }
+.entry {
+  display:block; background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:22px; text-decoration:none; color:inherit; transition:border-color .15s, box-shadow .15s;
+  box-shadow:0 1px 2px rgba(15,23,42,.04);
+}
+.entry:hover { border-color: var(--accent); box-shadow:0 4px 12px rgba(2,132,199,.08); }
+.entry h2 { margin:0 0 8px; font-size:1.35rem; color:var(--accent-2); }
+.entry p { margin:0; color:var(--muted); font-size:0.92rem; }
+.entry .count { margin-top:12px; font-size:1.6rem; font-weight:700; color:var(--accent); }
+.tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; position:sticky; top:0; z-index:5;
+  background:rgba(245,247,251,.94); backdrop-filter:blur(8px); padding:10px 0; border-bottom:1px solid var(--border); }
+.tabs button {
+  border:1px solid var(--border); background:var(--card); color:var(--text);
+  padding:8px 12px; border-radius:8px; cursor:pointer; font-size:0.85rem;
+}
+.tabs button.active { border-color:var(--accent); color:var(--accent); background:#e0f2fe; }
+.tab-panel { display:none; }
+.tab-panel.active { display:block; }
+.tab-desc { color:var(--muted); font-size:0.9rem; margin-bottom:14px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; }
+.card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px; box-shadow:0 1px 2px rgba(15,23,42,.03); }
+.card-head { display:flex; justify-content:space-between; gap:8px; margin-bottom:10px; }
+.card h3 { margin:0; font-size:1rem; }
+.tag { font-size:0.7rem; background:#e0f2fe; color:#0369a1; padding:3px 8px; border-radius:6px; white-space:nowrap; }
+.tag.intl { background:#d1fae5; color:#047857; }
+.module-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; margin-bottom:12px; }
+.mod-stat { background:var(--soft); border-radius:8px; padding:8px 6px; text-align:center; font-size:0.72rem; color:var(--muted); }
+.mod-stat strong { display:block; font-size:1.05rem; color:var(--text); }
+.btn { display:inline-block; padding:9px 12px; border-radius:10px; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; font-size:0.88rem; border:none; cursor:pointer; }
+.btn.secondary { background:#10b981; color:#fff; }
+.empty { color:var(--muted); font-style:italic; }
+.deal-kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px; margin-bottom:18px; }
+.deal-kpi { background:var(--card); border:1px solid var(--border); border-left:4px solid var(--c,#0284c7);
+  border-radius:10px; padding:12px 14px; text-decoration:none; color:inherit; }
+.deal-kpi-label { font-size:0.85rem; }
+.deal-kpi-count { font-size:1.7rem; font-weight:700; color:var(--c,#0284c7); }
+.deal-kpi-en { font-size:0.72rem; color:var(--muted); }
+.deal-section { background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:16px 18px; margin-bottom:14px; scroll-margin-top:70px; }
+.deal-section h3 { margin:0 0 12px; font-size:1.05rem; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.deal-section h3 .dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
+.deal-section h3 small { color:var(--muted); font-weight:400; font-size:0.8rem; }
+.deal-section h3 em { margin-left:auto; font-style:normal; color:var(--accent); font-size:0.85rem; }
+.deal-item { padding:12px 0; border-bottom:1px solid var(--border); }
+.deal-item:last-child { border-bottom:none; }
+.deal-item-top { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:4px; }
+.pill { color:#fff; font-size:0.7rem; padding:2px 8px; border-radius:4px; }
+.src { font-size:0.72rem; color:var(--muted); background:var(--soft); padding:2px 6px; border-radius:4px; }
+.co { font-size:0.78rem; color:var(--accent-2); }
+.deal-title { font-weight:600; margin-bottom:4px; }
+.deal-meta { font-size:0.8rem; color:var(--muted); margin-bottom:4px; }
+.deal-sum { font-size:0.88rem; color:#475569; margin:6px 0; }
+a { color:var(--accent); }
+.chart-box { background:var(--soft); border-radius:10px; padding:10px; margin:8px 0 12px; border:1px solid var(--border); }
+.ov-card-body .chart-box { height:220px; position:relative; }
+.index-hero { grid-column: 1 / -1; border-color:#99f6e4; background:linear-gradient(135deg,#fff,#f0fdfa); }
+table.fin { width:100%; border-collapse:collapse; font-size:0.8rem; }
+table.fin th, table.fin td { border-bottom:1px solid var(--border); padding:0.4rem 0.3rem; text-align:right; }
+table.fin th:first-child, table.fin td:first-child { text-align:left; }
+table.fin th { color:var(--muted); }
+.price-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; margin-top:14px; }
+.price-chip { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px; }
+.price-chip.intl { border-color:#a7f3d0; }
+.pc-name { font-size:0.78rem; color:var(--muted); margin-bottom:4px; }
+.pc-price { font-size:1.15rem; font-weight:700; }
+.pc-chg { font-size:0.8rem; margin-top:2px; }
+.pc-chg.up { color:#059669; }
+.pc-chg.down { color:#dc2626; }
+.mod-stat em { display:block; font-size:0.65rem; color:#d97706; font-style:normal; }
+.geo-tag { display:inline-block; background:#ffedd5; color:#9a3412; font-size:0.7rem; padding:2px 8px; border-radius:4px; font-weight:600; }
+.bm-banner { background:#fff7ed; border:1px solid #fdba74; border-radius:12px; padding:12px 14px; margin-bottom:14px; }
+table.fin tr.bm-row td { background:#fffbeb; color:#92400e; font-weight:600; }
+.debt-ratio { color:#d97706; font-weight:700; }
+.markets-panel {
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 45%, #f0f9ff 100%);
+  border:1px solid var(--border); border-radius:16px; padding:20px 22px; margin-bottom:20px;
+}
+.markets-head { display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
+.markets-section-label { font-size:0.78rem; color:#047857; margin:14px 0 8px; letter-spacing:0.02em; font-weight:600; }
+.mkt-chart-grid { display:grid; gap:12px; margin-bottom:6px; }
+.mkt-chart-grid.mkt-grid-2x2 { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+.mkt-chart-grid.mkt-grid-2 { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+@media (max-width:720px) {
+  .mkt-chart-grid.mkt-grid-2x2,
+  .mkt-chart-grid.mkt-grid-2 { grid-template-columns:1fr; }
+}
+.mkt-chip { background:#fff; border:1px solid var(--border); border-radius:12px; padding:12px; }
+.mkt-chip.commodity { border-color:#f59e0b; }
+.mkt-chip.index { border-color:#38bdf8; }
+.mkt-chip.fx { border-color:#06b6d4; }
+.mkt-chip.rate { border-color:#8b5cf6; }
+.mkt-unit { font-size:0.72rem; color:var(--muted); font-weight:500; }
+.mkt-note { font-size:0.7rem; color:var(--muted); margin-top:6px; line-height:1.35; }
+.power-badge {
+  display:inline-block; background:#fef3c7; color:#b45309; font-size:0.72rem;
+  font-weight:700; padding:2px 8px; border-radius:4px; margin-right:6px;
+}
+.power-sum-label {
+  margin-top:10px; font-size:0.78rem; font-weight:600; color:#047857;
+}
+.power-subtabs { position:static; background:transparent; backdrop-filter:none; margin-top:8px; }
+.tag-row { display:flex; flex-wrap:wrap; gap:6px; margin-top:4px; }
+.fin-sub { margin:16px 0 8px; font-size:0.95rem; color:var(--brand-navy); }
+.power-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px 18px; margin-bottom:14px; }
+.power-card h3 { margin:0 0 8px; font-size:1.05rem; color:var(--accent-2); }
+.power-overview-fold { padding:0; overflow:hidden; }
+.power-overview-sum {
+  list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between;
+  gap:12px; padding:14px 18px; user-select:none;
+}
+.power-overview-sum::-webkit-details-marker { display:none; }
+.power-overview-title { font-size:1.05rem; font-weight:700; color:var(--accent-2); }
+.power-overview-hint {
+  flex-shrink:0; font-size:0.78rem; font-weight:600; color:var(--muted);
+  display:inline-flex; align-items:center; gap:4px;
+}
+.power-overview-hint::before { content:attr(data-when-open); }
+.power-overview-fold:not([open]) .power-overview-hint::before { content:attr(data-when-closed); }
+.power-overview-hint::after {
+  content:""; width:0.45em; height:0.45em; border-right:2px solid currentColor;
+  border-bottom:2px solid currentColor; transform:rotate(-135deg); margin-top:3px;
+  transition:transform .15s ease;
+}
+.power-overview-fold:not([open]) .power-overview-hint::after {
+  transform:rotate(45deg); margin-top:-2px;
+}
+.power-overview-body { padding:0 18px 16px; border-top:1px solid var(--border); }
+.power-overview-sum:hover { background:#f8fafc; }
+.power-label { font-size:0.78rem; color:#047857; margin:12px 0 6px; }
+.power-list { margin:0; padding-left:1.1rem; color:#334155; font-size:0.9rem; }
+.power-list li { margin-bottom:4px; }
+.export-box { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px; margin:14px 0 20px; }
+.export-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+.email-form { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:10px; }
+.email-form input[type=email],
+.email-form input[type=text],
+.email-form select {
+  flex:1; min-width:180px; padding:10px 12px; border-radius:8px;
+  border:1px solid var(--border); background:#fff; color:var(--text);
+}
+.email-form button { border:none; cursor:pointer; }
+.briefing-list { margin-top:12px; display:flex; flex-direction:column; gap:12px; }
+.briefing-card {
+  background:#fff; border:1px solid var(--border); border-radius:12px; padding:14px 16px;
+}
+.briefing-card-head { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:6px; }
+.briefing-badge {
+  font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:6px;
+  background:#e0f2fe; color:#0369a1;
+}
+.briefing-badge.status-pending { color:#b45309; background:#fef3c7; }
+.briefing-badge.status-sent { color:#047857; background:#d1fae5; }
+.briefing-badge.status-rejected { color:#b91c1c; background:#fee2e2; }
+.briefing-badge.status-failed { color:#c2410c; background:#ffedd5; }
+.briefing-preview {
+  white-space:pre-wrap; font-size:0.78rem; color:#475569; background:var(--soft);
+  border:1px solid var(--border); border-radius:8px; padding:10px; margin:8px 0; max-height:140px; overflow:auto;
+}
+.tag-row { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+.impact-hint { font-size:0.78rem; color:#b45309; margin:4px 0 6px; }
+.focus-line { color:#047857; font-size:0.9rem; margin:0 0 10px; }
+.fin-sub { margin:14px 0 8px; font-size:0.95rem; color:var(--accent-2); }
+.mkt-chart-card {
+  background:#0f3d4c; border:1px solid #0a2a33; border-radius:12px; padding:14px 14px 10px;
+  color:#f8fafc; min-height:0;
+}
+.mkt-chart-card .pc-name { color:#e2e8f0; font-size:0.9rem; font-weight:600; margin-bottom:6px; }
+.mkt-chart-card .pc-price { color:#fff; font-size:1.25rem; font-weight:700; }
+.mkt-chart-card .mkt-unit { color:#94a3b8; }
+.mkt-chart-card .pc-chg.up { color:#6ee7b7; }
+.mkt-chart-card .pc-chg.down { color:#fca5a5; }
+.mkt-chart-card.commodity { border-color:#b45309; }
+.mkt-chart-card.fx { border-color:#0e7490; }
+.mkt-chart-card.rate { border-color:#6d28d9; }
+.mkt-chart-card.index { border-color:#0369a1; }
+.mkt-chart-card.mkt-priority { box-shadow:0 0 0 2px rgba(180,83,9,0.35); }
+.mkt-ls-tag {
+  display:inline-block; margin-left:6px; font-style:normal; font-size:0.65rem;
+  font-weight:700; color:#92400e; background:#fef3c7; padding:1px 6px; border-radius:4px;
+  vertical-align:middle;
+}
+.ls-metal-panel {
+  background:linear-gradient(135deg,#fffbeb,#fff); border:1px solid #f59e0b;
+  border-radius:14px; padding:14px 16px; margin:14px 0 10px;
+}
+.power-12th-panel {
+  background:linear-gradient(135deg,#fffbeb,#fff); border:1px solid #f59e0b;
+  border-radius:14px; padding:16px 18px; margin:14px 0 16px;
+}
+.power-12th-panel .card-head {
+  display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-bottom:4px;
+}
+.power-12th-panel .card-head h3 { margin:0; font-size:1.05rem; color:#92400e; }
+.power-12th-panel .mega-news-grid { margin-top:8px; }
+.mega-ai-ul.power-digest-ul li { line-height:1.5; }
+.mega-ai-ul a.ai-news {
+  display:inline; margin-left:6px; font-size:0.78rem; font-weight:700;
+  color:var(--accent); text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  white-space:nowrap;
+}
+.mega-ai-ul a.ai-news:hover { color:var(--accent-2); border-bottom-color:var(--accent-2); }
+.ls-metal-head {
+  display:flex; justify-content:space-between; align-items:baseline; gap:10px;
+  flex-wrap:wrap; margin-bottom:10px;
+}
+.ls-metal-head strong { color:#92400e; font-size:0.95rem; }
+.ls-metal-block { margin-top:10px; }
+.ls-metal-block h4 { margin:0 0 6px; font-size:0.88rem; color:var(--brand-navy); }
+.ls-metal-ul { margin:0; padding-left:18px; color:#334155; font-size:0.88rem; }
+.ls-metal-ul li { margin:5px 0; line-height:1.45; }
+.mkt-mini-chart { height:100px; margin-top:8px; background:rgba(255,255,255,.04); border-radius:8px; padding:4px; }
+.deal-wrap-v2 .deal-hero {
+  display:flex; flex-wrap:wrap; justify-content:space-between; gap:14px; align-items:flex-end;
+  background:linear-gradient(135deg,#ffffff,#f0f9ff); border:1px solid var(--border);
+  border-radius:14px; padding:16px 18px; margin-bottom:12px;
+}
+.deal-hero-title { margin:0 0 6px; font-size:1.25rem; color:var(--accent-2); }
+.deal-filter-bar {
+  position:sticky; top:8px; z-index:20; display:flex; flex-wrap:wrap; gap:8px;
+  background:rgba(255,255,255,.96); border:1px solid var(--border); border-radius:12px;
+  padding:10px 12px; margin-bottom:14px; backdrop-filter:blur(6px);
+}
+.deal-filter {
+  border:1px solid var(--border); background:#fff; color:var(--text);
+  border-radius:10px; padding:10px 14px; cursor:pointer; font-size:0.9rem;
+  border-left:4px solid var(--c,#64748b);
+}
+.deal-filter em { font-style:normal; font-weight:700; color:var(--c,#0284c7); margin-left:6px; }
+.deal-filter.active { background:#e0f2fe; box-shadow:0 0 0 1px var(--c,#0284c7); color:#0f172a; }
+.deal-panel { margin-bottom:16px; }
+.deal-panel-head {
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  margin-bottom:12px; padding-bottom:8px; border-bottom:2px solid var(--c,#0284c7);
+}
+.deal-panel-head h3 { margin:0; font-size:1.15rem; }
+.deal-panel-head small { color:var(--muted); font-weight:400; margin-left:8px; }
+.deal-panel-count { color:var(--c,#0284c7); font-weight:700; font-size:1rem; }
+.deal-card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; }
+.deal-card {
+  display:flex; background:#fff; border:1px solid var(--border); border-radius:12px; overflow:hidden;
+  min-height:140px; box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+.deal-card-bar { width:6px; flex-shrink:0; }
+.deal-card-body { padding:14px 16px; flex:1; }
+.deal-card .deal-title { font-size:1.05rem; line-height:1.45; margin-bottom:6px; }
+.deal-card .deal-sum { font-size:0.92rem; line-height:1.5; color:#475569; }
+.deal-link { display:inline-block; margin-top:10px; font-weight:600; color:var(--accent); }
+.deal-nav { display:flex; flex-wrap:wrap; gap:8px; }
+.deal-nav-btn {
+  display:flex; align-items:center; gap:8px; text-decoration:none; color:var(--text);
+  background:#fff; border:1px solid var(--border); border-left:4px solid var(--c,#0284c7);
+  border-radius:10px; padding:8px 12px; font-size:0.85rem;
+}
+.deal-nav-btn span { color:var(--c,#0284c7); font-weight:700; font-size:1.05rem; }
+.deal-section-v2 { scroll-margin-top:90px; }
+footer { margin-top:28px; text-align:center; color:var(--muted); font-size:0.85rem; }
+@media (max-width:600px){ .module-grid { grid-template-columns:repeat(3,1fr); } }
+</style>
+  
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <a href="index.html" class="active">홈</a>
+      <a href="domestic.html" class="">국내</a>
+      <a href="international.html" class="">해외</a>
+      <a href="markets.html" class="">지수/환율</a>
+      <a href="power.html" class="">전력시장</a>
+      <a href="mega_projects.html" class="">메가 프로젝트</a>
+      <a href="interest_topic.html" class="">관심주제 주간 브리핑</a>
+    </nav>
+    
+    <h1 class="brand-title">기업 전략 동향 AI 트래커</h1>
+    <p class="sub">국내·해외 워치리스트 기업별 수주·투자·정책·실적 · 브리핑 발송</p>
+
+    <div class="home-split">
+      <section class="home-section home-col-kr">
+        <div class="home-section-head">
+          <h2>국내</h2>
+          <a class="btn secondary" href="domestic.html">전체 국내</a>
+        </div>
+        <div class="home-co-list"><div class='home-co-row'><div class='home-co-top'><img class='co-logo' src='assets/logos/poscofuturem.png' alt='' onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" /><span class='co-logo-fallback' style='display:none'>(</span><div class='home-co-main'><strong>(주)포스코퓨처엠</strong><span class='tag'>003670</span></div><nav class='home-co-links' aria-label='기업 상세'><button type='button' class='home-tab-btn' data-home-tab='financials'>실적</button><button type='button' class='home-tab-btn' data-home-tab='orders'>수주</button><button type='button' class='home-tab-btn' data-home-tab='invest'>투자·MOU</button><button type='button' class='home-tab-btn' data-home-tab='policy'>정책</button></nav></div>
+    <div class="ai-summary-box compact home-ai-bullets">
+      <strong>Gemini 키메시지</strong>
+      <span class="deal-meta"> · gemini-flash-latest</span>
+      <ul class="home-ai-ul"><li><span class='ai-k'>실적</span> 2025년 매출 2.94조 원 및 영업이익 328억 원 수준으로 소폭 회복</li><li><span class='ai-k'>신규수주·MOU</span> 관련 자료 부족</li><li><span class='ai-k'>경영·밸류체인</span> 기존 하이니켈 라인의 LFP 양극재 전환 양산 및 실리콘 음극재 개발 <a class='ai-news' href='https://n.news.naver.com/mnews/article/092/0002429163?sid=105' target='_blank' rel='noopener'>뉴스</a></li><li><span class='ai-k'>리스크/관찰</span> 포스코홀딩스 지분율 58.18%에서 50% 축소에 따른 주가 부담 <a class='ai-news' href='https://n.news.naver.com/mnews/article/009/0005702261?sid=101' target='_blank' rel='noopener'>뉴스</a></li><li><span class='ai-k'>리스크/관찰</span> 하반기 LFP 양극재 라인 전환의 양산 성과 및 신규 공급처 확보 여부</li></ul>
+      <p class='deal-meta' style='margin:4px 0 0'> <a href='companies/kr_003670.html#tab-financials'>상세</a></p>
+    </div>
+    <div class='home-tab-panels'><div class='home-tab-panel' data-home-panel='financials' hidden><div class='home-tab-panel-head'><strong>실적</strong><a class='home-tab-more' href='companies/kr_003670.html#tab-financials'>자세히 →</a></div><p class='deal-meta'>최근 연도 · 단위 억원</p><table class='fin home-prev-fin'><thead><tr><th>연도</th><th>매출</th><th>영업이익</th><th>순이익</th></tr></thead><tbody><tr><td>2022</td><td>33,019</td><td>1,659</td><td>1,219</td></tr><tr><td>2023</td><td>47,599</td><td>359</td><td>44</td></tr><tr><td>2024</td><td>36,999</td><td>7</td><td>-2,313</td></tr><tr><td>2025</td><td>29,387</td><td>328</td><td>365</td></tr></tbody></table></div><div class='home-tab-panel' data-home-panel='orders' hidden><div class='home-tab-panel-head'><strong>수주</strong><a class='home-tab-more' href='companies/kr_003670.html#tab-orders'>자세히 →</a></div><p class='empty'>수주·계약 이벤트 없음</p></div><div class='home-tab-panel' data-home-panel='invest' hidden><div class='home-tab-panel-head'><strong>투자·MOU</strong><a class='home-tab-more' href='companies/kr_003670.html#tab-invest'>자세히 →</a></div><div class='home-prev-item'><div class='deal-title'>[기재정정]타법인주식및출자증권취득결정</div><div class='deal-meta'>20260427 · 투자·금융</div></div><div class='home-prev-item'><div class='deal-title'>포스코, 3년간 17조 투자…리튬·에너지로 승부 건다</div><div class='deal-meta'>A13면 TOP · 투자·금융</div></div><div class='home-prev-item'><div class='deal-title'>포스코홀딩스, 리튬·지분매각 선언에 증권가 “주가 재평가”</div><div class='deal-meta'>2026-07-03 00:56 · 투자·금융</div></div><div class='home-prev-item'><div class='deal-title'>장인화포스코그룹 회장 “자원 중심으로 사업 재편”… 3년간 16조원 투...</div><div class='deal-meta'>2026-07-02 08:56 · 투자·금융</div></div></div><div class='home-tab-panel' data-home-panel='policy' hidden><div class='home-tab-panel-head'><strong>정책</strong><a class='home-tab-more' href='companies/kr_003670.html#tab-policy'>자세히 →</a></div><div class='home-prev-item'><div class='deal-title'>포스코, 3년간 17조 투자…리튬·에너지로 승부 건다</div><div class='deal-meta'>공급망·원료 · A13면 TOP</div></div><div class='home-prev-item'><div class='deal-title'>&#x27;니켈 2.3조 베팅&#x27; 에코프로의 승부수…LFP 대세에도 삼원계 택한 이유</div><div class='deal-meta'>공급망·원료 · 2026-07-03 02:56</div></div><div class='home-prev-item'><div class='deal-title'>포스코홀딩스, 리튬·지분매각 선언에 증권가 “주가 재평가”</div><div class='deal-meta'>공급망·원료 · 2026-07-03 00:56</div></div><div class='home-prev-item'><div class='deal-title'>배터리 소재사들, 고출력·수명연장 연구 &#x27;올인&#x27;</div><div class='deal-meta'>공급망·원료 · A12면 1단</div></div><p class='deal-meta'>+1건 더 있음</p></div></div></div><div class='home-co-row'><div class='home-co-top'><img class='co-logo' src='https://www.google.com/s2/favicons?domain=samsungsdi.com&sz=64' alt='' onerror="this.onerror=null;this.src='https://icons.duckduckgo.com/ip3/samsungsdi.com.ico';this.addEventListener('error',function(){this.style.display='none';this.nextElementSibling.style.display='inline-flex'});" /><span class='co-logo-fallback' style='display:none'>삼</span><div class='home-co-main'><strong>삼성SDI(주)</strong><span class='tag'>006400</span></div><nav class='home-co-links' aria-label='기업 상세'><button type='button' class='home-tab-btn' data-home-tab='financials'>실적</button><button type='button' class='home-tab-btn' data-home-tab='orders'>수주</button><button type='button' class='home-tab-btn' data-home-tab='invest'>투자·MOU</button><button type='button' class='home-tab-btn' data-home-tab='policy'>정책</button></nav></div>
+    <div class="ai-summary-box compact home-ai-bullets">
+      <strong>Gemini 키메시지</strong>
+      <span class="deal-meta"> · gemini-flash-latest</span>
+      <ul class="home-ai-ul"><li><span class='ai-k'>실적</span> 2025년 매출 13.27조 원 및 영업손실 1.72조 원 적자 전환</li><li><span class='ai-k'>신규수주·MOU</span> Mercedes Benz 공급계약 체결 및 울산 16조 원 양산 투자 단행 <a class='ai-news' href='https://n.news.naver.com/mnews/article/001/0016175382?sid=101' target='_blank' rel='noopener'>뉴스</a></li><li><span class='ai-k'>경영·밸류체인</span> 휴머노이드·EV용 전고체 배터리 및 AI 데이터센터 BBU 라인 구축 <a class='ai-news' href='https://n.news.naver.com/mnews/article/003/0014045908?sid=101' target='_blank' rel='noopener'>뉴스</a></li><li><span class='ai-k'>리스크/관찰</span> 1.72조 원 적자 상황에서의 울산 16조 원 투자 재무 부담</li><li><span class='ai-k'>리스크/관찰</span> 전고체 배터리의 적기 상용화 및 실제 매출 기여 시점</li></ul>
+      <p class='deal-meta' style='margin:4px 0 0'> <a href='companies/kr_006400.html#tab-financials'>상세</a></p>
+    </div>
+    <div class='home-tab-panels'><div class='home-tab-panel' data-home-panel='financials' hidden><div class='home-tab-panel-head'><strong>실적</strong><a class='home-tab-more' href='companies/kr_006400.html#tab-financials'>자세히 →</a></div><p class='deal-meta'>최근 연도 · 단위 억원</p><table class='fin home-prev-fin'><thead><tr><th>연도</th><th>매출</th><th>영업이익</th><th>순이익</th></tr></thead><tbody><tr><td>2022</td><td>201,241</td><td>18,080</td><td>20,394</td></tr><tr><td>2023</td><td>227,083</td><td>16,334</td><td>20,660</td></tr><tr><td>2024</td><td>165,922</td><td>3,633</td><td>5,755</td></tr><tr><td>2025</td><td>132,667</td><td>-17,224</td><td>-5,849</td></tr></tbody></table></div><div class='home-tab-panel' data-home-panel='orders' hidden><div class='home-tab-panel-head'><strong>수주</strong><a class='home-tab-more' href='companies/kr_006400.html#tab-orders'>자세히 →</a></div><p class='empty'>수주·계약 이벤트 없음</p></div><div class='home-tab-panel' data-home-panel='invest' hidden><div class='home-tab-panel-head'><strong>투자·MOU</strong><a class='home-tab-more' href='companies/kr_006400.html#tab-invest'>자세히 →</a></div><div class='home-prev-item'><div class='deal-title'>삼성, 호남 425조 이어 영남 60조 투자… 권역별 첨단산업 거점 조성</div><div class='deal-meta'>2026-07-03 08:44 · 투자·금융</div></div><div class='home-prev-item'><div class='deal-title'>SK·현대차·삼성‘투자’…울산, 첨단산업 글로벌 허브로 뜬다</div><div class='deal-meta'>2026-07-03 08:31 · 투자·금융</div></div><div class='home-prev-item'><div class='deal-title'>삼성·SK·현대차·LG·한화 등 312조 투자…영남 AI 메가클러스터로</div><div class='deal-meta'>2026-07-03 08:26 · 투자·금융</div></div><div class='home-prev-item'><div class='deal-title'>김상욱, 첨단산업 유치 총력전…울산 산업 고도화 주목</div><div class='deal-meta'>2026-07-03 08:26 · 투자·금융</div></div><p class='deal-meta'>+4건 더 있음</p></div><div class='home-tab-panel' data-home-panel='policy' hidden><div class='home-tab-panel-head'><strong>정책</strong><a class='home-tab-more' href='companies/kr_006400.html#tab-policy'>자세히 →</a></div><div class='home-prev-item'><div class='deal-title'>삼성·SK·현대차·LG·한화 등 312조 투자…영남 AI 메가클러스터로</div><div class='deal-meta'>수요·시장 · 2026-07-03 08:26</div></div><div class='home-prev-item'><div class='deal-title'>김상욱, 첨단산업 유치 총력전…울산 산업 고도화 주목</div><div class='deal-meta'>수요·시장 · 2026-07-03 08:26</div></div><div class='home-prev-item'><div class='deal-title'>SKT 140조 등 대규모 투자에 울산시 “속도전으로 뒷받침”</div><div class='deal-meta'>정책·규제 · 2026-07-03 08:25</div></div><div class='home-prev-item'><div class='deal-title'>&quot;영남권에 312조 쏟아붓는다&quot;…삼성·SK·현대차·한화·LG &#x27;역대급 투자...</div><div class='deal-meta'>수요·시장 · 2026-07-03 08:24</div></div><p class='deal-meta'>+8건 더 있음</p></div></div></div><div class='home-co-row'><div class='home-co-top'><img class='co-logo' src='assets/logos/lnf.svg' alt='' onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" /><span class='co-logo-fallback' style='display:none'>(</span><div class='home-co-main'><strong>(주)엘앤에프</strong><span class='tag'>066970</span></div><nav class='home-co-links' aria-label='기업 상세'><button type='button' class='home-tab-btn' data-home-tab='financials'>실적</button><button type='button' class='home-tab-btn' data-home-tab='orders'>수주</button><button type='button' class='home-tab-btn' data-home-tab='invest'>투자·MOU</button><button type='button' class='home-tab-btn' data-home-tab='policy'>정책</button></nav></div>
+    <div class="ai-summary-box compact home-ai-bullets">
+      <strong>Gemini 키메시지</strong>
+      <span class="deal-meta"> · gemini-flash-latest</span>
+      <ul class="home-ai-ul"><li><span class='ai-k'>실적</span> 2024년 영업적자 5,587억 원 기록 후 2025년 영업손실 1,568억 원 축소 <a class='ai-news' href='https://n.news.naver.com/mnews/article/001/0016131125?sid=104' target='_blank' rel='noopener'>뉴스</a></li><li><span class='ai-k'>신규수주·MOU</span> LS그룹 합작사 설립을 통한 양극재 원재료 및 소재 공급망 강화 <a class='ai-news' href='https://n.news.naver.com/mnews/article/030/0003443984?sid=105' target='_blank' rel='noopener'>뉴스</a></li><li><span class='ai-k'>경영·밸류체인</span> 8월 LFP 양극재 본격 양산 및 휴머노이드용 고밀도 양극재 개발 <a class='ai-news' href='https://n.news.naver.com/mnews/article/092/0002429163?sid=105' target='_blank' rel='noopener'>뉴스</a></li><li><span class='ai-k'>리스크/관찰</span> 대규모 투자 부담 지속에 따른 나이스신용평가 신용등급 전망 하락 리스크 <a class='ai-news' href='https://n.news.naver.com/mnews/article/015/0005305160?sid=101' target='_blank' rel='noopener'>뉴스</a></li><li><span class='ai-k'>리스크/관찰</span> 3분기 LFP 양극재 양산 라인의 실질 가동률 회복 및 수익성 개선 여부</li></ul>
+      <p class='deal-meta' style='margin:4px 0 0'> <a href='companies/kr_066970.html#tab-financials'>상세</a></p>
+    </div>
+    <div class='home-tab-panels'><div class='home-tab-panel' data-home-panel='financials' hidden><div class='home-tab-panel-head'><strong>실적</strong><a class='home-tab-more' href='companies/kr_066970.html#tab-financials'>자세히 →</a></div><p class='deal-meta'>최근 연도 · 단위 억원</p><table class='fin home-prev-fin'><thead><tr><th>연도</th><th>매출</th><th>영업이익</th><th>순이익</th></tr></thead><tbody><tr><td>2022</td><td>38,873</td><td>2,663</td><td>2,710</td></tr><tr><td>2023</td><td>46,441</td><td>-2,223</td><td>-1,949</td></tr><tr><td>2024</td><td>19,075</td><td>-5,587</td><td>-3,807</td></tr><tr><td>2025</td><td>21,549</td><td>-1,568</td><td>-5,347</td></tr></tbody></table></div><div class='home-tab-panel' data-home-panel='orders' hidden><div class='home-tab-panel-head'><strong>수주</strong><a class='home-tab-more' href='companies/kr_066970.html#tab-orders'>자세히 →</a></div><p class='empty'>수주·계약 이벤트 없음</p></div><div class='home-tab-panel' data-home-panel='invest' hidden><div class='home-tab-panel-head'><strong>투자·MOU</strong><a class='home-tab-more' href='companies/kr_066970.html#tab-invest'>자세히 →</a></div><div class='home-prev-item'><div class='deal-title'>곳간 빈 석유화학·배터리…&#x27;신용등급 줄강등&#x27; 된서리</div><div class='deal-meta'>A13면 1단 · 투자·금융</div></div><div class='home-prev-item'><div class='deal-title'>코스피 99% 오를 때 8% 하락… ‘한국판 나스닥’ 무색, 성적은 세계 꼴...</div><div class='deal-meta'>A13면 1단 · 투자·금융</div></div><div class='home-prev-item'><div class='deal-title'>우량기업 떠나고 천스닥도 버거워… 뒤로 간 ‘30살 코스닥’</div><div class='deal-meta'>2면 1단 · 투자·금융</div></div><div class='home-prev-item'><div class='deal-title'>[기고] 캐즘 이후 달라진 배터리 시장, 소재 경쟁력의 조건</div><div class='deal-meta'>27면 1단 · 제휴·사업구조</div></div><p class='deal-meta'>+2건 더 있음</p></div><div class='home-tab-panel' data-home-panel='policy' hidden><div class='home-tab-panel-head'><strong>정책</strong><a class='home-tab-more' href='companies/kr_066970.html#tab-policy'>자세히 →</a></div><div class='home-prev-item'><div class='deal-title'>곳간 빈 석유화학·배터리…&#x27;신용등급 줄강등&#x27; 된서리</div><div class='deal-meta'>수요·시장 · A13면 1단</div></div><div class='home-prev-item'><div class='deal-title'>코스피 99% 오를 때 8% 하락… ‘한국판 나스닥’ 무색, 성적은 세계 꼴...</div><div class='deal-meta'>정책·규제 · A13면 1단</div></div><div class='home-prev-item'><div class='deal-title'>우량기업 떠나고 천스닥도 버거워… 뒤로 간 ‘30살 코스닥’</div><div class='deal-meta'>수요·시장 · 2면 1단</div></div><div class='home-prev-item'><div class='deal-title'>[기고] 캐즘 이후 달라진 배터리 시장, 소재 경쟁력의 조건</div><div class='deal-meta'>수요·시장 · 27면 1단</div></div><p class='deal-meta'>+6건 더 있음</p></div></div></div><div class='home-co-row'><div class='home-co-top'><img class='co-logo' src='https://www.google.com/s2/favicons?domain=ecopro.co.kr&sz=64' alt='' onerror="this.onerror=null;this.src='https://icons.duckduckgo.com/ip3/ecopro.co.kr.ico';this.addEventListener('error',function(){this.style.display='none';this.nextElementSibling.style.display='inline-flex'});" /><span class='co-logo-fallback' style='display:none'>(</span><div class='home-co-main'><strong>(주)에코프로</strong><span class='tag'>086520</span></div><nav class='home-co-links' aria-label='기업 상세'><button type='button' class='home-tab-btn' data-home-tab='financials'>실적</button><button type='button' class='home-tab-btn' data-home-tab='orders'>수주</button><button type='button' class='home-tab-btn' data-home-tab='invest'>투자·MOU</button><button type='button' class='home-tab-btn' data-home-tab='policy'>정책</button></nav></div>
+    <div class="ai-summary-box compact home-ai-bullets">
+      <strong>Gemini 키메시지</strong>
+      <span class="deal-meta"> · gemini-flash-latest</span>
+      <ul class="home-ai-ul"><li><span class='ai-k'>실적</span> 2025년 매출 3조 4,100억 원 및 영업이익 2,138억 원 흑자 전환</li><li><span class='ai-k'>신규수주·MOU</span> 광물·리사이클링 및 이차전지소재 종속회사 유상증자 참여 및 지분 취득</li><li><span class='ai-k'>경영·밸류체인</span> 관련 자료 부족</li><li><span class='ai-k'>리스크/관찰</span> 연쇄적 종속회사 출자 및 지분 투자에 따른 재무 구조 부담</li><li><span class='ai-k'>리스크/관찰</span> 2025년 흑자 전환 이후 매출 외형 회복 및 수익 안정성 지속 여부</li></ul>
+      <p class='deal-meta' style='margin:4px 0 0'> <a href='companies/kr_086520.html#tab-financials'>상세</a></p>
+    </div>
+    <div class='home-tab-panels'><div class='home-tab-panel' data-home-panel='financials' hidden><div class='home-tab-panel-head'><strong>실적</strong><a class='home-tab-more' href='companies/kr_086520.html#tab-financials'>자세히 →</a></div><p class='deal-meta'>최근 연도 · 단위 억원</p><table class='fin home-prev-fin'><thead><tr><th>연도</th><th>매출</th><th>영업이익</th><th>순이익</th></tr></thead><tbody><tr><td>2022</td><td>56,397</td><td>6,132</td><td>2,206</td></tr><tr><td>2023</td><td>72,602</td><td>2,982</td><td>1,353</td></tr><tr><td>2024</td><td>31,279</td><td>-2,930</td><td>-2,954</td></tr><tr><td>2025</td><td>34,130</td><td>2,138</td><td>-1,055</td></tr></tbody></table></div><div class='home-tab-panel' data-home-panel='orders' hidden><div class='home-tab-panel-head'><strong>수주</strong><a class='home-tab-more' href='companies/kr_086520.html#tab-orders'>자세히 →</a></div><p class='empty'>수주·계약 이벤트 없음</p></div><div class='home-tab-panel' data-home-panel='invest' hidden><div class='home-tab-panel-head'><strong>투자·MOU</strong><a class='home-tab-more' href='companies/kr_086520.html#tab-invest'>자세히 →</a></div><div class='home-prev-item'><div class='deal-title'>특수관계인에대한출자</div><div class='deal-meta'>20260701 · 투자·금융</div></div><div class='home-prev-item'><div class='deal-title'>타법인주식및출자증권취득결정</div><div class='deal-meta'>20260630 · 투자·금융</div></div><div class='home-prev-item'><div class='deal-title'>유상증자결정(종속회사의주요경영사항)</div><div class='deal-meta'>20260630 · 투자·금융</div></div><div class='home-prev-item'><div class='deal-title'>[기재정정]타법인주식및출자증권취득결정</div><div class='deal-meta'>20260624 · 투자·금융</div></div><p class='deal-meta'>+1건 더 있음</p></div><div class='home-tab-panel' data-home-panel='policy' hidden><div class='home-tab-panel-head'><strong>정책</strong><a class='home-tab-more' href='companies/kr_086520.html#tab-policy'>자세히 →</a></div><div class='home-prev-item'><div class='deal-title'>LS증권 주간 Global ESG News</div><div class='deal-meta'>정책·규제 · 2026-07-03</div></div><div class='home-prev-item'><div class='deal-title'>IR행사</div><div class='deal-meta'>공급망·원료</div></div><div class='home-prev-item'><div class='deal-title'>ECOPRO 2026년 1분기 실적발표회 자료(260429)</div><div class='deal-meta'>공급망·원료</div></div><div class='home-prev-item'><div class='deal-title'>ECOPRO 2025년 4분기 실적발표회 자료(260205)</div><div class='deal-meta'>공급망·원료</div></div><p class='deal-meta'>+5건 더 있음</p></div></div></div><div class='home-co-row'><div class='home-co-top'><img class='co-logo' src='https://www.google.com/s2/favicons?domain=skietechnology.com&sz=64' alt='' onerror="this.onerror=null;this.src='https://icons.duckduckgo.com/ip3/skietechnology.com.ico';this.addEventListener('error',function(){this.style.display='none';this.nextElementSibling.style.display='inline-flex'});" /><span class='co-logo-fallback' style='display:none'>에</span><div class='home-co-main'><strong>에스케이아이이테크놀로지 주식회사</strong><span class='tag'>361610</span></div><nav class='home-co-links' aria-label='기업 상세'><button type='button' class='home-tab-btn' data-home-tab='financials'>실적</button><button type='button' class='home-tab-btn' data-home-tab='orders'>수주</button><button type='button' class='home-tab-btn' data-home-tab='invest'>투자·MOU</button><button type='button' class='home-tab-btn' data-home-tab='policy'>정책</button></nav></div>
+    <div class="ai-summary-box compact home-ai-bullets">
+      <strong>Gemini 키메시지</strong>
+      <span class="deal-meta"> · gemini-flash-latest</span>
+      <ul class="home-ai-ul"><li><span class='ai-k'>실적</span> 2025년 매출 2,619억 원 및 영업손실 2,464억 원 적자 지속</li><li><span class='ai-k'>신규수주·MOU</span> 관련 자료 부족</li><li><span class='ai-k'>경영·밸류체인</span> LiBS 및 FCW 주력 제품 라인 재편과 생산중단 조치</li><li><span class='ai-k'>리스크/관찰</span> 전기차 부진에 따른 신용등급 하향 및 자금조달 악화 리스크 <a class='ai-news' href='https://n.news.naver.com/mnews/article/015/0005305160?sid=101' target='_blank' rel='noopener'>뉴스</a></li><li><span class='ai-k'>리스크/관찰</span> 단기차입금 증가 및 생산중단 속 재무 유동성 회복 불확실성</li></ul>
+      <p class='deal-meta' style='margin:4px 0 0'> <a href='companies/kr_361610.html#tab-financials'>상세</a></p>
+    </div>
+    <div class='home-tab-panels'><div class='home-tab-panel' data-home-panel='financials' hidden><div class='home-tab-panel-head'><strong>실적</strong><a class='home-tab-more' href='companies/kr_361610.html#tab-financials'>자세히 →</a></div><p class='deal-meta'>최근 연도 · 단위 억원</p><table class='fin home-prev-fin'><thead><tr><th>연도</th><th>매출</th><th>영업이익</th><th>순이익</th></tr></thead><tbody><tr><td>2022</td><td>5,858</td><td>-523</td><td>-297</td></tr><tr><td>2023</td><td>6,496</td><td>320</td><td>822</td></tr><tr><td>2024</td><td>2,179</td><td>-2,910</td><td>-2,466</td></tr><tr><td>2025</td><td>2,619</td><td>-2,464</td><td>-2,114</td></tr></tbody></table></div><div class='home-tab-panel' data-home-panel='orders' hidden><div class='home-tab-panel-head'><strong>수주</strong><a class='home-tab-more' href='companies/kr_361610.html#tab-orders'>자세히 →</a></div><p class='empty'>수주·계약 이벤트 없음</p></div><div class='home-tab-panel' data-home-panel='invest' hidden><div class='home-tab-panel-head'><strong>투자·MOU</strong><a class='home-tab-more' href='companies/kr_361610.html#tab-invest'>자세히 →</a></div><div class='home-prev-item'><div class='deal-title'>유상증자결정(종속회사의주요경영사항)</div><div class='deal-meta'>20260626 · 투자·금융</div></div><div class='home-prev-item'><div class='deal-title'>[기재정정]타법인주식및출자증권취득결정</div><div class='deal-meta'>20260626 · 투자·금융</div></div><div class='home-prev-item'><div class='deal-title'>타법인주식및출자증권처분결정</div><div class='deal-meta'>20260527 · 투자·금융</div></div><div class='home-prev-item'><div class='deal-title'>타법인주식및출자증권취득결정</div><div class='deal-meta'>20260527 · 투자·금융</div></div><p class='deal-meta'>+4건 더 있음</p></div><div class='home-tab-panel' data-home-panel='policy' hidden><div class='home-tab-panel-head'><strong>정책</strong><a class='home-tab-more' href='companies/kr_361610.html#tab-policy'>자세히 →</a></div><div class='home-prev-item'><div class='deal-title'>곳간 빈 석유화학·배터리…&#x27;신용등급 줄강등&#x27; 된서리</div><div class='deal-meta'>수요·시장 · A13면 1단</div></div><div class='home-prev-item'><div class='deal-title'>그간 소외됐던 이차전지주 큰 폭 올라</div><div class='deal-meta'>공급망·원료 · 2026-06-29 08:53</div></div><div class='home-prev-item'><div class='deal-title'>LS증권 주간 Global ESG News</div><div class='deal-meta'>정책·규제 · 2026-07-03</div></div><div class='home-prev-item'><div class='deal-title'>IR (search)</div><div class='deal-meta'>수요·시장</div></div><p class='deal-meta'>+2건 더 있음</p></div></div></div><div class='home-co-row'><div class='home-co-top'><img class='co-logo' src='https://www.google.com/s2/favicons?domain=lgensol.com&sz=64' alt='' onerror="this.onerror=null;this.src='https://icons.duckduckgo.com/ip3/lgensol.com.ico';this.addEventListener('error',function(){this.style.display='none';this.nextElementSibling.style.display='inline-flex'});" /><span class='co-logo-fallback' style='display:none'>(</span><div class='home-co-main'><strong>(주)엘지에너지솔루션</strong><span class='tag'>373220</span></div><nav class='home-co-links' aria-label='기업 상세'><button type='button' class='home-tab-btn' data-home-tab='financials'>실적</button><button type='button' class='home-tab-btn' data-home-tab='orders'>수주</button><button type='button' class='home-tab-btn' data-home-tab='invest'>투자·MOU</button><button type='button' class='home-tab-btn' data-home-tab='policy'>정책</button></nav></div>
+    <div class="ai-summary-box compact home-ai-bullets">
+      <strong>Gemini 키메시지</strong>
+      <span class="deal-meta"> · gemini-flash-latest</span>
+      <ul class="home-ai-ul"><li><span class='ai-k'>실적</span> 2025년 매출 23.67조 원 및 영업이익 1.35조 원 달성</li><li><span class='ai-k'>신규수주·MOU</span> 혼다와의 미국 오하이오주 배터리 합작법인 L·H 배터리 설립 <a class='ai-news' href='https://n.news.naver.com/mnews/article/031/0001039694?sid=101' target='_blank' rel='noopener'>뉴스</a></li><li><span class='ai-k'>경영·밸류체인</span> 미국 오하이오 공장의 ESS용 LFP 배터리 셀 양산 개시 <a class='ai-news' href='https://n.news.naver.com/mnews/article/422/0000881257?sid=101' target='_blank' rel='noopener'>뉴스</a></li><li><span class='ai-k'>리스크/관찰</span> 미국 현지 공장 운용 과정의 비자·노동 이슈 및 통상 리스크</li><li><span class='ai-k'>리스크/관찰</span> 오하이오 신규 공장 ESS용 LFP 배터리 양산 가동 안정화</li></ul>
+      <p class='deal-meta' style='margin:4px 0 0'> <a href='companies/kr_373220.html#tab-financials'>상세</a></p>
+    </div>
+    <div class='home-tab-panels'><div class='home-tab-panel' data-home-panel='financials' hidden><div class='home-tab-panel-head'><strong>실적</strong><a class='home-tab-more' href='companies/kr_373220.html#tab-financials'>자세히 →</a></div><p class='deal-meta'>최근 연도 · 단위 억원</p><table class='fin home-prev-fin'><thead><tr><th>연도</th><th>매출</th><th>영업이익</th><th>순이익</th></tr></thead><tbody><tr><td>2022</td><td>255,986</td><td>12,137</td><td>7,798</td></tr><tr><td>2023</td><td>337,455</td><td>21,632</td><td>16,380</td></tr><tr><td>2024</td><td>256,196</td><td>5,754</td><td>3,386</td></tr><tr><td>2025</td><td>236,718</td><td>13,461</td><td>808</td></tr></tbody></table></div><div class='home-tab-panel' data-home-panel='orders' hidden><div class='home-tab-panel-head'><strong>수주</strong><a class='home-tab-more' href='companies/kr_373220.html#tab-orders'>자세히 →</a></div><p class='empty'>수주·계약 이벤트 없음</p></div><div class='home-tab-panel' data-home-panel='invest' hidden><div class='home-tab-panel-head'><strong>투자·MOU</strong><a class='home-tab-more' href='companies/kr_373220.html#tab-invest'>자세히 →</a></div><div class='home-prev-item'><div class='deal-title'>중국 공급망에 갇힌 AI 시대…‘팍스 실리카’로 탈출구 찾을까</div><div class='deal-meta'>3주 전 · 투자·금융</div></div><div class='home-prev-item'><div class='deal-title'>&quot;공포에 산 사람이 승자&quot; 급반등 끝 &#x27;8천피 탈환&#x27;...삼전 실적 주목</div><div class='deal-meta'>2026-07-03 08:29 · 투자·금융</div></div><div class='home-prev-item'><div class='deal-title'>[비즈&amp;] NH농협은행, 상반기 포용금융에 1.9조원 지원 外</div><div class='deal-meta'>2026-07-03 08:21 · 제휴·사업구조</div></div><div class='home-prev-item'><div class='deal-title'>LG엔솔·혼다 美 합작 공장, ESS 배터리 셀 양산 시작</div><div class='deal-meta'>2026-07-03 07:52 · 제휴·사업구조</div></div></div><div class='home-tab-panel' data-home-panel='policy' hidden><div class='home-tab-panel-head'><strong>정책</strong><a class='home-tab-more' href='companies/kr_373220.html#tab-policy'>자세히 →</a></div><div class='home-prev-item'><div class='deal-title'>중국 공급망에 갇힌 AI 시대…‘팍스 실리카’로 탈출구 찾을까</div><div class='deal-meta'>공급망·원료 · 3주 전</div></div><div class='home-prev-item'><div class='deal-title'>[비즈&amp;] NH농협은행, 상반기 포용금융에 1.9조원 지원 外</div><div class='deal-meta'>수요·시장 · 2026-07-03 08:21</div></div><div class='home-prev-item'><div class='deal-title'>LG엔솔·혼다 美 합작 공장, ESS 배터리 셀 양산 시작</div><div class='deal-meta'>수요·시장 · 2026-07-03 07:52</div></div><div class='home-prev-item'><div class='deal-title'>한미 원자력동맹,에너지·산업동맹으로 확대된다</div><div class='deal-meta'>수요·시장 · 3주 전</div></div><p class='deal-meta'>+9건 더 있음</p></div></div></div></div>
+      </section>
+
+      <section class="home-section home-col-intl">
+        <div class="home-section-head">
+          <h2>해외</h2>
+          <a class="btn secondary" href="international.html">전체 해외</a>
+        </div>
+        <div class="home-co-list"><div class='home-co-row'><div class='home-co-top'><img class='co-logo' src='assets/logos/mitsubishi.png' alt='' onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" /><span class='co-logo-fallback' style='display:none'>M</span><div class='home-co-main'><strong>Mitsubishi</strong><span class='tag intl'>6503.T</span></div><nav class='home-co-links' aria-label='기업 상세'><button type='button' class='home-tab-btn' data-home-tab='financials'>실적</button><button type='button' class='home-tab-btn' data-home-tab='orders'>수주</button><button type='button' class='home-tab-btn' data-home-tab='invest'>투자·MOU</button><button type='button' class='home-tab-btn' data-home-tab='policy'>정책</button></nav></div>
+    <div class="ai-summary-box compact home-ai-bullets">
+      <strong>Gemini 키메시지</strong>
+      <span class="deal-meta"> · gemini-flash-latest</span>
+      <ul class="home-ai-ul"><li><span class='ai-k'>실적</span> 2026년 매출 5.89조 엔 및 영업이익 4,331억 엔 달성</li><li><span class='ai-k'>신규수주·MOU</span> MDA Space 협업 기반 캐나다·일본 위성 계약 및 M&amp;A 확대 <a class='ai-news' href='https://finance.yahoo.com/markets/stocks/articles/mda-space-tsx-mda-secures-211413469.html' target='_blank' rel='noopener'>뉴스</a></li><li><span class='ai-k'>경영·밸류체인</span> 파워 일렉트로닉스 및 공장 자동화(FA) 시스템 구축</li><li><span class='ai-k'>리스크/관찰</span> 해외 수송 프로젝트 감소에 따른 해외 수주 감소세</li><li><span class='ai-k'>리스크/관찰</span> 중국 무역 규제 리스크 및 90% 주가 상승 후 밸류에이션 부담</li></ul>
+      <p class='deal-meta' style='margin:4px 0 0'> <a href='companies/intl_6503_T.html#tab-financials'>상세</a></p>
+    </div>
+    <div class='home-tab-panels'><div class='home-tab-panel' data-home-panel='financials' hidden><div class='home-tab-panel-head'><strong>실적</strong><a class='home-tab-more' href='companies/intl_6503_T.html#tab-financials'>자세히 →</a></div><p class='deal-meta'>최근 연도 · 단위 십억</p><table class='fin home-prev-fin'><thead><tr><th>연도</th><th>매출</th><th>영업이익</th><th>순이익</th></tr></thead><tbody><tr><td>2023</td><td>5,004</td><td>262</td><td>214</td></tr><tr><td>2024</td><td>5,258</td><td>329</td><td>285</td></tr><tr><td>2025</td><td>5,522</td><td>392</td><td>324</td></tr><tr><td>2026</td><td>5,895</td><td>433</td><td>408</td></tr></tbody></table></div><div class='home-tab-panel' data-home-panel='orders' hidden><div class='home-tab-panel-head'><strong>수주</strong><a class='home-tab-more' href='companies/intl_6503_T.html#tab-orders'>자세히 →</a></div><div class='home-prev-item'><div class='deal-title'>Consolidated Financial Results for Q3 of FY2026</div><div class='deal-meta'>수주·사업 진행</div></div><div class='home-prev-item'><div class='deal-title'>Consolidated Financial Results for Q2 of FY2026</div><div class='deal-meta'>수주·사업 진행</div></div><div class='home-prev-item'><div class='deal-title'>Consolidated Financial Results for Q1 of FY2026</div><div class='deal-meta'>수주·사업 진행</div></div></div><div class='home-tab-panel' data-home-panel='invest' hidden><div class='home-tab-panel-head'><strong>투자·MOU</strong><a class='home-tab-more' href='companies/intl_6503_T.html#tab-invest'>자세히 →</a></div><div class='home-prev-item'><div class='deal-title'>Mitsubishi Electric FY2026 Consolidated Financial Results</div><div class='deal-meta'>제휴·사업구조</div></div><div class='home-prev-item'><div class='deal-title'>Mitsubishi Electric Q1 FY2026 Results Briefing</div><div class='deal-meta'>투자·금융</div></div><div class='home-prev-item'><div class='deal-title'>Consolidated Financial Results for FY2026</div><div class='deal-meta'>제휴·사업구조</div></div><div class='home-prev-item'><div class='deal-title'>Key Growth Businesses Briefing</div><div class='deal-meta'>제휴·사업구조</div></div></div><div class='home-tab-panel' data-home-panel='policy' hidden><div class='home-tab-panel-head'><strong>정책</strong><a class='home-tab-more' href='companies/intl_6503_T.html#tab-policy'>자세히 →</a></div><div class='home-prev-item'><div class='deal-title'>Canada Sees an Opening in China’s Latest Trade Squeeze on Japan</div><div class='deal-meta'>정책·규제 · 2026-06-29T18:00:00Z</div></div><div class='home-prev-item'><div class='deal-title'>China Escalates Takaichi Feud by Blacklisting More Japan Firms</div><div class='deal-meta'>공급망·원료 · 2026-06-29T08:12:56Z</div></div><div class='home-prev-item'><div class='deal-title'>Consolidated Financial Results for Q3 of FY2026</div><div class='deal-meta'>정책·규제</div></div><div class='home-prev-item'><div class='deal-title'>Consolidated Financial Results for Q2 of FY2026</div><div class='deal-meta'>정책·규제</div></div><p class='deal-meta'>+24건 더 있음</p></div></div></div><div class='home-co-row'><div class='home-co-top'><img class='co-logo' src='assets/logos/abb.png' alt='' onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" /><span class='co-logo-fallback' style='display:none'>A</span><div class='home-co-main'><strong>ABB</strong><span class='tag intl'>ABBN.SW</span></div><nav class='home-co-links' aria-label='기업 상세'><button type='button' class='home-tab-btn' data-home-tab='financials'>실적</button><button type='button' class='home-tab-btn' data-home-tab='orders'>수주</button><button type='button' class='home-tab-btn' data-home-tab='invest'>투자·MOU</button><button type='button' class='home-tab-btn' data-home-tab='policy'>정책</button></nav></div>
+    <div class="ai-summary-box compact home-ai-bullets">
+      <strong>Gemini 키메시지</strong>
+      <span class="deal-meta"> · gemini-flash-latest</span>
+      <ul class="home-ai-ul"><li><span class='ai-k'>실적</span> Power Grids 매각 기반 53억 달러 장부상 이익 및 영업현금흐름 18.75억 달러</li><li><span class='ai-k'>신규수주·MOU</span> 관련 자료 부족</li><li><span class='ai-k'>경영·밸류체인</span> 관련 자료 부족</li><li><span class='ai-k'>리스크/관찰</span> Turbocharging 스핀오프 및 Power Conversion 사업 철수 이행 리스크</li><li><span class='ai-k'>리스크/관찰</span> 글로벌 공급망 실사 검토에 따른 공급업체 Red flags 리스크</li></ul>
+      <p class='deal-meta' style='margin:4px 0 0'> <a href='companies/intl_ABB_SW.html#tab-financials'>상세</a></p>
+    </div>
+    <div class='home-tab-panels'><div class='home-tab-panel' data-home-panel='financials' hidden><div class='home-tab-panel-head'><strong>실적</strong><a class='home-tab-more' href='companies/intl_ABB_SW.html#tab-financials'>자세히 →</a></div><p class='deal-meta'>최근 연도 · 단위 십억</p><table class='fin home-prev-fin'><thead><tr><th>연도</th><th>매출</th><th>영업이익</th><th>순이익</th></tr></thead><tbody><tr><td>2022</td><td>29</td><td>3</td><td>2</td></tr><tr><td>2023</td><td>32</td><td>4</td><td>4</td></tr><tr><td>2024</td><td>31</td><td>5</td><td>4</td></tr><tr><td>2025</td><td>33</td><td>6</td><td>5</td></tr></tbody></table></div><div class='home-tab-panel' data-home-panel='orders' hidden><div class='home-tab-panel-head'><strong>수주</strong><a class='home-tab-more' href='companies/intl_ABB_SW.html#tab-orders'>자세히 →</a></div><div class='home-prev-item'><div class='deal-title'>PDF</div><div class='deal-meta'>수주·사업 진행</div></div><div class='home-prev-item'><div class='deal-title'>PDF</div><div class='deal-meta'>수주·사업 진행</div></div></div><div class='home-tab-panel' data-home-panel='invest' hidden><div class='home-tab-panel-head'><strong>투자·MOU</strong><a class='home-tab-more' href='companies/intl_ABB_SW.html#tab-invest'>자세히 →</a></div><div class='home-prev-item'><div class='deal-title'>PDF</div><div class='deal-meta'>투자·금융</div></div><div class='home-prev-item'><div class='deal-title'>PDF</div><div class='deal-meta'>투자·금융</div></div><div class='home-prev-item'><div class='deal-title'>PDF</div><div class='deal-meta'>투자·금융</div></div><div class='home-prev-item'><div class='deal-title'>PDF</div><div class='deal-meta'>제휴·사업구조</div></div><p class='deal-meta'>+3건 더 있음</p></div><div class='home-tab-panel' data-home-panel='policy' hidden><div class='home-tab-panel-head'><strong>정책</strong><a class='home-tab-more' href='companies/intl_ABB_SW.html#tab-policy'>자세히 →</a></div><div class='home-prev-item'><div class='deal-title'>PDF</div><div class='deal-meta'>수요·시장</div></div><div class='home-prev-item'><div class='deal-title'>PDF</div><div class='deal-meta'>수요·시장</div></div><div class='home-prev-item'><div class='deal-title'>PDF</div><div class='deal-meta'>수요·시장</div></div><div class='home-prev-item'><div class='deal-title'>PDF</div><div class='deal-meta'>수요·시장</div></div><p class='deal-meta'>+24건 더 있음</p></div></div></div><div class='home-co-row'><div class='home-co-top'><img class='co-logo' src='assets/logos/siemens.png' alt='' onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" /><span class='co-logo-fallback' style='display:none'>S</span><div class='home-co-main'><strong>Siemens</strong><span class='tag intl'>SIE.DE</span></div><nav class='home-co-links' aria-label='기업 상세'><button type='button' class='home-tab-btn' data-home-tab='financials'>실적</button><button type='button' class='home-tab-btn' data-home-tab='orders'>수주</button><button type='button' class='home-tab-btn' data-home-tab='invest'>투자·MOU</button><button type='button' class='home-tab-btn' data-home-tab='policy'>정책</button></nav></div>
+    <div class="ai-summary-box compact home-ai-bullets">
+      <strong>Gemini 키메시지</strong>
+      <span class="deal-meta"> · gemini-flash-latest</span>
+      <ul class="home-ai-ul"><li><span class='ai-k'>실적</span> 2026년 Q2 신규 수주 241억 유로 달성 및 매출 198억 유로 기록</li><li><span class='ai-k'>신규수주·MOU</span> FuelCell Energy 및 호주 Vulcan Energy와 청정 에너지 MOU 체결 <a class='ai-news' href='https://finance.yahoo.com/markets/stocks/articles/fuelcell-energy-fcel-stock-may-181102509.html' target='_blank' rel='noopener'>뉴스</a></li><li><span class='ai-k'>경영·밸류체인</span> 관련 자료 부족</li><li><span class='ai-k'>리스크/관찰</span> FuelCell Energy·Vulcan Energy 신규 MOU 사업의 실질 수익화 지연 <a class='ai-news' href='https://finance.yahoo.com/markets/stocks/articles/fuelcell-energy-fcel-data-center-061121940.html' target='_blank' rel='noopener'>뉴스</a></li><li><span class='ai-k'>리스크/관찰</span> 거시 환경 변화에 따른 디지털 산업·자동화 부문 성장 지속성 불확실성</li></ul>
+      <p class='deal-meta' style='margin:4px 0 0'> <a href='companies/intl_SIE_DE.html#tab-financials'>상세</a></p>
+    </div>
+    <div class='home-tab-panels'><div class='home-tab-panel' data-home-panel='financials' hidden><div class='home-tab-panel-head'><strong>실적</strong><a class='home-tab-more' href='companies/intl_SIE_DE.html#tab-financials'>자세히 →</a></div><p class='deal-meta'>최근 연도 · 단위 십억</p><table class='fin home-prev-fin'><thead><tr><th>연도</th><th>매출</th><th>영업이익</th><th>순이익</th></tr></thead><tbody><tr><td>2022</td><td>72</td><td>7</td><td>4</td></tr><tr><td>2023</td><td>75</td><td>9</td><td>8</td></tr><tr><td>2024</td><td>76</td><td>9</td><td>8</td></tr><tr><td>2025</td><td>79</td><td>9</td><td>10</td></tr></tbody></table></div><div class='home-tab-panel' data-home-panel='orders' hidden><div class='home-tab-panel-head'><strong>수주</strong><a class='home-tab-more' href='companies/intl_SIE_DE.html#tab-orders'>자세히 →</a></div><div class='home-prev-item'><div class='deal-title'>Siemens Q2 FY2026 Earnings Release</div><div class='deal-meta'>수주·사업 진행</div></div><div class='home-prev-item'><div class='deal-title'>Earnings Release Q2 FY 2026, January 1 to March 31, 2026</div><div class='deal-meta'>수주·사업 진행</div></div><div class='home-prev-item'><div class='deal-title'>Q3</div><div class='deal-meta'>수주·사업 진행</div></div></div><div class='home-tab-panel' data-home-panel='invest' hidden><div class='home-tab-panel-head'><strong>투자·MOU</strong><a class='home-tab-more' href='companies/intl_SIE_DE.html#tab-invest'>자세히 →</a></div><div class='home-prev-item'><div class='deal-title'>Presentation: Roland Busch, CEO Siemens AG, and Veronika Bienert, CFO Siemens AG: Second Quarter 2026</div><div class='deal-meta'>제휴·사업구조</div></div><div class='home-prev-item'><div class='deal-title'>Siemens Q2 FY2026 Presentation</div><div class='deal-meta'>제휴·사업구조</div></div><div class='home-prev-item'><div class='deal-title'>Q1</div><div class='deal-meta'>제휴·사업구조</div></div><div class='home-prev-item'><div class='deal-title'>Roland Busch, CEO Siemens AG, and Veronika Bienert, CFO Siemens AG: Speech for Press Call Q2 2026</div><div class='deal-meta'>제휴·사업구조</div></div></div><div class='home-tab-panel' data-home-panel='policy' hidden><div class='home-tab-panel-head'><strong>정책</strong><a class='home-tab-more' href='companies/intl_SIE_DE.html#tab-policy'>자세히 →</a></div><div class='home-prev-item'><div class='deal-title'>FuelCell Energy (FCEL) Stock May Already Trade At A Premium As Equity Raise Lands</div><div class='deal-meta'>정책·규제 · 2026-07-23T18:11:02Z</div></div><div class='home-prev-item'><div class='deal-title'>FuelCell Energy (FCEL) Data Center And Hydrogen Story Leaves Shares Looking Fully Valued</div><div class='deal-meta'>수요·시장 · 2026-07-23T06:11:21Z</div></div><div class='home-prev-item'><div class='deal-title'>Presentation: Roland Busch, CEO Siemens AG, and Veronika Bienert, CFO Siemens AG: Second Quarter 2026</div><div class='deal-meta'>공급망·원료</div></div><div class='home-prev-item'><div class='deal-title'>Presentation: Roland Busch, CEO Siemens AG, and Veronika Bienert, CFO Siemens AG: Second Quarter 2026</div><div class='deal-meta'>수요·시장</div></div><p class='deal-meta'>+29건 더 있음</p></div></div></div><div class='home-co-row'><div class='home-co-top'><img class='co-logo' src='assets/logos/schneider.png' alt='' onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" /><span class='co-logo-fallback' style='display:none'>S</span><div class='home-co-main'><strong>Schneider Electric</strong><span class='tag intl'>SU.PA</span></div><nav class='home-co-links' aria-label='기업 상세'><button type='button' class='home-tab-btn' data-home-tab='financials'>실적</button><button type='button' class='home-tab-btn' data-home-tab='orders'>수주</button><button type='button' class='home-tab-btn' data-home-tab='invest'>투자·MOU</button><button type='button' class='home-tab-btn' data-home-tab='policy'>정책</button></nav></div>
+    <div class="ai-summary-box compact home-ai-bullets">
+      <strong>Gemini 키메시지</strong>
+      <span class="deal-meta"> · gemini-flash-latest</span>
+      <ul class="home-ai-ul"><li><span class='ai-k'>실적</span> 2025년 매출 402억 및 영업이익 70억 달성으로 성장세 유지</li><li><span class='ai-k'>신규수주·MOU</span> 관련 자료 부족</li><li><span class='ai-k'>경영·밸류체인</span> 캘리포니아 내 SF6-Free 친환경 전력망 공급 계약 체결</li><li><span class='ai-k'>리스크/관찰</span> Cognite 31억 달러 인수 후 주가 35% 고평가 및 통합 리스크 <a class='ai-news' href='https://finance.yahoo.com/energy/articles/schneider-electric-enxtpa-su-buys-191207025.html' target='_blank' rel='noopener'>뉴스</a></li><li><span class='ai-k'>리스크/관찰</span> 미국 연준 금리 변동성에 따른 거시경제 및 주가 불확실성</li></ul>
+      <p class='deal-meta' style='margin:4px 0 0'> <a href='companies/intl_SU_PA.html#tab-financials'>상세</a></p>
+    </div>
+    <div class='home-tab-panels'><div class='home-tab-panel' data-home-panel='financials' hidden><div class='home-tab-panel-head'><strong>실적</strong><a class='home-tab-more' href='companies/intl_SU_PA.html#tab-financials'>자세히 →</a></div><p class='deal-meta'>최근 연도 · 단위 십억</p><table class='fin home-prev-fin'><thead><tr><th>연도</th><th>매출</th><th>영업이익</th><th>순이익</th></tr></thead><tbody><tr><td>2022</td><td>34</td><td>6</td><td>3</td></tr><tr><td>2023</td><td>36</td><td>6</td><td>4</td></tr><tr><td>2024</td><td>38</td><td>7</td><td>4</td></tr><tr><td>2025</td><td>40</td><td>7</td><td>4</td></tr></tbody></table></div><div class='home-tab-panel' data-home-panel='orders' hidden><div class='home-tab-panel-head'><strong>수주</strong><a class='home-tab-more' href='companies/intl_SU_PA.html#tab-orders'>자세히 →</a></div><p class='empty'>수주·계약 이벤트 없음</p></div><div class='home-tab-panel' data-home-panel='invest' hidden><div class='home-tab-panel-head'><strong>투자·MOU</strong><a class='home-tab-more' href='companies/intl_SU_PA.html#tab-invest'>자세히 →</a></div><div class='home-prev-item'><div class='deal-title'>Schneider Electric Q1 2026 Revenues Release</div><div class='deal-meta'>제휴·사업구조</div></div></div><div class='home-tab-panel' data-home-panel='policy' hidden><div class='home-tab-panel-head'><strong>정책</strong><a class='home-tab-more' href='companies/intl_SU_PA.html#tab-policy'>자세히 →</a></div><div class='home-prev-item'><div class='deal-title'>Schneider Electric debuts streamlined EV charging for fleets, commercial facilities</div><div class='deal-meta'>수요·시장 · 2026-07-23T04:27:53Z</div></div><div class='home-prev-item'><div class='deal-title'>European shares pause after rally as concerns over Fed rates, Iran peace deal linger</div><div class='deal-meta'>정책·규제 · 2026-07-01T16:12:11Z</div></div><div class='home-prev-item'><div class='deal-title'>Schneider Electric Q1 2026 Revenues Presentation</div><div class='deal-meta'>수요·시장</div></div><div class='home-prev-item'><div class='deal-title'>Schneider Electric Q1 2026 Revenues Presentation</div><div class='deal-meta'>수요·시장</div></div><p class='deal-meta'>+5건 더 있음</p></div></div></div></div>
+      </section>
+    </div>
+
+    <section class="home-section">
+      <h2 style="margin:0 0 10px;font-size:1.15rem;color:var(--brand-navy)">PDF · PPT · 이메일</h2>
+      
+<div class='export-box'>
+  <h3>홈 리포트 다운로드</h3>
+  <p class='deal-meta'>기업별 Gemini 키메시지(실적 · 신규수주·MOU · 경영·밸류체인 · 리스크) 요약</p>
+  <p class='deal-meta'>서버 주소 <code>http://127.0.0.1:8765</code> 로 연 뒤 다운로드하세요.</p>
+  <div class='export-actions'>
+    <a class='btn' href='http://127.0.0.1:8765/exports/latest_home_report.txt' download>텍스트 다운로드</a>
+    <a class='btn secondary' href='http://127.0.0.1:8765/exports/latest_home_report.doc' download>Word 다운로드</a>
+  </div>
+</div>
+
+    </section>
+    
+    <footer>갱신 2026-07-30 07:30 · 2026-Q3 · 기업 전략 동향 AI 트래커</footer>
+  </div>
+  <script>
+    function activateTab(id) {
+      if (!id) return;
+      const panel = document.getElementById(id);
+      if (!panel) return;
+      const btn = document.querySelector('button[data-tab="' + id + '"]');
+      if (!btn) return;
+      const scope = btn.closest('.tabs');
+      if (!scope) return;
+      const panelIds = [...scope.querySelectorAll(':scope > button[data-tab]')].map(b => b.dataset.tab);
+      scope.querySelectorAll(':scope > button[data-tab]').forEach(b => b.classList.remove('active'));
+      panelIds.forEach(pid => {
+        const p = document.getElementById(pid);
+        if (p && !p.classList.contains('hist-panel')) p.classList.remove('active');
+      });
+      btn.classList.add('active');
+      panel.classList.add('active');
+      requestAnimationFrame(() => {
+        if (typeof Chart === 'undefined') return;
+        panel.querySelectorAll('canvas').forEach(c => {
+          const ch = Chart.getChart(c);
+          if (ch) ch.resize();
+        });
+      });
+    }
+    document.querySelectorAll('.tabs').forEach(scope => {
+      scope.querySelectorAll(':scope > button[data-tab]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activateTab(btn.dataset.tab);
+          if (btn.dataset.tab) history.replaceState(null, '', '#' + btn.dataset.tab);
+        });
+      });
+    });
+    if (location.hash) activateTab(location.hash.replace(/^#/, ''));
+  </script>
+  
+<script>
+document.querySelectorAll('.home-co-row').forEach((row) => {
+  const btns = row.querySelectorAll('.home-tab-btn');
+  const panels = row.querySelectorAll('.home-tab-panel');
+  btns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-home-tab');
+      const already = btn.classList.contains('active');
+      btns.forEach((b) => b.classList.remove('active'));
+      panels.forEach((p) => { p.hidden = true; });
+      if (already) return;
+      btn.classList.add('active');
+      const panel = row.querySelector('[data-home-panel="' + id + '"]');
+      if (panel) panel.hidden = false;
+    });
+  });
+});
+</script>
+
+</body>
+</html>
