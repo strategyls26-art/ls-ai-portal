@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ABB — 2026-Q3</title>
+  <style>
+:root {
+  --bg: #f5f7fb; --panel: #ffffff; --card: #ffffff; --text: #1e293b;
+  --muted: #64748b; --accent: #0284c7; --accent-2: #059669; --border: #e2e8f0;
+  --soft: #f1f5f9; --soft-2: #eef2ff; --brand-navy: #1e3a5f;
+}
+* { box-sizing: border-box; }
+body { margin:0; font-family:"Segoe UI","Malgun Gothic",sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
+.wrap { max-width: 1140px; margin: 0 auto; padding: 28px 20px 48px; }
+h1 { margin: 0 0 6px; font-size: 1.85rem; color:#0f172a; }
+h1.brand-title { color: var(--brand-navy); }
+.sub { color: var(--muted); margin-bottom: 20px; }
+.nav { display:flex; gap:8px; flex-wrap:wrap; margin-bottom: 20px; }
+.nav a { padding:8px 12px; border-radius:10px; background:var(--card); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.85rem; }
+.nav a.active, .nav a:hover { border-color:var(--brand-navy); color:var(--brand-navy); background:#eef2ff; }
+.home-section {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:18px 20px; margin-bottom:16px; box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+.home-split {
+  display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start; margin-bottom:16px;
+}
+.home-split > .home-section { margin-bottom:0; min-width:0; }
+.home-col-kr { border-top:3px solid #0284c7; }
+.home-col-intl { border-top:3px solid #0d9488; }
+@media (max-width:960px) {
+  .home-split { grid-template-columns:1fr; }
+}
+.home-section-head { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px; flex-wrap:wrap; }
+.home-section-head h2 { margin:0; font-size:1.15rem; color:var(--brand-navy); }
+.home-co-list { display:flex; flex-direction:column; gap:10px; }
+.home-co-row {
+  display:flex; flex-direction:column; align-items:stretch; gap:10px;
+  padding:12px 14px; border:1px solid var(--border); border-radius:12px; background:#fff;
+}
+.home-co-top {
+  display:grid; grid-template-columns:28px minmax(0,1fr); gap:8px 12px; align-items:center;
+}
+.home-co-main {
+  display:flex; align-items:center; gap:8px; min-width:0;
+}
+.home-co-main strong {
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:0.95rem;
+}
+.home-co-links {
+  grid-column:1 / -1; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:6px;
+}
+.home-co-links a,
+.home-tab-btn {
+  display:block; width:100%; text-align:center; padding:7px 4px; border-radius:8px; border:1px solid var(--border);
+  text-decoration:none; color:var(--brand-navy); font-size:0.78rem; font-weight:600; background:var(--soft);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; cursor:pointer;
+  font-family:inherit;
+}
+.home-co-links a:hover,
+.home-tab-btn:hover { border-color:var(--accent); background:#e0f2fe; }
+.home-tab-btn.active {
+  border-color:var(--accent); color:#fff; background:var(--accent);
+}
+.home-tab-panels { margin-top:2px; }
+.home-tab-panel {
+  border:1px solid var(--border); border-radius:10px; background:#f8fafc;
+  padding:10px 12px; margin-top:4px;
+}
+.home-tab-panel-head {
+  display:flex; justify-content:space-between; align-items:center; gap:8px;
+  margin-bottom:8px;
+}
+.home-tab-panel-head strong { font-size:0.88rem; color:var(--brand-navy); }
+.home-tab-more {
+  font-size:0.78rem; font-weight:600; color:var(--accent); text-decoration:none; white-space:nowrap;
+}
+.home-tab-more:hover { text-decoration:underline; }
+.home-prev-item { padding:6px 0; border-bottom:1px solid var(--border); }
+.home-prev-item:last-child { border-bottom:none; }
+.home-prev-fin { font-size:0.78rem; margin-top:4px; }
+@media (max-width:520px) {
+  .home-co-links { grid-template-columns:repeat(2, minmax(0,1fr)); }
+}
+.co-logo { width:28px; height:28px; border-radius:6px; object-fit:contain; background:#fff; border:1px solid var(--border); }
+.co-logo-fallback {
+  width:28px; height:28px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center;
+  background:var(--brand-navy); color:#fff; font-size:0.85rem; font-weight:700;
+}
+.ov-card-head .co-logo,
+.ov-card-head .co-logo-fallback,
+.co-page-head .co-logo,
+.co-page-head .co-logo-fallback {
+  width:36px; height:36px; flex-shrink:0;
+}
+.co-page-head {
+  display:flex; align-items:center; gap:12px; margin:0 0 10px;
+}
+.co-page-head h1 { margin:0; }
+.co-page-head .sub { margin:4px 0 0; }
+.home-hist-stats { display:flex; gap:18px; margin-top:8px; color:var(--muted); }
+.home-hist-stats strong { color:var(--brand-navy); font-size:1.2rem; margin-right:4px; }
+.mega-notes { margin:8px 0 12px; padding-left:18px; color:var(--muted); font-size:0.88rem; }
+.mega-tabs button em { font-style:normal; font-weight:700; color:var(--accent); margin-left:4px; }
+.mega-ind-box {
+  background:linear-gradient(135deg,#ffffff,#f0f9ff); border:1px solid var(--border);
+  border-radius:14px; padding:16px 18px; margin-bottom:14px;
+}
+.mega-ai-ul { margin:8px 0 0; padding-left:18px; color:#334155; font-size:0.92rem; }
+.mega-ai-ul li { margin:5px 0; }
+.mega-news-grid { display:grid; grid-template-columns:1fr; gap:12px; }
+.mega-news-card {
+  background:#fff; border:1px solid var(--border); border-radius:12px; padding:14px 16px;
+}
+.mega-news-title {
+  display:block; font-weight:700; color:var(--accent); text-decoration:none; font-size:1rem; line-height:1.4;
+}
+.mega-news-title:hover { text-decoration:underline; color:var(--brand-navy); }
+.mega-news-sum { margin-top:8px; }
+.mega-news-sum .mega-ai-ul { font-size:0.88rem; color:#475569; }
+@media (min-width:900px) {
+  .mega-news-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+}
+.ai-summary-box {
+  background:#f8fafc; border:1px solid var(--border); border-left:4px solid var(--brand-navy);
+  border-radius:12px; padding:14px 16px; margin:14px 0;
+}
+.ai-summary-box pre { white-space:pre-wrap; font-family:inherit; font-size:0.9rem; color:#334155; margin:8px 0 0; }
+.ai-summary-box.compact { padding:10px 12px; margin:8px 0 0; }
+.home-ai-ul {
+  list-style:none; margin:8px 0 0; padding:0; color:#334155; font-size:0.88rem;
+  display:flex; flex-direction:column; gap:6px;
+}
+.home-ai-ul li {
+  display:grid; grid-template-columns:5.75rem minmax(0,1fr) auto;
+  gap:8px; align-items:start; margin:0; line-height:1.45;
+}
+.home-ai-ul .ai-k {
+  display:block; color:var(--brand-navy); font-weight:600; font-size:0.78rem;
+  text-align:left; padding-top:1px;
+}
+.home-ai-ul a.ai-news {
+  font-size:0.75rem; font-weight:600; color:var(--accent);
+  text-decoration:none; border-bottom:1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  white-space:nowrap; align-self:start; margin-top:1px;
+}
+.home-ai-ul a.ai-news:hover { color:var(--accent-2); border-bottom-color:var(--accent-2); }
+@media (max-width:520px) {
+  .home-ai-ul li { grid-template-columns:4.5rem minmax(0,1fr); }
+  .home-ai-ul a.ai-news { grid-column:2; justify-self:start; }
+}
+.strategy-brief-list { display:flex; flex-direction:column; gap:16px; }
+.ov-list { display:flex; flex-direction:column; gap:18px; }
+.ov-card {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:0; box-shadow:0 1px 2px rgba(15,23,42,.03); overflow:hidden;
+}
+.ov-fold { margin:0; }
+.ov-fold > summary.ov-card-head {
+  list-style:none; cursor:pointer; display:flex; align-items:center; gap:12px;
+  flex-wrap:wrap; margin:0; padding:14px 18px; border-bottom:1px solid transparent;
+  user-select:none;
+}
+.ov-fold > summary.ov-card-head::-webkit-details-marker { display:none; }
+.ov-fold[open] > summary.ov-card-head {
+  border-bottom-color:var(--border); margin-bottom:0;
+}
+.ov-fold-hint {
+  flex-shrink:0; width:28px; height:28px; border-radius:8px;
+  border:1px solid var(--border); background:#f8fafc; color:var(--muted);
+  display:inline-flex; align-items:center; justify-content:center; font-size:0.75rem;
+}
+.ov-fold-hint::before { content:"▸"; }
+.ov-fold[open] .ov-fold-hint::before { content:"▾"; }
+.ov-card-body { padding:14px 18px 16px; }
+.ov-card-titles { flex:1; min-width:140px; }
+.ov-name {
+  font-size:1.15rem; font-weight:700; color:var(--brand-navy); text-decoration:none;
+}
+.ov-name:hover { color:var(--accent); }
+.ov-mcap { text-align:right; }
+.ov-mcap-label { display:block; font-size:0.72rem; color:var(--muted); }
+.ov-mcap strong { font-size:1.05rem; color:#92400e; }
+.ov-grid {
+  display:grid; grid-template-columns:1.2fr 1fr; gap:14px; margin-bottom:12px;
+}
+@media (max-width:800px) { .ov-grid { grid-template-columns:1fr; } }
+.ov-block h4 { margin:0 0 8px; font-size:0.9rem; color:var(--accent-2); }
+.ov-fin { width:100%; border-collapse:collapse; font-size:0.82rem; }
+.ov-fin th, .ov-fin td {
+  border-bottom:1px solid var(--border); padding:6px 8px; text-align:right;
+}
+.ov-fin th:first-child, .ov-fin td:first-child { text-align:left; }
+.ov-fin th { color:var(--muted); font-weight:600; background:#f8fafc; }
+.ov-chart-wrap { height:140px; position:relative; }
+.ov-chart-wrap.ov-chart-lg { height:260px; min-height:260px; }
+.ov-mini-tabs {
+  display:flex; flex-wrap:wrap; gap:6px; margin:0 0 10px;
+}
+.ov-mini-tabs button {
+  border:1px solid var(--border); background:#fff; border-radius:8px;
+  padding:6px 10px; font-size:0.78rem; cursor:pointer; color:var(--text);
+}
+.ov-mini-tabs button.active {
+  border-color:var(--accent); background:#e0f2fe; color:var(--accent); font-weight:700;
+}
+.ov-cat-panel { display:none; }
+.ov-cat-panel.active { display:block; }
+.ov-ls-block {
+  background:linear-gradient(135deg,#fffbeb,#fff); border:1px solid #f59e0b;
+  border-radius:12px; padding:12px 14px; margin-top:8px;
+}
+.ov-ls-block h4 { color:#92400e !important; }
+.ov-ls-meta { margin:0 0 8px !important; font-size:0.75rem; color:#92400e; }
+.ov-ls-prose-wrap { display:flex; flex-direction:column; gap:10px; }
+.ov-ls-prose {
+  margin:0; font-size:0.9rem; line-height:1.65; color:var(--text);
+  text-align:justify;
+}
+.ov-fact-summary {
+  margin:6px 0 2px; padding:6px 8px; border-left:3px solid #0e7490;
+  background:#f0f9ff; font-size:0.82rem; line-height:1.55; color:#0f172a;
+}
+.ov-fact-label {
+  display:inline-block; font-weight:700; color:#0e7490; margin-right:6px;
+  font-size:0.72rem; letter-spacing:0.02em;
+}
+.weekly-report {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:16px 18px; margin:12px 0 16px;
+}
+.weekly-head {
+  display:flex; align-items:flex-start; justify-content:space-between;
+  gap:12px; flex-wrap:wrap; margin-bottom:4px;
+}
+.weekly-head h3 { margin:0; }
+.weekly-dl { display:flex; gap:8px; flex-wrap:wrap; }
+.btn-dl {
+  display:inline-block; padding:6px 12px; border-radius:8px; font-size:0.78rem;
+  font-weight:700; text-decoration:none; color:#fff; background:var(--brand-navy);
+  border:1px solid var(--brand-navy);
+}
+.btn-dl:hover { background:#0c4a6e; }
+.btn-dl-word { background:#0369a1; border-color:#0369a1; }
+.weekly-fold {
+  margin:10px 0 0; padding:0; border:1px solid var(--border); border-radius:10px;
+  background:#fafbfc;
+}
+.weekly-fold > summary.weekly-fold-sum {
+  list-style:none; cursor:pointer; padding:10px 12px;
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+  font-weight:700; color:var(--brand-navy);
+}
+.weekly-fold > summary.weekly-fold-sum::-webkit-details-marker { display:none; }
+.weekly-fold > summary.weekly-fold-sum::before {
+  content:"▾"; color:var(--muted); font-size:0.85rem; margin-right:6px;
+}
+.weekly-fold:not([open]) > summary.weekly-fold-sum::before { content:"▸"; }
+.weekly-fold-title { font-size:0.95rem; }
+.weekly-fold-meta {
+  font-size:0.72rem; font-weight:600; color:var(--muted);
+  background:#e2e8f0; padding:2px 8px; border-radius:999px;
+}
+.weekly-fold-body { padding:4px 12px 12px 28px; }
+.weekly-fold .empty { margin:0; padding:4px 0 8px; }
+.weekly-detail-tabs { margin-top:8px; padding-top:8px; border-top:2px solid var(--border); }
+.item-date {
+  display:inline-block; margin-left:6px; padding:1px 7px; border-radius:4px;
+  font-size:0.72rem; font-weight:600; color:#475569; background:#f1f5f9;
+  vertical-align:baseline; white-space:nowrap;
+}
+.weekly-sec { margin:14px 0; padding-top:10px; border-top:1px solid var(--border); }
+.weekly-sec:first-of-type { border-top:none; padding-top:0; }
+.weekly-sec h4 { margin:0 0 8px; font-size:0.95rem; color:var(--brand-navy); }
+.weekly-ai { margin-bottom:8px; }
+ul.rpt-l1 {
+  list-style:disc; margin:6px 0 0; padding-left:1.2rem; color:#0f172a; font-size:0.92rem;
+}
+ul.rpt-l1 > li { margin:6px 0; line-height:1.45; display:list-item; }
+ul.rpt-l1 ul.rpt-l2 { display:block; margin:6px 0 0; clear:both; }
+ul.rpt-l2 ul.rpt-l3 { display:block; margin:4px 0 0; clear:both; }
+.ov-issue-ul > li { display:list-item; }
+ul.rpt-l2 {
+  list-style:none; margin:4px 0 0; padding-left:0.2rem; color:#334155; font-size:0.88rem;
+}
+ul.rpt-l2 > li {
+  position:relative; padding-left:1rem; margin:4px 0; line-height:1.4;
+}
+ul.rpt-l2 > li::before { content:"-"; position:absolute; left:0; color:#64748b; font-weight:700; }
+ul.rpt-l3 {
+  list-style:none; margin:3px 0 0; padding-left:0.15rem; color:#475569; font-size:0.84rem;
+}
+ul.rpt-l3 > li {
+  position:relative; padding-left:1.1rem; margin:3px 0; line-height:1.35;
+}
+ul.rpt-l3 > li::before { content:"✓"; position:absolute; left:0; color:#047857; font-weight:700; }
+.ov-news-ul { margin:0; padding-left:0; list-style:none; }
+.ov-news-li {
+  padding:8px 0; border-bottom:1px solid var(--border); font-size:0.9rem;
+}
+.ov-news-li:last-child { border-bottom:none; }
+.ov-news-li a { color:var(--brand-navy); text-decoration:none; font-weight:600; }
+.ov-news-li a:hover { color:var(--accent); }
+.ov-news-meta { margin-top:4px; font-size:0.75rem; color:var(--muted); }
+.ov-tag {
+  display:inline-block; margin:2px 4px 0 0; padding:1px 7px; border-radius:4px;
+  font-size:0.7rem; font-weight:700; background:#e0f2fe; color:#0369a1;
+}
+.ov-tag:nth-child(odd) { background:#ecfdf5; color:#047857; }
+.ov-more { margin:10px 0 0; text-align:right; }
+.ov-more a { font-weight:600; color:var(--accent); text-decoration:none; }
+.ov-sec { margin-bottom:16px; }
+.ov-sec h4 { margin:0 0 8px; font-size:0.95rem; color:var(--brand-navy); }
+.strategy-brief-card {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:16px 18px; box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+.strat-head {
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid var(--border);
+}
+.strat-title { display:flex; align-items:center; gap:8px; flex:1; min-width:140px; }
+.strat-title strong { font-size:1.05rem; }
+.strat-cat { margin-top:12px; }
+.strat-cat-head {
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+  margin-bottom:6px;
+}
+.strat-cat-head h4 {
+  margin:0; font-size:0.88rem; color:var(--brand-navy); font-weight:700;
+}
+.strat-ul {
+  list-style:none; margin:0; padding:0; color:#334155; font-size:0.88rem;
+  display:flex; flex-direction:column; gap:5px;
+}
+.strat-ul li {
+  display:grid; grid-template-columns:5.75rem minmax(0,1fr);
+  gap:8px; align-items:start; line-height:1.45;
+}
+.strat-ul.plain li { grid-template-columns:minmax(0,1fr); }
+.strat-k {
+  display:block; color:var(--brand-navy); font-weight:600; font-size:0.76rem;
+  padding-top:1px;
+}
+@media (max-width:520px) {
+  .strat-ul li { grid-template-columns:4.5rem minmax(0,1fr); }
+}
+.hero {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 55%, #ecfdf5 100%);
+  border:1px solid var(--border); border-radius:16px; padding:28px; margin-bottom:24px;
+  box-shadow:0 1px 2px rgba(15,23,42,.04);
+}
+.entry-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin-top:18px; }
+.entry {
+  display:block; background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:22px; text-decoration:none; color:inherit; transition:border-color .15s, box-shadow .15s;
+  box-shadow:0 1px 2px rgba(15,23,42,.04);
+}
+.entry:hover { border-color: var(--accent); box-shadow:0 4px 12px rgba(2,132,199,.08); }
+.entry h2 { margin:0 0 8px; font-size:1.35rem; color:var(--accent-2); }
+.entry p { margin:0; color:var(--muted); font-size:0.92rem; }
+.entry .count { margin-top:12px; font-size:1.6rem; font-weight:700; color:var(--accent); }
+.tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; position:sticky; top:0; z-index:5;
+  background:rgba(245,247,251,.94); backdrop-filter:blur(8px); padding:10px 0; border-bottom:1px solid var(--border); }
+.tabs button {
+  border:1px solid var(--border); background:var(--card); color:var(--text);
+  padding:8px 12px; border-radius:8px; cursor:pointer; font-size:0.85rem;
+}
+.tabs button.active { border-color:var(--accent); color:var(--accent); background:#e0f2fe; }
+.tab-panel { display:none; }
+.tab-panel.active { display:block; }
+.tab-desc { color:var(--muted); font-size:0.9rem; margin-bottom:14px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; }
+.card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px; box-shadow:0 1px 2px rgba(15,23,42,.03); }
+.card-head { display:flex; justify-content:space-between; gap:8px; margin-bottom:10px; }
+.card h3 { margin:0; font-size:1rem; }
+.tag { font-size:0.7rem; background:#e0f2fe; color:#0369a1; padding:3px 8px; border-radius:6px; white-space:nowrap; }
+.tag.intl { background:#d1fae5; color:#047857; }
+.module-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; margin-bottom:12px; }
+.mod-stat { background:var(--soft); border-radius:8px; padding:8px 6px; text-align:center; font-size:0.72rem; color:var(--muted); }
+.mod-stat strong { display:block; font-size:1.05rem; color:var(--text); }
+.btn { display:inline-block; padding:9px 12px; border-radius:10px; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; font-size:0.88rem; border:none; cursor:pointer; }
+.btn.secondary { background:#10b981; color:#fff; }
+.empty { color:var(--muted); font-style:italic; }
+.deal-kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px; margin-bottom:18px; }
+.deal-kpi { background:var(--card); border:1px solid var(--border); border-left:4px solid var(--c,#0284c7);
+  border-radius:10px; padding:12px 14px; text-decoration:none; color:inherit; }
+.deal-kpi-label { font-size:0.85rem; }
+.deal-kpi-count { font-size:1.7rem; font-weight:700; color:var(--c,#0284c7); }
+.deal-kpi-en { font-size:0.72rem; color:var(--muted); }
+.deal-section { background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:16px 18px; margin-bottom:14px; scroll-margin-top:70px; }
+.deal-section h3 { margin:0 0 12px; font-size:1.05rem; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.deal-section h3 .dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
+.deal-section h3 small { color:var(--muted); font-weight:400; font-size:0.8rem; }
+.deal-section h3 em { margin-left:auto; font-style:normal; color:var(--accent); font-size:0.85rem; }
+.deal-item { padding:12px 0; border-bottom:1px solid var(--border); }
+.deal-item:last-child { border-bottom:none; }
+.deal-item-top { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:4px; }
+.pill { color:#fff; font-size:0.7rem; padding:2px 8px; border-radius:4px; }
+.src { font-size:0.72rem; color:var(--muted); background:var(--soft); padding:2px 6px; border-radius:4px; }
+.co { font-size:0.78rem; color:var(--accent-2); }
+.deal-title { font-weight:600; margin-bottom:4px; }
+.deal-meta { font-size:0.8rem; color:var(--muted); margin-bottom:4px; }
+.deal-sum { font-size:0.88rem; color:#475569; margin:6px 0; }
+a { color:var(--accent); }
+.chart-box { background:var(--soft); border-radius:10px; padding:10px; margin:8px 0 12px; border:1px solid var(--border); }
+.ov-card-body .chart-box { height:220px; position:relative; }
+.index-hero { grid-column: 1 / -1; border-color:#99f6e4; background:linear-gradient(135deg,#fff,#f0fdfa); }
+table.fin { width:100%; border-collapse:collapse; font-size:0.8rem; }
+table.fin th, table.fin td { border-bottom:1px solid var(--border); padding:0.4rem 0.3rem; text-align:right; }
+table.fin th:first-child, table.fin td:first-child { text-align:left; }
+table.fin th { color:var(--muted); }
+.price-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; margin-top:14px; }
+.price-chip { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px; }
+.price-chip.intl { border-color:#a7f3d0; }
+.pc-name { font-size:0.78rem; color:var(--muted); margin-bottom:4px; }
+.pc-price { font-size:1.15rem; font-weight:700; }
+.pc-chg { font-size:0.8rem; margin-top:2px; }
+.pc-chg.up { color:#059669; }
+.pc-chg.down { color:#dc2626; }
+.mod-stat em { display:block; font-size:0.65rem; color:#d97706; font-style:normal; }
+.geo-tag { display:inline-block; background:#ffedd5; color:#9a3412; font-size:0.7rem; padding:2px 8px; border-radius:4px; font-weight:600; }
+.bm-banner { background:#fff7ed; border:1px solid #fdba74; border-radius:12px; padding:12px 14px; margin-bottom:14px; }
+table.fin tr.bm-row td { background:#fffbeb; color:#92400e; font-weight:600; }
+.debt-ratio { color:#d97706; font-weight:700; }
+.markets-panel {
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 45%, #f0f9ff 100%);
+  border:1px solid var(--border); border-radius:16px; padding:20px 22px; margin-bottom:20px;
+}
+.markets-head { display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
+.markets-section-label { font-size:0.78rem; color:#047857; margin:14px 0 8px; letter-spacing:0.02em; font-weight:600; }
+.mkt-chart-grid { display:grid; gap:12px; margin-bottom:6px; }
+.mkt-chart-grid.mkt-grid-2x2 { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+.mkt-chart-grid.mkt-grid-2 { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+@media (max-width:720px) {
+  .mkt-chart-grid.mkt-grid-2x2,
+  .mkt-chart-grid.mkt-grid-2 { grid-template-columns:1fr; }
+}
+.mkt-chip { background:#fff; border:1px solid var(--border); border-radius:12px; padding:12px; }
+.mkt-chip.commodity { border-color:#f59e0b; }
+.mkt-chip.index { border-color:#38bdf8; }
+.mkt-chip.fx { border-color:#06b6d4; }
+.mkt-chip.rate { border-color:#8b5cf6; }
+.mkt-unit { font-size:0.72rem; color:var(--muted); font-weight:500; }
+.mkt-note { font-size:0.7rem; color:var(--muted); margin-top:6px; line-height:1.35; }
+.power-badge {
+  display:inline-block; background:#fef3c7; color:#b45309; font-size:0.72rem;
+  font-weight:700; padding:2px 8px; border-radius:4px; margin-right:6px;
+}
+.power-sum-label {
+  margin-top:10px; font-size:0.78rem; font-weight:600; color:#047857;
+}
+.power-subtabs { position:static; background:transparent; backdrop-filter:none; margin-top:8px; }
+.tag-row { display:flex; flex-wrap:wrap; gap:6px; margin-top:4px; }
+.fin-sub { margin:16px 0 8px; font-size:0.95rem; color:var(--brand-navy); }
+.power-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px 18px; margin-bottom:14px; }
+.power-card h3 { margin:0 0 8px; font-size:1.05rem; color:var(--accent-2); }
+.power-overview-fold { padding:0; overflow:hidden; }
+.power-overview-sum {
+  list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between;
+  gap:12px; padding:14px 18px; user-select:none;
+}
+.power-overview-sum::-webkit-details-marker { display:none; }
+.power-overview-title { font-size:1.05rem; font-weight:700; color:var(--accent-2); }
+.power-overview-hint {
+  flex-shrink:0; font-size:0.78rem; font-weight:600; color:var(--muted);
+  display:inline-flex; align-items:center; gap:4px;
+}
+.power-overview-hint::before { content:attr(data-when-open); }
+.power-overview-fold:not([open]) .power-overview-hint::before { content:attr(data-when-closed); }
+.power-overview-hint::after {
+  content:""; width:0.45em; height:0.45em; border-right:2px solid currentColor;
+  border-bottom:2px solid currentColor; transform:rotate(-135deg); margin-top:3px;
+  transition:transform .15s ease;
+}
+.power-overview-fold:not([open]) .power-overview-hint::after {
+  transform:rotate(45deg); margin-top:-2px;
+}
+.power-overview-body { padding:0 18px 16px; border-top:1px solid var(--border); }
+.power-overview-sum:hover { background:#f8fafc; }
+.power-label { font-size:0.78rem; color:#047857; margin:12px 0 6px; }
+.power-list { margin:0; padding-left:1.1rem; color:#334155; font-size:0.9rem; }
+.power-list li { margin-bottom:4px; }
+.export-box { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px; margin:14px 0 20px; }
+.export-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+.email-form { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:10px; }
+.email-form input[type=email],
+.email-form input[type=text],
+.email-form select {
+  flex:1; min-width:180px; padding:10px 12px; border-radius:8px;
+  border:1px solid var(--border); background:#fff; color:var(--text);
+}
+.email-form button { border:none; cursor:pointer; }
+.briefing-list { margin-top:12px; display:flex; flex-direction:column; gap:12px; }
+.briefing-card {
+  background:#fff; border:1px solid var(--border); border-radius:12px; padding:14px 16px;
+}
+.briefing-card-head { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:6px; }
+.briefing-badge {
+  font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:6px;
+  background:#e0f2fe; color:#0369a1;
+}
+.briefing-badge.status-pending { color:#b45309; background:#fef3c7; }
+.briefing-badge.status-sent { color:#047857; background:#d1fae5; }
+.briefing-badge.status-rejected { color:#b91c1c; background:#fee2e2; }
+.briefing-badge.status-failed { color:#c2410c; background:#ffedd5; }
+.briefing-preview {
+  white-space:pre-wrap; font-size:0.78rem; color:#475569; background:var(--soft);
+  border:1px solid var(--border); border-radius:8px; padding:10px; margin:8px 0; max-height:140px; overflow:auto;
+}
+.tag-row { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+.impact-hint { font-size:0.78rem; color:#b45309; margin:4px 0 6px; }
+.focus-line { color:#047857; font-size:0.9rem; margin:0 0 10px; }
+.fin-sub { margin:14px 0 8px; font-size:0.95rem; color:var(--accent-2); }
+.mkt-chart-card {
+  background:#0f3d4c; border:1px solid #0a2a33; border-radius:12px; padding:14px 14px 10px;
+  color:#f8fafc; min-height:0;
+}
+.mkt-chart-card .pc-name { color:#e2e8f0; font-size:0.9rem; font-weight:600; margin-bottom:6px; }
+.mkt-chart-card .pc-price { color:#fff; font-size:1.25rem; font-weight:700; }
+.mkt-chart-card .mkt-unit { color:#94a3b8; }
+.mkt-chart-card .pc-chg.up { color:#6ee7b7; }
+.mkt-chart-card .pc-chg.down { color:#fca5a5; }
+.mkt-chart-card.commodity { border-color:#b45309; }
+.mkt-chart-card.fx { border-color:#0e7490; }
+.mkt-chart-card.rate { border-color:#6d28d9; }
+.mkt-chart-card.index { border-color:#0369a1; }
+.mkt-chart-card.mkt-priority { box-shadow:0 0 0 2px rgba(180,83,9,0.35); }
+.mkt-ls-tag {
+  display:inline-block; margin-left:6px; font-style:normal; font-size:0.65rem;
+  font-weight:700; color:#92400e; background:#fef3c7; padding:1px 6px; border-radius:4px;
+  vertical-align:middle;
+}
+.ls-metal-panel {
+  background:linear-gradient(135deg,#fffbeb,#fff); border:1px solid #f59e0b;
+  border-radius:14px; padding:14px 16px; margin:14px 0 10px;
+}
+.power-12th-panel {
+  background:linear-gradient(135deg,#fffbeb,#fff); border:1px solid #f59e0b;
+  border-radius:14px; padding:16px 18px; margin:14px 0 16px;
+}
+.power-12th-panel .card-head {
+  display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-bottom:4px;
+}
+.power-12th-panel .card-head h3 { margin:0; font-size:1.05rem; color:#92400e; }
+.power-12th-panel .mega-news-grid { margin-top:8px; }
+.mega-ai-ul.power-digest-ul li { line-height:1.5; }
+.mega-ai-ul a.ai-news {
+  display:inline; margin-left:6px; font-size:0.78rem; font-weight:700;
+  color:var(--accent); text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  white-space:nowrap;
+}
+.mega-ai-ul a.ai-news:hover { color:var(--accent-2); border-bottom-color:var(--accent-2); }
+.ls-metal-head {
+  display:flex; justify-content:space-between; align-items:baseline; gap:10px;
+  flex-wrap:wrap; margin-bottom:10px;
+}
+.ls-metal-head strong { color:#92400e; font-size:0.95rem; }
+.ls-metal-block { margin-top:10px; }
+.ls-metal-block h4 { margin:0 0 6px; font-size:0.88rem; color:var(--brand-navy); }
+.ls-metal-ul { margin:0; padding-left:18px; color:#334155; font-size:0.88rem; }
+.ls-metal-ul li { margin:5px 0; line-height:1.45; }
+.mkt-mini-chart { height:100px; margin-top:8px; background:rgba(255,255,255,.04); border-radius:8px; padding:4px; }
+.deal-wrap-v2 .deal-hero {
+  display:flex; flex-wrap:wrap; justify-content:space-between; gap:14px; align-items:flex-end;
+  background:linear-gradient(135deg,#ffffff,#f0f9ff); border:1px solid var(--border);
+  border-radius:14px; padding:16px 18px; margin-bottom:12px;
+}
+.deal-hero-title { margin:0 0 6px; font-size:1.25rem; color:var(--accent-2); }
+.deal-filter-bar {
+  position:sticky; top:8px; z-index:20; display:flex; flex-wrap:wrap; gap:8px;
+  background:rgba(255,255,255,.96); border:1px solid var(--border); border-radius:12px;
+  padding:10px 12px; margin-bottom:14px; backdrop-filter:blur(6px);
+}
+.deal-filter {
+  border:1px solid var(--border); background:#fff; color:var(--text);
+  border-radius:10px; padding:10px 14px; cursor:pointer; font-size:0.9rem;
+  border-left:4px solid var(--c,#64748b);
+}
+.deal-filter em { font-style:normal; font-weight:700; color:var(--c,#0284c7); margin-left:6px; }
+.deal-filter.active { background:#e0f2fe; box-shadow:0 0 0 1px var(--c,#0284c7); color:#0f172a; }
+.deal-panel { margin-bottom:16px; }
+.deal-panel-head {
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  margin-bottom:12px; padding-bottom:8px; border-bottom:2px solid var(--c,#0284c7);
+}
+.deal-panel-head h3 { margin:0; font-size:1.15rem; }
+.deal-panel-head small { color:var(--muted); font-weight:400; margin-left:8px; }
+.deal-panel-count { color:var(--c,#0284c7); font-weight:700; font-size:1rem; }
+.deal-card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; }
+.deal-card {
+  display:flex; background:#fff; border:1px solid var(--border); border-radius:12px; overflow:hidden;
+  min-height:140px; box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+.deal-card-bar { width:6px; flex-shrink:0; }
+.deal-card-body { padding:14px 16px; flex:1; }
+.deal-card .deal-title { font-size:1.05rem; line-height:1.45; margin-bottom:6px; }
+.deal-card .deal-sum { font-size:0.92rem; line-height:1.5; color:#475569; }
+.deal-link { display:inline-block; margin-top:10px; font-weight:600; color:var(--accent); }
+.deal-nav { display:flex; flex-wrap:wrap; gap:8px; }
+.deal-nav-btn {
+  display:flex; align-items:center; gap:8px; text-decoration:none; color:var(--text);
+  background:#fff; border:1px solid var(--border); border-left:4px solid var(--c,#0284c7);
+  border-radius:10px; padding:8px 12px; font-size:0.85rem;
+}
+.deal-nav-btn span { color:var(--c,#0284c7); font-weight:700; font-size:1.05rem; }
+.deal-section-v2 { scroll-margin-top:90px; }
+footer { margin-top:28px; text-align:center; color:var(--muted); font-size:0.85rem; }
+@media (max-width:600px){ .module-grid { grid-template-columns:repeat(3,1fr); } }
+
+.hist-embed { margin-top:18px; }
+.hist-embed > h3 { font-size:1.05rem; margin:0 0 10px; color:var(--brand-navy); }
+.hist-panel { display:none; }
+.hist-panel.active { display:block; }
+.hist-event-head { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:6px; }
+.hist-details { margin-top:10px; }
+.hist-details summary { cursor:pointer; color:var(--accent); font-weight:600; font-size:0.9rem; }
+.hist-src-block { margin-top:10px; padding-top:8px; border-top:1px solid var(--border); }
+.hist-src-label { font-size:0.8rem; color:var(--accent-2); margin-bottom:6px; font-weight:600; }
+.hist-src-label em { font-style:normal; color:var(--accent); margin-left:4px; }
+.hist-ev-list { margin:0; padding-left:1.1rem; }
+.hist-ev-item { margin-bottom:8px; }
+.hist-cat-tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+.hist-cat-tab {
+  border:1px solid var(--border); background:var(--card); color:var(--text);
+  padding:10px 14px; border-radius:10px; cursor:pointer; font-size:0.9rem;
+  border-left:4px solid var(--c,#64748b);
+}
+.hist-cat-tab small { color:var(--muted); margin-left:4px; font-size:0.75rem; }
+.hist-cat-tab em { font-style:normal; font-weight:700; color:var(--c,#0284c7); margin-left:6px; }
+.hist-cat-tab.active { background:#e0f2fe; box-shadow:0 0 0 1px var(--c,#0284c7); color:#0f172a; }
+.hist-year-focus {
+  display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:0 0 14px;
+}
+.hist-focus-btn {
+  border:1px solid var(--border); background:#fff; color:var(--text);
+  border-radius:8px; padding:6px 12px; cursor:pointer; font-size:0.82rem;
+}
+.hist-focus-btn.active { border-color:var(--accent); color:var(--accent); background:#e0f2fe; }
+.hist-basis {
+  display:inline-block; font-size:0.72rem; font-weight:600;
+  background:#e0f2fe; color:#0369a1; padding:2px 8px; border-radius:6px;
+}
+.hist-tl { margin-top:8px; }
+.hist-tl-year { margin-bottom:22px; }
+.hist-tl-year-label {
+  display:inline-block; font-size:1.05rem; font-weight:700; color:var(--accent-2);
+  background:#ecfdf5; border:1px solid var(--border); border-radius:8px;
+  padding:4px 12px; margin-bottom:12px;
+}
+.hist-tl-year-label em { font-style:normal; color:var(--accent); margin-left:6px; font-size:0.9rem; }
+.hist-tl-empty { color:var(--muted); font-size:0.85rem; font-style:italic; margin:0 0 0 12px; }
+.hist-tl-rail {
+  position:relative; margin-left:12px; padding-left:28px;
+  border-left:2px solid #cbd5e1;
+}
+.hist-tl-item {
+  position:relative; margin-bottom:16px;
+}
+.hist-tl-item::before {
+  content:''; position:absolute; left:-36px; top:10px;
+  width:12px; height:12px; border-radius:50%;
+  background:var(--c,#0284c7); border:2px solid #fff;
+  box-shadow:0 0 0 2px var(--c,#0284c7);
+}
+.hist-tl-date {
+  font-size:0.8rem; color:var(--muted); font-weight:600; margin-bottom:4px;
+  letter-spacing:0.02em;
+}
+.hist-tl-card {
+  background:#fff; border:1px solid var(--border); border-radius:12px;
+  padding:12px 14px; border-left:3px solid var(--c,#0284c7);
+  box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+table.fin { width:100%; border-collapse:collapse; font-size:0.88rem; margin-top:10px; }
+table.fin th, table.fin td { border-bottom:1px solid var(--border); padding:8px 10px; text-align:right; }
+table.fin th:first-child, table.fin td:first-child { text-align:left; }
+table.fin th { color:var(--muted); font-weight:600; font-size:0.78rem; }
+.chart-box { margin:8px 0 12px; }
+</style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <a href="../index.html" class="">홈</a>
+      <a href="../domestic.html" class="">국내</a>
+      <a href="../international.html" class="active">해외</a>
+      <a href="../markets.html" class="">지수/환율</a>
+      <a href="../power.html" class="">전력시장</a>
+      <a href="../mega_projects.html" class="">메가 프로젝트</a>
+      <a href="../interest_topic.html" class="">관심주제 주간 브리핑</a>
+    </nav>
+    
+    <p class="deal-meta"><a href="../index.html">← 홈</a> · <a href="../international.html">해외 전체</a></p>
+    <div class="co-page-head"><img class='co-logo' src='../assets/logos/abb.png' alt='' onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" /><span class='co-logo-fallback' style='display:none'>A</span><div><h1>ABB</h1>
+    <p class="sub">ABBN.SW · 이번주 동향 · 밸류체인 · 수주·공급망·정책 · 경영이슈 · 실적</p></div></div>
+    <div id='weekly' class='weekly-report'><div class='card-head weekly-head'><div><h3>이번주 동향</h3><span class='tag'>Yahoo·IR·콜 · 한국어 번역</span></div><div class='weekly-dl'><a class='btn-dl' href='../../exports/weekly_intl_ABB_SW.pdf' download>PDF 다운로드</a><a class='btn-dl btn-dl-word' href='../../exports/weekly_intl_ABB_SW.doc' download>Word 다운로드</a></div></div><p class='deal-meta'>● / - / ✓ · 한국어 번역 · 원문 · 출처 링크 · 원문 요약(LLM)</p><details class='weekly-fold' open><summary class='weekly-fold-sum'><span class='weekly-fold-title'>주요 경영이슈</span><span class='weekly-fold-meta'>4건</span></summary><div class='weekly-fold-body'><ul class='rpt-l1'><li>애널리스트 및 투자자 대상 웹캐스트 <span class='item-date'>2026-01-01</span> <a class='ai-news' href='https://stream.swisscom.ch/abb/20260716' target='_blank' rel='noopener'>IR</a><ul class='rpt-l2'><li>ABB 2026년 2분기 실적 발표 애널리스트 및 투자자 웹캐스트</li><li>투자·양산 스케줄 포인트</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB는 2026년 2분기 분기 실적 발표를 위한 애널리스트 및 투자자 대상 웹캐스트를 진행합니다.</p></li><li>ABB 2분기 실적 발표 및 핵심 경영 지표 분석 <span class='item-date'>2026-07-16</span> <a class='ai-news' href='https://finance.yahoo.com/markets/stocks/articles/abb-abbny-reports-q2-earnings-133004787.html' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>후속 IR·실적 점검 포인트</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB(ABBNY)가 2분기 실적 보고서를 발표했습니다.</p></li><li>182% 상승 이후 적정 가치 상회 · ABB 주가 <span class='item-date'>2026-07-23</span> <a class='ai-news' href='https://finance.yahoo.com/markets/stocks/articles/abb-swx-abbn-stock-looks-001547140.html' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>182% 상승 이후 적정 가치 상회</li><li>ABB 주가</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB(SWX:ABBN) 주가가 182% 상승한 이후 현재 적정 가치를 상회하는 것으로 나타났습니다.</p></li><li>ABB Ltd 2026년 2분기 실적발표회 핵심 요약: 역대 최대 수주 및 매출 급증 <span class='item-date'>2026-07-16</span> <a class='ai-news' href='https://finance.yahoo.com/markets/stocks/articles/abb-ltd-abbny-q2-2026-150154901.html' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>계약 규모·상대방 포인트</li><li>공급·딜 실행 일정 포인트</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB Ltd는 2026년 2분기 실적 발표를 통해 사상 최대 수주 실적과 매출 급증을 기록했다고 밝혔습니다.</p></li></ul></div></details><details class='weekly-fold' open><summary class='weekly-fold-sum'><span class='weekly-fold-title'>자본시장 활동</span><span class='weekly-fold-meta'>4건</span></summary><div class='weekly-fold-body'><ul class='rpt-l1'><li>182% 상승 이후 적정 가치 상회 · ABB 주가 <span class='item-date'>2026-07-23</span> <a class='ai-news' href='https://finance.yahoo.com/markets/stocks/articles/abb-swx-abbn-stock-looks-001547140.html' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>182% 상승 이후 적정 가치 상회</li><li>ABB 주가</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB(SWX:ABBN) 주가가 182% 상승한 이후 현재 적정 가치를 상회하는 것으로 나타났습니다.</p></li><li>ABB Ltd 2026년 2분기 실적발표회 핵심 요약: 역대 최대 수주 및 매출 급증 <span class='item-date'>2026-07-16</span> <a class='ai-news' href='https://finance.yahoo.com/markets/stocks/articles/abb-ltd-abbny-q2-2026-150154901.html' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>계약 규모·상대방 포인트</li><li>공급·딜 실행 일정 포인트</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB Ltd는 2026년 2분기 실적 발표를 통해 사상 최대 수주 실적과 매출 급증을 기록했다고 밝혔습니다.</p></li><li>ABB 2분기 실적 발표 및 핵심 경영 지표 분석 <span class='item-date'>2026-07-16</span> <a class='ai-news' href='https://finance.yahoo.com/markets/stocks/articles/abb-abbny-reports-q2-earnings-133004787.html' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>후속 IR·실적 점검 포인트</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB(ABBNY)가 2분기 실적 보고서를 발표했습니다.</p></li><li>ABB의 영국 기업 인수 추진 <span class='item-date'>2026-07-16</span> <a class='ai-news' href='https://www.wsj.com/business/deals/abb-to-buy-rotork-to-strengthen-electrification-business-7fac8604?siteid=yhoof2&amp;yptr=yahoo' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>후속 IR·실적 점검 포인트</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB가 영국의 로토크(Rotork)를 56억 달러에 인수하기로 했습니다.</p></li></ul></div></details><details class='weekly-fold' open><summary class='weekly-fold-sum'><span class='weekly-fold-title'>밸류체인</span><span class='weekly-fold-meta'>4건</span></summary><div class='weekly-fold-body'><ul class='rpt-l1'><li>AI 기반 글로벌 네트워크 운영 전면 개편 · ABB의 TCS 파트너십 체결 <span class='item-date'>2026-07-14</span> <a class='ai-news' href='https://www.verdict.co.uk/abb-taps-tcs-network-operations/' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>AI 기반 글로벌 네트워크 운영 전면 개편</li><li>ABB의 TCS 파트너십 체결</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB는 인공지능(AI)을 활용해 글로벌 네트워크 운영을 전면 개편하기 위해 TCS를 선정했습니다.</p></li><li>182% 상승 이후 적정 가치 상회 · ABB 주가 <span class='item-date'>2026-07-23</span> <a class='ai-news' href='https://finance.yahoo.com/markets/stocks/articles/abb-swx-abbn-stock-looks-001547140.html' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>182% 상승 이후 적정 가치 상회</li><li>ABB 주가</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB(SWX:ABBN) 주가가 182% 상승한 이후 현재 적정 가치를 상회하는 것으로 나타났습니다.</p></li><li>ABB Ltd 2026년 2분기 실적발표회 핵심 요약: 역대 최대 수주 및 매출 급증 <span class='item-date'>2026-07-16</span> <a class='ai-news' href='https://finance.yahoo.com/markets/stocks/articles/abb-ltd-abbny-q2-2026-150154901.html' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>계약 규모·상대방 포인트</li><li>공급·딜 실행 일정 포인트</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB Ltd는 2026년 2분기 실적 발표를 통해 사상 최대 수주 실적과 매출 급증을 기록했다고 밝혔습니다.</p></li><li>ABB 2분기 실적 발표 및 핵심 경영 지표 분석 <span class='item-date'>2026-07-16</span> <a class='ai-news' href='https://finance.yahoo.com/markets/stocks/articles/abb-abbny-reports-q2-earnings-133004787.html' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>후속 IR·실적 점검 포인트</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB(ABBNY)가 2분기 실적 보고서를 발표했습니다.</p></li></ul></div></details><details class='weekly-fold' open><summary class='weekly-fold-sum'><span class='weekly-fold-title'>수주/투자/MOU</span><span class='weekly-fold-meta'>4건</span></summary><div class='weekly-fold-body'><ul class='rpt-l1'><li>ABB의 영국 기업 인수 추진 <span class='item-date'>2026-07-16</span> <a class='ai-news' href='https://www.wsj.com/business/deals/abb-to-buy-rotork-to-strengthen-electrification-business-7fac8604?siteid=yhoof2&amp;yptr=yahoo' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>후속 IR·실적 점검 포인트</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB가 영국의 로토크(Rotork)를 56억 달러에 인수하기로 했습니다.</p></li><li>ABB Ltd 2026년 2분기 실적발표회 핵심 요약: 역대 최대 수주 및 매출 급증 <span class='item-date'>2026-07-16</span> <a class='ai-news' href='https://finance.yahoo.com/markets/stocks/articles/abb-ltd-abbny-q2-2026-150154901.html' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>계약 규모·상대방 포인트</li><li>공급·딜 실행 일정 포인트</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB Ltd는 2026년 2분기 실적 발표를 통해 사상 최대 수주 실적과 매출 급증을 기록했다고 밝혔습니다.</p></li><li>182% 상승 이후 적정 가치 상회 · ABB 주가 <span class='item-date'>2026-07-23</span> <a class='ai-news' href='https://finance.yahoo.com/markets/stocks/articles/abb-swx-abbn-stock-looks-001547140.html' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>182% 상승 이후 적정 가치 상회</li><li>ABB 주가</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB(SWX:ABBN) 주가가 182% 상승한 이후 현재 적정 가치를 상회하는 것으로 나타났습니다.</p></li><li>ABB 2분기 실적 발표 및 핵심 경영 지표 분석 <span class='item-date'>2026-07-16</span> <a class='ai-news' href='https://finance.yahoo.com/markets/stocks/articles/abb-abbny-reports-q2-earnings-133004787.html' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>후속 IR·실적 점검 포인트</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB(ABBNY)가 2분기 실적 보고서를 발표했습니다.</p></li></ul></div></details><details class='weekly-fold ov-ls-block' open><summary class='weekly-fold-sum'><span class='weekly-fold-title'>LS 그룹 추가 모니터링 포인트</span><span class='weekly-fold-meta'>3건</span></summary><div class='weekly-fold-body'><p class='deal-meta ov-ls-meta'>LLM · gemini:gemini-flash-latest · 2026-07-29T09:03:41Z</p><div class='ov-ls-prose-wrap'><p class='ov-ls-prose'>ABB가 2026년 2분기 실적 발표를 통해 사상 최대 수주 실적과 매출 급증을 달성하였고, 주가가 182퍼센트 상승하여 적정 가치를 상회하는 경향을 나타냈습니다. 이에 대응하여 전력기기, 자동화, 스마트그리드, 배전 분야를 담당하는 LS일렉트릭과 초고압 송전 및 전력케이블 사업을 영위하는 LS전선은 글로벌 전력 및 자동화 시장의 수주 호황 흐름과 에너지 밸류체인 내 전반적인 수요 변화를 관찰 초점으로 설정할 수 있습니다.</p><p class='ov-ls-prose'>ABB가 사업 확장을 목적으로 영국의 로토크를 56억 달러에 인수하기로 결정하며 대형 M&amp;A를 진행하고 있습니다. 이러한 경쟁사의 포트폴리오 재편과 자본시장 활동에 발맞추어, 자동화 및 전력기기 솔루션을 제공하는 LS일렉트릭과 전력·에너지·소재 밸류체인이 교차하는 LS그룹 공통 차원에서 글로벌 시장 내 경쟁 환경 변화 및 사업 영역 확장의 영향을 모니터링 초점으로 삼을 관찰 포인트로 정리된다.</p><p class='ov-ls-prose'>ABB가 인공지능을 활용하여 글로벌 네트워크 운영을 전면 개편하고자 TCS와 파트너십을 체결하였습니다. 이러한 글로벌 선도 기업의 AI 기반 운영 개편 이슈에 맞추어, 스마트그리드 및 자동화 사업을 영위하는 LS일렉트릭과 동 및 비철 제련을 담당하는 LS MnM, 배터리소재 원료를 다루는 LLBS 등 LS그룹 에너지·소재 밸류체인 전반의 디지털 운영 및 기술 파트너십 동향을 관찰 초점으로 둘 수 있습니다.</p></div></div></details></div>
+    <section class="weekly-detail-tabs">
+    <h3 class="fin-sub">출처 · 상세 탭</h3>
+    <p class="deal-meta">Yahoo·IR·콜 원문 모음 (이번주 동향 아래 · 국내와 동일 탭)</p>
+    <div class="tabs company-tabs">
+      <button class="active" data-tab="tab-value">밸류체인</button>
+      <button data-tab="tab-orders">수주</button>
+      <button data-tab="tab-supply">공급망</button>
+      <button data-tab="tab-policy">정책</button>
+      <button data-tab="tab-mgmt">주요 경영이슈</button>
+      <button data-tab="tab-capital">자본시장</button>
+      <button data-tab="tab-invest">투자·MOU</button>
+      <button data-tab="tab-financials">실적</button>
+    </div>
+    <div id="tab-value" class="tab-panel active"><p class='tab-desc'>관련 IR·Yahoo·콜 (내용 + 출처 링크)</p><div class='ov-sec'><h4>업스트림</h4><p class='empty'>업스트림 관련 자료 없음</p></div><div class='ov-sec'><h4>다운스트림</h4><p class='empty'>다운스트림 관련 자료 없음</p></div></div>
+    <div id="tab-orders" class="tab-panel">
+      <div class='ov-sec'><h4>수주</h4><ul class='rpt-l1 ov-issue-ul'><li>ABB의 영국 기업 인수 추진 <span class='item-date'>2026-07-16</span> <a class='ai-news' href='https://www.wsj.com/business/deals/abb-to-buy-rotork-to-strengthen-electrification-business-7fac8604?siteid=yhoof2&amp;yptr=yahoo' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>후속 IR·실적 점검 포인트</li><li>사업·시장 함의</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB가 영국의 로토크(Rotork)를 56억 달러에 인수하기로 했습니다.</p></li><li>ABB Ltd 2026년 2분기 실적발표회 핵심 요약: 역대 최대 수주 및 매출 급증 <span class='item-date'>2026-07-16</span> <a class='ai-news' href='https://finance.yahoo.com/markets/stocks/articles/abb-ltd-abbny-q2-2026-150154901.html' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>계약 규모·상대방 포인트</li><li>공급·딜 실행 일정 포인트</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB Ltd는 2026년 2분기 실적 발표를 통해 사상 최대 수주 실적과 매출 급증을 기록했다고 밝혔습니다.</p></li><li>182% 상승 이후 적정 가치 상회 · ABB 주가 <span class='item-date'>2026-07-23</span> <a class='ai-news' href='https://finance.yahoo.com/markets/stocks/articles/abb-swx-abbn-stock-looks-001547140.html' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>182% 상승 이후 적정 가치 상회</li><li>ABB 주가</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB(SWX:ABBN) 주가가 182% 상승한 이후 현재 적정 가치를 상회하는 것으로 나타났습니다.</p></li><li>ABB 2분기 실적 발표 및 핵심 경영 지표 분석 <span class='item-date'>2026-07-16</span> <a class='ai-news' href='https://finance.yahoo.com/markets/stocks/articles/abb-abbny-reports-q2-earnings-133004787.html' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>후속 IR·실적 점검 포인트</li><li>사업·시장 함의</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB(ABBNY)가 2분기 실적 보고서를 발표했습니다.</p></li><li>AI 기반 글로벌 네트워크 운영 전면 개편 · ABB의 TCS 파트너십 체결 <span class='item-date'>2026-07-14</span> <a class='ai-news' href='https://www.verdict.co.uk/abb-taps-tcs-network-operations/' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>AI 기반 글로벌 네트워크 운영 전면 개편</li><li>ABB의 TCS 파트너십 체결</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB는 인공지능(AI)을 활용해 글로벌 네트워크 운영을 전면 개편하기 위해 TCS를 선정했습니다.</p></li><li>애널리스트 및 투자자 대상 웹캐스트 <span class='item-date'>2026-01-01</span> <a class='ai-news' href='https://stream.swisscom.ch/abb/20260716' target='_blank' rel='noopener'>IR</a><ul class='rpt-l2'><li>ABB 2026년 2분기 실적 발표 애널리스트 및 투자자 웹캐스트</li><li>투자·양산 스케줄 포인트</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB는 2026년 2분기 분기 실적 발표를 위한 애널리스트 및 투자자 대상 웹캐스트를 진행합니다.</p></li></ul></div>
+      <div class='deal-wrap deal-wrap-v2' id='deal-root'><div class='deal-hero'><div><h2 class='deal-hero-title'>수주 · 투자 · MOU</h2><p class='tab-desc' style='margin:0'>ABB 수주 (딜 분류) 뉴스·공시·IR 자동 분류 · 총 <strong>2</strong>건 — 분류 버튼을 눌러 한 화면에서 확인</p></div></div><div class='deal-filter-bar' role='tablist'><button type='button' class='deal-filter' data-deal-filter='all'>전체 <em>2</em></button><button type='button' class='deal-filter' data-deal-filter='contract_docs' style='--c:#e67e22'>협약·계약 문서 <em>0</em></button><button type='button' class='deal-filter active' data-deal-filter='orders' style='--c:#3d8bfd'>수주·사업 진행 <em>2</em></button><button type='button' class='deal-filter' data-deal-filter='investment' style='--c:#20c997'>투자·금융 <em>0</em></button><button type='button' class='deal-filter' data-deal-filter='alliance' style='--c:#9b59b6'>제휴·사업구조 <em>0</em></button></div><div class='deal-panels'><section class='deal-panel' hidden data-deal-cat='contract_docs'><div class='deal-panel-head' style='--c:#e67e22'><h3>협약·계약 문서 <small>Letter / Memorandum / Agreement</small></h3><span class='deal-panel-count'>0건</span></div><div class='deal-card-grid'><p class='empty'>해당 분류 이벤트가 없습니다.</p></div></section><section class='deal-panel' data-deal-cat='orders'><div class='deal-panel-head' style='--c:#3d8bfd'><h3>수주·사업 진행 <small>Order / Business</small></h3><span class='deal-panel-count'>2건</span></div><div class='deal-card-grid'><article class='deal-card'><div class='deal-card-bar' style='background:#3d8bfd'></div><div class='deal-card-body'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수주·사업 진행</span><span class='src'>web</span><span class='co'>ABB</span></div><div class='deal-title'>PDF</div><div class='deal-meta'> · project</div><div class='deal-sum'>— Cash generation analysis Historic development in cash flow from operating activities 2020 cash drivers Cash flow from operating activities in continuing Transformation impacts operations (CO) (ABB-OS, other restructuring +$1,875 mn programs, PG carve-out) Cash flow from operating activities, continuing1 Kusile settlement ~$1 bn negative transformation, one-time impacts2 Pension impacts Lower inc</div><a class='deal-link' href='https://resources.news.e.abb.com/attachments/published/73590/en-US/BC024103A730/ABB-Q4-2020-Group-results-presentation.pdf' target='_blank'>원문 보기 →</a></div></article><article class='deal-card'><div class='deal-card-bar' style='background:#3d8bfd'></div><div class='deal-card-body'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수주·사업 진행</span><span class='src'>web</span><span class='co'>ABB</span></div><div class='deal-title'>PDF</div><div class='deal-meta'> · order backlog</div><div class='deal-sum'>Q2 2020 Group results Summary Trading conditions during the second quarter were challenging, influenced by the escalating COVID-19 pandemic. Alongside the sharp drop in short-cycle demand that lowered product volumes, system installation and service activities faced extensive mobility restrictions.Reflecting this, orders and revenues for the second quarter period were severely dampened across the</div><a class='deal-link' href='https://resources.news.e.abb.com/attachments/published/65310/en-US/5CF6D4C13F6E/ABB-Q2-2020-press-release-English.pdf' target='_blank'>원문 보기 →</a></div></article></div></section><section class='deal-panel' hidden data-deal-cat='investment'><div class='deal-panel-head' style='--c:#20c997'><h3>투자·금융 <small>Investment / Finance</small></h3><span class='deal-panel-count'>0건</span></div><div class='deal-card-grid'><p class='empty'>해당 분류 이벤트가 없습니다.</p></div></section><section class='deal-panel' hidden data-deal-cat='alliance'><div class='deal-panel-head' style='--c:#9b59b6'><h3>제휴·사업구조 <small>Alliance / Structure</small></h3><span class='deal-panel-count'>0건</span></div><div class='deal-card-grid'><p class='empty'>해당 분류 이벤트가 없습니다.</p></div></section></div>
+<script>
+(function(){
+  const root = document.getElementById('deal-root');
+  if (!root) return;
+  const filters = root.querySelectorAll('.deal-filter');
+  const panels = root.querySelectorAll('.deal-panel');
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.getAttribute('data-deal-filter');
+      filters.forEach(b => b.classList.toggle('active', b === btn));
+      panels.forEach(p => {
+        const cat = p.getAttribute('data-deal-cat');
+        p.hidden = !(key === 'all' || cat === key);
+      });
+      root.querySelector('.deal-filter-bar')?.scrollIntoView({behavior:'smooth', block:'nearest'});
+    });
+  });
+})();
+</script>
+</div>
+      
+    <section class="hist-embed">
+      <h3>히스토리 · 수주·계약</h3>
+      <div id="hist-orders-INTL_ABB_SW" class="hist-panel active"><p class='tab-desc'>데이터 기준 날짜 미상 포함 (오래된 → 최근). 날짜가 불명확하면 뉴스·애널 등 <strong>자료 기준</strong>을 표시합니다.</p><div class='hist-year-focus' data-panel='hist-orders-INTL_ABB_SW'><span class='sub'>기간 보기:</span> <button type='button' class='hist-focus-btn active' data-focus='all'>전체</button><button type='button' class='hist-focus-btn' data-focus='undated'>날짜 미상</button></div><div class="hist-tl">
+            <section class="hist-tl-year" data-year="undated">
+              <div class="hist-tl-year-label">날짜 미상 <em>2</em></div>
+              <div class="hist-tl-rail">
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#3d8bfd">
+      <div class="hist-tl-date">날짜 미상（IR 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#3d8bfd">수주·계약</span>
+          <span class='hist-basis'>IR 자료 기준</span>
+          <span class="src">근거 2건 · IR</span>
+        </div>
+        <div class="deal-title"></div>
+        <div class='deal-sum'>prior year 2020 Free cash flow (CO) +$1.3 bn $694 mn capex (CO), non-essential projects 2019 postponed 0 1000 2000 3000 ($ mn) Resilient cash performance, inline with guidance 1.</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>IR <em>2</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://resources.news.e.abb.com/attachments/published/73590/en-US/BC024103A730/ABB-Q4-2020-Group-results-presentation.pdf" target="_blank" rel="noopener">IR·뉴스 원문</a><div class='deal-sum'>prior year 2020 Free cash flow (CO) +$1.3 bn $694 mn capex (CO), non-essential projects 2019 postponed 0 1000 2000 3000 ($ mn) Resilient cash performance, inline with guidance 1.</div></li><li class='hist-ev-item'><a href="https://resources.news.e.abb.com/attachments/published/73590/en-US/312A67997F24/ABB-Q4-and-full-year-2020-press-release-English.pdf" target="_blank" rel="noopener">IR·뉴스 원문</a><div class='deal-sum'>In other customer segments such as mining, pulp and paper and water and wastewater, some capital expenditure projects went ahead during the quarter.</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#3d8bfd">
+      <div class="hist-tl-date">날짜 미상（웹 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#3d8bfd">수주·계약</span>
+          <span class='hist-basis'>웹 자료 기준</span>
+          <span class="src">근거 2건 · 웹</span>
+        </div>
+        <div class="deal-title">PDF</div>
+        <div class='deal-sum'>End-market overview – In discrete industries, the group benefited from strong activity in the 3C and machine builders’ segments. On a sequential basis, there were positive signs in automotive for future capital expenditure and electric vehicle manufacturing spend. End-markets such as food &amp; beverage continued to expand. – Activities in the energy segments remained subdued except LNG, where ABB ben</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>웹 <em>2</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://resources.news.e.abb.com/attachments/published/73590/en-US/312A67997F24/ABB-Q4-and-full-year-2020-press-release-English.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>End-market overview – In discrete industries, the group benefited from strong activity in the 3C and machine builders’ segments. On a sequential basis, there were positive signs in automotive for future capital expenditure and electric vehicle manufacturing spend. End-markets suc</div></li><li class='hist-ev-item'><a href="https://resources.news.e.abb.com/attachments/published/65310/en-US/5CF6D4C13F6E/ABB-Q2-2020-press-release-English.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>Q2 2020 Group results Summary Trading conditions during the second quarter were challenging, influenced by the escalating COVID-19 pandemic. Alongside the sharp drop in short-cycle demand that lowered product volumes, system installation and service activities faced extensive mob</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    </div>
+            </section>
+            </div></div>
+    </section>
+    
+    </div>
+    <div id="tab-supply" class="tab-panel"><div class='ov-sec'><h4>공급망</h4><p class='empty'>없음</p></div></div>
+    <div id="tab-policy" class="tab-panel">
+      <div class='ov-sec'><h4>정책</h4><p class='empty'>없음</p></div>
+      <p class='tab-desc'>수주와 별도로, 사업에 영향을 줄 수 있는 <strong>수요·정책·공급망</strong> 시그널을 정리합니다. 총 <strong>41</strong>건.</p><div class='deal-kpis'><a class='deal-kpi' href='#policy-demand' style='--c:#3d8bfd'><div class='deal-kpi-label'>수요·시장</div><div class='deal-kpi-count'>10</div><div class='deal-kpi-en'>사업 영향 모니터링</div></a><a class='deal-kpi' href='#policy-policy' style='--c:#e67e22'><div class='deal-kpi-label'>정책·규제</div><div class='deal-kpi-count'>30</div><div class='deal-kpi-en'>사업 영향 모니터링</div></a><a class='deal-kpi' href='#policy-supply_chain' style='--c:#20c997'><div class='deal-kpi-label'>공급망·원료</div><div class='deal-kpi-count'>1</div><div class='deal-kpi-en'>사업 영향 모니터링</div></a></div><section class='deal-section' id='policy-demand'><h3><span class='dot' style='background:#3d8bfd'></span>수요·시장<em>10건</em></h3><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>quarterly_ir</span><span class='co'>ABB</span></div><div class='deal-title'>PDF</div><div class='deal-meta'> · ess</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><div class='deal-sum'>prior year 2020 Free cash flow (CO) +$1.3 bn $694 mn capex (CO), non-essential projects 2019 postponed 0 1000 2000 3000 ($ mn) Resilient cash performance, inline with guidance 1.</div><a href='https://resources.news.e.abb.com/attachments/published/73590/en-US/BC024103A730/ABB-Q4-2020-Group-results-presentation.pdf' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>power_news</span><span class='co'>미국</span></div><div class='deal-title'>Data centers are actually making your electric bill cheaper—but sinking AI demand could change that</div><div class='deal-meta'>Sun, 26 Jul 2026 07:00:00 · demand, data center</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMinwFBVV95cUxOcGc5TEw0YTdCQlhVT1V5cFVaMkw3bEtpMHF4MzFtSld0eHhDQlVpTHUtRm5sWExVVkFvMWpQM3pmWm04VUxBN1pnaGxaRlhjbGYybXN4RjE2VHY5bjNFMHlsdGthcHB1MHk2a2RZVlVWLXFCWUFDWS1wdkVETkVITk0xNTlOei1PV05CMi1mcnp3Z21sMFJJWXlIeUFHZ1E?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>power_news</span><span class='co'>미국</span></div><div class='deal-title'>America’s Demand for Power Is Soaring—and So Are the Costs of Building Out the Grid</div><div class='deal-meta'>Fri, 24 Jul 2026 15:10:00 · demand</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMiygFBVV95cUxOakdqWndmV1ZSUDFzN1YzZkRDa3dhakU2NUItUnBuTjhrWk1IY09TcjhjdVN6YUJDdUU3NS1FanZLZUxoMkstUnBWdFJBYlpjODFpdnpQOGhpNFNSc0hJSy1ac3FTakxROVREbmJUQXJWdlRDY2pIOUhqR1FwVVlPUzRxMkpEVjZpQ1UzTkJvd2hfUG9PVC16Z0JaM2V1R2pzekwwQUpvU1ZWU080ejJySnRGc3B0cE55cmIyUEEzR3ZXYjNQcFo3QVRB?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>power_news</span><span class='co'>미국</span></div><div class='deal-title'>How Loudoun County data centers are linked to power flickering across half the U.S.</div><div class='deal-meta'>Sat, 25 Jul 2026 00:28:50 · data center</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMi5AFBVV95cUxOZkU3d2VLT2FJRnRvUy0yRmJCX1kzNkt4T0tkVEpQQTFCNGVZRVdyT2pjaFhYZEdyZmV2a2xwLVp4dzlobDFwemU2VzBGWkR0RWg3cW9fZzFmWnNrQkJrV0VmdUN1TEFSY3l4RU1rRF9WanRpN0FoZGJuTUxnWnNiczA4bUlYSU83XzZybWtKb2FyRXJZMHA3akhzbVZIRTJ5Wi1IelRCcXlnbElrYnJ4a2l4ZkU0cmliZk9WWlp0QVh4MUpFcFlVT2ZSbGhMNWxKX3R2YWQ4MHYtZXJiTHoyekVmREXSAewBQVVfeXFMTU9OR1RzcWowWjA5ZXJOZTdnRjdfRnJNcEFocjRub0FTa0JGaDYyQWN6VGZISFdDeVhzOExJcFZUTDdHTzBBbS0yMXFQbDBfRTdfM3h1Z0xvRkFxZ0NDM3VDMU85VmdpeXRIalFKb3J6NHZ2N1lxTG1jSGhONXFxeWw0RFEwNjhteWdwc3pQaEFHemFsZzN5NFhCZGNzMkhidXdNMFVGY3U5U1dGSHBsb1VESXdMSHM4SVZrLV9zNEw1MzFIQVJaZk01X0tKQmJkTmlfZE5IQ1VBLVdWa0kxWXNYckwtNDF5clJTZTQ?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>power_news</span><span class='co'>미국</span></div><div class='deal-title'>Environment Northwest: Hotter summers may reshape the Northwest&#x27;s power grid as electricity demand grows</div><div class='deal-meta'>Sat, 25 Jul 2026 01:06:00 · demand</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMimgJBVV95cUxQb3owZFdfYV9OYXMwS2ZadjlHSlc4QkdHZHlSRnlOQXk4NmRIRENZZDZPU3k5dWMzRDNTYzljQUNTZEtweVdJdlVlUGhtMzRmekdpeHpERjZqWE5EMEVXQTZaQTlob1Y1X3NmamplV0lnbDJPYWV1T2hBZnBSNkp5ZE9KN2Q3SU5Vd3MtdVZUSFZkYjN0VEJzU0U0VTdScFZKSzBHdlV4U0JUZnBBbG9iVm54b200ak82b1NwZ01sbENlc053M0I0RUotLV81SUZXYUJ3Ri0xQzN2MHhsN09YUE9reE9qeVd3UmNwQjVYYzl4Yy1UVjR6TTU5ZkpPMW1hU1Zwcm9EVmFGVHJEQmRhQ0t0Tmg1bERJUEE?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>power_news</span><span class='co'>유럽</span></div><div class='deal-title'>Europe Turns to Water Batteries as Grid Pressure Builds Fast</div><div class='deal-meta'>Thu, 09 Jul 2026 20:00:00 · ess</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMitgFBVV95cUxPRktmVG5kWDNqdmVBc1JkeWxISHZXcWFmaGhJcF9tWjJmOXBmZHhyb2h0RFFpNTVmVDN4QjF5ZzRiRGYtM2gtTml1WXF6U0tjaEpqNElFTVJNR2hTRkkxNkdPa1dXTEhhWTlUVW04ZllGMWM2WU95MlcwZ3N1YkFvRVlyUUREVldkVWtvcmZNOGpiZUd1OTB2ME9DdFJKN251MFpHdGJ3b21BWkd6aHprYmhrVzlPUQ?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>power_news</span><span class='co'>일본</span></div><div class='deal-title'>Japan proposes rebuilding ageing nuclear plants to meet power demand</div><div class='deal-meta'>Thu, 04 Jun 2026 07:00:00 · demand</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMiwgFBVV95cUxOTjhZTndqSjRtNnBRSjdFRktpMVI3b0ZSZ05HVHZab29BelplaGwzdWVreWxZVnN0bllNckhxSWZEZ1cwTjVLVk1VNjJuc2x4c3BWcW00dDZISUh6QU5HVkdGbW9CNUNKQ2otalQya3dHMHFMSEg1T3NRa1g0T3N1ZWxwVms3djRjS1FNaG1XUG1Sdlp3UjV2bUlRdFlTeWRQSXMtdl9ld0FDdHlUa0h4ZndTUXIta3QtV3hyUGlyM04tUQ?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>power_news</span><span class='co'>일본</span></div><div class='deal-title'>AI 2026: Gas Turbine Demand Pushes Data Centers to Become Power Plants</div><div class='deal-meta'>Wed, 24 Jun 2026 07:00:00 · demand, data center</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMiekFVX3lxTE14bF9jSnhZUC0tRlNRYmJRUTNnQlh3bEhPR3B0RVVITDczaURQZUFURDFKbFVhMlV2bHhSbVBBSlVWVHdNNzJnby02QWNCMEJEWkpDWnlQYnE1WG5HSWlLb3RGNmRUTHlWQUZxcnk4SGRlSGpCN2VlOVl3?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>power_news</span><span class='co'>일본</span></div><div class='deal-title'>Nuclear Power Is the Only Real Answer to AI Electricity Demand and These 3 ETFs Own the Trade - 24/7 Wall St.</div><div class='deal-meta'>Thu, 28 May 2026 07:00:00 · demand</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMi0wFBVV95cUxOTnkxLS1ZUzdod05HSUZUZm1GLThKdFhZekdsRnYxMGNxajJWcXFiZHJ5SGdlUzZPLWxXYVRLQWVmcWdqSGdkeXBsZURJWUZ5NzNuMUlMVjBEOVJmWEd0ellJeHVNZm1GZVlNWTJxQ0xJcUNHdF9qbTF5LXRyMHhGUTZJS19zVGtKaHpYdE1nV1RPejdXUG96Z3hjRTlqeVM0LUIyN1NHcU1jREM4S0lPbkt1NkNpYXJURi1Wck1JVU9YSGdWSE5Na3VRdGlOdzlDYTlB?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>power_news</span><span class='co'>일본</span></div><div class='deal-title'>Japan&#x27;s data centre boom to drive 60% of power demand growth as US$28 billion hyperscaler investment reshapes grid</div><div class='deal-meta'>Tue, 26 Aug 2025 07:00:00 · demand</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMie0FVX3lxTE9nWHNlWHdNUWNzNWxkVDNFWHRGZTJ5RGFfSDFqd0NIVV9UXy04eEl1ZFNKalg4NmhOTU5Nakp2dFhiNHhrU0hTZl94YVR3OFY0ZS1abFczSVcxZGxvbjctUDFnanFsaHJhb081RUVfSmswNEtKV0liRzF2MA?oc=5' target='_blank'>원문 →</a></div></section><section class='deal-section' id='policy-policy'><h3><span class='dot' style='background:#e67e22'></span>정책·규제<em>30건</em></h3><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>ir_pdf</span><span class='co'>ABB</span></div><div class='deal-title'>PDF</div><div class='deal-meta'> · renewable</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>─ Note 18 Operating segment data The Chief Operating Decision Maker (CODM) is the Chief Executive Officer. The CODM allocates resources to and assesses the performance of each operating segment using the information outlined below. The Company is organized into the following segments, based on products and services: Electrification, Industrial Auto</div><a href='https://resources.news.e.abb.com/attachments/published/73590/en-US/5BFB76DD01FE/ABB-Q4-2020-and-full-year-financial-information-English.pdf' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_market</span><span class='co'>글로벌 전력</span></div><div class='deal-title'>송전망 투자·허가 지연이 재생에너지 병목의 핵심</div><div class='deal-meta'> · 전력정책</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>송전망 투자·허가 지연이 재생에너지 병목의 핵심</div></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_market</span><span class='co'>글로벌 전력</span></div><div class='deal-title'>데이터센터·수소·전기화가 피크·기저 수요를 동시에 끌어올림</div><div class='deal-meta'> · 전력정책</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>데이터센터·수소·전기화가 피크·기저 수요를 동시에 끌어올림</div></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_market</span><span class='co'>글로벌 전력</span></div><div class='deal-title'>지역별로 원전·가스·석탄·재생 믹스와 시장제도(용량시장·PPA)가 상이</div><div class='deal-meta'> · 전력정책</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>지역별로 원전·가스·석탄·재생 믹스와 시장제도(용량시장·PPA)가 상이</div></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_market</span><span class='co'>미국</span></div><div class='deal-title'>연방·주 단위 송전 개혁, IRA/세액공제, 데이터센터 요금·접속</div><div class='deal-meta'> · 전력정책</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>연방·주 단위 송전 개혁, IRA/세액공제, 데이터센터 요금·접속</div></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>미국</span></div><div class='deal-title'>US energy officials consider power shift in PJM electric grid</div><div class='deal-meta'>Thu, 23 Jul 2026 22:35:42 · 전력</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMiywFBVV95cUxOb2gzVF9UczhlcEdtc2p6RldGcUFLdE4tWkVYNTdqOHNzUFdPYU9jMnE1czB4TUk1blRSbmIzM1ljdmhtME5aRl9NeGJ0a2Z1VmV5bExCbUlERmlCTlVYRlR6QnR6bGZMMVd5UFVVTTlSbDNCdk9wNDFtVF9TQ2RxVXlmVXBnWlE5RlhtQTg2X0tZLTg0WWVkQXM2QzNKVnhENzA0NXc4dlRyQmE3Z0xBSk0zajNjZGNhbFBNQnUtcTM4RmFuRUNLdHJ0bw?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>미국</span></div><div class='deal-title'>Speed to Power</div><div class='deal-meta'>Thu, 23 Jul 2026 14:53:33 · 전력</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMiTkFVX3lxTFAyOTJOeHRrY1lNc0Vhb1l4MHU3ZmRaNmRUMUVLWncxU0VJUk8tMC1TN0JLd0dKR2loN2ZJVTJKTEwyZGY2QnJnMkpFQW1EQQ?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>미국</span></div><div class='deal-title'>State Action Is Accelerating Distributed Energy to Build the Electric Grid of the Future</div><div class='deal-meta'>Thu, 23 Jul 2026 16:05:00 · 전력</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMi6AFBVV95cUxPSTRjVkt1cEtNRWlZdWlnNk95b01vLXBWVnF4T0VlS2pWazhPZHBPNG42ZXBMUUxsdGpKSkdfZDhUVV95bjdoSmRLT0ZRYjhVZER4TnBJVXhxUFlSUWZBMWxNWkNxdFItMFVtU2R5NFVpNWVCVUhQT3NfeTMzNnFWUW9kMzBIcnk5Um1faVdpYWVNblRSd3BuRUdMWkFWRUN6TjRUQUdiMHlpdjlkRm0xNXpDNGI5S3lVd2VDZHNNQkV0VlkzZVJMTVJfWmJNc1JfSzI2Z2VCUTY4cEttZ1dLb2NQdllhZUJs?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>미국</span></div><div class='deal-title'>To maintain the electric grid, massive corporations will pay – not American citizens. 🇺🇸</div><div class='deal-meta'>Thu, 23 Jul 2026 19:13:52 · 전력</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMi2AFBVV95cUxPYThleV9WT2oxdlUxMmdMbVhaMlF4YjVmajY3Z2NEZEtuOU9feXpvR3d5LVF1VGNQYTdVS0lsMHhfRGRUUmU2b1A2NW9FNlFzNnhKd3czbXVpVDdtekt6Y2dobGUxY0VsM2RVbEljOUdwYVMtTmlTTlpZU1ZNZFdvZERvYlQ4Zk9VcDZlT2pka1RLS01XRHpMcXpHRlRyYjlDZTBjOWNaTkpJUXVNQ3J3OWRsdzYxa2dGcDdvYmRhUXJOWGZLSElFWnFKbDQ4OE5ES2FvNVd1dWo?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>미국</span></div><div class='deal-title'>Massive disconnect of power roils largest US electric grid</div><div class='deal-meta'>Wed, 22 Jul 2026 22:26:00 · 전력</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMirAFBVV95cUxOUjFndXZmUjhhRkxoWGJlcXJYcENrcjFoQWlxTE1oQ1JycWlMSkM0YWh5TERMVW5HaXFoWk85R212SDNTeWRERGpaOEFCMnFMdlFpbUdUX3VISmYwdUdud3JJQ2Q3RHBqaEw2VzF2WkFIbU9kN0R6SEtkRmRaM2Iwd05nRVhubEFUbmRJeHNlSmNRLVBsa01PeHZZOHVVLU01bW50RlU4VkROTld5?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>미국</span></div><div class='deal-title'>New software detects 300 GW of hidden power on the US electric grid</div><div class='deal-meta'>Thu, 09 Jul 2026 07:00:00 · 전력</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMiiAFBVV95cUxNUzhZeHdUYnBCZmlBa0ZWTGFRVU81dDJsTlJsbV9SRkdqanNaVmFQU2R3TEFOZEFWelVOQzJYZ2RVZkF3S3Zjd1duX0Raa2ozRm5LdWJvT0h3Z3hkaG1RQkt4UWdDU0lFWEY3aERVQXZXWWY1LVIwdTl0WXMwbkRPUmp2Rl84eE1k?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>미국</span></div><div class='deal-title'>New York imports more electricity from Canada after high-voltage transmission line opens - U.S. Energy Information Administration (EIA) (.gov)</div><div class='deal-meta'>Mon, 20 Jul 2026 13:05:07 · 전력</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMiY0FVX3lxTE01YmZEZVVKMTNzWGdRd1pnbkFybnZMejFGa0pVNWJ4bUo1cl85MnptWU5PSkR5cFpPMFV2MWFiTDl6UWw1MFh1RVVfQmNwM21hTTRTYWxtUFpvSENqUTBHN1o0Zw?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_market</span><span class='co'>유럽</span></div><div class='deal-title'>전력시장 설계 개혁, 용량메커니즘, CBAM·산업 지원</div><div class='deal-meta'> · 전력정책</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>전력시장 설계 개혁, 용량메커니즘, CBAM·산업 지원</div></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>유럽</span></div><div class='deal-title'>Europe turns to Africa to strengthen its power grid as Portugal and Morocco revive electricity link</div><div class='deal-meta'>Mon, 20 Jul 2026 15:37:26 · 전력</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMi1gFBVV95cUxOTzZHUnB0ZFJlYUliY2EzNk5USXdGN1dxUHlPX2RfZ0FTZzhlbUZxWS1FWTl0ajV5X0pyMFA0Y0t3Y0w0REZYOUdvR1F1YTN2SmRYakpDd2tZQTVadWIzcW5pTEk5bmFXbmlNM2U1eV9zODY2Nzk5elJrWEo5Q2xQZmoxWjRDQzA4UWppZHhkZkVrWVc0Qm93aFEtNXVsNXVmYkZOemNqQ0JrOXdzbnJDdkxGdmhBSGpSNVRKUm9CNTYzY083aC0waVhMd2tUdjNHSk5QOXFR?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>유럽</span></div><div class='deal-title'>Quarterly reports show a surge in solar energy and e-vehicles, with record highs in 2025</div><div class='deal-meta'>Mon, 06 Jul 2026 07:00:00 · 전력</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMivgFBVV95cUxPdGN6emNzN3JIb2poeGlaRXVfckdNMDZsYTNtZC1UZm13M3M1eTlfUUd5M2lrUDRsWWJCOE1CLUJ6MjNWUUFOOTNnVEZsbUpNNFR1ME1xVGpwUl9lUDJQT00xME5TenhmVktqdDFzWjlsMjA1ZHBVY0drUGVZdXVjRkxxbmJFaGZUNWxlRmRzN3l6N0ZuTXRHb1BpbjFadG5HdFR1MEx0NV9MMEptTWdmZVFxU1Vua1RIcWh4ekJn?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>유럽</span></div><div class='deal-title'>Weakening CO₂ standards undermines the Vehicle-to-Grid potential of EVs</div><div class='deal-meta'>Mon, 20 Jul 2026 07:00:00 · 전력</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMiuAFBVV95cUxNWDJOajJYaC1mNWM4bm9PWmdhOEh6cUU0b2F1UnE1ZGFNZkcteXk5YWpHTjl4cmVMNkNyazNZbjYyRThVVjlISV90NlQxXy1UV2Z2RDkxYWliRVFVVGdmekc2Yl85YlNxX09EcmxjT01nbmtzaTlQOXplbEtETEwyaDhINVV6cEo1RjBFenRBbkpfX3pfbGtWNHl2WEhUa0RXOS1teEloNnRyVUhNVzF5Q2hvaEI1cXBl?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>유럽</span></div><div class='deal-title'>European electricity markets have too much power</div><div class='deal-meta'>Thu, 04 Jun 2026 07:00:00 · ets</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMiqwFBVV95cUxOMWFHOFBMZXdGTXZMaDh1R0t2U2YwNGp6QUtrYVdlWS1HQko3RW1NMGxOcU13WkxULU5VRGlTOTRZOWh0NHdnWWVfQlF2RkJzaDF4eW5KeDF4UDUxSjV3VUthMjZMU1V1MDU0WnVYNnU4TGVQaEdkQThIYVlhb1ZNaE9EV1p1aGF2eE9xWGVVcVVxS01LZm13dERwVVBvNXJFNndCTG1mTENTQVE?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>유럽</span></div><div class='deal-title'>Europe&#x27;s power grid buckles under record heat: outages, nuclear cuts, and soaring prices</div><div class='deal-meta'>Sun, 28 Jun 2026 07:00:00 · 전력</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMiygFBVV95cUxQeFpjWlp4d0x6YVdlMVFXT29YZUFSVGhHS0hXSUdoa210Z09LQWVyVDJhNXEyandNXzVKR3JNQWJaQjB6OU9INGstSmd4VHRxS2F3ZGpOdFl5YmVoOTNqekFWYWFpTTB1UVZhZjFOdEFEaF8wclBwRlhOeGpMNHJ1VEx2MHptcjdzSWxGanRoeG95VVZaQ2lmb0JRSWlvX1Znc0NJRTNxYk96UGVkazVncGhmZ0pyazJZclZZS1NMNG9yRlRmUmh5SHNB?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>유럽</span></div><div class='deal-title'>A Home Battery Revolution Is Reshaping the Power Grid</div><div class='deal-meta'>Wed, 01 Jul 2026 07:00:00 · 전력</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMiXEFVX3lxTE9uQi1tQnFIVGlaWENYRVdCbXF2X2pqaFBGRFBGcW1JVzJubDdrcE1WRzVYV3VyMHpPdWtNb3JlT3pDeldaRE9tbE55cVN0cnZjZVo4MDdkM1pVUDlR?oc=5' target='_blank'>원문 →</a></div></section><section class='deal-section' id='policy-supply_chain'><h3><span class='dot' style='background:#20c997'></span>공급망·원료<em>1건</em></h3><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#20c997'>공급망·원료</span><span class='src'>quarterly_ir</span><span class='co'>ABB</span></div><div class='deal-title'>PDF</div><div class='deal-meta'> · supply chain</div><div class='impact-hint'>원료·공급망 → 원가·조달·경쟁력에 영향 가능</div><div class='deal-sum'>businesses, we have a dedicated team, in a global shared service center, who reviews the completeness of supplier responses and assesses whether suppliers appear to have carried out their own appropriate supply chain due diligence.</div><a href='https://global.abb/content/dam/abb/global/group/investors/results-and-reports/annual_reporting_suite/2023/ABB%20Form%20SD%202023.pdf' target='_blank'>원문 →</a></div></section>
+    </div>
+    <div id="tab-mgmt" class="tab-panel"><div class='ov-sec'><h4>주요 경영이슈</h4><ul class='rpt-l1 ov-issue-ul'><li>애널리스트 및 투자자 대상 웹캐스트 <span class='item-date'>2026-01-01</span> <a class='ai-news' href='https://stream.swisscom.ch/abb/20260716' target='_blank' rel='noopener'>IR</a><ul class='rpt-l2'><li>ABB 2026년 2분기 실적 발표 애널리스트 및 투자자 웹캐스트</li><li>투자·양산 스케줄 포인트</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB는 2026년 2분기 분기 실적 발표를 위한 애널리스트 및 투자자 대상 웹캐스트를 진행합니다.</p></li><li>ABB Ltd 2026년 2분기 실적발표회 핵심 요약: 역대 최대 수주 및 매출 급증 <span class='item-date'>2026-07-16</span> <a class='ai-news' href='https://finance.yahoo.com/markets/stocks/articles/abb-ltd-abbny-q2-2026-150154901.html' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>계약 규모·상대방 포인트</li><li>공급·딜 실행 일정 포인트</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB Ltd는 2026년 2분기 실적 발표를 통해 사상 최대 수주 실적과 매출 급증을 기록했다고 밝혔습니다.</p></li><li>ABB 2분기 실적 발표 및 핵심 경영 지표 분석 <span class='item-date'>2026-07-16</span> <a class='ai-news' href='https://finance.yahoo.com/markets/stocks/articles/abb-abbny-reports-q2-earnings-133004787.html' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>후속 IR·실적 점검 포인트</li><li>사업·시장 함의</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB(ABBNY)가 2분기 실적 보고서를 발표했습니다.</p></li><li>ABB의 영국 기업 인수 추진 <span class='item-date'>2026-07-16</span> <a class='ai-news' href='https://www.wsj.com/business/deals/abb-to-buy-rotork-to-strengthen-electrification-business-7fac8604?siteid=yhoof2&amp;yptr=yahoo' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>후속 IR·실적 점검 포인트</li><li>사업·시장 함의</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB가 영국의 로토크(Rotork)를 56억 달러에 인수하기로 했습니다.</p></li><li>AI 기반 글로벌 네트워크 운영 전면 개편 · ABB의 TCS 파트너십 체결 <span class='item-date'>2026-07-14</span> <a class='ai-news' href='https://www.verdict.co.uk/abb-taps-tcs-network-operations/' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>AI 기반 글로벌 네트워크 운영 전면 개편</li><li>ABB의 TCS 파트너십 체결</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB는 인공지능(AI)을 활용해 글로벌 네트워크 운영을 전면 개편하기 위해 TCS를 선정했습니다.</p></li></ul></div></div>
+    <div id="tab-capital" class="tab-panel"><div class='ov-sec'><h4>자본시장</h4><ul class='rpt-l1 ov-issue-ul'><li>182% 상승 이후 적정 가치 상회 · ABB 주가 <span class='item-date'>2026-07-23</span> <a class='ai-news' href='https://finance.yahoo.com/markets/stocks/articles/abb-swx-abbn-stock-looks-001547140.html' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>182% 상승 이후 적정 가치 상회</li><li>ABB 주가</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB(SWX:ABBN) 주가가 182% 상승한 이후 현재 적정 가치를 상회하는 것으로 나타났습니다.</p></li><li>ABB Ltd 2026년 2분기 실적발표회 핵심 요약: 역대 최대 수주 및 매출 급증 <span class='item-date'>2026-07-16</span> <a class='ai-news' href='https://finance.yahoo.com/markets/stocks/articles/abb-ltd-abbny-q2-2026-150154901.html' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>계약 규모·상대방 포인트</li><li>공급·딜 실행 일정 포인트</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB Ltd는 2026년 2분기 실적 발표를 통해 사상 최대 수주 실적과 매출 급증을 기록했다고 밝혔습니다.</p></li><li>ABB 2분기 실적 발표 및 핵심 경영 지표 분석 <span class='item-date'>2026-07-16</span> <a class='ai-news' href='https://finance.yahoo.com/markets/stocks/articles/abb-abbny-reports-q2-earnings-133004787.html' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>후속 IR·실적 점검 포인트</li><li>사업·시장 함의</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB(ABBNY)가 2분기 실적 보고서를 발표했습니다.</p></li><li>ABB의 영국 기업 인수 추진 <span class='item-date'>2026-07-16</span> <a class='ai-news' href='https://www.wsj.com/business/deals/abb-to-buy-rotork-to-strengthen-electrification-business-7fac8604?siteid=yhoof2&amp;yptr=yahoo' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>후속 IR·실적 점검 포인트</li><li>사업·시장 함의</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB가 영국의 로토크(Rotork)를 56억 달러에 인수하기로 했습니다.</p></li><li>AI 기반 글로벌 네트워크 운영 전면 개편 · ABB의 TCS 파트너십 체결 <span class='item-date'>2026-07-14</span> <a class='ai-news' href='https://www.verdict.co.uk/abb-taps-tcs-network-operations/' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>AI 기반 글로벌 네트워크 운영 전면 개편</li><li>ABB의 TCS 파트너십 체결</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB는 인공지능(AI)을 활용해 글로벌 네트워크 운영을 전면 개편하기 위해 TCS를 선정했습니다.</p></li><li>애널리스트 및 투자자 대상 웹캐스트 <span class='item-date'>2026-01-01</span> <a class='ai-news' href='https://stream.swisscom.ch/abb/20260716' target='_blank' rel='noopener'>IR</a><ul class='rpt-l2'><li>ABB 2026년 2분기 실적 발표 애널리스트 및 투자자 웹캐스트</li><li>투자·양산 스케줄 포인트</li></ul><p class='ov-fact-summary'><span class='ov-fact-label'>원문 요약</span> ABB는 2026년 2분기 분기 실적 발표를 위한 애널리스트 및 투자자 대상 웹캐스트를 진행합니다.</p></li></ul></div></div>
+    <div id="tab-invest" class="tab-panel">
+      <div class='deal-wrap deal-wrap-v2' id='deal-root'><div class='deal-hero'><div><h2 class='deal-hero-title'>수주 · 투자 · MOU</h2><p class='tab-desc' style='margin:0'>ABB 투자·MOU 뉴스·공시·IR 자동 분류 · 총 <strong>7</strong>건 — 분류 버튼을 눌러 한 화면에서 확인</p></div></div><div class='deal-filter-bar' role='tablist'><button type='button' class='deal-filter' data-deal-filter='all'>전체 <em>7</em></button><button type='button' class='deal-filter' data-deal-filter='contract_docs' style='--c:#e67e22'>협약·계약 문서 <em>0</em></button><button type='button' class='deal-filter' data-deal-filter='orders' style='--c:#3d8bfd'>수주·사업 진행 <em>0</em></button><button type='button' class='deal-filter active' data-deal-filter='investment' style='--c:#20c997'>투자·금융 <em>6</em></button><button type='button' class='deal-filter' data-deal-filter='alliance' style='--c:#9b59b6'>제휴·사업구조 <em>1</em></button></div><div class='deal-panels'><section class='deal-panel' hidden data-deal-cat='contract_docs'><div class='deal-panel-head' style='--c:#e67e22'><h3>협약·계약 문서 <small>Letter / Memorandum / Agreement</small></h3><span class='deal-panel-count'>0건</span></div><div class='deal-card-grid'><p class='empty'>해당 분류 이벤트가 없습니다.</p></div></section><section class='deal-panel' hidden data-deal-cat='orders'><div class='deal-panel-head' style='--c:#3d8bfd'><h3>수주·사업 진행 <small>Order / Business</small></h3><span class='deal-panel-count'>0건</span></div><div class='deal-card-grid'><p class='empty'>해당 분류 이벤트가 없습니다.</p></div></section><section class='deal-panel' data-deal-cat='investment'><div class='deal-panel-head' style='--c:#20c997'><h3>투자·금융 <small>Investment / Finance</small></h3><span class='deal-panel-count'>6건</span></div><div class='deal-card-grid'><article class='deal-card'><div class='deal-card-bar' style='background:#20c997'></div><div class='deal-card-body'><div class='deal-item-top'><span class='pill' style='background:#20c997'>투자·금융</span><span class='src'>web</span><span class='co'>ABB</span></div><div class='deal-title'>PDF</div><div class='deal-meta'> · capital expenditure</div><div class='deal-sum'>— 2020 framework Key New or revised guidance FY 2020 Q4 2020 $ mnunless otherwise stated 9M 2020 FY 2020 Q4 2020 framework framework 9M 2020 framework framework Corporate and Other operational ~(550) (401) ~(150) EBITA Net finance expenses ~(380) (152) ~(230) Non-operating items Non-operational pension ~(370) (272) ~(100) Normal restructuring ~(130) (57) ~(70) (cost) / credit4 Simplification progr</div><a class='deal-link' href='https://resources.news.e.abb.com/attachments/published/68364/en-US/10ABFAD8F2F4/ABB-Q3-2020-Group-results-presentation.pdf' target='_blank'>원문 보기 →</a></div></article><article class='deal-card'><div class='deal-card-bar' style='background:#20c997'></div><div class='deal-card-body'><div class='deal-item-top'><span class='pill' style='background:#20c997'>투자·금융</span><span class='src'>web</span><span class='co'>ABB</span></div><div class='deal-title'>PDF</div><div class='deal-meta'> · due diligence</div><div class='deal-sum'>businesses, we have a dedicated team, in a global shared service center, who reviews the completeness of supplier responses and assesses whether suppliers appear to have carried out their own appropriate supply chain due diligence. The review team assesses each response for “red flags” (as described in the OECD Framework) and then further assesses the completeness of the supplier response. To perf</div><a class='deal-link' href='https://global.abb/content/dam/abb/global/group/investors/results-and-reports/annual_reporting_suite/2023/ABB%20Form%20SD%202023.pdf' target='_blank'>원문 보기 →</a></div></article><article class='deal-card'><div class='deal-card-bar' style='background:#20c997'></div><div class='deal-card-body'><div class='deal-item-top'><span class='pill' style='background:#20c997'>투자·금융</span><span class='src'>web</span><span class='co'>ABB</span></div><div class='deal-title'>PDF</div><div class='deal-meta'> · due diligence</div><div class='deal-sum'>businesses, wehavea dedicated team,in a global shared service center, whoreviewsthe completeness of supplier responses andassesseswhether suppliers appear to have carried out their own appropriate supply chain due diligence.The review teamassesseseachresponse for “red flags” (as described in the OECD Framework) and then further assessesthe completeness of the supplierresponse.To perform the survey</div><a class='deal-link' href='https://global.abb/content/dam/abb/global/group/investors/results-and-reports/2022/ABB%20Form%20SD%202022.pdf' target='_blank'>원문 보기 →</a></div></article><article class='deal-card'><div class='deal-card-bar' style='background:#20c997'></div><div class='deal-card-body'><div class='deal-item-top'><span class='pill' style='background:#20c997'>투자·금융</span><span class='src'>web</span><span class='co'>ABB</span></div><div class='deal-title'>PDF</div><div class='deal-meta'> · due diligence</div><div class='deal-sum'>businesses, wehavea dedicated team,in a global shared service center, whoreviewsthe completeness of supplier responses and assesseswhethersuppliers appeared to have carried out their own appropriate supply chain due diligence. The review teamassesseseachresponse for “red flags” (as described in the OECD Framework) and then further assesses the completeness of the supplier response.To perform the s</div><a class='deal-link' href='https://global.abb/content/dam/abb/global/group/investors/results-and-reports/2022/ABB%20Form%20SD%202021.pdf' target='_blank'>원문 보기 →</a></div></article><article class='deal-card'><div class='deal-card-bar' style='background:#20c997'></div><div class='deal-card-body'><div class='deal-item-top'><span class='pill' style='background:#20c997'>투자·금융</span><span class='src'>web</span><span class='co'>ABB</span></div><div class='deal-title'>PDF</div><div class='deal-meta'> · capital expenditure</div><div class='deal-sum'>End-market overview – In discrete industries, the group benefited from strong activity in the 3C and machine builders’ segments. On a sequential basis, there were positive signs in automotive for future capital expenditure and electric vehicle manufacturing spend. End-markets such as food &amp; beverage continued to expand. – Activities in the energy segments remained subdued except LNG, where ABB ben</div><a class='deal-link' href='https://resources.news.e.abb.com/attachments/published/73590/en-US/312A67997F24/ABB-Q4-and-full-year-2020-press-release-English.pdf' target='_blank'>원문 보기 →</a></div></article><article class='deal-card'><div class='deal-card-bar' style='background:#20c997'></div><div class='deal-card-body'><div class='deal-item-top'><span class='pill' style='background:#20c997'>투자·금융</span><span class='src'>web</span><span class='co'>ABB</span></div><div class='deal-title'>PDF</div><div class='deal-meta'> · valuation</div><div class='deal-sum'>— Notes to the Consolidated Financial Information (unaudited) ─ Note 1 The Company and basis of presentation ABB Ltd and its subsidiaries (collectively, the Company) together form a leading global technology company, connecting software to its electrification, robotics, automation and motion portfolio to drive performance to new levels. The Company’s Consolidated Financial Information is prepared</div><a class='deal-link' href='https://resources.news.e.abb.com/attachments/published/65310/en-US/0591DDA0BCE6/ABB-Q2-2020-financial-information.pdf' target='_blank'>원문 보기 →</a></div></article></div></section><section class='deal-panel' hidden data-deal-cat='alliance'><div class='deal-panel-head' style='--c:#9b59b6'><h3>제휴·사업구조 <small>Alliance / Structure</small></h3><span class='deal-panel-count'>1건</span></div><div class='deal-card-grid'><article class='deal-card'><div class='deal-card-bar' style='background:#9b59b6'></div><div class='deal-card-body'><div class='deal-item-top'><span class='pill' style='background:#9b59b6'>제휴·사업구조</span><span class='src'>web</span><span class='co'>ABB</span></div><div class='deal-title'>PDF</div><div class='deal-meta'> · spin-off</div><div class='deal-sum'>Item 5. Operating and Financial Review and Prospects The discussion in Item 5 below provides a comparative analysis between 2021 and 2020. See “Item 5. Operating and Financial Review and Prospects” in our Annual Report on Form 20-F for the year ended December 31, 2020, for a comparative discussion and analysis between 2020 and 2019. — Management overview During 2021, we saw a strong recovery from</div><a class='deal-link' href='https://global.abb/content/dam/abb/global/group/investors/results-and-reports/2021/abb-ltd-2021-form-20f.pdf' target='_blank'>원문 보기 →</a></div></article></div></section></div>
+<script>
+(function(){
+  const root = document.getElementById('deal-root');
+  if (!root) return;
+  const filters = root.querySelectorAll('.deal-filter');
+  const panels = root.querySelectorAll('.deal-panel');
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.getAttribute('data-deal-filter');
+      filters.forEach(b => b.classList.toggle('active', b === btn));
+      panels.forEach(p => {
+        const cat = p.getAttribute('data-deal-cat');
+        p.hidden = !(key === 'all' || cat === key);
+      });
+      root.querySelector('.deal-filter-bar')?.scrollIntoView({behavior:'smooth', block:'nearest'});
+    });
+  });
+})();
+</script>
+</div>
+      
+    <section class="hist-embed">
+      <h3>히스토리 · 투자·MOU·제휴</h3>
+      <div id="hist-invest-INTL_ABB_SW" class="hist-panel active"><p class='tab-desc'>데이터 기준 날짜 미상 포함 (오래된 → 최근). 날짜가 불명확하면 뉴스·애널 등 <strong>자료 기준</strong>을 표시합니다.</p><div class='hist-year-focus' data-panel='hist-invest-INTL_ABB_SW'><span class='sub'>기간 보기:</span> <button type='button' class='hist-focus-btn active' data-focus='all'>전체</button><button type='button' class='hist-focus-btn' data-focus='undated'>날짜 미상</button></div><div class="hist-tl">
+            <section class="hist-tl-year" data-year="undated">
+              <div class="hist-tl-year-label">날짜 미상 <em>8</em></div>
+              <div class="hist-tl-rail">
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#9b59b6">
+      <div class="hist-tl-date">날짜 미상（웹 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#9b59b6">제휴</span>
+          <span class='hist-basis'>웹 자료 기준</span>
+          <span class="src">근거 1건 · 웹</span>
+        </div>
+        <div class="deal-title">PDF</div>
+        <div class='deal-sum'>Item 5. Operating and Financial Review and Prospects The discussion in Item 5 below provides a comparative analysis between 2021 and 2020. See “Item 5. Operating and Financial Review and Prospects” in our Annual Report on Form 20-F for the year ended December 31, 2020, for a comparative discussion and analysis between 2020 and 2019. — Management overview During 2021, we saw a strong recovery from </div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>웹 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/2021/abb-ltd-2021-form-20f.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>Item 5. Operating and Financial Review and Prospects The discussion in Item 5 below provides a comparative analysis between 2021 and 2020. See “Item 5. Operating and Financial Review and Prospects” in our Annual Report on Form 20-F for the year ended December 31, 2020, for a comp</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#9b59b6">
+      <div class="hist-tl-date">날짜 미상（IR 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#9b59b6">제휴</span>
+          <span class='hist-basis'>IR 자료 기준</span>
+          <span class="src">근거 1건 · IR</span>
+        </div>
+        <div class="deal-title"></div>
+        <div class='deal-sum'>We continue to make progress on the exit of the Turbocharging Division, where we are currently running a dual track process for a spin-off or divestment, and plan to exit the Power Conversion Division.</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>IR <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/2021/abb-ltd-2021-form-20f.pdf" target="_blank" rel="noopener">IR·뉴스 원문</a><div class='deal-sum'>We continue to make progress on the exit of the Turbocharging Division, where we are currently running a dual track process for a spin-off or divestment, and plan to exit the Power Conversion Division.</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#20c997">
+      <div class="hist-tl-date">날짜 미상（IR 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#20c997">투자</span>
+          <span class='hist-basis'>IR 자료 기준</span>
+          <span class="src">근거 3건 · IR</span>
+        </div>
+        <div class="deal-title"></div>
+        <div class='deal-sum'>businesses, wehavea dedicated team,in a global shared service center, whoreviewsthe completeness of supplier responses andassesseswhether suppliers appear to have carried out their own appropriate supply chain due diligence.The review teamassesseseachresponse for “red flags” (as described in the OECD Framework) and then further assessesthe completeness of the supplierresponse.To perform the survey</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>IR <em>3</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/annual_reporting_suite/2023/ABB%20Form%20SD%202023.pdf" target="_blank" rel="noopener">IR·뉴스 원문</a><div class='deal-sum'>businesses, we have a dedicated team, in a global shared service center, who reviews the completeness of supplier responses and assesses whether suppliers appear to have carried out their own appropriate supply chain due diligence.</div></li><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/2022/ABB%20Form%20SD%202022.pdf" target="_blank" rel="noopener">IR·뉴스 원문</a><div class='deal-sum'>businesses, wehavea dedicated team,in a global shared service center, whoreviewsthe completeness of supplier responses andassesseswhether suppliers appear to have carried out their own appropriate supply chain due diligence.The review teamassesseseachresponse for “red flags” (as</div></li><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/2022/ABB%20Form%20SD%202021.pdf" target="_blank" rel="noopener">IR·뉴스 원문</a><div class='deal-sum'>businesses, wehavea dedicated team,in a global shared service center, whoreviewsthe completeness of supplier responses and assesseswhethersuppliers appeared to have carried out their own appropriate supply chain due diligence.</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#e67e22">
+      <div class="hist-tl-date">날짜 미상（IR 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#e67e22">MOU·협약</span>
+          <span class='hist-basis'>IR 자료 기준</span>
+          <span class="src">근거 2건 · IR</span>
+        </div>
+        <div class="deal-title"></div>
+        <div class='deal-sum'>— Improved performance in the making Key priorities in 2021 culture Cement of accountability - transparency - speed Steady progress towards improved profitability 1 2 3 OPERATIONAL PORTFOLIO CAPITAL PERFORMANCE MANAGEMENT ALLOCATION Further efficiency measures, Portfolio consolidation with 3 divisions Meaningful uplift in cash generation including footprint reduction to be divested, no fire sales…</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>IR <em>2</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://resources.news.e.abb.com/attachments/published/73590/en-US/BC024103A730/ABB-Q4-2020-Group-results-presentation.pdf" target="_blank" rel="noopener">IR·뉴스 원문</a><div class='deal-sum'>— Improved performance in the making Key priorities in 2021 culture Cement of accountability - transparency - speed Steady progress towards improved profitability 1 2 3 OPERATIONAL PORTFOLIO CAPITAL PERFORMANCE MANAGEMENT ALLOCATION Further efficiency measures, Portfolio consolid</div></li><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/2021/abb-ltd-2021-form-20f.pdf" target="_blank" rel="noopener">IR·뉴스 원문</a><div class='deal-sum'>Additionally, we made progress in reshaping our business portfolio, completing the divestment of the Mechanical Power Transmission business, as we continue to be fully focused on electrification and automation.</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#e67e22">
+      <div class="hist-tl-date">날짜 미상（웹 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#e67e22">MOU·협약</span>
+          <span class='hist-basis'>웹 자료 기준</span>
+          <span class="src">근거 2건 · 웹</span>
+        </div>
+        <div class="deal-title">PDF</div>
+        <div class='deal-sum'>Item 5. Operating and Financial Review and Prospects The discussion in Item 5 below provides a comparative analysis between 2021 and 2020. See “Item 5. Operating and Financial Review and Prospects” in our Annual Report on Form 20-F for the year ended December 31, 2020, for a comparative discussion and analysis between 2020 and 2019. — Management overview During 2021, we saw a strong recovery from </div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>웹 <em>2</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/2021/abb-ltd-2021-form-20f.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>Item 5. Operating and Financial Review and Prospects The discussion in Item 5 below provides a comparative analysis between 2021 and 2020. See “Item 5. Operating and Financial Review and Prospects” in our Annual Report on Form 20-F for the year ended December 31, 2020, for a comp</div></li><li class='hist-ev-item'><a href="https://resources.news.e.abb.com/attachments/published/68364/en-US/0334FB3D48A0/ABB-Q3-2020-press-release-English.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>Capital structure optimization ABB divested 80.1 percent of its Power Grids business to Hitachi on July 1, 2020, recording a book gain of $5.3 billion in the quarter within net income from discontinued operations. As previously announced, ABB intends to return to shareholders net</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#20c997">
+      <div class="hist-tl-date">날짜 미상（웹 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#20c997">투자</span>
+          <span class='hist-basis'>웹 자료 기준</span>
+          <span class="src">근거 5건 · 웹</span>
+        </div>
+        <div class="deal-title">PDF</div>
+        <div class='deal-sum'>businesses, we have a dedicated team, in a global shared service center, who reviews the completeness of supplier responses and assesses whether suppliers appear to have carried out their own appropriate supply chain due diligence. The review team assesses each response for “red flags” (as described in the OECD Framework) and then further assesses the completeness of the supplier response. To perf</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>웹 <em>5</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/annual_reporting_suite/2023/ABB%20Form%20SD%202023.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>businesses, we have a dedicated team, in a global shared service center, who reviews the completeness of supplier responses and assesses whether suppliers appear to have carried out their own appropriate supply chain due diligence. The review team assesses each response for “red</div></li><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/2022/ABB%20Form%20SD%202022.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>businesses, wehavea dedicated team,in a global shared service center, whoreviewsthe completeness of supplier responses andassesseswhether suppliers appear to have carried out their own appropriate supply chain due diligence.The review teamassesseseachresponse for “red flags” (as</div></li><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/2022/ABB%20Form%20SD%202021.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>businesses, wehavea dedicated team,in a global shared service center, whoreviewsthe completeness of supplier responses and assesseswhethersuppliers appeared to have carried out their own appropriate supply chain due diligence. The review teamassesseseachresponse for “red flags” (</div></li><li class='hist-ev-item'><a href="https://resources.news.e.abb.com/attachments/published/73590/en-US/312A67997F24/ABB-Q4-and-full-year-2020-press-release-English.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>End-market overview – In discrete industries, the group benefited from strong activity in the 3C and machine builders’ segments. On a sequential basis, there were positive signs in automotive for future capital expenditure and electric vehicle manufacturing spend. End-markets suc</div></li><li class='hist-ev-item'><a href="https://resources.news.e.abb.com/attachments/published/65310/en-US/0591DDA0BCE6/ABB-Q2-2020-financial-information.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>— Notes to the Consolidated Financial Information (unaudited) ─ Note 1 The Company and basis of presentation ABB Ltd and its subsidiaries (collectively, the Company) together form a leading global technology company, connecting software to its electrification, robotics, automatio</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#a855f7">
+      <div class="hist-tl-date">날짜 미상（웹 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#a855f7">인수·M&amp;A</span>
+          <span class='hist-basis'>웹 자료 기준</span>
+          <span class="src">근거 2건 · 웹</span>
+        </div>
+        <div class="deal-title">PDF</div>
+        <div class='deal-sum'>— Cash generation analysis Historic development in cash flow from operating activities 2020 cash drivers Cash flow from operating activities in continuing Transformation impacts operations (CO) (ABB-OS, other restructuring +$1,875 mn programs, PG carve-out) Cash flow from operating activities, continuing1 Kusile settlement ~$1 bn negative transformation, one-time impacts2 Pension impacts Lower inc</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>웹 <em>2</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://resources.news.e.abb.com/attachments/published/73590/en-US/BC024103A730/ABB-Q4-2020-Group-results-presentation.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>— Cash generation analysis Historic development in cash flow from operating activities 2020 cash drivers Cash flow from operating activities in continuing Transformation impacts operations (CO) (ABB-OS, other restructuring +$1,875 mn programs, PG carve-out) Cash flow from operati</div></li><li class='hist-ev-item'><a href="https://resources.news.e.abb.com/attachments/published/68364/en-US/10ABFAD8F2F4/ABB-Q3-2020-Group-results-presentation.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>— 2020 framework Key New or revised guidance FY 2020 Q4 2020 $ mnunless otherwise stated 9M 2020 FY 2020 Q4 2020 framework framework 9M 2020 framework framework Corporate and Other operational ~(550) (401) ~(150) EBITA Net finance expenses ~(380) (152) ~(230) Non-operating items</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#e67e22">
+      <div class="hist-tl-date">날짜 미상（실적콜 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#e67e22">MOU·협약</span>
+          <span class='hist-basis'>실적콜 기준</span>
+          <span class="src">근거 1건 · 실적콜</span>
+        </div>
+        <div class="deal-title">Quarterly results &amp; annual reports</div>
+        <div class='deal-sum'>Quarterly results — ABB Group Select region &amp; language Europe Americas Middle East &amp; Africa Asia &amp; Oceania Global English Austria German Belgium Dutch French Bulgaria Bulgarian Croatia Croatian Czech Republic Czech Denmark Danish Estonia Estonian Finland Finnish France French Germany German Greece Greek Hungary Hungarian Ireland English Italy Italian Latvia Latvian Lithuania Lithuanian Luxembourg </div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>실적콜 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://global.abb/group/en/investors/results-and-reports" target="_blank" rel="noopener">Quarterly results &amp; annual reports</a><div class='deal-sum'>Quarterly results — ABB Group Select region &amp; language Europe Americas Middle East &amp; Africa Asia &amp; Oceania Global English Austria German Belgium Dutch French Bulgaria Bulgarian Croatia Croatian Czech Republic Czech Denmark Danish Estonia Estonian Finland Finnish France French Ger</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    </div>
+            </section>
+            </div></div>
+    </section>
+    
+    </div>
+    <div id="tab-financials" class="tab-panel">
+    <div class="card" style="margin-bottom:14px">
+      <h3 style="margin:0 0 8px">연도별 실적 <span class="sub">(십억 CHF · 막대=매출/영업이익/순이익, 선=영업이익률)</span></h3>
+      <div class="chart-box"><canvas id="fin_INTL_ABB_SW" height="140"></canvas></div>
+      <table class="fin">
+        <thead><tr>
+          <th>연도</th><th>매출</th><th>영업이익</th><th>순이익</th><th>영업이익률</th><th>출처</th>
+        </tr></thead>
+        <tbody><tr><td>2022</td><td>29.45B</td><td>3.41B</td><td>2.48B</td><td>11.59%</td><td>yahoo</td></tr><tr><td>2023</td><td>32.23B</td><td>4.35B</td><td>3.75B</td><td>13.51%</td><td>yahoo</td></tr><tr><td>2024</td><td>30.58B</td><td>4.75B</td><td>3.94B</td><td>15.54%</td><td>yahoo</td></tr><tr><td>2025</td><td>33.22B</td><td>5.73B</td><td>4.73B</td><td>17.25%</td><td>yahoo</td></tr></tbody>
+      </table>
+      <p class="sub" style="margin:8px 0 0">영업이익률 = 영업이익 ÷ 매출 × 100 (DB 값 없으면 계산)</p>
+      <h4 class="fin-sub" style="margin:16px 0 8px">부채·차입 (표만)</h4>
+      <table class="fin">
+        <thead><tr>
+          <th>연도</th><th>부채비율</th><th>차입금</th><th>부채총계</th><th>자본총계</th>
+        </tr></thead>
+        <tbody><tr><td>2022</td><td>203%</td><td>8.55B</td><td>25.88B</td><td>12.78B</td></tr><tr><td>2023</td><td>200%</td><td>8.74B</td><td>26.79B</td><td>13.41B</td></tr><tr><td>2024</td><td>175%</td><td>7.71B</td><td>25.30B</td><td>14.42B</td></tr><tr><td>2025</td><td>176%</td><td>9.09B</td><td>28.24B</td><td>16.09B</td></tr></tbody>
+      </table>
+      <p class="sub" style="margin:8px 0 0">부채비율 = 부채총계 ÷ 자본총계 × 100 (없으면 차입금 ÷ 자본)</p>
+    </div>
+    
+    <div class="card" style="margin-bottom:14px">
+      <h3 style="margin:0 0 8px">분기 실적 <span class="sub">(십억 CHF · 막대=매출/영업이익/순이익, 선=영업이익률)</span></h3>
+      <div class="chart-box"><canvas id="fin_INTL_ABB_SW_q" height="140"></canvas></div>
+      <table class="fin">
+        <thead><tr>
+          <th>기말</th><th>분기</th><th>매출</th><th>영업이익</th><th>순이익</th><th>영업이익률</th><th>출처</th>
+        </tr></thead>
+        <tbody><tr><td>2025-06-30</td><td>2025Q2</td><td>8.29B</td><td>1.37B</td><td>1.15B</td><td>16.53%</td><td>yahoo</td></tr><tr><td>2025-12-31</td><td>2025Q4</td><td>9.05B</td><td>1.52B</td><td>1.27B</td><td>16.79%</td><td>yahoo</td></tr><tr><td>2026-03-31</td><td>2026Q1</td><td>8.73B</td><td>1.43B</td><td>1.32B</td><td>16.40%</td><td>yahoo</td></tr><tr><td>2026-06-30</td><td>2026Q2</td><td>9.47B</td><td>1.70B</td><td>1.23B</td><td>17.91%</td><td>yahoo</td></tr></tbody>
+      </table>
+    </div>
+    </div>
+    </section>
+    
+    <footer>갱신 2026-07-30 07:31 · 2026-Q3 · 기업 전략 동향 AI 트래커</footer>
+  </div>
+  <script>
+    function activateTab(id) {
+      if (!id) return;
+      const panel = document.getElementById(id);
+      if (!panel) return;
+      const btn = document.querySelector('button[data-tab="' + id + '"]');
+      if (!btn) return;
+      const scope = btn.closest('.tabs');
+      if (!scope) return;
+      const panelIds = [...scope.querySelectorAll(':scope > button[data-tab]')].map(b => b.dataset.tab);
+      scope.querySelectorAll(':scope > button[data-tab]').forEach(b => b.classList.remove('active'));
+      panelIds.forEach(pid => {
+        const p = document.getElementById(pid);
+        if (p && !p.classList.contains('hist-panel')) p.classList.remove('active');
+      });
+      btn.classList.add('active');
+      panel.classList.add('active');
+      requestAnimationFrame(() => {
+        if (typeof Chart === 'undefined') return;
+        panel.querySelectorAll('canvas').forEach(c => {
+          const ch = Chart.getChart(c);
+          if (ch) ch.resize();
+        });
+      });
+    }
+    document.querySelectorAll('.tabs').forEach(scope => {
+      scope.querySelectorAll(':scope > button[data-tab]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activateTab(btn.dataset.tab);
+          if (btn.dataset.tab) history.replaceState(null, '', '#' + btn.dataset.tab);
+        });
+      });
+    });
+    if (location.hash) activateTab(location.hash.replace(/^#/, ''));
+  </script>
+  
+<script>
+  (function() {
+    function applyFocus(panel, mode) {
+      if (!panel) return;
+      panel.querySelectorAll('.hist-focus-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.focus === mode);
+      });
+      panel.querySelectorAll('.hist-tl-year').forEach(sec => {
+        const y = sec.dataset.year;
+        if (mode === 'all') {
+          sec.style.display = '';
+          return;
+        }
+        sec.style.display = (y === mode) ? '' : 'none';
+      });
+    }
+    document.querySelectorAll('.hist-year-focus').forEach(bar => {
+      bar.querySelectorAll('.hist-focus-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const panel = document.getElementById(bar.dataset.panel);
+          applyFocus(panel, btn.dataset.focus);
+        });
+      });
+    });
+    document.querySelectorAll('.hist-cat-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const root = btn.closest('.hist-timeline-card');
+        if (!root) return;
+        const tid = btn.dataset.tab;
+        root.querySelectorAll('.hist-cat-tab').forEach(b => b.classList.remove('active'));
+        root.querySelectorAll('.hist-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        const panel = document.getElementById(tid);
+        if (panel) panel.classList.add('active');
+      });
+    });
+  })();
+</script>
+<script>
+    (function(){
+      const el = document.getElementById("fin_INTL_ABB_SW");
+      if (!el || typeof Chart === 'undefined') return;
+      const d = {"labels": ["2022", "2023", "2024", "2025"], "revenue": [29.446, 32.235, 30.583, 33.22], "op": [3.412, 4.354, 4.753, 5.729], "net": [2.475, 3.745, 3.935, 4.734], "margin": [11.59, 13.51, 15.54, 17.25], "unit": "십억 CHF"};
+      const existing = Chart.getChart(el);
+      if (existing) existing.destroy();
+      new Chart(el, {
+        type: 'bar',
+        data: {
+          labels: d.labels,
+          datasets: [
+            {
+              type: 'bar',
+              label: '매출',
+              data: d.revenue,
+              backgroundColor: 'rgba(56,189,248,0.55)',
+              borderColor: '#38bdf8',
+              borderWidth: 1,
+              yAxisID: 'y',
+              order: 2
+            },
+            {
+              type: 'bar',
+              label: '영업이익',
+              data: d.op,
+              backgroundColor: 'rgba(52,211,153,0.55)',
+              borderColor: '#34d399',
+              borderWidth: 1,
+              yAxisID: 'y',
+              order: 2
+            },
+            {
+              type: 'bar',
+              label: '순이익',
+              data: d.net,
+              backgroundColor: 'rgba(167,139,250,0.55)',
+              borderColor: '#a78bfa',
+              borderWidth: 1,
+              yAxisID: 'y',
+              order: 2
+            },
+            {
+              type: 'line',
+              label: '영업이익률(%)',
+              data: d.margin,
+              borderColor: '#fbbf24',
+              backgroundColor: 'rgba(251,191,36,0.15)',
+              tension: 0.25,
+              pointRadius: 4,
+              pointBackgroundColor: '#fbbf24',
+              yAxisID: 'y1',
+              order: 1
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: { labels: { color: '#334155' } },
+            tooltip: {
+              callbacks: {
+                label: function(ctx) {
+                  const v = ctx.parsed.y;
+                  if (v == null) return ctx.dataset.label + ': —';
+                  if (ctx.dataset.yAxisID === 'y1') return ctx.dataset.label + ': ' + v.toFixed(2) + '%';
+                  return ctx.dataset.label + ': ' + Number(v).toLocaleString(undefined, {maximumFractionDigits: 1});
+                }
+              }
+            }
+          },
+          scales: {
+            x: { ticks: { color: '#64748b' }, grid: { color: '#e2e8f0' } },
+            y: {
+              position: 'left',
+              ticks: { color: '#64748b' },
+              grid: { color: '#e2e8f0' },
+              title: { display: true, text: d.unit, color: '#64748b' }
+            },
+            y1: {
+              position: 'right',
+              ticks: {
+                color: '#b45309',
+                callback: function(v) { return v + '%'; }
+              },
+              grid: { drawOnChartArea: false },
+              title: { display: true, text: '영업이익률 (%)', color: '#b45309' }
+            }
+          }
+        }
+      });
+    })();
+    
+
+    (function(){
+      const el = document.getElementById("fin_INTL_ABB_SW_q");
+      if (!el || typeof Chart === 'undefined') return;
+      const d = {"labels": ["2025Q2", "2025Q4", "2026Q1", "2026Q2"], "revenue": [8.295, 9.052, 8.734, 9.475], "op": [1.371, 1.52, 1.432, 1.697], "net": [1.151, 1.273, 1.324, 1.231], "margin": [16.53, 16.79, 16.4, 17.91], "unit": "십억 CHF"};
+      const existing = Chart.getChart(el);
+      if (existing) existing.destroy();
+      new Chart(el, {
+        type: 'bar',
+        data: {
+          labels: d.labels,
+          datasets: [
+            {
+              type: 'bar',
+              label: '매출',
+              data: d.revenue,
+              backgroundColor: 'rgba(56,189,248,0.55)',
+              borderColor: '#38bdf8',
+              borderWidth: 1,
+              yAxisID: 'y',
+              order: 2
+            },
+            {
+              type: 'bar',
+              label: '영업이익',
+              data: d.op,
+              backgroundColor: 'rgba(52,211,153,0.55)',
+              borderColor: '#34d399',
+              borderWidth: 1,
+              yAxisID: 'y',
+              order: 2
+            },
+            {
+              type: 'bar',
+              label: '순이익',
+              data: d.net,
+              backgroundColor: 'rgba(167,139,250,0.55)',
+              borderColor: '#a78bfa',
+              borderWidth: 1,
+              yAxisID: 'y',
+              order: 2
+            },
+            {
+              type: 'line',
+              label: '영업이익률(%)',
+              data: d.margin,
+              borderColor: '#fbbf24',
+              backgroundColor: 'rgba(251,191,36,0.15)',
+              tension: 0.25,
+              pointRadius: 4,
+              pointBackgroundColor: '#fbbf24',
+              yAxisID: 'y1',
+              order: 1
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: { labels: { color: '#334155' } },
+            tooltip: {
+              callbacks: {
+                label: function(ctx) {
+                  const v = ctx.parsed.y;
+                  if (v == null) return ctx.dataset.label + ': —';
+                  if (ctx.dataset.yAxisID === 'y1') return ctx.dataset.label + ': ' + v.toFixed(2) + '%';
+                  return ctx.dataset.label + ': ' + Number(v).toLocaleString(undefined, {maximumFractionDigits: 1});
+                }
+              }
+            }
+          },
+          scales: {
+            x: { ticks: { color: '#64748b' }, grid: { color: '#e2e8f0' } },
+            y: {
+              position: 'left',
+              ticks: { color: '#64748b' },
+              grid: { color: '#e2e8f0' },
+              title: { display: true, text: d.unit, color: '#64748b' }
+            },
+            y1: {
+              position: 'right',
+              ticks: {
+                color: '#b45309',
+                callback: function(v) { return v + '%'; }
+              },
+              grid: { drawOnChartArea: false },
+              title: { display: true, text: '영업이익률 (%)', color: '#b45309' }
+            }
+          }
+        }
+      });
+    })();
+    </script>
+</body>
+</html>
