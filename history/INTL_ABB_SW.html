@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ABB — 2026-Q3</title>
+  <style>
+:root {
+  --bg: #f5f7fb; --panel: #ffffff; --card: #ffffff; --text: #1e293b;
+  --muted: #64748b; --accent: #0284c7; --accent-2: #059669; --border: #e2e8f0;
+  --soft: #f1f5f9; --soft-2: #eef2ff; --brand-navy: #1e3a5f;
+}
+* { box-sizing: border-box; }
+body { margin:0; font-family:"Segoe UI","Malgun Gothic",sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
+.wrap { max-width: 1140px; margin: 0 auto; padding: 28px 20px 48px; }
+h1 { margin: 0 0 6px; font-size: 1.85rem; color:#0f172a; }
+h1.brand-title { color: var(--brand-navy); }
+.sub { color: var(--muted); margin-bottom: 20px; }
+.nav { display:flex; gap:8px; flex-wrap:wrap; margin-bottom: 20px; }
+.nav a { padding:8px 12px; border-radius:10px; background:var(--card); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.85rem; }
+.nav a.active, .nav a:hover { border-color:var(--brand-navy); color:var(--brand-navy); background:#eef2ff; }
+.home-section {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:18px 20px; margin-bottom:16px; box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+.home-section-head { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px; flex-wrap:wrap; }
+.home-section-head h2 { margin:0; font-size:1.15rem; color:var(--brand-navy); }
+.home-co-list { display:flex; flex-direction:column; gap:10px; }
+.home-co-row {
+  display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+  padding:12px 14px; border:1px solid var(--border); border-radius:12px; background:#fff;
+}
+.home-co-main { display:flex; align-items:center; gap:8px; flex:1; min-width:160px; }
+.home-co-links { display:flex; gap:8px; flex-wrap:wrap; }
+.home-co-links a {
+  padding:6px 10px; border-radius:8px; border:1px solid var(--border);
+  text-decoration:none; color:var(--brand-navy); font-size:0.82rem; background:var(--soft);
+}
+.home-co-links a:hover { border-color:var(--accent); background:#e0f2fe; }
+.co-logo { width:28px; height:28px; border-radius:6px; object-fit:contain; background:#fff; border:1px solid var(--border); }
+.co-logo-fallback {
+  width:28px; height:28px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center;
+  background:var(--brand-navy); color:#fff; font-size:0.85rem; font-weight:700;
+}
+.home-hist-stats { display:flex; gap:18px; margin-top:8px; color:var(--muted); }
+.home-hist-stats strong { color:var(--brand-navy); font-size:1.2rem; margin-right:4px; }
+.mega-notes { margin:8px 0 12px; padding-left:18px; color:var(--muted); font-size:0.88rem; }
+.ai-summary-box {
+  background:#f8fafc; border:1px solid var(--border); border-left:4px solid var(--brand-navy);
+  border-radius:12px; padding:14px 16px; margin:14px 0;
+}
+.ai-summary-box pre { white-space:pre-wrap; font-family:inherit; font-size:0.9rem; color:#334155; margin:8px 0 0; }
+.ai-summary-box.compact { padding:10px 12px; margin:8px 0 0; }
+.home-ai-ul { margin:8px 0 0; padding-left:18px; color:#334155; font-size:0.88rem; }
+.home-ai-ul li { margin:4px 0; }
+.home-ai-ul .ai-k {
+  display:inline-block; min-width:5.5rem; color:var(--brand-navy); font-weight:600; font-size:0.8rem;
+}
+.hero {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 55%, #ecfdf5 100%);
+  border:1px solid var(--border); border-radius:16px; padding:28px; margin-bottom:24px;
+  box-shadow:0 1px 2px rgba(15,23,42,.04);
+}
+.entry-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin-top:18px; }
+.entry {
+  display:block; background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:22px; text-decoration:none; color:inherit; transition:border-color .15s, box-shadow .15s;
+  box-shadow:0 1px 2px rgba(15,23,42,.04);
+}
+.entry:hover { border-color: var(--accent); box-shadow:0 4px 12px rgba(2,132,199,.08); }
+.entry h2 { margin:0 0 8px; font-size:1.35rem; color:var(--accent-2); }
+.entry p { margin:0; color:var(--muted); font-size:0.92rem; }
+.entry .count { margin-top:12px; font-size:1.6rem; font-weight:700; color:var(--accent); }
+.tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; position:sticky; top:0; z-index:5;
+  background:rgba(245,247,251,.94); backdrop-filter:blur(8px); padding:10px 0; border-bottom:1px solid var(--border); }
+.tabs button {
+  border:1px solid var(--border); background:var(--card); color:var(--text);
+  padding:8px 12px; border-radius:8px; cursor:pointer; font-size:0.85rem;
+}
+.tabs button.active { border-color:var(--accent); color:var(--accent); background:#e0f2fe; }
+.tab-panel { display:none; }
+.tab-panel.active { display:block; }
+.tab-desc { color:var(--muted); font-size:0.9rem; margin-bottom:14px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; }
+.card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px; box-shadow:0 1px 2px rgba(15,23,42,.03); }
+.card-head { display:flex; justify-content:space-between; gap:8px; margin-bottom:10px; }
+.card h3 { margin:0; font-size:1rem; }
+.tag { font-size:0.7rem; background:#e0f2fe; color:#0369a1; padding:3px 8px; border-radius:6px; white-space:nowrap; }
+.tag.intl { background:#d1fae5; color:#047857; }
+.module-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; margin-bottom:12px; }
+.mod-stat { background:var(--soft); border-radius:8px; padding:8px 6px; text-align:center; font-size:0.72rem; color:var(--muted); }
+.mod-stat strong { display:block; font-size:1.05rem; color:var(--text); }
+.btn { display:inline-block; padding:9px 12px; border-radius:10px; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; font-size:0.88rem; border:none; cursor:pointer; }
+.btn.secondary { background:#10b981; color:#fff; }
+.empty { color:var(--muted); font-style:italic; }
+.deal-kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px; margin-bottom:18px; }
+.deal-kpi { background:var(--card); border:1px solid var(--border); border-left:4px solid var(--c,#0284c7);
+  border-radius:10px; padding:12px 14px; text-decoration:none; color:inherit; }
+.deal-kpi-label { font-size:0.85rem; }
+.deal-kpi-count { font-size:1.7rem; font-weight:700; color:var(--c,#0284c7); }
+.deal-kpi-en { font-size:0.72rem; color:var(--muted); }
+.deal-section { background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:16px 18px; margin-bottom:14px; scroll-margin-top:70px; }
+.deal-section h3 { margin:0 0 12px; font-size:1.05rem; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.deal-section h3 .dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
+.deal-section h3 small { color:var(--muted); font-weight:400; font-size:0.8rem; }
+.deal-section h3 em { margin-left:auto; font-style:normal; color:var(--accent); font-size:0.85rem; }
+.deal-item { padding:12px 0; border-bottom:1px solid var(--border); }
+.deal-item:last-child { border-bottom:none; }
+.deal-item-top { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:4px; }
+.pill { color:#fff; font-size:0.7rem; padding:2px 8px; border-radius:4px; }
+.src { font-size:0.72rem; color:var(--muted); background:var(--soft); padding:2px 6px; border-radius:4px; }
+.co { font-size:0.78rem; color:var(--accent-2); }
+.deal-title { font-weight:600; margin-bottom:4px; }
+.deal-meta { font-size:0.8rem; color:var(--muted); margin-bottom:4px; }
+.deal-sum { font-size:0.88rem; color:#475569; margin:6px 0; }
+a { color:var(--accent); }
+.chart-box { background:var(--soft); border-radius:10px; padding:10px; margin:8px 0 12px; border:1px solid var(--border); }
+table.fin { width:100%; border-collapse:collapse; font-size:0.8rem; }
+table.fin th, table.fin td { border-bottom:1px solid var(--border); padding:0.4rem 0.3rem; text-align:right; }
+table.fin th:first-child, table.fin td:first-child { text-align:left; }
+table.fin th { color:var(--muted); }
+.price-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; margin-top:14px; }
+.price-chip { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px; }
+.price-chip.intl { border-color:#a7f3d0; }
+.pc-name { font-size:0.78rem; color:var(--muted); margin-bottom:4px; }
+.pc-price { font-size:1.15rem; font-weight:700; }
+.pc-chg { font-size:0.8rem; margin-top:2px; }
+.pc-chg.up { color:#059669; }
+.pc-chg.down { color:#dc2626; }
+.mod-stat em { display:block; font-size:0.65rem; color:#d97706; font-style:normal; }
+.geo-tag { display:inline-block; background:#ffedd5; color:#9a3412; font-size:0.7rem; padding:2px 8px; border-radius:4px; font-weight:600; }
+.bm-banner { background:#fff7ed; border:1px solid #fdba74; border-radius:12px; padding:12px 14px; margin-bottom:14px; }
+table.fin tr.bm-row td { background:#fffbeb; color:#92400e; font-weight:600; }
+.debt-ratio { color:#d97706; font-weight:700; }
+.markets-panel {
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 45%, #f0f9ff 100%);
+  border:1px solid var(--border); border-radius:16px; padding:20px 22px; margin-bottom:20px;
+}
+.markets-head { display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
+.markets-section-label { font-size:0.78rem; color:#047857; margin:12px 0 8px; letter-spacing:0.02em; }
+.mkt-chip { background:#fff; border:1px solid var(--border); border-radius:12px; padding:12px; }
+.mkt-chip.commodity { border-color:#f59e0b; }
+.mkt-chip.index { border-color:#38bdf8; }
+.mkt-chip.fx { border-color:#06b6d4; }
+.mkt-chip.rate { border-color:#8b5cf6; }
+.mkt-unit { font-size:0.72rem; color:var(--muted); font-weight:500; }
+.mkt-note { font-size:0.7rem; color:var(--muted); margin-top:6px; line-height:1.35; }
+.power-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px 18px; margin-bottom:14px; }
+.power-card h3 { margin:0 0 8px; font-size:1.05rem; color:var(--accent-2); }
+.power-label { font-size:0.78rem; color:#047857; margin:12px 0 6px; }
+.power-list { margin:0; padding-left:1.1rem; color:#334155; font-size:0.9rem; }
+.power-list li { margin-bottom:4px; }
+.export-box { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px; margin:14px 0 20px; }
+.export-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+.email-form { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:10px; }
+.email-form input[type=email],
+.email-form input[type=text],
+.email-form select {
+  flex:1; min-width:180px; padding:10px 12px; border-radius:8px;
+  border:1px solid var(--border); background:#fff; color:var(--text);
+}
+.email-form button { border:none; cursor:pointer; }
+.briefing-list { margin-top:12px; display:flex; flex-direction:column; gap:12px; }
+.briefing-card {
+  background:#fff; border:1px solid var(--border); border-radius:12px; padding:14px 16px;
+}
+.briefing-card-head { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:6px; }
+.briefing-badge {
+  font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:6px;
+  background:#e0f2fe; color:#0369a1;
+}
+.briefing-badge.status-pending { color:#b45309; background:#fef3c7; }
+.briefing-badge.status-sent { color:#047857; background:#d1fae5; }
+.briefing-badge.status-rejected { color:#b91c1c; background:#fee2e2; }
+.briefing-badge.status-failed { color:#c2410c; background:#ffedd5; }
+.briefing-preview {
+  white-space:pre-wrap; font-size:0.78rem; color:#475569; background:var(--soft);
+  border:1px solid var(--border); border-radius:8px; padding:10px; margin:8px 0; max-height:140px; overflow:auto;
+}
+.tag-row { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+.impact-hint { font-size:0.78rem; color:#b45309; margin:4px 0 6px; }
+.focus-line { color:#047857; font-size:0.9rem; margin:0 0 10px; }
+.fin-sub { margin:14px 0 8px; font-size:0.95rem; color:var(--accent-2); }
+.mkt-chart-card { background:#fff; border:1px solid var(--border); border-radius:12px; padding:12px; }
+.mkt-chart-card.commodity { border-color:#f59e0b; }
+.mkt-chart-card.fx { border-color:#06b6d4; }
+.mkt-chart-card.rate { border-color:#8b5cf6; }
+.mkt-chart-card.index { border-color:#38bdf8; }
+.mkt-mini-chart { height:110px; margin-top:8px; }
+.deal-wrap-v2 .deal-hero {
+  display:flex; flex-wrap:wrap; justify-content:space-between; gap:14px; align-items:flex-end;
+  background:linear-gradient(135deg,#ffffff,#f0f9ff); border:1px solid var(--border);
+  border-radius:14px; padding:16px 18px; margin-bottom:12px;
+}
+.deal-hero-title { margin:0 0 6px; font-size:1.25rem; color:var(--accent-2); }
+.deal-filter-bar {
+  position:sticky; top:8px; z-index:20; display:flex; flex-wrap:wrap; gap:8px;
+  background:rgba(255,255,255,.96); border:1px solid var(--border); border-radius:12px;
+  padding:10px 12px; margin-bottom:14px; backdrop-filter:blur(6px);
+}
+.deal-filter {
+  border:1px solid var(--border); background:#fff; color:var(--text);
+  border-radius:10px; padding:10px 14px; cursor:pointer; font-size:0.9rem;
+  border-left:4px solid var(--c,#64748b);
+}
+.deal-filter em { font-style:normal; font-weight:700; color:var(--c,#0284c7); margin-left:6px; }
+.deal-filter.active { background:#e0f2fe; box-shadow:0 0 0 1px var(--c,#0284c7); color:#0f172a; }
+.deal-panel { margin-bottom:16px; }
+.deal-panel-head {
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  margin-bottom:12px; padding-bottom:8px; border-bottom:2px solid var(--c,#0284c7);
+}
+.deal-panel-head h3 { margin:0; font-size:1.15rem; }
+.deal-panel-head small { color:var(--muted); font-weight:400; margin-left:8px; }
+.deal-panel-count { color:var(--c,#0284c7); font-weight:700; font-size:1rem; }
+.deal-card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; }
+.deal-card {
+  display:flex; background:#fff; border:1px solid var(--border); border-radius:12px; overflow:hidden;
+  min-height:140px; box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+.deal-card-bar { width:6px; flex-shrink:0; }
+.deal-card-body { padding:14px 16px; flex:1; }
+.deal-card .deal-title { font-size:1.05rem; line-height:1.45; margin-bottom:6px; }
+.deal-card .deal-sum { font-size:0.92rem; line-height:1.5; color:#475569; }
+.deal-link { display:inline-block; margin-top:10px; font-weight:600; color:var(--accent); }
+.deal-nav { display:flex; flex-wrap:wrap; gap:8px; }
+.deal-nav-btn {
+  display:flex; align-items:center; gap:8px; text-decoration:none; color:var(--text);
+  background:#fff; border:1px solid var(--border); border-left:4px solid var(--c,#0284c7);
+  border-radius:10px; padding:8px 12px; font-size:0.85rem;
+}
+.deal-nav-btn span { color:var(--c,#0284c7); font-weight:700; font-size:1.05rem; }
+.deal-section-v2 { scroll-margin-top:90px; }
+footer { margin-top:28px; text-align:center; color:var(--muted); font-size:0.85rem; }
+@media (max-width:600px){ .module-grid { grid-template-columns:repeat(3,1fr); } }
+
+.hist-arch-grid { display:flex; flex-wrap:wrap; gap:14px; align-items:center; }
+.hist-arch-col { flex:1; min-width:200px; background:var(--soft); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+.hist-arch-arrow { color:var(--accent); font-weight:700; font-size:0.85rem; }
+.hist-kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; margin:14px 0 18px; }
+.hist-kpi { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px 14px; }
+.hist-kpi strong { display:block; font-size:1.5rem; color:var(--accent); }
+.hist-kpi span { font-size:0.78rem; color:var(--muted); }
+.hist-event-head { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:6px; }
+.hist-details { margin-top:10px; }
+.hist-details summary { cursor:pointer; color:var(--accent); font-weight:600; font-size:0.9rem; }
+.hist-src-block { margin-top:10px; padding-top:8px; border-top:1px solid var(--border); }
+.hist-src-label { font-size:0.8rem; color:var(--accent-2); margin-bottom:6px; font-weight:600; }
+.hist-src-label em { font-style:normal; color:var(--accent); margin-left:4px; }
+.hist-ev-list { margin:0; padding-left:1.1rem; }
+.hist-ev-item { margin-bottom:8px; }
+.hist-co h3 { font-size:1.05rem; }
+.hist-cat-tabs { margin-bottom:14px; }
+.hist-cat-tab {
+  border:1px solid var(--border); background:var(--card); color:var(--text);
+  padding:10px 14px; border-radius:10px; cursor:pointer; font-size:0.9rem;
+  border-left:4px solid var(--c,#64748b);
+}
+.hist-cat-tab small { color:var(--muted); margin-left:4px; font-size:0.75rem; }
+.hist-cat-tab em { font-style:normal; font-weight:700; color:var(--c,#0284c7); margin-left:6px; }
+.hist-cat-tab.active { background:#e0f2fe; box-shadow:0 0 0 1px var(--c,#0284c7); color:#0f172a; }
+.hist-year-focus {
+  display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:0 0 14px;
+}
+.hist-focus-btn {
+  border:1px solid var(--border); background:#fff; color:var(--text);
+  border-radius:8px; padding:6px 12px; cursor:pointer; font-size:0.82rem;
+}
+.hist-focus-btn.active { border-color:var(--accent); color:var(--accent); background:#e0f2fe; }
+.hist-basis {
+  display:inline-block; font-size:0.72rem; font-weight:600;
+  background:#e0f2fe; color:#0369a1; padding:2px 8px; border-radius:6px;
+}
+.hist-tl { margin-top:8px; }
+.hist-tl-year { margin-bottom:22px; }
+.hist-tl-year-label {
+  display:inline-block; font-size:1.05rem; font-weight:700; color:var(--accent-2);
+  background:#ecfdf5; border:1px solid var(--border); border-radius:8px;
+  padding:4px 12px; margin-bottom:12px;
+}
+.hist-tl-year-label em { font-style:normal; color:var(--accent); margin-left:6px; font-size:0.9rem; }
+.hist-tl-empty { color:var(--muted); font-size:0.85rem; font-style:italic; margin:0 0 0 12px; }
+.hist-tl-rail {
+  position:relative; margin-left:12px; padding-left:28px;
+  border-left:2px solid #cbd5e1;
+}
+.hist-tl-item {
+  position:relative; margin-bottom:16px;
+}
+.hist-tl-item::before {
+  content:''; position:absolute; left:-36px; top:10px;
+  width:12px; height:12px; border-radius:50%;
+  background:var(--c,#0284c7); border:2px solid #fff;
+  box-shadow:0 0 0 2px var(--c,#0284c7);
+}
+.hist-tl-date {
+  font-size:0.8rem; color:var(--muted); font-weight:600; margin-bottom:4px;
+  letter-spacing:0.02em;
+}
+.hist-tl-card {
+  background:#fff; border:1px solid var(--border); border-radius:12px;
+  padding:12px 14px; border-left:3px solid var(--c,#0284c7);
+  box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+</style>
+  
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <a href="../index.html" class="">홈</a>
+      <a href="../domestic.html" class="">국내</a>
+      <a href="../international.html" class="">해외</a>
+      <a href="../markets.html" class="">시장</a>
+      <a href="../power.html" class="">전력시장</a>
+      <a href="../mega_projects.html" class="">메가 프로젝트</a>
+      <a href="../history.html" class="active">히스토리 DB</a>
+    </nav>
+    
+        <p><a href="../history.html">← 히스토리 DB 목록</a></p>
+        <h1>ABB</h1>
+        <p class="sub"><span class="tag intl">해외</span>
+          INTL:ABB.SW · 실적 0년 · 이벤트 9건</p>
+        
+    <div class="ai-summary-box">
+      <strong>Gemini AI 요약</strong>
+      <span class="deal-meta"> · gemini-flash-latest · 2026-07-23T09:56:05Z</span>
+      <pre>제공된 DB 자료만을 바탕으로 요약한 ABB(INTL:ABB.SW)의 전반적인 전략 방향성은 다음과 같습니다.
+
+---
+
+### 1. 한줄 요약
+ABB는 **Power Grids, Turbocharging, Power Conversion 등 비핵심 사업의 매각·분리를 통한 포트폴리오 재편**과 **주주 환원, 운영 효율성 강화 및 공급망 실사 관리**에 집중하는 전략을 추진하고 있습니다. *(근거: ir, web)*
+
+---
+
+### 2. 핵심 전략 축
+1. **비핵심 포트폴리오 정리 및 매각 (Portfolio Optimization)**
+   - **Power Grids 매각:** 2020년 7월 1일 Hitachi에 Power Grids 사업 지분 80.1% 매각 완결 *(근거: ir)*.
+   - **사업부 철수/매각 추진:** Turbocharging 사업부의 스핀오프 또는 매각을 위한 듀얼 트랙(dual track) 프로세스 진행 및 Power Conversion 사업부 철수(exit) 계획 추진 *(근거: ir)*.
+
+2. **자본 배분 및 주주 가치 제고 (Capital Allocation &amp; Shareholder Returns)**
+   - Power Grids 매각으로 확보한 순현금 수입금(78억 달러)을 주주에게 환원하는 자구책 추진 *(근거: ir)*.
+   - 비필수 프로젝트 연기 등을 통한 자본지출(Capex) 관리 및 규율 있는 현금 관리 *(근거: ir)*.
+
+3. **운영 효율성 및 조직 구조 개선 (Operational Performance)**
+   - ABB-OS 등 구조조정 프로그램을 통한 조직 변혁 및 지속적 수익성 개선 추진 *(근거: ir, web)*.
+   - 책임성, 투명성, 속도를 중시하는 기업 문화 구축 및 운영 효율화 추진 *(근거: ir)*.
+
+4. **공급망 리스크 및 실사 관리 (Supply Chain Due Diligence)**
+   - 글로벌 공유 서비스 센터(Global Shared Service Center) 내 전담 팀을 통해 공급업체의 공급망 실사 적절성을 검토하고 &#x27;Red flags&#x27; 리스크를 지속 평가 *(근거: ir, web)*.
+
+---
+
+### 3. 실적과의 연결
+- **비연속 영업 이익 및 현금 유입:** Power Grids 사업 지분 80.1% 매각을 통해 중단영업 순이익 내 53억 달러의 장부상 이익(book gain)을 기록함 *(근거: ir)*.
+- **현금 흐름 관리:** 계속영업(Continuing Operations) 기준 영업활동 현금흐름 18억 7,500만 달러를 기록하였으며, 자본지출(Capex)은 6억 9,400만 달러 수준으로 관리함 *(근거: ir, web)*.
+- **엔드마켓 수주/실적 요인:** 3C, 기계 제조업(machine builders), 자동차 및 전기차(EV) 제조, 식품·음료(Food &amp; Beverage) 등 주요 전방 산업 분야에서의 활발한 수요가 사업 활동을 뒷받침함 *(근거: ir, web)*.
+
+---
+
+### 4. 리스크 / 관찰 포인트
+- **사업 매각/분리 이행 완료 여부:** Turbocharging 사업부의 분구/매각 및 Power Conversion 사업부 철수 작업의 성공적인 최종 완료 여부 *(근거: ir)*.
+- **공급망 컴플라이언스 및 리스크 검토:** 글로벌 공급망 실사 관리에 따른 &#x27;Red flags&#x27; 이슈 발생 여부 및 모니터링 *(근거: ir, web)*.
+- **주요 전방 산업 투자 추이:** 자동차, EV 제조, 3C 및 기계 제조 분야의 자본지출(Capex) 변화 흐름 *(근거: ir, web)*.
+- **구체적인 최근 연도별 세부 매출·영업이익 수치:** 자료 없음</pre>
+      
+    </div>
+    
+        <p class='empty'>연도별 실적 데이터가 없습니다.</p>
+        
+    <div class="card hist-timeline-card">
+      <h3 style="margin:0 0 10px">전략 이벤트 타임라인</h3>
+      <p class="tab-desc">기본: <strong>전체</strong> 탭 · 데이터 전 기간(기간 미상).
+        기간 보기에서 <strong>2026 / 2025 / 2024 …</strong> 연도별로 좁힐 수 있습니다.</p>
+      <div class="tabs hist-cat-tabs"><button type='button' class='hist-cat-tab active' data-tab='hist-tab-all' style='--c:#38bdf8'>전체 <small>전 기간</small> <em>9</em></button><button type='button' class='hist-cat-tab' data-tab='hist-tab-orders' style='--c:#3d8bfd'>수주 <small>계약·수주</small> <em>2</em></button><button type='button' class='hist-cat-tab' data-tab='hist-tab-strategy' style='--c:#9b59b6'>전략 <small>MOU·제휴·인수</small> <em>5</em></button><button type='button' class='hist-cat-tab' data-tab='hist-tab-investment' style='--c:#20c997'>투자 <small>투자·지분</small> <em>2</em></button></div>
+      <div id='hist-tab-all' class='tab-panel active'><p class='tab-desc'>전체 · 데이터 기준 날짜 미상 포함 (오래된 → 최근). 날짜가 불명확하면 뉴스·애널 등 <strong>자료 기준</strong>을 표시합니다.</p><div class='hist-year-focus' data-panel='hist-tab-all'><span class='sub'>기간 보기:</span> <button type='button' class='hist-focus-btn active' data-focus='all'>전체</button><button type='button' class='hist-focus-btn' data-focus='undated'>날짜 미상</button></div><div class="hist-tl">
+            <section class="hist-tl-year" data-year="undated">
+              <div class="hist-tl-year-label">날짜 미상 <em>9</em></div>
+              <div class="hist-tl-rail">
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#9b59b6">
+      <div class="hist-tl-date">날짜 미상（IR 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#9b59b6">제휴</span>
+          <span class='hist-basis'>IR 자료 기준</span>
+          <span class="src">근거 1건 · IR</span>
+        </div>
+        <div class="deal-title"></div>
+        <div class='deal-sum'>We continue to make progress on the exit of the Turbocharging Division, where we are currently running a dual track process for a spin-off or divestment, and plan to exit the Power Conversion Division.</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>IR <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/2021/abb-ltd-2021-form-20f.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>We continue to make progress on the exit of the Turbocharging Division, where we are currently running a dual track process for a spin-off or divestment, and plan to exit the Power Conversion Division.</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#20c997">
+      <div class="hist-tl-date">날짜 미상（IR 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#20c997">투자</span>
+          <span class='hist-basis'>IR 자료 기준</span>
+          <span class="src">근거 3건 · IR</span>
+        </div>
+        <div class="deal-title"></div>
+        <div class='deal-sum'>businesses, wehavea dedicated team,in a global shared service center, whoreviewsthe completeness of supplier responses andassesseswhether suppliers appear to have carried out their own appropriate supply chain due diligence.The review teamassesseseachresponse for “red flags” (as described in the OECD Framework) and then further assessesthe completeness of the supplierresponse.To perform the survey</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>IR <em>3</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/annual_reporting_suite/2023/ABB%20Form%20SD%202023.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>businesses, we have a dedicated team, in a global shared service center, who reviews the completeness of supplier responses and assesses whether suppliers appear to have carried out their own appropriate supply chain due diligence.</div></li><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/2022/ABB%20Form%20SD%202022.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>businesses, wehavea dedicated team,in a global shared service center, whoreviewsthe completeness of supplier responses andassesseswhether suppliers appear to have carried out their own appropriate supply chain due diligence.The review teamassesseseachresponse for “red flags” (as </div></li><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/2022/ABB%20Form%20SD%202021.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>businesses, wehavea dedicated team,in a global shared service center, whoreviewsthe completeness of supplier responses and assesseswhethersuppliers appeared to have carried out their own appropriate supply chain due diligence.</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#e67e22">
+      <div class="hist-tl-date">날짜 미상（IR 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#e67e22">MOU·협약</span>
+          <span class='hist-basis'>IR 자료 기준</span>
+          <span class="src">근거 2건 · IR</span>
+        </div>
+        <div class="deal-title"></div>
+        <div class='deal-sum'>— Improved performance in the making Key priorities in 2021 culture Cement of accountability - transparency - speed Steady progress towards improved profitability 1 2 3 OPERATIONAL PORTFOLIO CAPITAL PERFORMANCE MANAGEMENT ALLOCATION Further efficiency measures, Portfolio consolidation with 3 divisions Meaningful uplift in cash generation including footprint reduction to be divested, no fire sales…</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>IR <em>2</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://resources.news.e.abb.com/attachments/published/73590/en-US/BC024103A730/ABB-Q4-2020-Group-results-presentation.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>— Improved performance in the making Key priorities in 2021 culture Cement of accountability - transparency - speed Steady progress towards improved profitability 1 2 3 OPERATIONAL PORTFOLIO CAPITAL PERFORMANCE MANAGEMENT ALLOCATION Further efficiency measures, Portfolio consolid</div></li><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/2021/abb-ltd-2021-form-20f.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>Additionally, we made progress in reshaping our business portfolio, completing the divestment of the Mechanical Power Transmission business, as we continue to be fully focused on electrification and automation.</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#3d8bfd">
+      <div class="hist-tl-date">날짜 미상（IR 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#3d8bfd">수주·계약</span>
+          <span class='hist-basis'>IR 자료 기준</span>
+          <span class="src">근거 2건 · IR</span>
+        </div>
+        <div class="deal-title"></div>
+        <div class='deal-sum'>prior year 2020 Free cash flow (CO) +$1.3 bn $694 mn capex (CO), non-essential projects 2019 postponed 0 1000 2000 3000 ($ mn) Resilient cash performance, inline with guidance 1.</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>IR <em>2</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://resources.news.e.abb.com/attachments/published/73590/en-US/BC024103A730/ABB-Q4-2020-Group-results-presentation.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>prior year 2020 Free cash flow (CO) +$1.3 bn $694 mn capex (CO), non-essential projects 2019 postponed 0 1000 2000 3000 ($ mn) Resilient cash performance, inline with guidance 1.</div></li><li class='hist-ev-item'><a href="https://resources.news.e.abb.com/attachments/published/73590/en-US/312A67997F24/ABB-Q4-and-full-year-2020-press-release-English.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>In other customer segments such as mining, pulp and paper and water and wastewater, some capital expenditure projects went ahead during the quarter.</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#3d8bfd">
+      <div class="hist-tl-date">날짜 미상（웹 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#3d8bfd">수주·계약</span>
+          <span class='hist-basis'>웹 자료 기준</span>
+          <span class="src">근거 1건 · 웹</span>
+        </div>
+        <div class="deal-title">PDF</div>
+        <div class='deal-sum'>End-market overview – In discrete industries, the group benefited from strong activity in the 3C and machine builders’ segments. On a sequential basis, there were positive signs in automotive for future capital expenditure and electric vehicle manufacturing spend. End-markets such as food &amp; beverage continued to expand. – Activities in the energy segments remained subdued except LNG, where ABB ben</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>웹 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://resources.news.e.abb.com/attachments/published/73590/en-US/312A67997F24/ABB-Q4-and-full-year-2020-press-release-English.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>End-market overview – In discrete industries, the group benefited from strong activity in the 3C and machine builders’ segments. On a sequential basis, there were positive signs in automotive for future capital expenditure and electric vehicle manufacturing spend. End-markets suc</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#e67e22">
+      <div class="hist-tl-date">날짜 미상（웹 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#e67e22">MOU·협약</span>
+          <span class='hist-basis'>웹 자료 기준</span>
+          <span class="src">근거 2건 · 웹</span>
+        </div>
+        <div class="deal-title">PDF</div>
+        <div class='deal-sum'>Item 5. Operating and Financial Review and Prospects The discussion in Item 5 below provides a comparative analysis between 2021 and 2020. See “Item 5. Operating and Financial Review and Prospects” in our Annual Report on Form 20-F for the year ended December 31, 2020, for a comparative discussion and analysis between 2020 and 2019. — Management overview During 2021, we saw a strong recovery from </div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>웹 <em>2</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/2021/abb-ltd-2021-form-20f.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>Item 5. Operating and Financial Review and Prospects The discussion in Item 5 below provides a comparative analysis between 2021 and 2020. See “Item 5. Operating and Financial Review and Prospects” in our Annual Report on Form 20-F for the year ended December 31, 2020, for a comp</div></li><li class='hist-ev-item'><a href="https://resources.news.e.abb.com/attachments/published/68364/en-US/0334FB3D48A0/ABB-Q3-2020-press-release-English.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>Capital structure optimization ABB divested 80.1 percent of its Power Grids business to Hitachi on July 1, 2020, recording a book gain of $5.3 billion in the quarter within net income from discontinued operations. As previously announced, ABB intends to return to shareholders net</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#20c997">
+      <div class="hist-tl-date">날짜 미상（웹 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#20c997">투자</span>
+          <span class='hist-basis'>웹 자료 기준</span>
+          <span class="src">근거 3건 · 웹</span>
+        </div>
+        <div class="deal-title">PDF</div>
+        <div class='deal-sum'>businesses, we have a dedicated team, in a global shared service center, who reviews the completeness of supplier responses and assesses whether suppliers appear to have carried out their own appropriate supply chain due diligence. The review team assesses each response for “red flags” (as described in the OECD Framework) and then further assesses the completeness of the supplier response. To perf</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>웹 <em>3</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/annual_reporting_suite/2023/ABB%20Form%20SD%202023.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>businesses, we have a dedicated team, in a global shared service center, who reviews the completeness of supplier responses and assesses whether suppliers appear to have carried out their own appropriate supply chain due diligence. The review team assesses each response for “red </div></li><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/2022/ABB%20Form%20SD%202022.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>businesses, wehavea dedicated team,in a global shared service center, whoreviewsthe completeness of supplier responses andassesseswhether suppliers appear to have carried out their own appropriate supply chain due diligence.The review teamassesseseachresponse for “red flags” (as </div></li><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/2022/ABB%20Form%20SD%202021.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>businesses, wehavea dedicated team,in a global shared service center, whoreviewsthe completeness of supplier responses and assesseswhethersuppliers appeared to have carried out their own appropriate supply chain due diligence. The review teamassesseseachresponse for “red flags” (</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#a855f7">
+      <div class="hist-tl-date">날짜 미상（웹 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#a855f7">인수·M&amp;A</span>
+          <span class='hist-basis'>웹 자료 기준</span>
+          <span class="src">근거 1건 · 웹</span>
+        </div>
+        <div class="deal-title">PDF</div>
+        <div class='deal-sum'>— Cash generation analysis Historic development in cash flow from operating activities 2020 cash drivers Cash flow from operating activities in continuing Transformation impacts operations (CO) (ABB-OS, other restructuring +$1,875 mn programs, PG carve-out) Cash flow from operating activities, continuing1 Kusile settlement ~$1 bn negative transformation, one-time impacts2 Pension impacts Lower inc</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>웹 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://resources.news.e.abb.com/attachments/published/73590/en-US/BC024103A730/ABB-Q4-2020-Group-results-presentation.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>— Cash generation analysis Historic development in cash flow from operating activities 2020 cash drivers Cash flow from operating activities in continuing Transformation impacts operations (CO) (ABB-OS, other restructuring +$1,875 mn programs, PG carve-out) Cash flow from operati</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#e67e22">
+      <div class="hist-tl-date">날짜 미상（실적콜 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#e67e22">MOU·협약</span>
+          <span class='hist-basis'>실적콜 기준</span>
+          <span class="src">근거 1건 · 실적콜</span>
+        </div>
+        <div class="deal-title">Quarterly results &amp; annual reports</div>
+        <div class='deal-sum'>Quarterly results — ABB Group Select region &amp; language Europe Americas Middle East &amp; Africa Asia &amp; Oceania Global English Austria German Belgium Dutch French Bulgaria Bulgarian Croatia Croatian Czech Republic Czech Denmark Danish Estonia Estonian Finland Finnish France French Germany German Greece Greek Hungary Hungarian Ireland English Italy Italian Latvia Latvian Lithuania Lithuanian Luxembourg </div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>실적콜 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://global.abb/group/en/investors/results-and-reports" target="_blank" rel="noopener">Quarterly results &amp; annual reports</a><div class='deal-sum'>Quarterly results — ABB Group Select region &amp; language Europe Americas Middle East &amp; Africa Asia &amp; Oceania Global English Austria German Belgium Dutch French Bulgaria Bulgarian Croatia Croatian Czech Republic Czech Denmark Danish Estonia Estonian Finland Finnish France French Ger</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    </div>
+            </section>
+            </div></div><div id='hist-tab-orders' class='tab-panel'><p class='tab-desc'>수주 · 데이터 기준 날짜 미상 포함 (오래된 → 최근). 날짜가 불명확하면 뉴스·애널 등 <strong>자료 기준</strong>을 표시합니다.</p><div class='hist-year-focus' data-panel='hist-tab-orders'><span class='sub'>기간 보기:</span> <button type='button' class='hist-focus-btn active' data-focus='all'>전체</button><button type='button' class='hist-focus-btn' data-focus='undated'>날짜 미상</button></div><div class="hist-tl">
+            <section class="hist-tl-year" data-year="undated">
+              <div class="hist-tl-year-label">날짜 미상 <em>2</em></div>
+              <div class="hist-tl-rail">
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#3d8bfd">
+      <div class="hist-tl-date">날짜 미상（IR 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#3d8bfd">수주·계약</span>
+          <span class='hist-basis'>IR 자료 기준</span>
+          <span class="src">근거 2건 · IR</span>
+        </div>
+        <div class="deal-title"></div>
+        <div class='deal-sum'>prior year 2020 Free cash flow (CO) +$1.3 bn $694 mn capex (CO), non-essential projects 2019 postponed 0 1000 2000 3000 ($ mn) Resilient cash performance, inline with guidance 1.</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>IR <em>2</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://resources.news.e.abb.com/attachments/published/73590/en-US/BC024103A730/ABB-Q4-2020-Group-results-presentation.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>prior year 2020 Free cash flow (CO) +$1.3 bn $694 mn capex (CO), non-essential projects 2019 postponed 0 1000 2000 3000 ($ mn) Resilient cash performance, inline with guidance 1.</div></li><li class='hist-ev-item'><a href="https://resources.news.e.abb.com/attachments/published/73590/en-US/312A67997F24/ABB-Q4-and-full-year-2020-press-release-English.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>In other customer segments such as mining, pulp and paper and water and wastewater, some capital expenditure projects went ahead during the quarter.</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#3d8bfd">
+      <div class="hist-tl-date">날짜 미상（웹 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#3d8bfd">수주·계약</span>
+          <span class='hist-basis'>웹 자료 기준</span>
+          <span class="src">근거 1건 · 웹</span>
+        </div>
+        <div class="deal-title">PDF</div>
+        <div class='deal-sum'>End-market overview – In discrete industries, the group benefited from strong activity in the 3C and machine builders’ segments. On a sequential basis, there were positive signs in automotive for future capital expenditure and electric vehicle manufacturing spend. End-markets such as food &amp; beverage continued to expand. – Activities in the energy segments remained subdued except LNG, where ABB ben</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>웹 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://resources.news.e.abb.com/attachments/published/73590/en-US/312A67997F24/ABB-Q4-and-full-year-2020-press-release-English.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>End-market overview – In discrete industries, the group benefited from strong activity in the 3C and machine builders’ segments. On a sequential basis, there were positive signs in automotive for future capital expenditure and electric vehicle manufacturing spend. End-markets suc</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    </div>
+            </section>
+            </div></div><div id='hist-tab-strategy' class='tab-panel'><p class='tab-desc'>전략 · 데이터 기준 날짜 미상 포함 (오래된 → 최근). 날짜가 불명확하면 뉴스·애널 등 <strong>자료 기준</strong>을 표시합니다.</p><div class='hist-year-focus' data-panel='hist-tab-strategy'><span class='sub'>기간 보기:</span> <button type='button' class='hist-focus-btn active' data-focus='all'>전체</button><button type='button' class='hist-focus-btn' data-focus='undated'>날짜 미상</button></div><div class="hist-tl">
+            <section class="hist-tl-year" data-year="undated">
+              <div class="hist-tl-year-label">날짜 미상 <em>5</em></div>
+              <div class="hist-tl-rail">
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#9b59b6">
+      <div class="hist-tl-date">날짜 미상（IR 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#9b59b6">제휴</span>
+          <span class='hist-basis'>IR 자료 기준</span>
+          <span class="src">근거 1건 · IR</span>
+        </div>
+        <div class="deal-title"></div>
+        <div class='deal-sum'>We continue to make progress on the exit of the Turbocharging Division, where we are currently running a dual track process for a spin-off or divestment, and plan to exit the Power Conversion Division.</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>IR <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/2021/abb-ltd-2021-form-20f.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>We continue to make progress on the exit of the Turbocharging Division, where we are currently running a dual track process for a spin-off or divestment, and plan to exit the Power Conversion Division.</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#e67e22">
+      <div class="hist-tl-date">날짜 미상（IR 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#e67e22">MOU·협약</span>
+          <span class='hist-basis'>IR 자료 기준</span>
+          <span class="src">근거 2건 · IR</span>
+        </div>
+        <div class="deal-title"></div>
+        <div class='deal-sum'>— Improved performance in the making Key priorities in 2021 culture Cement of accountability - transparency - speed Steady progress towards improved profitability 1 2 3 OPERATIONAL PORTFOLIO CAPITAL PERFORMANCE MANAGEMENT ALLOCATION Further efficiency measures, Portfolio consolidation with 3 divisions Meaningful uplift in cash generation including footprint reduction to be divested, no fire sales…</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>IR <em>2</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://resources.news.e.abb.com/attachments/published/73590/en-US/BC024103A730/ABB-Q4-2020-Group-results-presentation.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>— Improved performance in the making Key priorities in 2021 culture Cement of accountability - transparency - speed Steady progress towards improved profitability 1 2 3 OPERATIONAL PORTFOLIO CAPITAL PERFORMANCE MANAGEMENT ALLOCATION Further efficiency measures, Portfolio consolid</div></li><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/2021/abb-ltd-2021-form-20f.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>Additionally, we made progress in reshaping our business portfolio, completing the divestment of the Mechanical Power Transmission business, as we continue to be fully focused on electrification and automation.</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#e67e22">
+      <div class="hist-tl-date">날짜 미상（웹 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#e67e22">MOU·협약</span>
+          <span class='hist-basis'>웹 자료 기준</span>
+          <span class="src">근거 2건 · 웹</span>
+        </div>
+        <div class="deal-title">PDF</div>
+        <div class='deal-sum'>Item 5. Operating and Financial Review and Prospects The discussion in Item 5 below provides a comparative analysis between 2021 and 2020. See “Item 5. Operating and Financial Review and Prospects” in our Annual Report on Form 20-F for the year ended December 31, 2020, for a comparative discussion and analysis between 2020 and 2019. — Management overview During 2021, we saw a strong recovery from </div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>웹 <em>2</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/2021/abb-ltd-2021-form-20f.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>Item 5. Operating and Financial Review and Prospects The discussion in Item 5 below provides a comparative analysis between 2021 and 2020. See “Item 5. Operating and Financial Review and Prospects” in our Annual Report on Form 20-F for the year ended December 31, 2020, for a comp</div></li><li class='hist-ev-item'><a href="https://resources.news.e.abb.com/attachments/published/68364/en-US/0334FB3D48A0/ABB-Q3-2020-press-release-English.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>Capital structure optimization ABB divested 80.1 percent of its Power Grids business to Hitachi on July 1, 2020, recording a book gain of $5.3 billion in the quarter within net income from discontinued operations. As previously announced, ABB intends to return to shareholders net</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#a855f7">
+      <div class="hist-tl-date">날짜 미상（웹 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#a855f7">인수·M&amp;A</span>
+          <span class='hist-basis'>웹 자료 기준</span>
+          <span class="src">근거 1건 · 웹</span>
+        </div>
+        <div class="deal-title">PDF</div>
+        <div class='deal-sum'>— Cash generation analysis Historic development in cash flow from operating activities 2020 cash drivers Cash flow from operating activities in continuing Transformation impacts operations (CO) (ABB-OS, other restructuring +$1,875 mn programs, PG carve-out) Cash flow from operating activities, continuing1 Kusile settlement ~$1 bn negative transformation, one-time impacts2 Pension impacts Lower inc</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>웹 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://resources.news.e.abb.com/attachments/published/73590/en-US/BC024103A730/ABB-Q4-2020-Group-results-presentation.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>— Cash generation analysis Historic development in cash flow from operating activities 2020 cash drivers Cash flow from operating activities in continuing Transformation impacts operations (CO) (ABB-OS, other restructuring +$1,875 mn programs, PG carve-out) Cash flow from operati</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#e67e22">
+      <div class="hist-tl-date">날짜 미상（실적콜 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#e67e22">MOU·협약</span>
+          <span class='hist-basis'>실적콜 기준</span>
+          <span class="src">근거 1건 · 실적콜</span>
+        </div>
+        <div class="deal-title">Quarterly results &amp; annual reports</div>
+        <div class='deal-sum'>Quarterly results — ABB Group Select region &amp; language Europe Americas Middle East &amp; Africa Asia &amp; Oceania Global English Austria German Belgium Dutch French Bulgaria Bulgarian Croatia Croatian Czech Republic Czech Denmark Danish Estonia Estonian Finland Finnish France French Germany German Greece Greek Hungary Hungarian Ireland English Italy Italian Latvia Latvian Lithuania Lithuanian Luxembourg </div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>실적콜 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://global.abb/group/en/investors/results-and-reports" target="_blank" rel="noopener">Quarterly results &amp; annual reports</a><div class='deal-sum'>Quarterly results — ABB Group Select region &amp; language Europe Americas Middle East &amp; Africa Asia &amp; Oceania Global English Austria German Belgium Dutch French Bulgaria Bulgarian Croatia Croatian Czech Republic Czech Denmark Danish Estonia Estonian Finland Finnish France French Ger</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    </div>
+            </section>
+            </div></div><div id='hist-tab-investment' class='tab-panel'><p class='tab-desc'>투자 · 데이터 기준 날짜 미상 포함 (오래된 → 최근). 날짜가 불명확하면 뉴스·애널 등 <strong>자료 기준</strong>을 표시합니다.</p><div class='hist-year-focus' data-panel='hist-tab-investment'><span class='sub'>기간 보기:</span> <button type='button' class='hist-focus-btn active' data-focus='all'>전체</button><button type='button' class='hist-focus-btn' data-focus='undated'>날짜 미상</button></div><div class="hist-tl">
+            <section class="hist-tl-year" data-year="undated">
+              <div class="hist-tl-year-label">날짜 미상 <em>2</em></div>
+              <div class="hist-tl-rail">
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#20c997">
+      <div class="hist-tl-date">날짜 미상（IR 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#20c997">투자</span>
+          <span class='hist-basis'>IR 자료 기준</span>
+          <span class="src">근거 3건 · IR</span>
+        </div>
+        <div class="deal-title"></div>
+        <div class='deal-sum'>businesses, wehavea dedicated team,in a global shared service center, whoreviewsthe completeness of supplier responses andassesseswhether suppliers appear to have carried out their own appropriate supply chain due diligence.The review teamassesseseachresponse for “red flags” (as described in the OECD Framework) and then further assessesthe completeness of the supplierresponse.To perform the survey</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>IR <em>3</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/annual_reporting_suite/2023/ABB%20Form%20SD%202023.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>businesses, we have a dedicated team, in a global shared service center, who reviews the completeness of supplier responses and assesses whether suppliers appear to have carried out their own appropriate supply chain due diligence.</div></li><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/2022/ABB%20Form%20SD%202022.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>businesses, wehavea dedicated team,in a global shared service center, whoreviewsthe completeness of supplier responses andassesseswhether suppliers appear to have carried out their own appropriate supply chain due diligence.The review teamassesseseachresponse for “red flags” (as </div></li><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/2022/ABB%20Form%20SD%202021.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>businesses, wehavea dedicated team,in a global shared service center, whoreviewsthe completeness of supplier responses and assesseswhethersuppliers appeared to have carried out their own appropriate supply chain due diligence.</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#20c997">
+      <div class="hist-tl-date">날짜 미상（웹 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#20c997">투자</span>
+          <span class='hist-basis'>웹 자료 기준</span>
+          <span class="src">근거 3건 · 웹</span>
+        </div>
+        <div class="deal-title">PDF</div>
+        <div class='deal-sum'>businesses, we have a dedicated team, in a global shared service center, who reviews the completeness of supplier responses and assesses whether suppliers appear to have carried out their own appropriate supply chain due diligence. The review team assesses each response for “red flags” (as described in the OECD Framework) and then further assesses the completeness of the supplier response. To perf</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>웹 <em>3</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/annual_reporting_suite/2023/ABB%20Form%20SD%202023.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>businesses, we have a dedicated team, in a global shared service center, who reviews the completeness of supplier responses and assesses whether suppliers appear to have carried out their own appropriate supply chain due diligence. The review team assesses each response for “red </div></li><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/2022/ABB%20Form%20SD%202022.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>businesses, wehavea dedicated team,in a global shared service center, whoreviewsthe completeness of supplier responses andassesseswhether suppliers appear to have carried out their own appropriate supply chain due diligence.The review teamassesseseachresponse for “red flags” (as </div></li><li class='hist-ev-item'><a href="https://global.abb/content/dam/abb/global/group/investors/results-and-reports/2022/ABB%20Form%20SD%202021.pdf" target="_blank" rel="noopener">PDF</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\ABB_SW\intl_web\PDF.pdf</div><div class='deal-sum'>businesses, wehavea dedicated team,in a global shared service center, whoreviewsthe completeness of supplier responses and assesseswhethersuppliers appeared to have carried out their own appropriate supply chain due diligence. The review teamassesseseachresponse for “red flags” (</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    </div>
+            </section>
+            </div></div>
+    </div>
+    <script>
+      (function() {
+        function applyFocus(panel, mode) {
+          if (!panel) return;
+          panel.querySelectorAll('.hist-focus-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.focus === mode);
+          });
+          panel.querySelectorAll('.hist-tl-year').forEach(sec => {
+            const y = sec.dataset.year;
+            if (mode === 'all') {
+              sec.style.display = '';
+              return;
+            }
+            sec.style.display = (y === mode) ? '' : 'none';
+          });
+        }
+        document.querySelectorAll('.hist-year-focus').forEach(bar => {
+          bar.querySelectorAll('.hist-focus-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+              const panel = document.getElementById(bar.dataset.panel);
+              applyFocus(panel, btn.dataset.focus);
+            });
+          });
+        });
+      })();
+    </script>
+    
+        
+    <footer>갱신 2026-07-24 16:28 · 2026-Q3 · 기업 전략 동향 AI 트래커</footer>
+  </div>
+  <script>
+    function activateTab(id) {
+      if (!id) return;
+      const btn = document.querySelector('.tabs button[data-tab="' + id + '"]');
+      const panel = document.getElementById(id);
+      if (!btn || !panel) return;
+      document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      panel.classList.add('active');
+    }
+    document.querySelectorAll('.tabs button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activateTab(btn.dataset.tab);
+        if (btn.dataset.tab) history.replaceState(null, '', '#' + btn.dataset.tab);
+      });
+    });
+    if (location.hash) activateTab(location.hash.replace(/^#/, ''));
+  </script>
+  
+</body>
+</html>
