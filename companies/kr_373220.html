@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>(주)엘지에너지솔루션 — 2026-Q3</title>
+  <style>
+:root {
+  --bg: #f5f7fb; --panel: #ffffff; --card: #ffffff; --text: #1e293b;
+  --muted: #64748b; --accent: #0284c7; --accent-2: #059669; --border: #e2e8f0;
+  --soft: #f1f5f9; --soft-2: #eef2ff; --brand-navy: #1e3a5f;
+}
+* { box-sizing: border-box; }
+body { margin:0; font-family:"Segoe UI","Malgun Gothic",sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
+.wrap { max-width: 1140px; margin: 0 auto; padding: 28px 20px 48px; }
+h1 { margin: 0 0 6px; font-size: 1.85rem; color:#0f172a; }
+h1.brand-title { color: var(--brand-navy); }
+.sub { color: var(--muted); margin-bottom: 20px; }
+.nav { display:flex; gap:8px; flex-wrap:wrap; margin-bottom: 20px; }
+.nav a { padding:8px 12px; border-radius:10px; background:var(--card); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.85rem; }
+.nav a.active, .nav a:hover { border-color:var(--brand-navy); color:var(--brand-navy); background:#eef2ff; }
+.home-section {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:18px 20px; margin-bottom:16px; box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+.home-split {
+  display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start; margin-bottom:16px;
+}
+.home-split > .home-section { margin-bottom:0; min-width:0; }
+.home-col-kr { border-top:3px solid #0284c7; }
+.home-col-intl { border-top:3px solid #0d9488; }
+@media (max-width:960px) {
+  .home-split { grid-template-columns:1fr; }
+}
+.home-section-head { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px; flex-wrap:wrap; }
+.home-section-head h2 { margin:0; font-size:1.15rem; color:var(--brand-navy); }
+.home-co-list { display:flex; flex-direction:column; gap:10px; }
+.home-co-row {
+  display:flex; flex-direction:column; align-items:stretch; gap:10px;
+  padding:12px 14px; border:1px solid var(--border); border-radius:12px; background:#fff;
+}
+.home-co-top {
+  display:grid; grid-template-columns:28px minmax(0,1fr); gap:8px 12px; align-items:center;
+}
+.home-co-main {
+  display:flex; align-items:center; gap:8px; min-width:0;
+}
+.home-co-main strong {
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:0.95rem;
+}
+.home-co-links {
+  grid-column:1 / -1; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:6px;
+}
+.home-co-links a,
+.home-tab-btn {
+  display:block; width:100%; text-align:center; padding:7px 4px; border-radius:8px; border:1px solid var(--border);
+  text-decoration:none; color:var(--brand-navy); font-size:0.78rem; font-weight:600; background:var(--soft);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; cursor:pointer;
+  font-family:inherit;
+}
+.home-co-links a:hover,
+.home-tab-btn:hover { border-color:var(--accent); background:#e0f2fe; }
+.home-tab-btn.active {
+  border-color:var(--accent); color:#fff; background:var(--accent);
+}
+.home-tab-panels { margin-top:2px; }
+.home-tab-panel {
+  border:1px solid var(--border); border-radius:10px; background:#f8fafc;
+  padding:10px 12px; margin-top:4px;
+}
+.home-tab-panel-head {
+  display:flex; justify-content:space-between; align-items:center; gap:8px;
+  margin-bottom:8px;
+}
+.home-tab-panel-head strong { font-size:0.88rem; color:var(--brand-navy); }
+.home-tab-more {
+  font-size:0.78rem; font-weight:600; color:var(--accent); text-decoration:none; white-space:nowrap;
+}
+.home-tab-more:hover { text-decoration:underline; }
+.home-prev-item { padding:6px 0; border-bottom:1px solid var(--border); }
+.home-prev-item:last-child { border-bottom:none; }
+.home-prev-fin { font-size:0.78rem; margin-top:4px; }
+@media (max-width:520px) {
+  .home-co-links { grid-template-columns:repeat(2, minmax(0,1fr)); }
+}
+.co-logo { width:28px; height:28px; border-radius:6px; object-fit:contain; background:#fff; border:1px solid var(--border); }
+.co-logo-fallback {
+  width:28px; height:28px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center;
+  background:var(--brand-navy); color:#fff; font-size:0.85rem; font-weight:700;
+}
+.ov-card-head .co-logo,
+.ov-card-head .co-logo-fallback,
+.co-page-head .co-logo,
+.co-page-head .co-logo-fallback {
+  width:36px; height:36px; flex-shrink:0;
+}
+.co-page-head {
+  display:flex; align-items:center; gap:12px; margin:0 0 10px;
+}
+.co-page-head h1 { margin:0; }
+.co-page-head .sub { margin:4px 0 0; }
+.home-hist-stats { display:flex; gap:18px; margin-top:8px; color:var(--muted); }
+.home-hist-stats strong { color:var(--brand-navy); font-size:1.2rem; margin-right:4px; }
+.mega-notes { margin:8px 0 12px; padding-left:18px; color:var(--muted); font-size:0.88rem; }
+.mega-tabs button em { font-style:normal; font-weight:700; color:var(--accent); margin-left:4px; }
+.mega-ind-box {
+  background:linear-gradient(135deg,#ffffff,#f0f9ff); border:1px solid var(--border);
+  border-radius:14px; padding:16px 18px; margin-bottom:14px;
+}
+.mega-ai-ul { margin:8px 0 0; padding-left:18px; color:#334155; font-size:0.92rem; }
+.mega-ai-ul li { margin:5px 0; }
+.mega-news-grid { display:grid; grid-template-columns:1fr; gap:12px; }
+.mega-news-card {
+  background:#fff; border:1px solid var(--border); border-radius:12px; padding:14px 16px;
+}
+.mega-news-title {
+  display:block; font-weight:700; color:var(--accent); text-decoration:none; font-size:1rem; line-height:1.4;
+}
+.mega-news-title:hover { text-decoration:underline; color:var(--brand-navy); }
+.mega-news-sum { margin-top:8px; }
+.mega-news-sum .mega-ai-ul { font-size:0.88rem; color:#475569; }
+@media (min-width:900px) {
+  .mega-news-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+}
+.ai-summary-box {
+  background:#f8fafc; border:1px solid var(--border); border-left:4px solid var(--brand-navy);
+  border-radius:12px; padding:14px 16px; margin:14px 0;
+}
+.ai-summary-box pre { white-space:pre-wrap; font-family:inherit; font-size:0.9rem; color:#334155; margin:8px 0 0; }
+.ai-summary-box.compact { padding:10px 12px; margin:8px 0 0; }
+.home-ai-ul {
+  list-style:none; margin:8px 0 0; padding:0; color:#334155; font-size:0.88rem;
+  display:flex; flex-direction:column; gap:6px;
+}
+.home-ai-ul li {
+  display:grid; grid-template-columns:5.75rem minmax(0,1fr) auto;
+  gap:8px; align-items:start; margin:0; line-height:1.45;
+}
+.home-ai-ul .ai-k {
+  display:block; color:var(--brand-navy); font-weight:600; font-size:0.78rem;
+  text-align:left; padding-top:1px;
+}
+.home-ai-ul a.ai-news {
+  font-size:0.75rem; font-weight:600; color:var(--accent);
+  text-decoration:none; border-bottom:1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  white-space:nowrap; align-self:start; margin-top:1px;
+}
+.home-ai-ul a.ai-news:hover { color:var(--accent-2); border-bottom-color:var(--accent-2); }
+@media (max-width:520px) {
+  .home-ai-ul li { grid-template-columns:4.5rem minmax(0,1fr); }
+  .home-ai-ul a.ai-news { grid-column:2; justify-self:start; }
+}
+.strategy-brief-list { display:flex; flex-direction:column; gap:16px; }
+.ov-list { display:flex; flex-direction:column; gap:18px; }
+.ov-card {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:0; box-shadow:0 1px 2px rgba(15,23,42,.03); overflow:hidden;
+}
+.ov-fold { margin:0; }
+.ov-fold > summary.ov-card-head {
+  list-style:none; cursor:pointer; display:flex; align-items:center; gap:12px;
+  flex-wrap:wrap; margin:0; padding:14px 18px; border-bottom:1px solid transparent;
+  user-select:none;
+}
+.ov-fold > summary.ov-card-head::-webkit-details-marker { display:none; }
+.ov-fold[open] > summary.ov-card-head {
+  border-bottom-color:var(--border); margin-bottom:0;
+}
+.ov-fold-hint {
+  flex-shrink:0; width:28px; height:28px; border-radius:8px;
+  border:1px solid var(--border); background:#f8fafc; color:var(--muted);
+  display:inline-flex; align-items:center; justify-content:center; font-size:0.75rem;
+}
+.ov-fold-hint::before { content:"▸"; }
+.ov-fold[open] .ov-fold-hint::before { content:"▾"; }
+.ov-card-body { padding:14px 18px 16px; }
+.ov-card-titles { flex:1; min-width:140px; }
+.ov-name {
+  font-size:1.15rem; font-weight:700; color:var(--brand-navy); text-decoration:none;
+}
+.ov-name:hover { color:var(--accent); }
+.ov-mcap { text-align:right; }
+.ov-mcap-label { display:block; font-size:0.72rem; color:var(--muted); }
+.ov-mcap strong { font-size:1.05rem; color:#92400e; }
+.ov-grid {
+  display:grid; grid-template-columns:1.2fr 1fr; gap:14px; margin-bottom:12px;
+}
+@media (max-width:800px) { .ov-grid { grid-template-columns:1fr; } }
+.ov-block h4 { margin:0 0 8px; font-size:0.9rem; color:var(--accent-2); }
+.ov-fin { width:100%; border-collapse:collapse; font-size:0.82rem; }
+.ov-fin th, .ov-fin td {
+  border-bottom:1px solid var(--border); padding:6px 8px; text-align:right;
+}
+.ov-fin th:first-child, .ov-fin td:first-child { text-align:left; }
+.ov-fin th { color:var(--muted); font-weight:600; background:#f8fafc; }
+.ov-chart-wrap { height:140px; position:relative; }
+.ov-chart-wrap.ov-chart-lg { height:260px; min-height:260px; }
+.ov-mini-tabs {
+  display:flex; flex-wrap:wrap; gap:6px; margin:0 0 10px;
+}
+.ov-mini-tabs button {
+  border:1px solid var(--border); background:#fff; border-radius:8px;
+  padding:6px 10px; font-size:0.78rem; cursor:pointer; color:var(--text);
+}
+.ov-mini-tabs button.active {
+  border-color:var(--accent); background:#e0f2fe; color:var(--accent); font-weight:700;
+}
+.ov-cat-panel { display:none; }
+.ov-cat-panel.active { display:block; }
+.ov-ls-block {
+  background:linear-gradient(135deg,#fffbeb,#fff); border:1px solid #f59e0b;
+  border-radius:12px; padding:12px 14px; margin-top:8px;
+}
+.ov-ls-block h4 { color:#92400e !important; }
+.ov-ls-meta { margin:0 0 8px !important; font-size:0.75rem; color:#92400e; }
+.ov-ls-prose-wrap { display:flex; flex-direction:column; gap:10px; }
+.ov-ls-prose {
+  margin:0; font-size:0.9rem; line-height:1.65; color:var(--text);
+  text-align:justify;
+}
+.ov-fact-summary {
+  margin:6px 0 2px; padding:6px 8px; border-left:3px solid #0e7490;
+  background:#f0f9ff; font-size:0.82rem; line-height:1.55; color:#0f172a;
+}
+.ov-fact-label {
+  display:inline-block; font-weight:700; color:#0e7490; margin-right:6px;
+  font-size:0.72rem; letter-spacing:0.02em;
+}
+.weekly-report {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:16px 18px; margin:12px 0 16px;
+}
+.weekly-head {
+  display:flex; align-items:flex-start; justify-content:space-between;
+  gap:12px; flex-wrap:wrap; margin-bottom:4px;
+}
+.weekly-head h3 { margin:0; }
+.weekly-dl { display:flex; gap:8px; flex-wrap:wrap; }
+.btn-dl {
+  display:inline-block; padding:6px 12px; border-radius:8px; font-size:0.78rem;
+  font-weight:700; text-decoration:none; color:#fff; background:var(--brand-navy);
+  border:1px solid var(--brand-navy);
+}
+.btn-dl:hover { background:#0c4a6e; }
+.btn-dl-word { background:#0369a1; border-color:#0369a1; }
+.weekly-fold {
+  margin:10px 0 0; padding:0; border:1px solid var(--border); border-radius:10px;
+  background:#fafbfc;
+}
+.weekly-fold > summary.weekly-fold-sum {
+  list-style:none; cursor:pointer; padding:10px 12px;
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+  font-weight:700; color:var(--brand-navy);
+}
+.weekly-fold > summary.weekly-fold-sum::-webkit-details-marker { display:none; }
+.weekly-fold > summary.weekly-fold-sum::before {
+  content:"▾"; color:var(--muted); font-size:0.85rem; margin-right:6px;
+}
+.weekly-fold:not([open]) > summary.weekly-fold-sum::before { content:"▸"; }
+.weekly-fold-title { font-size:0.95rem; }
+.weekly-fold-meta {
+  font-size:0.72rem; font-weight:600; color:var(--muted);
+  background:#e2e8f0; padding:2px 8px; border-radius:999px;
+}
+.weekly-fold-body { padding:4px 12px 12px 28px; }
+.weekly-fold .empty { margin:0; padding:4px 0 8px; }
+.weekly-detail-tabs { margin-top:8px; padding-top:8px; border-top:2px solid var(--border); }
+.item-date {
+  display:inline-block; margin-left:6px; padding:1px 7px; border-radius:4px;
+  font-size:0.72rem; font-weight:600; color:#475569; background:#f1f5f9;
+  vertical-align:baseline; white-space:nowrap;
+}
+.weekly-sec { margin:14px 0; padding-top:10px; border-top:1px solid var(--border); }
+.weekly-sec:first-of-type { border-top:none; padding-top:0; }
+.weekly-sec h4 { margin:0 0 8px; font-size:0.95rem; color:var(--brand-navy); }
+.weekly-ai { margin-bottom:8px; }
+ul.rpt-l1 {
+  list-style:disc; margin:6px 0 0; padding-left:1.2rem; color:#0f172a; font-size:0.92rem;
+}
+ul.rpt-l1 > li { margin:6px 0; line-height:1.45; display:list-item; }
+ul.rpt-l1 ul.rpt-l2 { display:block; margin:6px 0 0; clear:both; }
+ul.rpt-l2 ul.rpt-l3 { display:block; margin:4px 0 0; clear:both; }
+.ov-issue-ul > li { display:list-item; }
+ul.rpt-l2 {
+  list-style:none; margin:4px 0 0; padding-left:0.2rem; color:#334155; font-size:0.88rem;
+}
+ul.rpt-l2 > li {
+  position:relative; padding-left:1rem; margin:4px 0; line-height:1.4;
+}
+ul.rpt-l2 > li::before { content:"-"; position:absolute; left:0; color:#64748b; font-weight:700; }
+ul.rpt-l3 {
+  list-style:none; margin:3px 0 0; padding-left:0.15rem; color:#475569; font-size:0.84rem;
+}
+ul.rpt-l3 > li {
+  position:relative; padding-left:1.1rem; margin:3px 0; line-height:1.35;
+}
+ul.rpt-l3 > li::before { content:"✓"; position:absolute; left:0; color:#047857; font-weight:700; }
+.ov-news-ul { margin:0; padding-left:0; list-style:none; }
+.ov-news-li {
+  padding:8px 0; border-bottom:1px solid var(--border); font-size:0.9rem;
+}
+.ov-news-li:last-child { border-bottom:none; }
+.ov-news-li a { color:var(--brand-navy); text-decoration:none; font-weight:600; }
+.ov-news-li a:hover { color:var(--accent); }
+.ov-news-meta { margin-top:4px; font-size:0.75rem; color:var(--muted); }
+.ov-tag {
+  display:inline-block; margin:2px 4px 0 0; padding:1px 7px; border-radius:4px;
+  font-size:0.7rem; font-weight:700; background:#e0f2fe; color:#0369a1;
+}
+.ov-tag:nth-child(odd) { background:#ecfdf5; color:#047857; }
+.ov-more { margin:10px 0 0; text-align:right; }
+.ov-more a { font-weight:600; color:var(--accent); text-decoration:none; }
+.ov-sec { margin-bottom:16px; }
+.ov-sec h4 { margin:0 0 8px; font-size:0.95rem; color:var(--brand-navy); }
+.strategy-brief-card {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:16px 18px; box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+.strat-head {
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid var(--border);
+}
+.strat-title { display:flex; align-items:center; gap:8px; flex:1; min-width:140px; }
+.strat-title strong { font-size:1.05rem; }
+.strat-cat { margin-top:12px; }
+.strat-cat-head {
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+  margin-bottom:6px;
+}
+.strat-cat-head h4 {
+  margin:0; font-size:0.88rem; color:var(--brand-navy); font-weight:700;
+}
+.strat-ul {
+  list-style:none; margin:0; padding:0; color:#334155; font-size:0.88rem;
+  display:flex; flex-direction:column; gap:5px;
+}
+.strat-ul li {
+  display:grid; grid-template-columns:5.75rem minmax(0,1fr);
+  gap:8px; align-items:start; line-height:1.45;
+}
+.strat-ul.plain li { grid-template-columns:minmax(0,1fr); }
+.strat-k {
+  display:block; color:var(--brand-navy); font-weight:600; font-size:0.76rem;
+  padding-top:1px;
+}
+@media (max-width:520px) {
+  .strat-ul li { grid-template-columns:4.5rem minmax(0,1fr); }
+}
+.hero {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 55%, #ecfdf5 100%);
+  border:1px solid var(--border); border-radius:16px; padding:28px; margin-bottom:24px;
+  box-shadow:0 1px 2px rgba(15,23,42,.04);
+}
+.entry-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin-top:18px; }
+.entry {
+  display:block; background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:22px; text-decoration:none; color:inherit; transition:border-color .15s, box-shadow .15s;
+  box-shadow:0 1px 2px rgba(15,23,42,.04);
+}
+.entry:hover { border-color: var(--accent); box-shadow:0 4px 12px rgba(2,132,199,.08); }
+.entry h2 { margin:0 0 8px; font-size:1.35rem; color:var(--accent-2); }
+.entry p { margin:0; color:var(--muted); font-size:0.92rem; }
+.entry .count { margin-top:12px; font-size:1.6rem; font-weight:700; color:var(--accent); }
+.tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; position:sticky; top:0; z-index:5;
+  background:rgba(245,247,251,.94); backdrop-filter:blur(8px); padding:10px 0; border-bottom:1px solid var(--border); }
+.tabs button {
+  border:1px solid var(--border); background:var(--card); color:var(--text);
+  padding:8px 12px; border-radius:8px; cursor:pointer; font-size:0.85rem;
+}
+.tabs button.active { border-color:var(--accent); color:var(--accent); background:#e0f2fe; }
+.tab-panel { display:none; }
+.tab-panel.active { display:block; }
+.tab-desc { color:var(--muted); font-size:0.9rem; margin-bottom:14px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; }
+.card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px; box-shadow:0 1px 2px rgba(15,23,42,.03); }
+.card-head { display:flex; justify-content:space-between; gap:8px; margin-bottom:10px; }
+.card h3 { margin:0; font-size:1rem; }
+.tag { font-size:0.7rem; background:#e0f2fe; color:#0369a1; padding:3px 8px; border-radius:6px; white-space:nowrap; }
+.tag.intl { background:#d1fae5; color:#047857; }
+.module-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; margin-bottom:12px; }
+.mod-stat { background:var(--soft); border-radius:8px; padding:8px 6px; text-align:center; font-size:0.72rem; color:var(--muted); }
+.mod-stat strong { display:block; font-size:1.05rem; color:var(--text); }
+.btn { display:inline-block; padding:9px 12px; border-radius:10px; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; font-size:0.88rem; border:none; cursor:pointer; }
+.btn.secondary { background:#10b981; color:#fff; }
+.empty { color:var(--muted); font-style:italic; }
+.deal-kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px; margin-bottom:18px; }
+.deal-kpi { background:var(--card); border:1px solid var(--border); border-left:4px solid var(--c,#0284c7);
+  border-radius:10px; padding:12px 14px; text-decoration:none; color:inherit; }
+.deal-kpi-label { font-size:0.85rem; }
+.deal-kpi-count { font-size:1.7rem; font-weight:700; color:var(--c,#0284c7); }
+.deal-kpi-en { font-size:0.72rem; color:var(--muted); }
+.deal-section { background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:16px 18px; margin-bottom:14px; scroll-margin-top:70px; }
+.deal-section h3 { margin:0 0 12px; font-size:1.05rem; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.deal-section h3 .dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
+.deal-section h3 small { color:var(--muted); font-weight:400; font-size:0.8rem; }
+.deal-section h3 em { margin-left:auto; font-style:normal; color:var(--accent); font-size:0.85rem; }
+.deal-item { padding:12px 0; border-bottom:1px solid var(--border); }
+.deal-item:last-child { border-bottom:none; }
+.deal-item-top { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:4px; }
+.pill { color:#fff; font-size:0.7rem; padding:2px 8px; border-radius:4px; }
+.src { font-size:0.72rem; color:var(--muted); background:var(--soft); padding:2px 6px; border-radius:4px; }
+.co { font-size:0.78rem; color:var(--accent-2); }
+.deal-title { font-weight:600; margin-bottom:4px; }
+.deal-meta { font-size:0.8rem; color:var(--muted); margin-bottom:4px; }
+.deal-sum { font-size:0.88rem; color:#475569; margin:6px 0; }
+a { color:var(--accent); }
+.chart-box { background:var(--soft); border-radius:10px; padding:10px; margin:8px 0 12px; border:1px solid var(--border); }
+.ov-card-body .chart-box { height:220px; position:relative; }
+.index-hero { grid-column: 1 / -1; border-color:#99f6e4; background:linear-gradient(135deg,#fff,#f0fdfa); }
+table.fin { width:100%; border-collapse:collapse; font-size:0.8rem; }
+table.fin th, table.fin td { border-bottom:1px solid var(--border); padding:0.4rem 0.3rem; text-align:right; }
+table.fin th:first-child, table.fin td:first-child { text-align:left; }
+table.fin th { color:var(--muted); }
+.price-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; margin-top:14px; }
+.price-chip { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px; }
+.price-chip.intl { border-color:#a7f3d0; }
+.pc-name { font-size:0.78rem; color:var(--muted); margin-bottom:4px; }
+.pc-price { font-size:1.15rem; font-weight:700; }
+.pc-chg { font-size:0.8rem; margin-top:2px; }
+.pc-chg.up { color:#059669; }
+.pc-chg.down { color:#dc2626; }
+.mod-stat em { display:block; font-size:0.65rem; color:#d97706; font-style:normal; }
+.geo-tag { display:inline-block; background:#ffedd5; color:#9a3412; font-size:0.7rem; padding:2px 8px; border-radius:4px; font-weight:600; }
+.bm-banner { background:#fff7ed; border:1px solid #fdba74; border-radius:12px; padding:12px 14px; margin-bottom:14px; }
+table.fin tr.bm-row td { background:#fffbeb; color:#92400e; font-weight:600; }
+.debt-ratio { color:#d97706; font-weight:700; }
+.markets-panel {
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 45%, #f0f9ff 100%);
+  border:1px solid var(--border); border-radius:16px; padding:20px 22px; margin-bottom:20px;
+}
+.markets-head { display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
+.markets-section-label { font-size:0.78rem; color:#047857; margin:14px 0 8px; letter-spacing:0.02em; font-weight:600; }
+.mkt-chart-grid { display:grid; gap:12px; margin-bottom:6px; }
+.mkt-chart-grid.mkt-grid-2x2 { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+.mkt-chart-grid.mkt-grid-2 { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+@media (max-width:720px) {
+  .mkt-chart-grid.mkt-grid-2x2,
+  .mkt-chart-grid.mkt-grid-2 { grid-template-columns:1fr; }
+}
+.mkt-chip { background:#fff; border:1px solid var(--border); border-radius:12px; padding:12px; }
+.mkt-chip.commodity { border-color:#f59e0b; }
+.mkt-chip.index { border-color:#38bdf8; }
+.mkt-chip.fx { border-color:#06b6d4; }
+.mkt-chip.rate { border-color:#8b5cf6; }
+.mkt-unit { font-size:0.72rem; color:var(--muted); font-weight:500; }
+.mkt-note { font-size:0.7rem; color:var(--muted); margin-top:6px; line-height:1.35; }
+.power-badge {
+  display:inline-block; background:#fef3c7; color:#b45309; font-size:0.72rem;
+  font-weight:700; padding:2px 8px; border-radius:4px; margin-right:6px;
+}
+.power-sum-label {
+  margin-top:10px; font-size:0.78rem; font-weight:600; color:#047857;
+}
+.power-subtabs { position:static; background:transparent; backdrop-filter:none; margin-top:8px; }
+.tag-row { display:flex; flex-wrap:wrap; gap:6px; margin-top:4px; }
+.fin-sub { margin:16px 0 8px; font-size:0.95rem; color:var(--brand-navy); }
+.power-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px 18px; margin-bottom:14px; }
+.power-card h3 { margin:0 0 8px; font-size:1.05rem; color:var(--accent-2); }
+.power-overview-fold { padding:0; overflow:hidden; }
+.power-overview-sum {
+  list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between;
+  gap:12px; padding:14px 18px; user-select:none;
+}
+.power-overview-sum::-webkit-details-marker { display:none; }
+.power-overview-title { font-size:1.05rem; font-weight:700; color:var(--accent-2); }
+.power-overview-hint {
+  flex-shrink:0; font-size:0.78rem; font-weight:600; color:var(--muted);
+  display:inline-flex; align-items:center; gap:4px;
+}
+.power-overview-hint::before { content:attr(data-when-open); }
+.power-overview-fold:not([open]) .power-overview-hint::before { content:attr(data-when-closed); }
+.power-overview-hint::after {
+  content:""; width:0.45em; height:0.45em; border-right:2px solid currentColor;
+  border-bottom:2px solid currentColor; transform:rotate(-135deg); margin-top:3px;
+  transition:transform .15s ease;
+}
+.power-overview-fold:not([open]) .power-overview-hint::after {
+  transform:rotate(45deg); margin-top:-2px;
+}
+.power-overview-body { padding:0 18px 16px; border-top:1px solid var(--border); }
+.power-overview-sum:hover { background:#f8fafc; }
+.power-label { font-size:0.78rem; color:#047857; margin:12px 0 6px; }
+.power-list { margin:0; padding-left:1.1rem; color:#334155; font-size:0.9rem; }
+.power-list li { margin-bottom:4px; }
+.export-box { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px; margin:14px 0 20px; }
+.export-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+.email-form { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:10px; }
+.email-form input[type=email],
+.email-form input[type=text],
+.email-form select {
+  flex:1; min-width:180px; padding:10px 12px; border-radius:8px;
+  border:1px solid var(--border); background:#fff; color:var(--text);
+}
+.email-form button { border:none; cursor:pointer; }
+.briefing-list { margin-top:12px; display:flex; flex-direction:column; gap:12px; }
+.briefing-card {
+  background:#fff; border:1px solid var(--border); border-radius:12px; padding:14px 16px;
+}
+.briefing-card-head { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:6px; }
+.briefing-badge {
+  font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:6px;
+  background:#e0f2fe; color:#0369a1;
+}
+.briefing-badge.status-pending { color:#b45309; background:#fef3c7; }
+.briefing-badge.status-sent { color:#047857; background:#d1fae5; }
+.briefing-badge.status-rejected { color:#b91c1c; background:#fee2e2; }
+.briefing-badge.status-failed { color:#c2410c; background:#ffedd5; }
+.briefing-preview {
+  white-space:pre-wrap; font-size:0.78rem; color:#475569; background:var(--soft);
+  border:1px solid var(--border); border-radius:8px; padding:10px; margin:8px 0; max-height:140px; overflow:auto;
+}
+.tag-row { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+.impact-hint { font-size:0.78rem; color:#b45309; margin:4px 0 6px; }
+.focus-line { color:#047857; font-size:0.9rem; margin:0 0 10px; }
+.fin-sub { margin:14px 0 8px; font-size:0.95rem; color:var(--accent-2); }
+.mkt-chart-card {
+  background:#0f3d4c; border:1px solid #0a2a33; border-radius:12px; padding:14px 14px 10px;
+  color:#f8fafc; min-height:0;
+}
+.mkt-chart-card .pc-name { color:#e2e8f0; font-size:0.9rem; font-weight:600; margin-bottom:6px; }
+.mkt-chart-card .pc-price { color:#fff; font-size:1.25rem; font-weight:700; }
+.mkt-chart-card .mkt-unit { color:#94a3b8; }
+.mkt-chart-card .pc-chg.up { color:#6ee7b7; }
+.mkt-chart-card .pc-chg.down { color:#fca5a5; }
+.mkt-chart-card.commodity { border-color:#b45309; }
+.mkt-chart-card.fx { border-color:#0e7490; }
+.mkt-chart-card.rate { border-color:#6d28d9; }
+.mkt-chart-card.index { border-color:#0369a1; }
+.mkt-chart-card.mkt-priority { box-shadow:0 0 0 2px rgba(180,83,9,0.35); }
+.mkt-ls-tag {
+  display:inline-block; margin-left:6px; font-style:normal; font-size:0.65rem;
+  font-weight:700; color:#92400e; background:#fef3c7; padding:1px 6px; border-radius:4px;
+  vertical-align:middle;
+}
+.ls-metal-panel {
+  background:linear-gradient(135deg,#fffbeb,#fff); border:1px solid #f59e0b;
+  border-radius:14px; padding:14px 16px; margin:14px 0 10px;
+}
+.power-12th-panel {
+  background:linear-gradient(135deg,#fffbeb,#fff); border:1px solid #f59e0b;
+  border-radius:14px; padding:16px 18px; margin:14px 0 16px;
+}
+.power-12th-panel .card-head {
+  display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-bottom:4px;
+}
+.power-12th-panel .card-head h3 { margin:0; font-size:1.05rem; color:#92400e; }
+.power-12th-panel .mega-news-grid { margin-top:8px; }
+.mega-ai-ul.power-digest-ul li { line-height:1.5; }
+.mega-ai-ul a.ai-news {
+  display:inline; margin-left:6px; font-size:0.78rem; font-weight:700;
+  color:var(--accent); text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  white-space:nowrap;
+}
+.mega-ai-ul a.ai-news:hover { color:var(--accent-2); border-bottom-color:var(--accent-2); }
+.ls-metal-head {
+  display:flex; justify-content:space-between; align-items:baseline; gap:10px;
+  flex-wrap:wrap; margin-bottom:10px;
+}
+.ls-metal-head strong { color:#92400e; font-size:0.95rem; }
+.ls-metal-block { margin-top:10px; }
+.ls-metal-block h4 { margin:0 0 6px; font-size:0.88rem; color:var(--brand-navy); }
+.ls-metal-ul { margin:0; padding-left:18px; color:#334155; font-size:0.88rem; }
+.ls-metal-ul li { margin:5px 0; line-height:1.45; }
+.mkt-mini-chart { height:100px; margin-top:8px; background:rgba(255,255,255,.04); border-radius:8px; padding:4px; }
+.deal-wrap-v2 .deal-hero {
+  display:flex; flex-wrap:wrap; justify-content:space-between; gap:14px; align-items:flex-end;
+  background:linear-gradient(135deg,#ffffff,#f0f9ff); border:1px solid var(--border);
+  border-radius:14px; padding:16px 18px; margin-bottom:12px;
+}
+.deal-hero-title { margin:0 0 6px; font-size:1.25rem; color:var(--accent-2); }
+.deal-filter-bar {
+  position:sticky; top:8px; z-index:20; display:flex; flex-wrap:wrap; gap:8px;
+  background:rgba(255,255,255,.96); border:1px solid var(--border); border-radius:12px;
+  padding:10px 12px; margin-bottom:14px; backdrop-filter:blur(6px);
+}
+.deal-filter {
+  border:1px solid var(--border); background:#fff; color:var(--text);
+  border-radius:10px; padding:10px 14px; cursor:pointer; font-size:0.9rem;
+  border-left:4px solid var(--c,#64748b);
+}
+.deal-filter em { font-style:normal; font-weight:700; color:var(--c,#0284c7); margin-left:6px; }
+.deal-filter.active { background:#e0f2fe; box-shadow:0 0 0 1px var(--c,#0284c7); color:#0f172a; }
+.deal-panel { margin-bottom:16px; }
+.deal-panel-head {
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  margin-bottom:12px; padding-bottom:8px; border-bottom:2px solid var(--c,#0284c7);
+}
+.deal-panel-head h3 { margin:0; font-size:1.15rem; }
+.deal-panel-head small { color:var(--muted); font-weight:400; margin-left:8px; }
+.deal-panel-count { color:var(--c,#0284c7); font-weight:700; font-size:1rem; }
+.deal-card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; }
+.deal-card {
+  display:flex; background:#fff; border:1px solid var(--border); border-radius:12px; overflow:hidden;
+  min-height:140px; box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+.deal-card-bar { width:6px; flex-shrink:0; }
+.deal-card-body { padding:14px 16px; flex:1; }
+.deal-card .deal-title { font-size:1.05rem; line-height:1.45; margin-bottom:6px; }
+.deal-card .deal-sum { font-size:0.92rem; line-height:1.5; color:#475569; }
+.deal-link { display:inline-block; margin-top:10px; font-weight:600; color:var(--accent); }
+.deal-nav { display:flex; flex-wrap:wrap; gap:8px; }
+.deal-nav-btn {
+  display:flex; align-items:center; gap:8px; text-decoration:none; color:var(--text);
+  background:#fff; border:1px solid var(--border); border-left:4px solid var(--c,#0284c7);
+  border-radius:10px; padding:8px 12px; font-size:0.85rem;
+}
+.deal-nav-btn span { color:var(--c,#0284c7); font-weight:700; font-size:1.05rem; }
+.deal-section-v2 { scroll-margin-top:90px; }
+footer { margin-top:28px; text-align:center; color:var(--muted); font-size:0.85rem; }
+@media (max-width:600px){ .module-grid { grid-template-columns:repeat(3,1fr); } }
+
+.hist-embed { margin-top:18px; }
+.hist-embed > h3 { font-size:1.05rem; margin:0 0 10px; color:var(--brand-navy); }
+.hist-panel { display:none; }
+.hist-panel.active { display:block; }
+.hist-event-head { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:6px; }
+.hist-details { margin-top:10px; }
+.hist-details summary { cursor:pointer; color:var(--accent); font-weight:600; font-size:0.9rem; }
+.hist-src-block { margin-top:10px; padding-top:8px; border-top:1px solid var(--border); }
+.hist-src-label { font-size:0.8rem; color:var(--accent-2); margin-bottom:6px; font-weight:600; }
+.hist-src-label em { font-style:normal; color:var(--accent); margin-left:4px; }
+.hist-ev-list { margin:0; padding-left:1.1rem; }
+.hist-ev-item { margin-bottom:8px; }
+.hist-cat-tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+.hist-cat-tab {
+  border:1px solid var(--border); background:var(--card); color:var(--text);
+  padding:10px 14px; border-radius:10px; cursor:pointer; font-size:0.9rem;
+  border-left:4px solid var(--c,#64748b);
+}
+.hist-cat-tab small { color:var(--muted); margin-left:4px; font-size:0.75rem; }
+.hist-cat-tab em { font-style:normal; font-weight:700; color:var(--c,#0284c7); margin-left:6px; }
+.hist-cat-tab.active { background:#e0f2fe; box-shadow:0 0 0 1px var(--c,#0284c7); color:#0f172a; }
+.hist-year-focus {
+  display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:0 0 14px;
+}
+.hist-focus-btn {
+  border:1px solid var(--border); background:#fff; color:var(--text);
+  border-radius:8px; padding:6px 12px; cursor:pointer; font-size:0.82rem;
+}
+.hist-focus-btn.active { border-color:var(--accent); color:var(--accent); background:#e0f2fe; }
+.hist-basis {
+  display:inline-block; font-size:0.72rem; font-weight:600;
+  background:#e0f2fe; color:#0369a1; padding:2px 8px; border-radius:6px;
+}
+.hist-tl { margin-top:8px; }
+.hist-tl-year { margin-bottom:22px; }
+.hist-tl-year-label {
+  display:inline-block; font-size:1.05rem; font-weight:700; color:var(--accent-2);
+  background:#ecfdf5; border:1px solid var(--border); border-radius:8px;
+  padding:4px 12px; margin-bottom:12px;
+}
+.hist-tl-year-label em { font-style:normal; color:var(--accent); margin-left:6px; font-size:0.9rem; }
+.hist-tl-empty { color:var(--muted); font-size:0.85rem; font-style:italic; margin:0 0 0 12px; }
+.hist-tl-rail {
+  position:relative; margin-left:12px; padding-left:28px;
+  border-left:2px solid #cbd5e1;
+}
+.hist-tl-item {
+  position:relative; margin-bottom:16px;
+}
+.hist-tl-item::before {
+  content:''; position:absolute; left:-36px; top:10px;
+  width:12px; height:12px; border-radius:50%;
+  background:var(--c,#0284c7); border:2px solid #fff;
+  box-shadow:0 0 0 2px var(--c,#0284c7);
+}
+.hist-tl-date {
+  font-size:0.8rem; color:var(--muted); font-weight:600; margin-bottom:4px;
+  letter-spacing:0.02em;
+}
+.hist-tl-card {
+  background:#fff; border:1px solid var(--border); border-radius:12px;
+  padding:12px 14px; border-left:3px solid var(--c,#0284c7);
+  box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+table.fin { width:100%; border-collapse:collapse; font-size:0.88rem; margin-top:10px; }
+table.fin th, table.fin td { border-bottom:1px solid var(--border); padding:8px 10px; text-align:right; }
+table.fin th:first-child, table.fin td:first-child { text-align:left; }
+table.fin th { color:var(--muted); font-weight:600; font-size:0.78rem; }
+.chart-box { margin:8px 0 12px; }
+</style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <a href="../index.html" class="">홈</a>
+      <a href="../domestic.html" class="active">국내</a>
+      <a href="../international.html" class="">해외</a>
+      <a href="../markets.html" class="">지수/환율</a>
+      <a href="../power.html" class="">전력시장</a>
+      <a href="../mega_projects.html" class="">메가 프로젝트</a>
+      <a href="../interest_topic.html" class="">관심주제 주간 브리핑</a>
+    </nav>
+    
+    <p class="deal-meta"><a href="../index.html">← 홈</a> · <a href="../domestic.html">국내 전체</a></p>
+    <div class="co-page-head"><img class='co-logo' src='https://www.google.com/s2/favicons?domain=lgensol.com&sz=64' alt='' onerror="this.onerror=null;this.src='https://icons.duckduckgo.com/ip3/lgensol.com.ico';this.addEventListener('error',function(){this.style.display='none';this.nextElementSibling.style.display='inline-flex'});" /><span class='co-logo-fallback' style='display:none'>(</span><div><h1>(주)엘지에너지솔루션</h1>
+    <p class="sub">종목 373220 · 이번주 동향 · 밸류체인 · 수주·공급망·정책 · 경영이슈 · 실적</p></div></div>
+    <div id='weekly' class='weekly-report'><div class='card-head weekly-head'><div><h3>이번주 동향</h3><span class='tag'>뉴스·IR·한경컨센서스 · 정형 공시 제외</span></div><div class='weekly-dl'><a class='btn-dl' href='../../exports/weekly_kr_373220.pdf' download>PDF 다운로드</a><a class='btn-dl btn-dl-word' href='../../exports/weekly_kr_373220.doc' download>Word 다운로드</a></div></div><p class='deal-meta'>● / - / ✓ · 날짜(연·월) · 출처 링크 · 원문 요약(LLM)</p><details class='weekly-fold' open><summary class='weekly-fold-sum'><span class='weekly-fold-title'>주요 경영이슈</span><span class='weekly-fold-meta'>4건</span></summary><div class='weekly-fold-body'><ul class='rpt-l1'><li>사업보고서 <a class='ai-news' href='https://www.lgensol.com/kr/investors/data-business-report' target='_blank' rel='noopener'>IR</a><ul class='rpt-l2'><li>사업·시장 함의</li><li>사업보고서 핵심 포인트</li></ul></li><li>SK스퀘어(4.20%), 삼성전기(3.27%), 현대차(2.07%),LG에너지솔루션(2.40%), 한화에어로스페이스(5.29%)도 상승 마감 <span class='item-date'>2026-07-03</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/016/0002665546?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>SK스퀘어(4.20%)</li><li>삼성전기(3.27%)</li></ul></li><li>코스닥도 장 막판 반등에 성공 <span class='item-date'>2026-07-03</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/138/0002233093?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>사업·시장 함의</li><li>후속 IR·실적 점검 포인트</li></ul></li><li>임원ㆍ주요주주특정증권등소유상황보고서 <span class='item-date'>2026-06-12</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260612000681' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li></ul></div></details><details class='weekly-fold' open><summary class='weekly-fold-sum'><span class='weekly-fold-title'>자본시장 활동</span><span class='weekly-fold-meta'>4건</span></summary><div class='weekly-fold-body'><ul class='rpt-l1'><li>기업설명회(IR)개최(안내공시) <span class='item-date'>2026-04-07</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260407800768' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>실적·가이던스·질의응답 중심 IR 커뮤니케이션 일정 공시</li><li>기관·애널리스트 대상 자본시장 소통 이벤트 반영</li></ul></li><li>특수관계인으로부터부동산임차 <span class='item-date'>2026-04-28</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260428000648' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>특수관계인 거래·자금 이동 관련 공시</li><li>사업·시장 함의</li></ul></li><li>연결재무제표기준영업(잠정)실적(공정공시) <span class='item-date'>2026-04-30</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260430800165' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>공정공시 경로의 실적·경영계획 시장 공유</li><li>컨센서스·밸류에이션 재평가 입력 자료로 활용</li></ul></li><li>분기보고서 (2026.03) <span class='item-date'>2026-05-14</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260514001046' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li></ul></div></details><details class='weekly-fold' open><summary class='weekly-fold-sum'><span class='weekly-fold-title'>밸류체인</span><span class='weekly-fold-meta'>4건</span></summary><div class='weekly-fold-body'><ul class='rpt-l1'><li>한미 원자력동맹,에너지·산업동맹으로 확대 <span class='item-date'>2026-07-09</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/003/0014000242?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>한화에너지,엘지에너지솔루션, 삼성중공업, 효성중공업, 엘에스일렉트릭, 엘에스전선, 두산에너빌리티 등 전력·ESS·중전기기 분야 기업도 함께</li><li>한미 원자력동맹</li></ul></li><li>공정거래자율준수프로그램운영현황(안내공시) <span class='item-date'>2026-04-28</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260428800413' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li><li>대규모기업집단현황공시[연1회공시및1/4분기용(개별회사)] <span class='item-date'>2026-06-01</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260601001372' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li><li>기업지배구조보고서공시 <span class='item-date'>2026-06-01</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260601800822' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>이사회·감사·주주권익 관련 거버넌스 포인트 점검</li><li>지분·밸류에이션 임팩트 포인트</li></ul></li></ul></div></details><details class='weekly-fold' open><summary class='weekly-fold-sum'><span class='weekly-fold-title'>수주/투자/MOU</span><span class='weekly-fold-meta'>4건</span></summary><div class='weekly-fold-body'><ul class='rpt-l1'><li>NH농협은행, 상반기 포용금융에 1.9조원 지원 外 <span class='item-date'>2026-07-03</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/422/0000881257?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>상반기 포용금융에 1.9조원 지원 外</li><li>사업·시장 함의</li></ul></li><li>그러나 복수의 PCB 업체를 통해 확인한 결과, IDM으로부터의 메모리 패키지기판 판가 인하 요구는 없었으며, 가능성도 낮다는 언급이 공통적이 <span class='item-date'>2026-07-03</span><ul class='rpt-l2'><li>그러나 복수의 PCB 업체를 통해 확인한 결과</li><li>가능성도 낮다는 언급이 공통적이</li></ul></li><li>미국 성장률은 상승, 내용은 부실 <span class='item-date'>2026-07-03</span><ul class='rpt-l2'><li>Macro Weekly 3 Point 2</li><li>투자전략실 / Weekly / TGIF / vol</li></ul></li><li>유형자산처분결정(종속회사의주요경영사항) <span class='item-date'>2026-05-26</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260526800547' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li></ul></div></details><details class='weekly-fold ov-ls-block' open><summary class='weekly-fold-sum'><span class='weekly-fold-title'>LS 그룹 추가 모니터링 포인트</span><span class='weekly-fold-meta'>4건</span></summary><div class='weekly-fold-body'><p class='deal-meta ov-ls-meta'>LLM 미생성 — 규칙 기반 폴백</p><ul class='rpt-l1'><li>(주)엘지에너지솔루션 고객·수주·출하 신호 → LS전선·일렉트릭 전력기자재·케이블 수요 선행 지표로 교차점검</li><li>(주)엘지에너지솔루션 증설·지분·M&amp;A·CAPEX 일정 → LS 배터리 밸류체인 경쟁강도·파트너십 재평가 포인트</li><li>(주)엘지에너지솔루션 제품·양산·스펙 변화 → LS 계열 밸류체인·고객 요구스펙 갭 모니터링</li><li>(주)엘지에너지솔루션 연계 전력·ESS·계통 이슈 → LS 전력솔루션·전선 수주 파이프라인 선제 추적</li></ul></div></details></div>
+    <section class="weekly-detail-tabs">
+    <h3 class="fin-sub">출처 · 상세 탭</h3>
+    <p class="deal-meta">기사·IR·한경 컨센서스 원문 모음 (이번주 동향 아래)</p>
+    <div class="tabs company-tabs">
+      <button class="active" data-tab="tab-value">밸류체인</button>
+      <button data-tab="tab-orders">수주</button>
+      <button data-tab="tab-supply">공급망</button>
+      <button data-tab="tab-policy">정책</button>
+      <button data-tab="tab-mgmt">주요 경영이슈</button>
+      <button data-tab="tab-capital">자본시장</button>
+      <button data-tab="tab-invest">투자·MOU</button>
+      <button data-tab="tab-financials">실적</button>
+    </div>
+    <div id="tab-value" class="tab-panel active"><p class='tab-desc'>관련 기사·공시·IR·컨센서스 (내용 + 출처 링크)</p><div class='ov-sec'><h4>업스트림</h4><ul class='rpt-l1 ov-issue-ul'><li>LG엔솔·혼다 美 합작 공장, ESS 배터리 셀 양산 시작 <span class='item-date'>2026-07-03</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/031/0001039694?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>혼다 美 합작 공장</li><li>ESS 배터리 셀 양산 시작</li></ul></li></ul></div><div class='ov-sec'><h4>다운스트림</h4><ul class='rpt-l1 ov-issue-ul'><li>한미 원자력동맹,에너지·산업동맹으로 확대 <span class='item-date'>2026-07-09</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/003/0014000242?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>한화에너지,엘지에너지솔루션, 삼성중공업, 효성중공업, 엘에스일렉트릭, 엘에스전선, 두산에너빌리티 등 전력·ESS·중전기기 분야 기업도 함께</li><li>한미 원자력동맹</li></ul></li><li>NH농협은행, 상반기 포용금융에 1.9조원 지원 外 <span class='item-date'>2026-07-03</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/422/0000881257?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>상반기 포용금융에 1.9조원 지원 外</li><li>사업·시장 함의</li></ul></li><li>LG엔솔·혼다 美 합작 공장, ESS 배터리 셀 양산 시작 <span class='item-date'>2026-07-03</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/031/0001039694?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>혼다 美 합작 공장</li><li>ESS 배터리 셀 양산 시작</li></ul></li><li>ESG Report｜LG에너지솔루션 지속가능경영 보고서 본문 바로가기 제품 산업별 솔루션 승용 EV 상용 EV ESS LEV 스마트기기 전동공구 <a class='ai-news' href='https://www.lgensol.com/kr/esg/report-performance' target='_blank' rel='noopener'>IR</a><ul class='rpt-l2'><li>사업·시장 함의</li><li>후속 IR·실적 점검 포인트</li></ul></li></ul></div></div>
+    <div id="tab-orders" class="tab-panel">
+      <div class='ov-sec'><h4>수주</h4><ul class='rpt-l1 ov-issue-ul'><li>NH농협은행, 상반기 포용금융에 1.9조원 지원 外 <span class='item-date'>2026-07-03</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/422/0000881257?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>상반기 포용금융에 1.9조원 지원 外</li><li>사업·시장 함의</li></ul></li></ul></div>
+      <div class='deal-wrap deal-wrap-v2' id='deal-root'><div class='deal-hero'><div><h2 class='deal-hero-title'>수주 · 투자 · MOU</h2><p class='tab-desc' style='margin:0'>(주)엘지에너지솔루션 수주 (딜 분류) 뉴스·공시·IR 자동 분류 · 총 <strong>0</strong>건 — 분류 버튼을 눌러 한 화면에서 확인</p></div></div><div class='deal-filter-bar' role='tablist'><button type='button' class='deal-filter active' data-deal-filter='all'>전체 <em>0</em></button><button type='button' class='deal-filter' data-deal-filter='contract_docs' style='--c:#e67e22'>협약·계약 문서 <em>0</em></button><button type='button' class='deal-filter' data-deal-filter='orders' style='--c:#3d8bfd'>수주·사업 진행 <em>0</em></button><button type='button' class='deal-filter' data-deal-filter='investment' style='--c:#20c997'>투자·금융 <em>0</em></button><button type='button' class='deal-filter' data-deal-filter='alliance' style='--c:#9b59b6'>제휴·사업구조 <em>0</em></button></div><div class='deal-panels'><section class='deal-panel' data-deal-cat='contract_docs'><div class='deal-panel-head' style='--c:#e67e22'><h3>협약·계약 문서 <small>Letter / Memorandum / Agreement</small></h3><span class='deal-panel-count'>0건</span></div><div class='deal-card-grid'><p class='empty'>해당 분류 이벤트가 없습니다.</p></div></section><section class='deal-panel' data-deal-cat='orders'><div class='deal-panel-head' style='--c:#3d8bfd'><h3>수주·사업 진행 <small>Order / Business</small></h3><span class='deal-panel-count'>0건</span></div><div class='deal-card-grid'><p class='empty'>해당 분류 이벤트가 없습니다.</p></div></section><section class='deal-panel' data-deal-cat='investment'><div class='deal-panel-head' style='--c:#20c997'><h3>투자·금융 <small>Investment / Finance</small></h3><span class='deal-panel-count'>0건</span></div><div class='deal-card-grid'><p class='empty'>해당 분류 이벤트가 없습니다.</p></div></section><section class='deal-panel' data-deal-cat='alliance'><div class='deal-panel-head' style='--c:#9b59b6'><h3>제휴·사업구조 <small>Alliance / Structure</small></h3><span class='deal-panel-count'>0건</span></div><div class='deal-card-grid'><p class='empty'>해당 분류 이벤트가 없습니다.</p></div></section></div>
+<script>
+(function(){
+  const root = document.getElementById('deal-root');
+  if (!root) return;
+  const filters = root.querySelectorAll('.deal-filter');
+  const panels = root.querySelectorAll('.deal-panel');
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.getAttribute('data-deal-filter');
+      filters.forEach(b => b.classList.toggle('active', b === btn));
+      panels.forEach(p => {
+        const cat = p.getAttribute('data-deal-cat');
+        p.hidden = !(key === 'all' || cat === key);
+      });
+      root.querySelector('.deal-filter-bar')?.scrollIntoView({behavior:'smooth', block:'nearest'});
+    });
+  });
+})();
+</script>
+</div>
+      
+    <section class="hist-embed">
+      <h3>히스토리 · 수주·계약</h3>
+      <div id="hist-orders-KR_373220" class="hist-panel active"><p class='tab-desc'>데이터 기준 날짜 미상 포함 (오래된 → 최근). 날짜가 불명확하면 뉴스·애널 등 <strong>자료 기준</strong>을 표시합니다.</p><div class='hist-year-focus' data-panel='hist-orders-KR_373220'><span class='sub'>기간 보기:</span> <button type='button' class='hist-focus-btn active' data-focus='all'>전체</button><button type='button' class='hist-focus-btn' data-focus='undated'>날짜 미상</button></div><div class="hist-tl">
+            <section class="hist-tl-year" data-year="undated">
+              <div class="hist-tl-year-label">날짜 미상 <em>1</em></div>
+              <div class="hist-tl-rail">
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#3d8bfd">
+      <div class="hist-tl-date">날짜 미상（IR 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#3d8bfd">수주·계약</span>
+          <span class='hist-basis'>IR 자료 기준</span>
+          <span class="src">근거 3건 · IR</span>
+        </div>
+        <div class="deal-title">PDF 새 창에서 열기</div>
+        <div class='deal-sum'>II. 사업의 내용 1. 사업의 개요 당사는 지속 가능한 미래를 위한 배터리 기술 개발을 핵심 전략으로 삼고 EV(Electric Vehicle), ESS(Energy Storage System), IT기기, 전동공구, LEV(Light Electric Vehicle) 등에 적용되는 전지 관련 제품의 연구, 개발, 제조, 판매하는 사업을 영위하고 있으며, 에너지 솔루션 단일 사업부문으로 구성되어 있습니다. 국내는 물론 미국, 폴란드, 중국 등 세계 주요 거점에 생산, 판매, R&amp;D 네트워크를 구축하고 전 세계를 대상으로 사업을 전개하고 있습니 다. 또한, 국내 공장 및 해외 생산법인에서 제품을 생산하고, 제품 판매는 본사 및 해외 생산 법인 또는 해외 판매법인을 통해 진행되며, 매출 대부분은 본사 및 해외 </div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>IR <em>3</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://www.lgensol.com/upload/file/download/2024_LGES_Annual_Report[0].pdf" target="_blank" rel="noopener">PDF 새 창에서 열기</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\domestic\373220\ir\2024_LGES_Annual_Report[0].pdf</div><div class='deal-sum'>II. 사업의 내용 1. 사업의 개요 당사는 지속 가능한 미래를 위한 배터리 기술 개발을 핵심 전략으로 삼고 EV(Electric Vehicle), ESS(Energy Storage System), IT기기, 전동공구, LEV(Light Electric Vehicle) 등에 적용되는 전지 관련 제품의 연구, 개발, 제조, 판매하는 사업을 영위하고 있으며, 에너지 솔루션 단일 사업부문으로 구성되어 있습니다. 국내는 물론 미국, 폴란드, 중국 등 세계 주요 거점에 생산, 판매, R&amp;D 네트워크를 구축</div></li><li class='hist-ev-item'><a href="https://www.lgensol.com/upload/file/business-report/2023_LGES_Business_Report.pdf" target="_blank" rel="noopener">PDF 새 창에서 열기</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\domestic\373220\ir\2023_LGES_Business_Report.pdf</div><div class='deal-sum'>II. 사업의 내용 1. 사업의 개요 - 당사는 EV(Electric Vehicle), ESS(Energy Storage System), IT기기, 전동공구, LEV(Light Electric Vehicle) 등에 적용되는 전지 관련 제품의 연구, 개발, 제조, 판매하는 사업을 영위하고 있으며, 에너지솔루션 단일 사업부문으로 구성되어 있습니다. 국내는 물론 미국, 폴란드, 중국 등 세계 주요 거점에 생산, 판매, R&amp;D 네트워크를 구축하고 전 세계를 대 상으로 사업을 전개하고 있습니다. 또한, 국</div></li><li class='hist-ev-item'><a href="https://www.lgensol.com/upload/file/business-report/FY22_LGES_BusinessReport.pdf" target="_blank" rel="noopener">PDF 새 창에서 열기</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\domestic\373220\ir\FY22_LGES_BusinessReport.pdf</div><div class='deal-sum'>3 존경하는 주주 여러분 LG에너지솔루션에 아낌없는 신뢰와 응원을 보내주시는 주주 여러분 당사는 현재 세계 최고 수준인 연간 200GWh 규모의 생산능력을 이 께 이 자리를 빌어 진심으로 감사 인사를 드립니다. 미 갖추고 있으며, 업계에서 유일하게 단독 및 합작 형태로 전세계 6 개 국가에 생산라인 체제를 구축하고 있습니다. 또한 핵심 전략시장인 북미 지역에서 GM, 스텔란티스, 혼다 등 글로벌 완성차 업체들과 함 LG에너지솔루션은 2022년 1월, 여러분의 성원에 힘입어 유가증권시 께 230GW</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    </div>
+            </section>
+            </div></div>
+    </section>
+    
+    </div>
+    <div id="tab-supply" class="tab-panel"><div class='ov-sec'><h4>공급망</h4><ul class='rpt-l1 ov-issue-ul'><li>LG엔솔·혼다 美 합작 공장, ESS 배터리 셀 양산 시작 <span class='item-date'>2026-07-03</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/031/0001039694?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>혼다 美 합작 공장</li><li>ESS 배터리 셀 양산 시작</li></ul></li></ul></div></div>
+    <div id="tab-policy" class="tab-panel">
+      <div class='ov-sec'><h4>정책</h4><p class='empty'>없음</p></div>
+      <p class='tab-desc'>수주와 별도로, 사업에 영향을 줄 수 있는 <strong>수요·정책·공급망</strong> 시그널을 정리합니다. 총 <strong>50</strong>건.</p><div class='deal-kpis'><a class='deal-kpi' href='#policy-demand' style='--c:#3d8bfd'><div class='deal-kpi-label'>수요·시장</div><div class='deal-kpi-count'>14</div><div class='deal-kpi-en'>사업 영향 모니터링</div></a><a class='deal-kpi' href='#policy-policy' style='--c:#e67e22'><div class='deal-kpi-label'>정책·규제</div><div class='deal-kpi-count'>35</div><div class='deal-kpi-en'>사업 영향 모니터링</div></a><a class='deal-kpi' href='#policy-supply_chain' style='--c:#20c997'><div class='deal-kpi-label'>공급망·원료</div><div class='deal-kpi-count'>1</div><div class='deal-kpi-en'>사업 영향 모니터링</div></a></div><section class='deal-section' id='policy-demand'><h3><span class='dot' style='background:#3d8bfd'></span>수요·시장<em>14건</em></h3><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>news</span><span class='co'>(주)엘지에너지솔루션</span></div><div class='deal-title'>[비즈&amp;] NH농협은행, 상반기 포용금융에 1.9조원 지원 外</div><div class='deal-meta'>2026-07-03 08:21 · ess, 에너지저장</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><div class='deal-sum'>▶ LG엔솔·혼다 美합작공장, ESS 배터리셀 양산LG에너지솔루션과 일본 혼다의 미국 합작법인 &#x27;L·H 배터리 컴퍼니&#x27;가 미국 오하이오 공장에서 에너지저장장치, ESS용 배터리 셀 양산을 시작했습니다. 생산된 배터리는LG에너지솔루션의 북미 사업법인을 통해 미국 전력망과 산업·상업·주거용 ESS 시장에...</div><a href='https://n.news.naver.com/mnews/article/422/0000881257?sid=101' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>news</span><span class='co'>(주)엘지에너지솔루션</span></div><div class='deal-title'>LG엔솔·혼다 美 합작 공장, ESS 배터리 셀 양산 시작</div><div class='deal-meta'>2026-07-03 07:52 · ess, 에너지저장</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><div class='deal-sum'>LG에너지솔루션이 일본 혼다와 합작해 건설한 미국 배터리 공장이 본격 가동된다. 양사 미국 합작법인 &#x27;L-H 배터리 컴퍼니&#x27;는 2일(현지시각) 홈페이지를 통해 오하이오주 파예트 카운티제퍼슨빌 공장에서 에너지저장장치(ESS)용 리튬·인산·철(LFP) 배터리 양산을 시작했다고 밝혔다. 이는 오하이오...</div><a href='https://n.news.naver.com/mnews/article/031/0001039694?sid=101' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>news</span><span class='co'>(주)엘지에너지솔루션</span></div><div class='deal-title'>한미 원자력동맹,에너지·산업동맹으로 확대된다</div><div class='deal-meta'>3주 전 · ess</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><div class='deal-sum'>한화에너지,엘지에너지솔루션, 삼성중공업, 효성중공업, 엘에스일렉트릭, 엘에스전선, 두산에너빌리티 등 전력·ESS·중전기기 분야 기업도 함께했다. 미국에서는 제이피모건, 엑손모빌, 지이 베르노바, 넥스트에라에너지등에너지·금융 기업과 미국전력연구원, 캘리포니아 독립계통운영기관 등 핵심...</div><a href='https://n.news.naver.com/mnews/article/003/0014000242?sid=101' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>news</span><span class='co'>(주)엘지에너지솔루션</span></div><div class='deal-title'>LG에너지솔루션, 북미 ESS 배터리셀 생산 전환…시장 공략 본격화</div><div class='deal-meta'> · ess</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><a href='http://v.daum.net/v/20260703161501884' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>ir</span><span class='co'>(주)엘지에너지솔루션</span></div><div class='deal-title'>성과보고</div><div class='deal-meta'> · ev , ess</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><div class='deal-sum'>ESG Report｜LG에너지솔루션 지속가능경영 보고서 본문 바로가기 제품 산업별 솔루션 승용 EV 상용 EV ESS LEV 스마트기기 전동공구 중장비 로봇 미래모빌리티 폼팩터 원통형 파우치형 소재 NCM LFP 서비스 전력 중개 B.around B-Lifecare B.once KooRoo ESS SI 회사정보 회사소개 회사개요 비전 연혁 CI 정도경영 정도경영 소개 윤리규범 정도경영 프로그램 사업장 R&amp;D R&amp;D 현황 R&amp;D 분야 차세대 전지 오픈 이노베이션 뉴스룸 지속가능경영 추진체계 비전 및 전략 ESG 거버넌스 글로벌 파트너십 환경 환경경영 기후행동 자원선순환 환경영향 관리 생물다양성 관리 사회 밸류체인 ESG경</div><a href='https://www.lgensol.com/kr/esg/report-performance' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>ir</span><span class='co'>(주)엘지에너지솔루션</span></div><div class='deal-title'>IR행사</div><div class='deal-meta'> · ev , ess</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><div class='deal-sum'>IR 행사｜LG에너지솔루션 본문 바로가기 제품 산업별 솔루션 승용 EV 상용 EV ESS LEV 스마트기기 전동공구 중장비 로봇 미래모빌리티 폼팩터 원통형 파우치형 소재 NCM LFP 서비스 전력 중개 B.around B-Lifecare B.once KooRoo ESS SI 회사정보 회사소개 회사개요 비전 연혁 CI 정도경영 정도경영 소개 윤리규범 정도경영 프로그램 사업장 R&amp;D R&amp;D 현황 R&amp;D 분야 차세대 전지 오픈 이노베이션 뉴스룸 지속가능경영 추진체계 비전 및 전략 ESG 거버넌스 글로벌 파트너십 환경 환경경영 기후행동 자원선순환 환경영향 관리 생물다양성 관리 사회 밸류체인 ESG경영 인권경영 안전보건 관리 제</div><a href='https://www.lgensol.com/kr/investors/investors-activity' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>ir</span><span class='co'>(주)엘지에너지솔루션</span></div><div class='deal-title'>사업보고서</div><div class='deal-meta'> · ev , ess</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><div class='deal-sum'>사업보고서｜LG에너지솔루션 본문 바로가기 제품 산업별 솔루션 승용 EV 상용 EV ESS LEV 스마트기기 전동공구 중장비 로봇 미래모빌리티 폼팩터 원통형 파우치형 소재 NCM LFP 서비스 전력 중개 B.around B-Lifecare B.once KooRoo ESS SI 회사정보 회사소개 회사개요 비전 연혁 CI 정도경영 정도경영 소개 윤리규범 정도경영 프로그램 사업장 R&amp;D R&amp;D 현황 R&amp;D 분야 차세대 전지 오픈 이노베이션 뉴스룸 지속가능경영 추진체계 비전 및 전략 ESG 거버넌스 글로벌 파트너십 환경 환경경영 기후행동 자원선순환 환경영향 관리 생물다양성 관리 사회 밸류체인 ESG경영 인권경영 안전보건 관리 제</div><a href='https://www.lgensol.com/kr/investors/data-business-report' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>ir</span><span class='co'>(주)엘지에너지솔루션</span></div><div class='deal-title'>PDF 새 창에서 열기</div><div class='deal-meta'> · 수요, ev , ess</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><div class='deal-sum'>II. 사업의 내용 1. 사업의 개요 당사는 지속 가능한 미래를 위한 배터리 기술 개발을 핵심 전략으로 삼고 EV(Electri c Vehicle), ESS(Energy Storage System), IT기기, 전동공구, LEV(Light Electric V ehicle) 등에 적용되는 전지 관련 제품의 연구, 개발, 제조, 판매하는 사업을 영위하고 있으며, 에너지솔루션 단일 사업부문으로 구성되어 있습니다. 국내는 물론 미국, 폴 란드, 중국 등 세계 주요 거점에 생산, 판매, R&amp;D 네트워크를 구축하고 전 세계를 대 상으로 사업을 전개하고 있습니다. 또한, 국내 공장 및 해외 생산법인에서 제품을 생 산하고, 제품 판매</div><a href='https://www.lgensol.com/upload/file/download/2025_LGES_Annual_Report.pdf' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>power_news</span><span class='co'>한국 전력시장</span></div><div class='deal-title'>[단독] ‘전력수요 급증’ 메가프로젝트…12차 전기본에 15GW 우선 반영할 듯</div><div class='deal-meta'>Tue, 21 Jul 2026 10:32:00 · 수요, 전력수요</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMibEFVX3lxTE9pb09CbmhMYU0xOTRYaUlGNEl2dk5PbGlPeVVNdnY0cGM2NndHazc5VDdqWl8zSUdPcUhadm1FQUtDSFVPcGxWc0ZZRy1JTVU2YUthUE9xcGR5dGV2WlF2VTNMd0VYMkhTNUU2WA?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>power_news</span><span class='co'>한국 전력시장</span></div><div class='deal-title'>2038년 천연가스 수요 연평균 0.94%↓…메가프로젝트 시 상승 가능성</div><div class='deal-meta'>Mon, 27 Jul 2026 00:08:00 · 수요</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMiU0FVX3lxTE5TbEEtdzZiMWNxbFEzaFNJM2ItcXV6ekt2aWhCYy16WmJuLVJiblFjV1JlN25fNGxGaVlIY1JxcGhYajUzem9iU1dlSnlQaVFMSEw4?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>power_news</span><span class='co'>한국 전력시장</span></div><div class='deal-title'>정부, 원전 확대 속 LNG 수요 줄인다…AI 전력수요는 변수</div><div class='deal-meta'>Mon, 27 Jul 2026 00:00:04 · 수요, ai 전력, 전력수요</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMigAFBVV95cUxNYnlaNHI5X3pHRHR1enR4azEwdy1JNlp5TkNrbDRMVUU2bUpvLXh5RFZ5NEFiNmFDU2xRekg2MjVWYUs5aGx5cGZoalZ6ZHFVOGM0Zk03VHdMY0VpS1pqRTEzRWhLMkh4QzJtMTZ4a240WVdtS29HSFl1dmRMTy00Wg?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>power_news</span><span class='co'>한국 전력시장</span></div><div class='deal-title'>수요부터 설비까지 12차 전기본 전면 수정 예고…연내 수립 지연 가능성</div><div class='deal-meta'>Tue, 07 Jul 2026 07:00:00 · 수요</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMibEFVX3lxTE8zUWtkcmI3SFN3RWpVS24ydFF2NHFZYnBDdGhzMW1ZY1NnQzlJaXgxaXdvT3BaODVIUHdkV05iWXVwd05TbDUzNVJobnRUT04xMUZkaTQ5cDc0TFdaN3ZYZF9FVlU2aFNkaTZraNIBcEFVX3lxTE8wWE9WWWdad2VvZ2owbG95YW5RYmg2X0pkM0JlZG1RRHJkcWEzcUp4S1hYRzNoOEotM245MVdnMkhHNmRJMU1BY3RSR2s2X0RickJVUXVFQ2FkcTB5V3NwdXh6LVprbjdBVHhhLVlieTQ?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>power_news</span><span class='co'>한국 전력시장</span></div><div class='deal-title'>2030년까지 &#x27;호남 반도체&#x27; 전력 공급…12차 전기본에 신규 ESS·양수발전</div><div class='deal-meta'>Wed, 08 Jul 2026 07:00:00 · ess</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMicEFVX3lxTE8zanh6cEgwVXhVUmh2RlVtMm9jdjIyUkcxM1hYRzE2T1lBY19JWERjc05RSEk5ZXhxS09CY0djYXlzQlFuOTRFWjRqLXQ5UTBBRVdhOTk0MEF4b2I5cjJBSUt5eXpaQWpFSk45SWpHNHA?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>power_news</span><span class='co'>한국 전력시장</span></div><div class='deal-title'>[단독] &#x27;전력수요 급증&#x27; 메가프로젝트…12차 전기본에 15GW 우선 반영할 듯</div><div class='deal-meta'>Tue, 21 Jul 2026 06:50:00 · 수요, 전력수요</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMiU0FVX3lxTE5tUHhHMzNuWXYyVV9ScFEwRk41UXlqbjQ1OHNWdE5CQ3VkUlVsSERidGRXRUlmY0ZRR0paSnRNenhkaWN2ckxJX3BkRzlNdmY5WGtF?oc=5' target='_blank'>원문 →</a></div></section><section class='deal-section' id='policy-policy'><h3><span class='dot' style='background:#e67e22'></span>정책·규제<em>35건</em></h3><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>consensus</span><span class='co'>(주)엘지에너지솔루션</span></div><div class='deal-title'>LS증권 주간 Global ESG News</div><div class='deal-meta'>2026-07-03 · 규제, 탄소</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>LS 증권 주간 Global ESG News 주간 ESG 뉴스 2026.06.26~2026.07.03 구분 시장 동향 ● 중국, ‘30년까지 비화석E 발전 비중 50%로 확대 목표 (2026.06.29, ESG Today) 중국 정부는 새 5개년 계획을 통해 ‘30년까지 비화석에너지 발전 비중 50%로 확대, 석탄·석유 소비 Peak-Out으로의 전환 목표를 제시. 다만 ‘25년 이미 비화석 비중이 42.3%에 달하며 목표치가 소극적이란 비판 제기됨 Energy ● BNEF, 항공업계 탄소 비용 급증으로 수익성 압박 (2026.06.29, ESG Today) BloombergNEF는 지속가능항공유 의무화 및 탄소가격제</div></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>ir</span><span class='co'>(주)엘지에너지솔루션</span></div><div class='deal-title'>PDF 새 창에서 열기</div><div class='deal-meta'> · 정책, 규제, tax credit</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>II. 사업의 내용 1. 사업의 개요 - 당사는 EV(Electric Vehicle), ESS(Energy Storage System), IT기기, 전동공구, LEV(Light Electric Vehicle) 등에 적용되는 전지 관련 제품의 연구, 개발, 제조, 판매하는 사업을 영위하고 있으며, 에너지솔루션 단일 사업부문으로 구성되어 있습니다. 국내는 물론 미국, 폴란드, 중국 등 세계 주요 거점에 생산, 판매, R&amp;D 네트워크를 구축하고 전 세계를 대 상으로 사업을 전개하고 있습니다. 또한, 국내 공장 및 해외 생산법인에서 제품을 생산하고, 제품 판매는 본사 및 해외 생산법인 또는 해외 판매법인을 통해 진행되며, 매출</div><a href='https://www.lgensol.com/upload/file/business-report/2023_LGES_Business_Report.pdf' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_market</span><span class='co'>한국 전력시장</span></div><div class='deal-title'>제12차 전력수급기본계획(12차 전기본) 확정·이행 동향</div><div class='deal-meta'> · 전력정책</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>제12차 전력수급기본계획(12차 전기본) 확정·이행 동향</div></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_market</span><span class='co'>한국 전력시장</span></div><div class='deal-title'>전력시장 제도 개편·요금·PPA·직접전력거래 관련 정책 동향</div><div class='deal-meta'> · 전력정책</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>전력시장 제도 개편·요금·PPA·직접전력거래 관련 정책 동향</div></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_market</span><span class='co'>한국 전력시장</span></div><div class='deal-title'>해상풍력·원전 수명연장·SMR 등 공급 측 정책</div><div class='deal-meta'> · 전력정책</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>해상풍력·원전 수명연장·SMR 등 공급 측 정책</div></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>한국 전력시장</span></div><div class='deal-title'>KFTC Fines Seven Companies for Bid-Rigging in KEPCO Cable Duct Contracts</div><div class='deal-meta'>Sun, 26 Jul 2026 21:00:00 · 전력</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMibkFVX3lxTFB2MlhSLV9qckxVUVk5alppdzZPWXdGd1BhUGY0ZnRoTjg0Z1JhUzY1ZjhsSlItb0pMLWZNUEFpRzd4QXJWSVRGR1NDQzk1M1ZlNTVCQUxnRUhQbVNUTzM4c2FoLTBZVEtEMlItUnZn?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>한국 전력시장</span></div><div class='deal-title'>전력시장 참여자 8000개 시대…‘전력감독원’ 신설 힘받는다</div><div class='deal-meta'>Wed, 22 Jul 2026 08:03:06 · 전력시장</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMiW0FVX3lxTE5BajJYVW9pazRZSnV0SVdaQl9SUXhGWEF6b0pqek1VQmlfQmJYSmRHdnJIVldZU1VuZ25hV19hellmVFpidERFazZDemJMNlFRcVR2WVdQSU5YQk0?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>한국 전력시장</span></div><div class='deal-title'>(월요객석) AI 혁명과 울산, 전력 시장의 새로운 패러다임을 열다</div><div class='deal-meta'>Fri, 24 Jul 2026 00:13:45 · 전력</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMicEFVX3lxTE5jUjcwVmtOZjJVX1RHXzl3RHA4dHpNSVdGMlpIVEI3cm9PWFEyR3dnRnRWYS1WNlVzOGhOUGZOWndQYVZqdHozcTB5MUNtSUx4SzlTWl80QUh0dHRHMWRpb3dZdmxaZ2pWLVVWRy1NRlPSAXBBVV95cUxOY1I3MFZrTmYyVV9UR185d0RwOHR6TUlXRjJaSFRCN3JvT1hRMkd3Z0Z0VmEtVjZVczhoTlBmTlp3UGFWanR6M3EweTFDbUlMeEs5U1pfNEFIdHR0RzFkaW93WXZsWmdqVi1VVkctTUZT?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>한국 전력시장</span></div><div class='deal-title'>&#x27;샌프란 AI 선언&#x27; 실행 시험대…GPU·전력·시장이 관건</div><div class='deal-meta'>Sat, 25 Jul 2026 02:03:03 · 전력</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMiW0FVX3lxTFBjTzRQSkJPeklYMk1WeEhVNS1BNGh1MzUycFFianY2YjNxTUh6cmRma09hQ1I0TFJwSTkyT3hBYzV3RDhJRUlESHlrS3QxQ3RJNnNQNW9GX3ZMeEnSAWBBVV95cUxObG5DMUFtUnJ4cm1VMXdId19jZTFEX285MG1falNOLWJ6T0NrX1JLWVNCYWFKOHJJaFBiaDY4N2pDVzVoSUpDVmJQSWo3QjdneTRSUm5xOUN6anhWdG1HZ1U?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>한국 전력시장</span></div><div class='deal-title'>전력시장 심판 세운다…전력감독원 설립 논의 본격화</div><div class='deal-meta'>Wed, 22 Jul 2026 00:14:00 · 전력시장</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMiTEFVX3lxTFB5Wm1kOTBMVllsaUlXRzlXUVAwempfYUNxLVFwal82elFzUUdFV29fd0VLYWEtQlo0UklMcE1ETHROWkEyYzZDaU0wcDg?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>한국 전력시장</span></div><div class='deal-title'>[포토뉴스]한전, 제4기 &#x27;KEPCO 청(년)청(렴) Auditor&#x27; 발대식 개최</div><div class='deal-meta'>Fri, 24 Jul 2026 04:54:22 · 전력</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMia0FVX3lxTE52MG1LQ2pwa0F1cTZlZkxwOTdZYkdZMmFjVEJMeWx1SzlzZmZ2Vk1Fd0NsN1Z5aWYyZ1lMOGlSZ1lLX3RGdmZHUjVCRmhFQzB1eVRLMDFRZjRnQUc5UjN5U2d4RkZycWR4d2tj?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>한국 전력시장</span></div><div class='deal-title'>‘전력시장 감시-전력망 감독’ 전력감독원 신설</div><div class='deal-meta'>Tue, 21 Jul 2026 15:30:00 · 전력시장</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMidkFVX3lxTE5UT0FaaEdWWXFNaDBlcGpubG5aTUtpS1ZmcWQ2bHp0OVk1VkM2MU5fNWR4aVZ6TGpmWkZmZXlhbTZuZ3hoMTlDTlR5c3JPeVZmbnpTUjNneHdHZFFvUlc4SVppR25Wdm02dmh1UDhubzNNRl8wWEHSAWZBVV95cUxNWWFWeGJpVWRKTDhEU0pKdGZZN2dncXhRTU83RWhZWDBQdElYbHJ4UVg5MWhOTFdjaTVqZGZEY1ZIX3FxR3MwU21hcUdvR25UcmRmT1B3V0NOSG1CYWNZU3o3aUFxVVE?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>한국 전력시장</span></div><div class='deal-title'>현대차, 전기차를 전력시장으로…유럽·미국·중국 V2X 경쟁 가속</div><div class='deal-meta'>Wed, 22 Jul 2026 03:07:25 · 전력시장</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMiakFVX3lxTE5SSThJcEttYmY5NXdLZ2E2YUI0VG0zc3NWTEMzbXBvZHpicFhycjdQZEdTczNFVENZWGFiQWNleXJ6b2h3NGloM0lEbkpITU1GMVpRRDI2WE1Cekd0TFpSQkxtcXVtTGVmelHSAWxBVV95cUxPTC1zLVotUDU5ZGRoODRnU0FXZjMtam9rRERsWURTZm5vXzh2YXhNUm8tSkVPTGxkOGdfdjdMUWlfYkllbVdoZW8yWk9rV3BpQUlzbkhjcUxqNHFrekxjd1JfRjBYVWVVZlpxamQ?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>한국 전력시장</span></div><div class='deal-title'>AI 시대의 핵심 동력… KIND, 美 전력 시장 진출 성과</div><div class='deal-meta'>Mon, 13 Jul 2026 07:00:00 · 전력</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMicEFVX3lxTE9lY1V2MF9VOXpteDNTcVR3QUl2TlpXNHhTTE50N3NXS3MxdmllWG5PVzBqNEFhTkZUNXB4VE5GcXNYU0NlVjVyV3BnYjJ1c2lseUlvNGhkU05aQ3Z1NDJSd2RGTTNyT1pBU0VFUkl3OGPSAXRBVV95cUxNYndGSTdWcDNFYU9JOE1sT0I2RTdFZUpBTGxCdW5IT1FWcS1Nck93czNDaFc2VWVOa0N5VDE4YnpyRXVmQTktbWRQX3lUTzRGYjVrTHpjOGljRzJFN0tCcWUxSHlxN3RoQkZsNXg3S013WGlEVA?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>한국 전력시장</span></div><div class='deal-title'>ELECS VIETNAM 2026, 아세안 전력시장의 허브··· K-일렉트릭 글로벌 입지 확대하며 성료</div><div class='deal-meta'>Tue, 21 Jul 2026 00:28:00 · 전력시장</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMiZkFVX3lxTE5QWkNGcV9mSnMxNEV3R3hCYXdhMVk2aW9LWTVvUFk1MjRONmprZVFiQlNPZGxLck91SkZ5VlR4TmRETmRONkdfUWJERDNGR1hfaFJLUnBfLTlGRTZyYnNjZ3l2NWIxQQ?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>한국 전력시장</span></div><div class='deal-title'>7월 4주차 국내 ESG 핫클립</div><div class='deal-meta'>Thu, 23 Jul 2026 02:42:51 · 전력</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMiaEFVX3lxTE5ldUktQ0Q3X0JXTGsxSVBWMzlBUVQ4dUVoOE1BeEtkemJSWjhYZkNlTjEyMHB4V0Rpak1QdHBrS3V0NURKYzd0aWhZN3ZnbENlcy1vaThENXRYSXUyX0JRR0ZrQ05IUzB50gFsQVVfeXFMT3pkUmF0OE9qZUIzU21GY2dOTDZ0QVByb3JGTTM3XzVGMDNEdWpvYVFiaTcyem5xdm1TanhXOWl3ZHNOcHN2V2RvcTRVWmVFaFJRR0YzTHh6bEhkOUVVWXJrOUQ0S19JemVtTy1O?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>한국 전력시장</span></div><div class='deal-title'>정부, ‘신규 원전·SMR’ 검토 공식화… “12차 전기본에 반영” - 조선비즈</div><div class='deal-meta'>Mon, 13 Jul 2026 07:00:00 · 원전</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMihgFBVV95cUxPQk5KN2g4akh0NUQyLThyWGxMb05IbXc1QlVkM3hiaFcyalJ3WEpBcHNSaWx6dThTdURFV19UWTJVeDhvYnlGejJ3VWVFU3BNSnZRaFJHbWktSjhoQUM2Q0hxUVlySFlQWEpvanhENWk3U20zYnlvYVg3Yjd1TFJscEVOTFhyQdIBmgFBVV95cUxPUkF6ekNrRzB3UENGNUE3SzVTdW10UVZneU1nZG1ZVElySDhBYVhyRm1KZC1TZXMwRExGakJBM1RVcnM1bWp6aENVQkxkUS1WeHFVMXJHTzk0Q0tJV1BoUFFpeDd5U3VwYVRZX3Z6Tjg4Q0VtbHhJMElmTFZIekpfVUNXbDI4bWVLWDRVMnVpTVByanU5RDhzMVNn?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>한국 전력시장</span></div><div class='deal-title'>&#x27;3대 메가프로젝트&#x27;에 12차 전기본 다시 짠다…추가 원전 가능성도</div><div class='deal-meta'>Mon, 13 Jul 2026 07:00:00 · 원전</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMiWkFVX3lxTE1zMXdMYmFUV0ZPWk5wdmswZ2tUc2FidEYta2JJSVVFRlNqVlVsMC03Qms3eVRqWXR2MWh1eENfaXpqLVh5enQ5d1FwNmNVbGxVcnFWUmdZS3MyUQ?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>한국 전력시장</span></div><div class='deal-title'>[창간 13주년 특집 인터뷰] 김성진 전력거래소 이사장...취임 두 달 “AI·첨단산업 도약, 전력 공급 안정성이 성패 가른다”</div><div class='deal-meta'>Fri, 24 Jul 2026 06:51:36 · 전력</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMiZ0FVX3lxTE90UEJaSTBFclc1SGNBdjdwNFdaVjAwOFBXYmFBRXhoQjJsWVRBcGtyekRoSGFrMEdmYURYR2E1ZXYyS3gxdm1rTmIzOURIZHlZWkV5V2taNHlYUFFVaUJhMWhBX0J5TFE?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>한국 전력시장</span></div><div class='deal-title'>기후장관 “추가 원전 건설, 12차 전력계획에 반영 검토” [국가재정전략회의]</div><div class='deal-meta'>Mon, 13 Jul 2026 07:00:00 · 원전</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><a href='https://news.google.com/rss/articles/CBMiT0FVX3lxTE5oYmhFaG5yRkxrb2E2cXVyM2xoVmhHT2t0ekstcDVLdHlnWGdmYUtGRjQzRDA4T09zRHJKOHpOd0VqUWxDMUQ5eFZvbUNIYWc?oc=5' target='_blank'>원문 →</a></div></section><section class='deal-section' id='policy-supply_chain'><h3><span class='dot' style='background:#20c997'></span>공급망·원료<em>1건</em></h3><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#20c997'>공급망·원료</span><span class='src'>news</span><span class='co'>(주)엘지에너지솔루션</span></div><div class='deal-title'>중국 공급망에 갇힌 AI 시대…‘팍스 실리카’로 탈출구 찾을까</div><div class='deal-meta'>3주 전 · 공급망, 중국</div><div class='impact-hint'>원료·공급망 → 원가·조달·경쟁력에 영향 가능</div><div class='deal-sum'>지난해 9월에는 미국 쪽 요구로 조지아주에 배터리 공장을 짓던 현대차·엘지에너지솔루션협력사 노동자 300여명이 현지에서 체포·구금되는 사태까지 빚어졌다. 미국은 또 고율 보복 관세를 일방적으로 부과한 뒤 이를 낮춰주는 조건으로 수천억달러 규모 투자를 압박하거나, 자국에너지·농산물 수입 확대를...</div><a href='https://n.news.naver.com/mnews/article/028/0002808920?sid=104' target='_blank'>원문 →</a></div></section>
+    </div>
+    <div id="tab-mgmt" class="tab-panel"><div class='ov-sec'><h4>주요 경영이슈</h4><ul class='rpt-l1 ov-issue-ul'><li>ESG Report｜LG에너지솔루션 지속가능경영 보고서 본문 바로가기 제품 산업별 솔루션 승용 EV 상용 EV ESS LEV 스마트기기 전동공구 <a class='ai-news' href='https://www.lgensol.com/kr/esg/report-performance' target='_blank' rel='noopener'>IR</a><ul class='rpt-l2'><li>사업·시장 함의</li><li>후속 IR·실적 점검 포인트</li></ul></li><li>LG엔솔·혼다 美 합작 공장, ESS 배터리 셀 양산 시작 <span class='item-date'>2026-07-03</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/031/0001039694?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>혼다 美 합작 공장</li><li>ESS 배터리 셀 양산 시작</li></ul></li><li>NH농협은행, 상반기 포용금융에 1.9조원 지원 外 <span class='item-date'>2026-07-03</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/422/0000881257?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>상반기 포용금융에 1.9조원 지원 外</li><li>사업·시장 함의</li></ul></li><li>사업보고서｜LG에너지솔루션 <a class='ai-news' href='https://www.lgensol.com/kr/investors/data-business-report' target='_blank' rel='noopener'>IR</a><ul class='rpt-l2'><li>사업·시장 함의</li><li>후속 IR·실적 점검 포인트</li></ul></li><li>SK스퀘어(4.20%), 삼성전기(3.27%), 현대차(2.07%),LG에너지솔루션(2.40%), 한화에어로스페이스(5.29%)도 상승 마감 <span class='item-date'>2026-07-03</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/016/0002665546?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>SK스퀘어(4.20%)</li><li>삼성전기(3.27%)</li></ul></li><li>코스닥도 장 막판 반등에 성공 <span class='item-date'>2026-07-03</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/138/0002233093?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>사업·시장 함의</li><li>후속 IR·실적 점검 포인트</li></ul></li><li>한미 원자력동맹,에너지·산업동맹으로 확대 <span class='item-date'>2026-07-09</span> <a class='ai-news' href='https://n.news.naver.com/mnews/article/003/0014000242?sid=101' target='_blank' rel='noopener'>뉴스</a><ul class='rpt-l2'><li>한화에너지,엘지에너지솔루션, 삼성중공업, 효성중공업, 엘에스일렉트릭, 엘에스전선, 두산에너빌리티 등 전력·ESS·중전기기 분야 기업도 함께</li><li>한미 원자력동맹</li></ul></li></ul></div></div>
+    <div id="tab-capital" class="tab-panel"><div class='ov-sec'><h4>자본시장</h4><ul class='rpt-l1 ov-issue-ul'><li>기업설명회(IR)개최(안내공시) <span class='item-date'>2026-04-07</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260407800768' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>실적·가이던스·질의응답 중심 IR 커뮤니케이션 일정 공시</li><li>기관·애널리스트 대상 자본시장 소통 이벤트 반영</li></ul></li><li>특수관계인으로부터부동산임차 <span class='item-date'>2026-04-28</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260428000648' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>특수관계인 거래·자금 이동 관련 공시</li><li>사업·시장 함의</li></ul></li><li>연결재무제표기준영업(잠정)실적(공정공시) <span class='item-date'>2026-04-30</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260430800165' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>공정공시 경로의 실적·경영계획 시장 공유</li><li>컨센서스·밸류에이션 재평가 입력 자료로 활용</li></ul></li><li>분기보고서 (2026.03) <span class='item-date'>2026-05-14</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260514001046' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li><li>대규모기업집단현황공시[연1회공시및1/4분기용(개별회사)] <span class='item-date'>2026-06-01</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260601001372' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li><li>기업지배구조보고서공시 <span class='item-date'>2026-06-01</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260601800822' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>이사회·감사·주주권익 관련 거버넌스 포인트 점검</li><li>지분·밸류에이션 임팩트 포인트</li></ul></li><li>임원ㆍ주요주주특정증권등소유상황보고서 <span class='item-date'>2026-06-12</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260612000681' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li><li>지속가능경영보고서등관련사항(자율공시) <span class='item-date'>2026-06-29</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260629800753' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>환경·탄소·공급망 리스크 공시 포인트</li><li>지분·밸류에이션 임팩트 포인트</li></ul></li><li>공정거래자율준수프로그램운영현황(안내공시) <span class='item-date'>2026-04-28</span> <a class='ai-news' href='https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260428800413' target='_blank' rel='noopener'>공시</a><ul class='rpt-l2'><li>전자공시 원문 기준 자본시장 이벤트 반영</li><li>공시 원문·후속 IR 일정 연계 확인</li></ul></li></ul></div></div>
+    <div id="tab-invest" class="tab-panel">
+      <div class='deal-wrap deal-wrap-v2' id='deal-root'><div class='deal-hero'><div><h2 class='deal-hero-title'>수주 · 투자 · MOU</h2><p class='tab-desc' style='margin:0'>(주)엘지에너지솔루션 투자·MOU 뉴스·공시·IR 자동 분류 · 총 <strong>4</strong>건 — 분류 버튼을 눌러 한 화면에서 확인</p></div></div><div class='deal-filter-bar' role='tablist'><button type='button' class='deal-filter' data-deal-filter='all'>전체 <em>4</em></button><button type='button' class='deal-filter' data-deal-filter='contract_docs' style='--c:#e67e22'>협약·계약 문서 <em>0</em></button><button type='button' class='deal-filter' data-deal-filter='orders' style='--c:#3d8bfd'>수주·사업 진행 <em>0</em></button><button type='button' class='deal-filter active' data-deal-filter='investment' style='--c:#20c997'>투자·금융 <em>2</em></button><button type='button' class='deal-filter' data-deal-filter='alliance' style='--c:#9b59b6'>제휴·사업구조 <em>2</em></button></div><div class='deal-panels'><section class='deal-panel' hidden data-deal-cat='contract_docs'><div class='deal-panel-head' style='--c:#e67e22'><h3>협약·계약 문서 <small>Letter / Memorandum / Agreement</small></h3><span class='deal-panel-count'>0건</span></div><div class='deal-card-grid'><p class='empty'>해당 분류 이벤트가 없습니다.</p></div></section><section class='deal-panel' hidden data-deal-cat='orders'><div class='deal-panel-head' style='--c:#3d8bfd'><h3>수주·사업 진행 <small>Order / Business</small></h3><span class='deal-panel-count'>0건</span></div><div class='deal-card-grid'><p class='empty'>해당 분류 이벤트가 없습니다.</p></div></section><section class='deal-panel' data-deal-cat='investment'><div class='deal-panel-head' style='--c:#20c997'><h3>투자·금융 <small>Investment / Finance</small></h3><span class='deal-panel-count'>2건</span></div><div class='deal-card-grid'><article class='deal-card'><div class='deal-card-bar' style='background:#20c997'></div><div class='deal-card-body'><div class='deal-item-top'><span class='pill' style='background:#20c997'>투자·금융</span><span class='src'>news</span><span class='co'>(주)엘지에너지솔루션</span></div><div class='deal-title'>중국 공급망에 갇힌 AI 시대…‘팍스 실리카’로 탈출구 찾을까</div><div class='deal-meta'>3주 전 · 투자</div><div class='deal-sum'>지난해 9월에는 미국 쪽 요구로 조지아주에 배터리 공장을 짓던 현대차·엘지에너지솔루션협력사 노동자 300여명이 현지에서 체포·구금되는 사태까지 빚어졌다. 미국은 또 고율 보복 관세를 일방적으로 부과한 뒤 이를 낮춰주는 조건으로 수천억달러 규모 투자를 압박하거나, 자국에너지·농산물 수입 확대를...</div><a class='deal-link' href='https://n.news.naver.com/mnews/article/028/0002808920?sid=104' target='_blank'>원문 보기 →</a></div></article><article class='deal-card'><div class='deal-card-bar' style='background:#20c997'></div><div class='deal-card-body'><div class='deal-item-top'><span class='pill' style='background:#20c997'>투자·금융</span><span class='src'>news</span><span class='co'>(주)엘지에너지솔루션</span></div><div class='deal-title'>&quot;공포에 산 사람이 승자&quot; 급반등 끝 &#x27;8천피 탈환&#x27;...삼전 실적 주목</div><div class='deal-meta'>2026-07-03 08:29 · 투자</div><div class='deal-sum'>삼성물산은 6%대, 한화에어로스페이스는 5%대, SK스퀘어는 4%대, 삼성생명·삼성전기는 3%대,LG에너지솔루션·현대차는 2%대, 삼성바이오로직스는 1%대 강세를 기록했다. 장 초반 코스피는 양대 반도체주와 함께 낙폭을 벌렸다. 전날 급락을 촉발한 미국 메타발 AI(인공지능) 과잉투자 공포가 잔존하는...</div><a class='deal-link' href='https://n.news.naver.com/mnews/article/008/0005381271?sid=101' target='_blank'>원문 보기 →</a></div></article></div></section><section class='deal-panel' hidden data-deal-cat='alliance'><div class='deal-panel-head' style='--c:#9b59b6'><h3>제휴·사업구조 <small>Alliance / Structure</small></h3><span class='deal-panel-count'>2건</span></div><div class='deal-card-grid'><article class='deal-card'><div class='deal-card-bar' style='background:#9b59b6'></div><div class='deal-card-body'><div class='deal-item-top'><span class='pill' style='background:#9b59b6'>제휴·사업구조</span><span class='src'>news</span><span class='co'>(주)엘지에너지솔루션</span></div><div class='deal-title'>[비즈&amp;] NH농협은행, 상반기 포용금융에 1.9조원 지원 外</div><div class='deal-meta'>2026-07-03 08:21 · 합작, 합작법인</div><div class='deal-sum'>▶ LG엔솔·혼다 美합작공장, ESS 배터리셀 양산LG에너지솔루션과 일본 혼다의 미국 합작법인 &#x27;L·H 배터리 컴퍼니&#x27;가 미국 오하이오 공장에서 에너지저장장치, ESS용 배터리 셀 양산을 시작했습니다. 생산된 배터리는LG에너지솔루션의 북미 사업법인을 통해 미국 전력망과 산업·상업·주거용 ESS 시장에...</div><a class='deal-link' href='https://n.news.naver.com/mnews/article/422/0000881257?sid=101' target='_blank'>원문 보기 →</a></div></article><article class='deal-card'><div class='deal-card-bar' style='background:#9b59b6'></div><div class='deal-card-body'><div class='deal-item-top'><span class='pill' style='background:#9b59b6'>제휴·사업구조</span><span class='src'>news</span><span class='co'>(주)엘지에너지솔루션</span></div><div class='deal-title'>LG엔솔·혼다 美 합작 공장, ESS 배터리 셀 양산 시작</div><div class='deal-meta'>2026-07-03 07:52 · 합작, 합작법인</div><div class='deal-sum'>LG에너지솔루션이 일본 혼다와 합작해 건설한 미국 배터리 공장이 본격 가동된다. 양사 미국 합작법인 &#x27;L-H 배터리 컴퍼니&#x27;는 2일(현지시각) 홈페이지를 통해 오하이오주 파예트 카운티제퍼슨빌 공장에서 에너지저장장치(ESS)용 리튬·인산·철(LFP) 배터리 양산을 시작했다고 밝혔다. 이는 오하이오...</div><a class='deal-link' href='https://n.news.naver.com/mnews/article/031/0001039694?sid=101' target='_blank'>원문 보기 →</a></div></article></div></section></div>
+<script>
+(function(){
+  const root = document.getElementById('deal-root');
+  if (!root) return;
+  const filters = root.querySelectorAll('.deal-filter');
+  const panels = root.querySelectorAll('.deal-panel');
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.getAttribute('data-deal-filter');
+      filters.forEach(b => b.classList.toggle('active', b === btn));
+      panels.forEach(p => {
+        const cat = p.getAttribute('data-deal-cat');
+        p.hidden = !(key === 'all' || cat === key);
+      });
+      root.querySelector('.deal-filter-bar')?.scrollIntoView({behavior:'smooth', block:'nearest'});
+    });
+  });
+})();
+</script>
+</div>
+      
+    <section class="hist-embed">
+      <h3>히스토리 · 투자·MOU·제휴</h3>
+      <div id="hist-invest-KR_373220" class="hist-panel active"><p class='tab-desc'>데이터 기준 2026–2026 (오래된 → 최근). 날짜가 불명확하면 뉴스·애널 등 <strong>자료 기준</strong>을 표시합니다.</p><div class='hist-year-focus' data-panel='hist-invest-KR_373220'><span class='sub'>기간 보기:</span> <button type='button' class='hist-focus-btn active' data-focus='all'>전체</button><button type='button' class='hist-focus-btn' data-focus='2026'>2026</button><button type='button' class='hist-focus-btn' data-focus='undated'>날짜 미상</button></div><div class="hist-tl">
+                <section class="hist-tl-year" data-year="2026">
+                  <div class="hist-tl-year-label">2026 <em>5</em></div>
+                  <div class="hist-tl-rail">
+    <article class="hist-tl-item" data-event-year="2026" style="--c:#20c997">
+      <div class="hist-tl-date">2026-07-03（애널리스트 발표 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#20c997">투자</span>
+          <span class='hist-basis'>애널리스트 발표 기준</span>
+          <span class="src">근거 2건 · 뉴스 · 애널 보고서</span>
+        </div>
+        <div class="deal-title">&quot;공포에 산 사람이 승자&quot; 급반등 끝 &#x27;8천피 탈환&#x27;...삼전 실적 주목</div>
+        <div class='deal-sum'>[반도체] 송명섭2122-9207 mssong@imfnsec.com 삼성전자(005930) [투자포인트] 실적 전망치 상향 조정 지속 ■ 삼성전자의 2Q26 영업이익 전망치를 기존의 76.1조원에서 80.0조원으로 상향 조정한다. 또한 당사는 FY26 영업이익에대한전망치도기존의340조원에서360조원으로상향했다.이는2Q26과3Q26의DRAM,NAND ASP 상승폭이 확대되기 때문이다. 당사의 채널 체크에 따르면 2Q26 DRAM Blended ASP는 40% 이상, Buy(Maintain) NAND ASP는 60%대 중반 상승한 것으로 보이며, 3Q26 DRAM, NAND ASP는 15~20% 가량 추가 상승할 목표주가(12M) 480,000원(유지) 가능성이높은것으로판단된다. 종가(2026.07.02) 28</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>애널 보고서 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://consensus.hankyung.com/analysis/downpdf?report_idx=650454" target="_blank" rel="noopener">삼성전자(005930) 실적 전망치 상향 조정 지속</a><div class='deal-meta'>2026-07-03 · C:\Users\USER\Desktop\ai_project\data\domestic\373220\consensus\650454.pdf</div><div class='deal-sum'>[반도체] 송명섭2122-9207 mssong@imfnsec.com 삼성전자(005930) [투자포인트] 실적 전망치 상향 조정 지속 ■ 삼성전자의 2Q26 영업이익 전망치를 기존의 76.1조원에서 80.0조원으로 상향 조정한다. 또한 당사는 FY26 영업이익에대한전망치도기존의340조원에서360조원으로상향했다.이는2Q26과3Q26의DRAM,NAND ASP 상승폭이 확대되기 때문이다. 당사의 채널 체크에 따르면 2Q26 DRAM Blended ASP는 40% 이상, Buy(Maintain) NAND</div></li></ul></div><div class='hist-src-block'><div class='hist-src-label'>뉴스 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://n.news.naver.com/mnews/article/008/0005381271?sid=101" target="_blank" rel="noopener">&quot;공포에 산 사람이 승자&quot; 급반등 끝 &#x27;8천피 탈환&#x27;...삼전 실적 주목</a><div class='deal-meta'>2026-07-03</div><div class='deal-sum'>삼성물산은 6%대, 한화에어로스페이스는 5%대, SK스퀘어는 4%대, 삼성생명·삼성전기는 3%대,LG에너지솔루션·현대차는 2%대, 삼성바이오로직스는 1%대 강세를 기록했다. 장 초반 코스피는 양대 반도체주와 함께 낙폭을 벌렸다. 전날 급락을 촉발한 미국 메타발 AI(인공지능) 과잉투자 공포가 잔존하는...</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="2026" style="--c:#9b59b6">
+      <div class="hist-tl-date">2026-07-03（뉴스 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#9b59b6">제휴</span>
+          <span class='hist-basis'>뉴스 기준</span>
+          <span class="src">근거 1건 · 뉴스</span>
+        </div>
+        <div class="deal-title">[비즈&amp;] NH농협은행, 상반기 포용금융에 1.9조원 지원 外</div>
+        <div class='deal-sum'>▶ LG엔솔·혼다 美합작공장, ESS 배터리셀 양산LG에너지솔루션과 일본 혼다의 미국 합작법인 &#x27;L·H 배터리 컴퍼니&#x27;가 미국 오하이오 공장에서 에너지저장장치, ESS용 배터리 셀 양산을 시작했습니다. 생산된 배터리는LG에너지솔루션의 북미 사업법인을 통해 미국 전력망과 산업·상업·주거용 ESS 시장에...</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>뉴스 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://n.news.naver.com/mnews/article/422/0000881257?sid=101" target="_blank" rel="noopener">[비즈&amp;] NH농협은행, 상반기 포용금융에 1.9조원 지원 外</a><div class='deal-meta'>2026-07-03</div><div class='deal-sum'>▶ LG엔솔·혼다 美합작공장, ESS 배터리셀 양산LG에너지솔루션과 일본 혼다의 미국 합작법인 &#x27;L·H 배터리 컴퍼니&#x27;가 미국 오하이오 공장에서 에너지저장장치, ESS용 배터리 셀 양산을 시작했습니다. 생산된 배터리는LG에너지솔루션의 북미 사업법인을 통해 미국 전력망과 산업·상업·주거용 ESS 시장에...</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="2026" style="--c:#9b59b6">
+      <div class="hist-tl-date">2026-07-03（뉴스 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#9b59b6">제휴</span>
+          <span class='hist-basis'>뉴스 기준</span>
+          <span class="src">근거 4건 · 뉴스 · IR</span>
+        </div>
+        <div class="deal-title">LG엔솔·혼다 美 합작 공장, ESS 배터리 셀 양산 시작</div>
+        <div class='deal-sum'>ESG Report｜LG에너지솔루션 지속가능경영 보고서 본문 바로가기 제품 산업별 솔루션 승용 EV 상용 EV ESS LEV 스마트기기 전동공구 중장비 로봇 미래모빌리티 폼팩터 원통형 파우치형 소재 NCM LFP 서비스 전력 중개 B.around B-Lifecare B.once KooRoo ESS SI 회사정보 회사소개 회사개요 비전 연혁 CI 정도경영 정도경영 소개 윤리규범 정도경영 프로그램 사업장 R&amp;D R&amp;D 현황 R&amp;D 분야 차세대 전지 오픈 이노베이션 뉴스룸 지속가능경영 추진체계 비전 및 전략 ESG 거버넌스 글로벌 파트너십 환경 환경경영 기후행동 자원선순환 환경영향 관리 생물다양성 관리 사회 밸류체인 ESG경영 인권경영 안전보건 관리 제품책임 동반성장 사회공헌 정보보안 거버넌스 이사회 위원회 준법</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>뉴스 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://n.news.naver.com/mnews/article/031/0001039694?sid=101" target="_blank" rel="noopener">LG엔솔·혼다 美 합작 공장, ESS 배터리 셀 양산 시작</a><div class='deal-meta'>2026-07-03</div><div class='deal-sum'>LG에너지솔루션이 일본 혼다와 합작해 건설한 미국 배터리 공장이 본격 가동된다. 양사 미국 합작법인 &#x27;L-H 배터리 컴퍼니&#x27;는 2일(현지시각) 홈페이지를 통해 오하이오주 파예트 카운티제퍼슨빌 공장에서 에너지저장장치(ESS)용 리튬·인산·철(LFP) 배터리 양산을 시작했다고 밝혔다. 이는 오하이오...</div></li></ul></div><div class='hist-src-block'><div class='hist-src-label'>IR <em>3</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://www.lgensol.com/kr/esg/report-performance" target="_blank" rel="noopener">성과보고</a><div class='deal-sum'>ESG Report｜LG에너지솔루션 지속가능경영 보고서 본문 바로가기 제품 산업별 솔루션 승용 EV 상용 EV ESS LEV 스마트기기 전동공구 중장비 로봇 미래모빌리티 폼팩터 원통형 파우치형 소재 NCM LFP 서비스 전력 중개 B.around B-Lifecare B.once KooRoo ESS SI 회사정보 회사소개 회사개요 비전 연혁 CI 정도경영 정도경영 소개 윤리규범 정도경영 프로그램 사업장 R&amp;D R&amp;D 현황 R&amp;D 분야 차세대 전지 오픈 이노베이션 뉴스룸 지속가능경영 추진체계 비전 및</div></li><li class='hist-ev-item'><a href="https://www.lgensol.com/kr/investors/investors-activity" target="_blank" rel="noopener">IR행사</a><div class='deal-sum'>IR 행사｜LG에너지솔루션 본문 바로가기 제품 산업별 솔루션 승용 EV 상용 EV ESS LEV 스마트기기 전동공구 중장비 로봇 미래모빌리티 폼팩터 원통형 파우치형 소재 NCM LFP 서비스 전력 중개 B.around B-Lifecare B.once KooRoo ESS SI 회사정보 회사소개 회사개요 비전 연혁 CI 정도경영 정도경영 소개 윤리규범 정도경영 프로그램 사업장 R&amp;D R&amp;D 현황 R&amp;D 분야 차세대 전지 오픈 이노베이션 뉴스룸 지속가능경영 추진체계 비전 및 전략 ESG 거버넌스 글로벌</div></li><li class='hist-ev-item'><a href="https://www.lgensol.com/kr/investors/data-business-report" target="_blank" rel="noopener">사업보고서</a><div class='deal-sum'>사업보고서｜LG에너지솔루션 본문 바로가기 제품 산업별 솔루션 승용 EV 상용 EV ESS LEV 스마트기기 전동공구 중장비 로봇 미래모빌리티 폼팩터 원통형 파우치형 소재 NCM LFP 서비스 전력 중개 B.around B-Lifecare B.once KooRoo ESS SI 회사정보 회사소개 회사개요 비전 연혁 CI 정도경영 정도경영 소개 윤리규범 정도경영 프로그램 사업장 R&amp;D R&amp;D 현황 R&amp;D 분야 차세대 전지 오픈 이노베이션 뉴스룸 지속가능경영 추진체계 비전 및 전략 ESG 거버넌스 글로벌</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="2026" style="--c:#20c997">
+      <div class="hist-tl-date">2026-07-03（애널리스트 발표 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#20c997">투자</span>
+          <span class='hist-basis'>애널리스트 발표 기준</span>
+          <span class="src">근거 1건 · 애널 보고서</span>
+        </div>
+        <div class="deal-title">[TGIF] 미국 성장률은 상승, 내용은 부실</div>
+        <div class='deal-sum'>투자전략실 / Weekly / TGIF / vol. 184 2026. 7. 3 vol. 184 2026. 7. 3 투자전략실 / Weekly / TGIF / vol. 184 2026. 7. 3 Weekly TGIF Trend, Geopolitical, Vol. 184 Indicators on Fridays 미국 성장률은 상승, 내용은 부실 고용 안정에는 시간이 필요 C ontents Point 1. Macro Weekly 3 Point 2. Chart of the week 4 Point 3 다음 주 금융시장 주요 이벤트 및 경제 지표 5 Point 4 Global FX Monitor 6 Point 5 Global Macro Monitor 8 Point 6 Global Bond Monitor 10 투자전략실 </div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>애널 보고서 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://consensus.hankyung.com/analysis/downpdf?report_idx=650457" target="_blank" rel="noopener">[TGIF] 미국 성장률은 상승, 내용은 부실</a><div class='deal-meta'>2026-07-03 · C:\Users\USER\Desktop\ai_project\data\domestic\373220\consensus\650457.pdf</div><div class='deal-sum'>투자전략실 / Weekly / TGIF / vol. 184 2026. 7. 3 vol. 184 2026. 7. 3 투자전략실 / Weekly / TGIF / vol. 184 2026. 7. 3 Weekly TGIF Trend, Geopolitical, Vol. 184 Indicators on Fridays 미국 성장률은 상승, 내용은 부실 고용 안정에는 시간이 필요 C ontents Point 1. Macro Weekly 3 Point 2. Chart of the week 4 Point 3 다음</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="2026" style="--c:#20c997">
+      <div class="hist-tl-date">2026-07-03（애널리스트 발표 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#20c997">투자</span>
+          <span class='hist-basis'>애널리스트 발표 기준</span>
+          <span class="src">근거 3건 · 애널 보고서 · IR</span>
+        </div>
+        <div class="deal-title">패키지기판 업종 이슈코멘트 : ① 메모리기판 판가인하, ② 삼성전기 투자 공시 관련</div>
+        <div class='deal-sum'>2026.07.03 전기전자 (Overweight) 패키지기판 업종 이슈코멘트: Issue Comment ① 메모리기판 판가인하, ② 삼성전기 투자 공시 관련 Overweight 1] 메모리 패키지기판 판가 인하 가능성 관련 전일 메타發 인프라 투자 지속성 우려로 PCB 업종의 주가가 크게 하락했다. 일본 및 대만의 해외 기판 업체들 대비 유독 대덕전자, 심텍, 해성디에스 등 국내 업체들의 하락폭이 유독 가팔랐는데, 중견 메모리 PCB 업체에 대한 판가 인하 가능성이 제기된 것이 주된 원인 중 하나인 것으로 보인다[링크]. 그러나 복수의 PCB 업체를 통해 확인한 결과, IDM으로부터의 메모리 패키지기판 판가 인하 요구는 없었으며, 가능성도 낮다는 언급이 공통적이었다. 오히려 하반기부터 SOCAMM 모듈 및</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>애널 보고서 <em>2</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://consensus.hankyung.com/analysis/downpdf?report_idx=650453" target="_blank" rel="noopener">패키지기판 업종 이슈코멘트 : ① 메모리기판 판가인하, ② 삼성전기 투자 공시 관련</a><div class='deal-meta'>2026-07-03 · C:\Users\USER\Desktop\ai_project\data\domestic\373220\consensus\650453.pdf</div><div class='deal-sum'>2026.07.03 전기전자 (Overweight) 패키지기판 업종 이슈코멘트: Issue Comment ① 메모리기판 판가인하, ② 삼성전기 투자 공시 관련 Overweight 1] 메모리 패키지기판 판가 인하 가능성 관련 전일 메타發 인프라 투자 지속성 우려로 PCB 업종의 주가가 크게 하락했다. 일본 및 대만의 해외 기판 업체들 대비 유독 대덕전자, 심텍, 해성디에스 등 국내 업체들의 하락폭이 유독 가팔랐는데, 중견 메모리 PCB 업체에 대한 판가 인하 가능성이 제기된 것이 주된 원인 중 하</div></li><li class='hist-ev-item'><a href="https://consensus.hankyung.com/analysis/downpdf?report_idx=650454" target="_blank" rel="noopener">삼성전자(005930) 실적 전망치 상향 조정 지속</a><div class='deal-meta'>2026-07-03 · C:\Users\USER\Desktop\ai_project\data\domestic\373220\consensus\650454.pdf</div><div class='deal-sum'>[반도체] 송명섭2122-9207 mssong@imfnsec.com 삼성전자(005930) [투자포인트] 실적 전망치 상향 조정 지속 ■ 삼성전자의 2Q26 영업이익 전망치를 기존의 76.1조원에서 80.0조원으로 상향 조정한다. 또한 당사는 FY26 영업이익에대한전망치도기존의340조원에서360조원으로상향했다.이는2Q26과3Q26의DRAM,NAND ASP 상승폭이 확대되기 때문이다. 당사의 채널 체크에 따르면 2Q26 DRAM Blended ASP는 40% 이상, Buy(Maintain) NAND</div></li></ul></div><div class='hist-src-block'><div class='hist-src-label'>IR <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://www.lgensol.com/upload/file/download/2025_LGES_Annual_Report.pdf" target="_blank" rel="noopener">PDF 새 창에서 열기</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\domestic\373220\ir\2025_LGES_Annual_Report.pdf</div><div class='deal-sum'>II. 사업의 내용 1. 사업의 개요 당사는 지속 가능한 미래를 위한 배터리 기술 개발을 핵심 전략으로 삼고 EV(Electri c Vehicle), ESS(Energy Storage System), IT기기, 전동공구, LEV(Light Electric V ehicle) 등에 적용되는 전지 관련 제품의 연구, 개발, 제조, 판매하는 사업을 영위하고 있으며, 에너지솔루션 단일 사업부문으로 구성되어 있습니다. 국내는 물론 미국, 폴 란드, 중국 등 세계 주요 거점에 생산, 판매, R&amp;D 네트워크를</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    </div>
+                </section>
+                
+            <section class="hist-tl-year" data-year="undated">
+              <div class="hist-tl-year-label">날짜 미상 <em>1</em></div>
+              <div class="hist-tl-rail">
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#20c997">
+      <div class="hist-tl-date">날짜 미상（뉴스 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#20c997">투자</span>
+          <span class='hist-basis'>뉴스 기준</span>
+          <span class="src">근거 1건 · 뉴스</span>
+        </div>
+        <div class="deal-title">중국 공급망에 갇힌 AI 시대…‘팍스 실리카’로 탈출구 찾을까</div>
+        <div class='deal-sum'>지난해 9월에는 미국 쪽 요구로 조지아주에 배터리 공장을 짓던 현대차·엘지에너지솔루션협력사 노동자 300여명이 현지에서 체포·구금되는 사태까지 빚어졌다. 미국은 또 고율 보복 관세를 일방적으로 부과한 뒤 이를 낮춰주는 조건으로 수천억달러 규모 투자를 압박하거나, 자국에너지·농산물 수입 확대를...</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>뉴스 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://n.news.naver.com/mnews/article/028/0002808920?sid=104" target="_blank" rel="noopener">중국 공급망에 갇힌 AI 시대…‘팍스 실리카’로 탈출구 찾을까</a><div class='deal-sum'>지난해 9월에는 미국 쪽 요구로 조지아주에 배터리 공장을 짓던 현대차·엘지에너지솔루션협력사 노동자 300여명이 현지에서 체포·구금되는 사태까지 빚어졌다. 미국은 또 고율 보복 관세를 일방적으로 부과한 뒤 이를 낮춰주는 조건으로 수천억달러 규모 투자를 압박하거나, 자국에너지·농산물 수입 확대를...</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    </div>
+            </section>
+            </div></div>
+    </section>
+    
+    </div>
+    <div id="tab-financials" class="tab-panel">
+    <div class="card" style="margin-bottom:14px">
+      <h3 style="margin:0 0 8px">연도별 실적 <span class="sub">(억원 · 막대=매출/영업이익/순이익, 선=영업이익률)</span></h3>
+      <div class="chart-box"><canvas id="fin_KR_373220" height="140"></canvas></div>
+      <table class="fin">
+        <thead><tr>
+          <th>연도</th><th>매출</th><th>영업이익</th><th>순이익</th><th>영업이익률</th><th>출처</th>
+        </tr></thead>
+        <tbody><tr><td>2020</td><td>14,611</td><td>-4,752</td><td>-4,518</td><td>-32.52%</td><td>dart</td></tr><tr><td>2021</td><td>178,519</td><td>7,685</td><td>9,299</td><td>4.30%</td><td>dart</td></tr><tr><td>2022</td><td>255,986</td><td>12,137</td><td>7,798</td><td>4.74%</td><td>dart</td></tr><tr><td>2023</td><td>337,455</td><td>21,632</td><td>16,380</td><td>6.41%</td><td>dart</td></tr><tr><td>2024</td><td>256,196</td><td>5,754</td><td>3,386</td><td>2.25%</td><td>dart</td></tr><tr><td>2025</td><td>236,718</td><td>13,461</td><td>808</td><td>5.69%</td><td>dart</td></tr></tbody>
+      </table>
+      <p class="sub" style="margin:8px 0 0">영업이익률 = 영업이익 ÷ 매출 × 100 (DB 값 없으면 계산)</p>
+      <h4 class="fin-sub" style="margin:16px 0 8px">부채·차입 (표만)</h4>
+      <table class="fin">
+        <thead><tr>
+          <th>연도</th><th>부채비율</th><th>차입금</th><th>부채총계</th><th>자본총계</th>
+        </tr></thead>
+        <tbody><tr><td>2020</td><td>164%</td><td>—</td><td>123,764</td><td>75,654</td></tr><tr><td>2021</td><td>172%</td><td>—</td><td>150,218</td><td>87,424</td></tr><tr><td>2022</td><td>85.98%</td><td>—</td><td>177,057</td><td>205,938</td></tr><tr><td>2023</td><td>86.42%</td><td>—</td><td>210,636</td><td>243,735</td></tr><tr><td>2024</td><td>94.75%</td><td>282,909</td><td>293,402</td><td>309,665</td></tr><tr><td>2025</td><td>129%</td><td>383,380</td><td>378,263</td><td>293,217</td></tr></tbody>
+      </table>
+      <p class="sub" style="margin:8px 0 0">부채비율 = 부채총계 ÷ 자본총계 × 100 (없으면 차입금 ÷ 자본)</p>
+    </div>
+    </div>
+    </section>
+    
+    <footer>갱신 2026-07-30 07:31 · 2026-Q3 · 기업 전략 동향 AI 트래커</footer>
+  </div>
+  <script>
+    function activateTab(id) {
+      if (!id) return;
+      const panel = document.getElementById(id);
+      if (!panel) return;
+      const btn = document.querySelector('button[data-tab="' + id + '"]');
+      if (!btn) return;
+      const scope = btn.closest('.tabs');
+      if (!scope) return;
+      const panelIds = [...scope.querySelectorAll(':scope > button[data-tab]')].map(b => b.dataset.tab);
+      scope.querySelectorAll(':scope > button[data-tab]').forEach(b => b.classList.remove('active'));
+      panelIds.forEach(pid => {
+        const p = document.getElementById(pid);
+        if (p && !p.classList.contains('hist-panel')) p.classList.remove('active');
+      });
+      btn.classList.add('active');
+      panel.classList.add('active');
+      requestAnimationFrame(() => {
+        if (typeof Chart === 'undefined') return;
+        panel.querySelectorAll('canvas').forEach(c => {
+          const ch = Chart.getChart(c);
+          if (ch) ch.resize();
+        });
+      });
+    }
+    document.querySelectorAll('.tabs').forEach(scope => {
+      scope.querySelectorAll(':scope > button[data-tab]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activateTab(btn.dataset.tab);
+          if (btn.dataset.tab) history.replaceState(null, '', '#' + btn.dataset.tab);
+        });
+      });
+    });
+    if (location.hash) activateTab(location.hash.replace(/^#/, ''));
+  </script>
+  
+<script>
+  (function() {
+    function applyFocus(panel, mode) {
+      if (!panel) return;
+      panel.querySelectorAll('.hist-focus-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.focus === mode);
+      });
+      panel.querySelectorAll('.hist-tl-year').forEach(sec => {
+        const y = sec.dataset.year;
+        if (mode === 'all') {
+          sec.style.display = '';
+          return;
+        }
+        sec.style.display = (y === mode) ? '' : 'none';
+      });
+    }
+    document.querySelectorAll('.hist-year-focus').forEach(bar => {
+      bar.querySelectorAll('.hist-focus-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const panel = document.getElementById(bar.dataset.panel);
+          applyFocus(panel, btn.dataset.focus);
+        });
+      });
+    });
+    document.querySelectorAll('.hist-cat-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const root = btn.closest('.hist-timeline-card');
+        if (!root) return;
+        const tid = btn.dataset.tab;
+        root.querySelectorAll('.hist-cat-tab').forEach(b => b.classList.remove('active'));
+        root.querySelectorAll('.hist-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        const panel = document.getElementById(tid);
+        if (panel) panel.classList.add('active');
+      });
+    });
+  })();
+</script>
+<script>
+    (function(){
+      const el = document.getElementById("fin_KR_373220");
+      if (!el || typeof Chart === 'undefined') return;
+      const d = {"labels": ["2020", "2021", "2022", "2023", "2024", "2025"], "revenue": [14610.68, 178519.06, 255986.09, 337454.7, 256195.85, 236717.59], "op": [-4752.06, 7684.7, 12137.19, 21632.34, 5753.87, 13461.2], "net": [-4517.71, 9298.68, 7798.26, 16379.85, 3386.02, 808.03], "margin": [-32.52, 4.3, 4.74, 6.41, 2.25, 5.69], "unit": "억원"};
+      const existing = Chart.getChart(el);
+      if (existing) existing.destroy();
+      new Chart(el, {
+        type: 'bar',
+        data: {
+          labels: d.labels,
+          datasets: [
+            {
+              type: 'bar',
+              label: '매출',
+              data: d.revenue,
+              backgroundColor: 'rgba(56,189,248,0.55)',
+              borderColor: '#38bdf8',
+              borderWidth: 1,
+              yAxisID: 'y',
+              order: 2
+            },
+            {
+              type: 'bar',
+              label: '영업이익',
+              data: d.op,
+              backgroundColor: 'rgba(52,211,153,0.55)',
+              borderColor: '#34d399',
+              borderWidth: 1,
+              yAxisID: 'y',
+              order: 2
+            },
+            {
+              type: 'bar',
+              label: '순이익',
+              data: d.net,
+              backgroundColor: 'rgba(167,139,250,0.55)',
+              borderColor: '#a78bfa',
+              borderWidth: 1,
+              yAxisID: 'y',
+              order: 2
+            },
+            {
+              type: 'line',
+              label: '영업이익률(%)',
+              data: d.margin,
+              borderColor: '#fbbf24',
+              backgroundColor: 'rgba(251,191,36,0.15)',
+              tension: 0.25,
+              pointRadius: 4,
+              pointBackgroundColor: '#fbbf24',
+              yAxisID: 'y1',
+              order: 1
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: { labels: { color: '#334155' } },
+            tooltip: {
+              callbacks: {
+                label: function(ctx) {
+                  const v = ctx.parsed.y;
+                  if (v == null) return ctx.dataset.label + ': —';
+                  if (ctx.dataset.yAxisID === 'y1') return ctx.dataset.label + ': ' + v.toFixed(2) + '%';
+                  return ctx.dataset.label + ': ' + Number(v).toLocaleString(undefined, {maximumFractionDigits: 1});
+                }
+              }
+            }
+          },
+          scales: {
+            x: { ticks: { color: '#64748b' }, grid: { color: '#e2e8f0' } },
+            y: {
+              position: 'left',
+              ticks: { color: '#64748b' },
+              grid: { color: '#e2e8f0' },
+              title: { display: true, text: d.unit, color: '#64748b' }
+            },
+            y1: {
+              position: 'right',
+              ticks: {
+                color: '#b45309',
+                callback: function(v) { return v + '%'; }
+              },
+              grid: { drawOnChartArea: false },
+              title: { display: true, text: '영업이익률 (%)', color: '#b45309' }
+            }
+          }
+        }
+      });
+    })();
+    </script>
+</body>
+</html>
