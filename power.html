@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>전력시장 — 2026-Q3</title>
+  <style>
+:root {
+  --bg: #f5f7fb; --panel: #ffffff; --card: #ffffff; --text: #1e293b;
+  --muted: #64748b; --accent: #0284c7; --accent-2: #059669; --border: #e2e8f0;
+  --soft: #f1f5f9; --soft-2: #eef2ff; --brand-navy: #1e3a5f;
+}
+* { box-sizing: border-box; }
+body { margin:0; font-family:"Segoe UI","Malgun Gothic",sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
+.wrap { max-width: 1140px; margin: 0 auto; padding: 28px 20px 48px; }
+h1 { margin: 0 0 6px; font-size: 1.85rem; color:#0f172a; }
+h1.brand-title { color: var(--brand-navy); }
+.sub { color: var(--muted); margin-bottom: 20px; }
+.nav { display:flex; gap:8px; flex-wrap:wrap; margin-bottom: 20px; }
+.nav a { padding:8px 12px; border-radius:10px; background:var(--card); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.85rem; }
+.nav a.active, .nav a:hover { border-color:var(--brand-navy); color:var(--brand-navy); background:#eef2ff; }
+.home-section {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:18px 20px; margin-bottom:16px; box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+.home-split {
+  display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start; margin-bottom:16px;
+}
+.home-split > .home-section { margin-bottom:0; min-width:0; }
+.home-col-kr { border-top:3px solid #0284c7; }
+.home-col-intl { border-top:3px solid #0d9488; }
+@media (max-width:960px) {
+  .home-split { grid-template-columns:1fr; }
+}
+.home-section-head { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px; flex-wrap:wrap; }
+.home-section-head h2 { margin:0; font-size:1.15rem; color:var(--brand-navy); }
+.home-co-list { display:flex; flex-direction:column; gap:10px; }
+.home-co-row {
+  display:flex; flex-direction:column; align-items:stretch; gap:10px;
+  padding:12px 14px; border:1px solid var(--border); border-radius:12px; background:#fff;
+}
+.home-co-top {
+  display:grid; grid-template-columns:28px minmax(0,1fr); gap:8px 12px; align-items:center;
+}
+.home-co-main {
+  display:flex; align-items:center; gap:8px; min-width:0;
+}
+.home-co-main strong {
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:0.95rem;
+}
+.home-co-links {
+  grid-column:1 / -1; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:6px;
+}
+.home-co-links a,
+.home-tab-btn {
+  display:block; width:100%; text-align:center; padding:7px 4px; border-radius:8px; border:1px solid var(--border);
+  text-decoration:none; color:var(--brand-navy); font-size:0.78rem; font-weight:600; background:var(--soft);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; cursor:pointer;
+  font-family:inherit;
+}
+.home-co-links a:hover,
+.home-tab-btn:hover { border-color:var(--accent); background:#e0f2fe; }
+.home-tab-btn.active {
+  border-color:var(--accent); color:#fff; background:var(--accent);
+}
+.home-tab-panels { margin-top:2px; }
+.home-tab-panel {
+  border:1px solid var(--border); border-radius:10px; background:#f8fafc;
+  padding:10px 12px; margin-top:4px;
+}
+.home-tab-panel-head {
+  display:flex; justify-content:space-between; align-items:center; gap:8px;
+  margin-bottom:8px;
+}
+.home-tab-panel-head strong { font-size:0.88rem; color:var(--brand-navy); }
+.home-tab-more {
+  font-size:0.78rem; font-weight:600; color:var(--accent); text-decoration:none; white-space:nowrap;
+}
+.home-tab-more:hover { text-decoration:underline; }
+.home-prev-item { padding:6px 0; border-bottom:1px solid var(--border); }
+.home-prev-item:last-child { border-bottom:none; }
+.home-prev-fin { font-size:0.78rem; margin-top:4px; }
+@media (max-width:520px) {
+  .home-co-links { grid-template-columns:repeat(2, minmax(0,1fr)); }
+}
+.co-logo { width:28px; height:28px; border-radius:6px; object-fit:contain; background:#fff; border:1px solid var(--border); }
+.co-logo-fallback {
+  width:28px; height:28px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center;
+  background:var(--brand-navy); color:#fff; font-size:0.85rem; font-weight:700;
+}
+.ov-card-head .co-logo,
+.ov-card-head .co-logo-fallback,
+.co-page-head .co-logo,
+.co-page-head .co-logo-fallback {
+  width:36px; height:36px; flex-shrink:0;
+}
+.co-page-head {
+  display:flex; align-items:center; gap:12px; margin:0 0 10px;
+}
+.co-page-head h1 { margin:0; }
+.co-page-head .sub { margin:4px 0 0; }
+.home-hist-stats { display:flex; gap:18px; margin-top:8px; color:var(--muted); }
+.home-hist-stats strong { color:var(--brand-navy); font-size:1.2rem; margin-right:4px; }
+.mega-notes { margin:8px 0 12px; padding-left:18px; color:var(--muted); font-size:0.88rem; }
+.mega-tabs button em { font-style:normal; font-weight:700; color:var(--accent); margin-left:4px; }
+.mega-ind-box {
+  background:linear-gradient(135deg,#ffffff,#f0f9ff); border:1px solid var(--border);
+  border-radius:14px; padding:16px 18px; margin-bottom:14px;
+}
+.mega-ai-ul { margin:8px 0 0; padding-left:18px; color:#334155; font-size:0.92rem; }
+.mega-ai-ul li { margin:5px 0; }
+.mega-news-grid { display:grid; grid-template-columns:1fr; gap:12px; }
+.mega-news-card {
+  background:#fff; border:1px solid var(--border); border-radius:12px; padding:14px 16px;
+}
+.mega-news-title {
+  display:block; font-weight:700; color:var(--accent); text-decoration:none; font-size:1rem; line-height:1.4;
+}
+.mega-news-title:hover { text-decoration:underline; color:var(--brand-navy); }
+.mega-news-sum { margin-top:8px; }
+.mega-news-sum .mega-ai-ul { font-size:0.88rem; color:#475569; }
+@media (min-width:900px) {
+  .mega-news-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+}
+.ai-summary-box {
+  background:#f8fafc; border:1px solid var(--border); border-left:4px solid var(--brand-navy);
+  border-radius:12px; padding:14px 16px; margin:14px 0;
+}
+.ai-summary-box pre { white-space:pre-wrap; font-family:inherit; font-size:0.9rem; color:#334155; margin:8px 0 0; }
+.ai-summary-box.compact { padding:10px 12px; margin:8px 0 0; }
+.home-ai-ul {
+  list-style:none; margin:8px 0 0; padding:0; color:#334155; font-size:0.88rem;
+  display:flex; flex-direction:column; gap:6px;
+}
+.home-ai-ul li {
+  display:grid; grid-template-columns:5.75rem minmax(0,1fr) auto;
+  gap:8px; align-items:start; margin:0; line-height:1.45;
+}
+.home-ai-ul .ai-k {
+  display:block; color:var(--brand-navy); font-weight:600; font-size:0.78rem;
+  text-align:left; padding-top:1px;
+}
+.home-ai-ul a.ai-news {
+  font-size:0.75rem; font-weight:600; color:var(--accent);
+  text-decoration:none; border-bottom:1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  white-space:nowrap; align-self:start; margin-top:1px;
+}
+.home-ai-ul a.ai-news:hover { color:var(--accent-2); border-bottom-color:var(--accent-2); }
+@media (max-width:520px) {
+  .home-ai-ul li { grid-template-columns:4.5rem minmax(0,1fr); }
+  .home-ai-ul a.ai-news { grid-column:2; justify-self:start; }
+}
+.strategy-brief-list { display:flex; flex-direction:column; gap:16px; }
+.ov-list { display:flex; flex-direction:column; gap:18px; }
+.ov-card {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:0; box-shadow:0 1px 2px rgba(15,23,42,.03); overflow:hidden;
+}
+.ov-fold { margin:0; }
+.ov-fold > summary.ov-card-head {
+  list-style:none; cursor:pointer; display:flex; align-items:center; gap:12px;
+  flex-wrap:wrap; margin:0; padding:14px 18px; border-bottom:1px solid transparent;
+  user-select:none;
+}
+.ov-fold > summary.ov-card-head::-webkit-details-marker { display:none; }
+.ov-fold[open] > summary.ov-card-head {
+  border-bottom-color:var(--border); margin-bottom:0;
+}
+.ov-fold-hint {
+  flex-shrink:0; width:28px; height:28px; border-radius:8px;
+  border:1px solid var(--border); background:#f8fafc; color:var(--muted);
+  display:inline-flex; align-items:center; justify-content:center; font-size:0.75rem;
+}
+.ov-fold-hint::before { content:"▸"; }
+.ov-fold[open] .ov-fold-hint::before { content:"▾"; }
+.ov-card-body { padding:14px 18px 16px; }
+.ov-card-titles { flex:1; min-width:140px; }
+.ov-name {
+  font-size:1.15rem; font-weight:700; color:var(--brand-navy); text-decoration:none;
+}
+.ov-name:hover { color:var(--accent); }
+.ov-mcap { text-align:right; }
+.ov-mcap-label { display:block; font-size:0.72rem; color:var(--muted); }
+.ov-mcap strong { font-size:1.05rem; color:#92400e; }
+.ov-grid {
+  display:grid; grid-template-columns:1.2fr 1fr; gap:14px; margin-bottom:12px;
+}
+@media (max-width:800px) { .ov-grid { grid-template-columns:1fr; } }
+.ov-block h4 { margin:0 0 8px; font-size:0.9rem; color:var(--accent-2); }
+.ov-fin { width:100%; border-collapse:collapse; font-size:0.82rem; }
+.ov-fin th, .ov-fin td {
+  border-bottom:1px solid var(--border); padding:6px 8px; text-align:right;
+}
+.ov-fin th:first-child, .ov-fin td:first-child { text-align:left; }
+.ov-fin th { color:var(--muted); font-weight:600; background:#f8fafc; }
+.ov-chart-wrap { height:140px; position:relative; }
+.ov-chart-wrap.ov-chart-lg { height:260px; min-height:260px; }
+.ov-mini-tabs {
+  display:flex; flex-wrap:wrap; gap:6px; margin:0 0 10px;
+}
+.ov-mini-tabs button {
+  border:1px solid var(--border); background:#fff; border-radius:8px;
+  padding:6px 10px; font-size:0.78rem; cursor:pointer; color:var(--text);
+}
+.ov-mini-tabs button.active {
+  border-color:var(--accent); background:#e0f2fe; color:var(--accent); font-weight:700;
+}
+.ov-cat-panel { display:none; }
+.ov-cat-panel.active { display:block; }
+.ov-ls-block {
+  background:linear-gradient(135deg,#fffbeb,#fff); border:1px solid #f59e0b;
+  border-radius:12px; padding:12px 14px; margin-top:8px;
+}
+.ov-ls-block h4 { color:#92400e !important; }
+.ov-ls-meta { margin:0 0 8px !important; font-size:0.75rem; color:#92400e; }
+.ov-ls-prose-wrap { display:flex; flex-direction:column; gap:10px; }
+.ov-ls-prose {
+  margin:0; font-size:0.9rem; line-height:1.65; color:var(--text);
+  text-align:justify;
+}
+.ov-fact-summary {
+  margin:6px 0 2px; padding:6px 8px; border-left:3px solid #0e7490;
+  background:#f0f9ff; font-size:0.82rem; line-height:1.55; color:#0f172a;
+}
+.ov-fact-label {
+  display:inline-block; font-weight:700; color:#0e7490; margin-right:6px;
+  font-size:0.72rem; letter-spacing:0.02em;
+}
+.weekly-report {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:16px 18px; margin:12px 0 16px;
+}
+.weekly-head {
+  display:flex; align-items:flex-start; justify-content:space-between;
+  gap:12px; flex-wrap:wrap; margin-bottom:4px;
+}
+.weekly-head h3 { margin:0; }
+.weekly-dl { display:flex; gap:8px; flex-wrap:wrap; }
+.btn-dl {
+  display:inline-block; padding:6px 12px; border-radius:8px; font-size:0.78rem;
+  font-weight:700; text-decoration:none; color:#fff; background:var(--brand-navy);
+  border:1px solid var(--brand-navy);
+}
+.btn-dl:hover { background:#0c4a6e; }
+.btn-dl-word { background:#0369a1; border-color:#0369a1; }
+.weekly-fold {
+  margin:10px 0 0; padding:0; border:1px solid var(--border); border-radius:10px;
+  background:#fafbfc;
+}
+.weekly-fold > summary.weekly-fold-sum {
+  list-style:none; cursor:pointer; padding:10px 12px;
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+  font-weight:700; color:var(--brand-navy);
+}
+.weekly-fold > summary.weekly-fold-sum::-webkit-details-marker { display:none; }
+.weekly-fold > summary.weekly-fold-sum::before {
+  content:"▾"; color:var(--muted); font-size:0.85rem; margin-right:6px;
+}
+.weekly-fold:not([open]) > summary.weekly-fold-sum::before { content:"▸"; }
+.weekly-fold-title { font-size:0.95rem; }
+.weekly-fold-meta {
+  font-size:0.72rem; font-weight:600; color:var(--muted);
+  background:#e2e8f0; padding:2px 8px; border-radius:999px;
+}
+.weekly-fold-body { padding:4px 12px 12px 28px; }
+.weekly-fold .empty { margin:0; padding:4px 0 8px; }
+.weekly-detail-tabs { margin-top:8px; padding-top:8px; border-top:2px solid var(--border); }
+.item-date {
+  display:inline-block; margin-left:6px; padding:1px 7px; border-radius:4px;
+  font-size:0.72rem; font-weight:600; color:#475569; background:#f1f5f9;
+  vertical-align:baseline; white-space:nowrap;
+}
+.weekly-sec { margin:14px 0; padding-top:10px; border-top:1px solid var(--border); }
+.weekly-sec:first-of-type { border-top:none; padding-top:0; }
+.weekly-sec h4 { margin:0 0 8px; font-size:0.95rem; color:var(--brand-navy); }
+.weekly-ai { margin-bottom:8px; }
+ul.rpt-l1 {
+  list-style:disc; margin:6px 0 0; padding-left:1.2rem; color:#0f172a; font-size:0.92rem;
+}
+ul.rpt-l1 > li { margin:6px 0; line-height:1.45; display:list-item; }
+ul.rpt-l1 ul.rpt-l2 { display:block; margin:6px 0 0; clear:both; }
+ul.rpt-l2 ul.rpt-l3 { display:block; margin:4px 0 0; clear:both; }
+.ov-issue-ul > li { display:list-item; }
+ul.rpt-l2 {
+  list-style:none; margin:4px 0 0; padding-left:0.2rem; color:#334155; font-size:0.88rem;
+}
+ul.rpt-l2 > li {
+  position:relative; padding-left:1rem; margin:4px 0; line-height:1.4;
+}
+ul.rpt-l2 > li::before { content:"-"; position:absolute; left:0; color:#64748b; font-weight:700; }
+ul.rpt-l3 {
+  list-style:none; margin:3px 0 0; padding-left:0.15rem; color:#475569; font-size:0.84rem;
+}
+ul.rpt-l3 > li {
+  position:relative; padding-left:1.1rem; margin:3px 0; line-height:1.35;
+}
+ul.rpt-l3 > li::before { content:"✓"; position:absolute; left:0; color:#047857; font-weight:700; }
+.ov-news-ul { margin:0; padding-left:0; list-style:none; }
+.ov-news-li {
+  padding:8px 0; border-bottom:1px solid var(--border); font-size:0.9rem;
+}
+.ov-news-li:last-child { border-bottom:none; }
+.ov-news-li a { color:var(--brand-navy); text-decoration:none; font-weight:600; }
+.ov-news-li a:hover { color:var(--accent); }
+.ov-news-meta { margin-top:4px; font-size:0.75rem; color:var(--muted); }
+.ov-tag {
+  display:inline-block; margin:2px 4px 0 0; padding:1px 7px; border-radius:4px;
+  font-size:0.7rem; font-weight:700; background:#e0f2fe; color:#0369a1;
+}
+.ov-tag:nth-child(odd) { background:#ecfdf5; color:#047857; }
+.ov-more { margin:10px 0 0; text-align:right; }
+.ov-more a { font-weight:600; color:var(--accent); text-decoration:none; }
+.ov-sec { margin-bottom:16px; }
+.ov-sec h4 { margin:0 0 8px; font-size:0.95rem; color:var(--brand-navy); }
+.strategy-brief-card {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:16px 18px; box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+.strat-head {
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid var(--border);
+}
+.strat-title { display:flex; align-items:center; gap:8px; flex:1; min-width:140px; }
+.strat-title strong { font-size:1.05rem; }
+.strat-cat { margin-top:12px; }
+.strat-cat-head {
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+  margin-bottom:6px;
+}
+.strat-cat-head h4 {
+  margin:0; font-size:0.88rem; color:var(--brand-navy); font-weight:700;
+}
+.strat-ul {
+  list-style:none; margin:0; padding:0; color:#334155; font-size:0.88rem;
+  display:flex; flex-direction:column; gap:5px;
+}
+.strat-ul li {
+  display:grid; grid-template-columns:5.75rem minmax(0,1fr);
+  gap:8px; align-items:start; line-height:1.45;
+}
+.strat-ul.plain li { grid-template-columns:minmax(0,1fr); }
+.strat-k {
+  display:block; color:var(--brand-navy); font-weight:600; font-size:0.76rem;
+  padding-top:1px;
+}
+@media (max-width:520px) {
+  .strat-ul li { grid-template-columns:4.5rem minmax(0,1fr); }
+}
+.hero {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 55%, #ecfdf5 100%);
+  border:1px solid var(--border); border-radius:16px; padding:28px; margin-bottom:24px;
+  box-shadow:0 1px 2px rgba(15,23,42,.04);
+}
+.entry-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin-top:18px; }
+.entry {
+  display:block; background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:22px; text-decoration:none; color:inherit; transition:border-color .15s, box-shadow .15s;
+  box-shadow:0 1px 2px rgba(15,23,42,.04);
+}
+.entry:hover { border-color: var(--accent); box-shadow:0 4px 12px rgba(2,132,199,.08); }
+.entry h2 { margin:0 0 8px; font-size:1.35rem; color:var(--accent-2); }
+.entry p { margin:0; color:var(--muted); font-size:0.92rem; }
+.entry .count { margin-top:12px; font-size:1.6rem; font-weight:700; color:var(--accent); }
+.tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; position:sticky; top:0; z-index:5;
+  background:rgba(245,247,251,.94); backdrop-filter:blur(8px); padding:10px 0; border-bottom:1px solid var(--border); }
+.tabs button {
+  border:1px solid var(--border); background:var(--card); color:var(--text);
+  padding:8px 12px; border-radius:8px; cursor:pointer; font-size:0.85rem;
+}
+.tabs button.active { border-color:var(--accent); color:var(--accent); background:#e0f2fe; }
+.tab-panel { display:none; }
+.tab-panel.active { display:block; }
+.tab-desc { color:var(--muted); font-size:0.9rem; margin-bottom:14px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; }
+.card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px; box-shadow:0 1px 2px rgba(15,23,42,.03); }
+.card-head { display:flex; justify-content:space-between; gap:8px; margin-bottom:10px; }
+.card h3 { margin:0; font-size:1rem; }
+.tag { font-size:0.7rem; background:#e0f2fe; color:#0369a1; padding:3px 8px; border-radius:6px; white-space:nowrap; }
+.tag.intl { background:#d1fae5; color:#047857; }
+.module-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; margin-bottom:12px; }
+.mod-stat { background:var(--soft); border-radius:8px; padding:8px 6px; text-align:center; font-size:0.72rem; color:var(--muted); }
+.mod-stat strong { display:block; font-size:1.05rem; color:var(--text); }
+.btn { display:inline-block; padding:9px 12px; border-radius:10px; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; font-size:0.88rem; border:none; cursor:pointer; }
+.btn.secondary { background:#10b981; color:#fff; }
+.empty { color:var(--muted); font-style:italic; }
+.deal-kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px; margin-bottom:18px; }
+.deal-kpi { background:var(--card); border:1px solid var(--border); border-left:4px solid var(--c,#0284c7);
+  border-radius:10px; padding:12px 14px; text-decoration:none; color:inherit; }
+.deal-kpi-label { font-size:0.85rem; }
+.deal-kpi-count { font-size:1.7rem; font-weight:700; color:var(--c,#0284c7); }
+.deal-kpi-en { font-size:0.72rem; color:var(--muted); }
+.deal-section { background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:16px 18px; margin-bottom:14px; scroll-margin-top:70px; }
+.deal-section h3 { margin:0 0 12px; font-size:1.05rem; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.deal-section h3 .dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
+.deal-section h3 small { color:var(--muted); font-weight:400; font-size:0.8rem; }
+.deal-section h3 em { margin-left:auto; font-style:normal; color:var(--accent); font-size:0.85rem; }
+.deal-item { padding:12px 0; border-bottom:1px solid var(--border); }
+.deal-item:last-child { border-bottom:none; }
+.deal-item-top { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:4px; }
+.pill { color:#fff; font-size:0.7rem; padding:2px 8px; border-radius:4px; }
+.src { font-size:0.72rem; color:var(--muted); background:var(--soft); padding:2px 6px; border-radius:4px; }
+.co { font-size:0.78rem; color:var(--accent-2); }
+.deal-title { font-weight:600; margin-bottom:4px; }
+.deal-meta { font-size:0.8rem; color:var(--muted); margin-bottom:4px; }
+.deal-sum { font-size:0.88rem; color:#475569; margin:6px 0; }
+a { color:var(--accent); }
+.chart-box { background:var(--soft); border-radius:10px; padding:10px; margin:8px 0 12px; border:1px solid var(--border); }
+.ov-card-body .chart-box { height:220px; position:relative; }
+.index-hero { grid-column: 1 / -1; border-color:#99f6e4; background:linear-gradient(135deg,#fff,#f0fdfa); }
+table.fin { width:100%; border-collapse:collapse; font-size:0.8rem; }
+table.fin th, table.fin td { border-bottom:1px solid var(--border); padding:0.4rem 0.3rem; text-align:right; }
+table.fin th:first-child, table.fin td:first-child { text-align:left; }
+table.fin th { color:var(--muted); }
+.price-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; margin-top:14px; }
+.price-chip { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px; }
+.price-chip.intl { border-color:#a7f3d0; }
+.pc-name { font-size:0.78rem; color:var(--muted); margin-bottom:4px; }
+.pc-price { font-size:1.15rem; font-weight:700; }
+.pc-chg { font-size:0.8rem; margin-top:2px; }
+.pc-chg.up { color:#059669; }
+.pc-chg.down { color:#dc2626; }
+.mod-stat em { display:block; font-size:0.65rem; color:#d97706; font-style:normal; }
+.geo-tag { display:inline-block; background:#ffedd5; color:#9a3412; font-size:0.7rem; padding:2px 8px; border-radius:4px; font-weight:600; }
+.bm-banner { background:#fff7ed; border:1px solid #fdba74; border-radius:12px; padding:12px 14px; margin-bottom:14px; }
+table.fin tr.bm-row td { background:#fffbeb; color:#92400e; font-weight:600; }
+.debt-ratio { color:#d97706; font-weight:700; }
+.markets-panel {
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 45%, #f0f9ff 100%);
+  border:1px solid var(--border); border-radius:16px; padding:20px 22px; margin-bottom:20px;
+}
+.markets-head { display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
+.markets-section-label { font-size:0.78rem; color:#047857; margin:14px 0 8px; letter-spacing:0.02em; font-weight:600; }
+.mkt-chart-grid { display:grid; gap:12px; margin-bottom:6px; }
+.mkt-chart-grid.mkt-grid-2x2 { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+.mkt-chart-grid.mkt-grid-2 { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+@media (max-width:720px) {
+  .mkt-chart-grid.mkt-grid-2x2,
+  .mkt-chart-grid.mkt-grid-2 { grid-template-columns:1fr; }
+}
+.mkt-chip { background:#fff; border:1px solid var(--border); border-radius:12px; padding:12px; }
+.mkt-chip.commodity { border-color:#f59e0b; }
+.mkt-chip.index { border-color:#38bdf8; }
+.mkt-chip.fx { border-color:#06b6d4; }
+.mkt-chip.rate { border-color:#8b5cf6; }
+.mkt-unit { font-size:0.72rem; color:var(--muted); font-weight:500; }
+.mkt-note { font-size:0.7rem; color:var(--muted); margin-top:6px; line-height:1.35; }
+.power-badge {
+  display:inline-block; background:#fef3c7; color:#b45309; font-size:0.72rem;
+  font-weight:700; padding:2px 8px; border-radius:4px; margin-right:6px;
+}
+.power-sum-label {
+  margin-top:10px; font-size:0.78rem; font-weight:600; color:#047857;
+}
+.power-subtabs { position:static; background:transparent; backdrop-filter:none; margin-top:8px; }
+.tag-row { display:flex; flex-wrap:wrap; gap:6px; margin-top:4px; }
+.fin-sub { margin:16px 0 8px; font-size:0.95rem; color:var(--brand-navy); }
+.power-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px 18px; margin-bottom:14px; }
+.power-card h3 { margin:0 0 8px; font-size:1.05rem; color:var(--accent-2); }
+.power-overview-fold { padding:0; overflow:hidden; }
+.power-overview-sum {
+  list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between;
+  gap:12px; padding:14px 18px; user-select:none;
+}
+.power-overview-sum::-webkit-details-marker { display:none; }
+.power-overview-title { font-size:1.05rem; font-weight:700; color:var(--accent-2); }
+.power-overview-hint {
+  flex-shrink:0; font-size:0.78rem; font-weight:600; color:var(--muted);
+  display:inline-flex; align-items:center; gap:4px;
+}
+.power-overview-hint::before { content:attr(data-when-open); }
+.power-overview-fold:not([open]) .power-overview-hint::before { content:attr(data-when-closed); }
+.power-overview-hint::after {
+  content:""; width:0.45em; height:0.45em; border-right:2px solid currentColor;
+  border-bottom:2px solid currentColor; transform:rotate(-135deg); margin-top:3px;
+  transition:transform .15s ease;
+}
+.power-overview-fold:not([open]) .power-overview-hint::after {
+  transform:rotate(45deg); margin-top:-2px;
+}
+.power-overview-body { padding:0 18px 16px; border-top:1px solid var(--border); }
+.power-overview-sum:hover { background:#f8fafc; }
+.power-label { font-size:0.78rem; color:#047857; margin:12px 0 6px; }
+.power-list { margin:0; padding-left:1.1rem; color:#334155; font-size:0.9rem; }
+.power-list li { margin-bottom:4px; }
+.export-box { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px; margin:14px 0 20px; }
+.export-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+.email-form { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:10px; }
+.email-form input[type=email],
+.email-form input[type=text],
+.email-form select {
+  flex:1; min-width:180px; padding:10px 12px; border-radius:8px;
+  border:1px solid var(--border); background:#fff; color:var(--text);
+}
+.email-form button { border:none; cursor:pointer; }
+.briefing-list { margin-top:12px; display:flex; flex-direction:column; gap:12px; }
+.briefing-card {
+  background:#fff; border:1px solid var(--border); border-radius:12px; padding:14px 16px;
+}
+.briefing-card-head { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:6px; }
+.briefing-badge {
+  font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:6px;
+  background:#e0f2fe; color:#0369a1;
+}
+.briefing-badge.status-pending { color:#b45309; background:#fef3c7; }
+.briefing-badge.status-sent { color:#047857; background:#d1fae5; }
+.briefing-badge.status-rejected { color:#b91c1c; background:#fee2e2; }
+.briefing-badge.status-failed { color:#c2410c; background:#ffedd5; }
+.briefing-preview {
+  white-space:pre-wrap; font-size:0.78rem; color:#475569; background:var(--soft);
+  border:1px solid var(--border); border-radius:8px; padding:10px; margin:8px 0; max-height:140px; overflow:auto;
+}
+.tag-row { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+.impact-hint { font-size:0.78rem; color:#b45309; margin:4px 0 6px; }
+.focus-line { color:#047857; font-size:0.9rem; margin:0 0 10px; }
+.fin-sub { margin:14px 0 8px; font-size:0.95rem; color:var(--accent-2); }
+.mkt-chart-card {
+  background:#0f3d4c; border:1px solid #0a2a33; border-radius:12px; padding:14px 14px 10px;
+  color:#f8fafc; min-height:0;
+}
+.mkt-chart-card .pc-name { color:#e2e8f0; font-size:0.9rem; font-weight:600; margin-bottom:6px; }
+.mkt-chart-card .pc-price { color:#fff; font-size:1.25rem; font-weight:700; }
+.mkt-chart-card .mkt-unit { color:#94a3b8; }
+.mkt-chart-card .pc-chg.up { color:#6ee7b7; }
+.mkt-chart-card .pc-chg.down { color:#fca5a5; }
+.mkt-chart-card.commodity { border-color:#b45309; }
+.mkt-chart-card.fx { border-color:#0e7490; }
+.mkt-chart-card.rate { border-color:#6d28d9; }
+.mkt-chart-card.index { border-color:#0369a1; }
+.mkt-chart-card.mkt-priority { box-shadow:0 0 0 2px rgba(180,83,9,0.35); }
+.mkt-ls-tag {
+  display:inline-block; margin-left:6px; font-style:normal; font-size:0.65rem;
+  font-weight:700; color:#92400e; background:#fef3c7; padding:1px 6px; border-radius:4px;
+  vertical-align:middle;
+}
+.ls-metal-panel {
+  background:linear-gradient(135deg,#fffbeb,#fff); border:1px solid #f59e0b;
+  border-radius:14px; padding:14px 16px; margin:14px 0 10px;
+}
+.power-12th-panel {
+  background:linear-gradient(135deg,#fffbeb,#fff); border:1px solid #f59e0b;
+  border-radius:14px; padding:16px 18px; margin:14px 0 16px;
+}
+.power-12th-panel .card-head {
+  display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-bottom:4px;
+}
+.power-12th-panel .card-head h3 { margin:0; font-size:1.05rem; color:#92400e; }
+.power-12th-panel .mega-news-grid { margin-top:8px; }
+.mega-ai-ul.power-digest-ul li { line-height:1.5; }
+.mega-ai-ul a.ai-news {
+  display:inline; margin-left:6px; font-size:0.78rem; font-weight:700;
+  color:var(--accent); text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  white-space:nowrap;
+}
+.mega-ai-ul a.ai-news:hover { color:var(--accent-2); border-bottom-color:var(--accent-2); }
+.ls-metal-head {
+  display:flex; justify-content:space-between; align-items:baseline; gap:10px;
+  flex-wrap:wrap; margin-bottom:10px;
+}
+.ls-metal-head strong { color:#92400e; font-size:0.95rem; }
+.ls-metal-block { margin-top:10px; }
+.ls-metal-block h4 { margin:0 0 6px; font-size:0.88rem; color:var(--brand-navy); }
+.ls-metal-ul { margin:0; padding-left:18px; color:#334155; font-size:0.88rem; }
+.ls-metal-ul li { margin:5px 0; line-height:1.45; }
+.mkt-mini-chart { height:100px; margin-top:8px; background:rgba(255,255,255,.04); border-radius:8px; padding:4px; }
+.deal-wrap-v2 .deal-hero {
+  display:flex; flex-wrap:wrap; justify-content:space-between; gap:14px; align-items:flex-end;
+  background:linear-gradient(135deg,#ffffff,#f0f9ff); border:1px solid var(--border);
+  border-radius:14px; padding:16px 18px; margin-bottom:12px;
+}
+.deal-hero-title { margin:0 0 6px; font-size:1.25rem; color:var(--accent-2); }
+.deal-filter-bar {
+  position:sticky; top:8px; z-index:20; display:flex; flex-wrap:wrap; gap:8px;
+  background:rgba(255,255,255,.96); border:1px solid var(--border); border-radius:12px;
+  padding:10px 12px; margin-bottom:14px; backdrop-filter:blur(6px);
+}
+.deal-filter {
+  border:1px solid var(--border); background:#fff; color:var(--text);
+  border-radius:10px; padding:10px 14px; cursor:pointer; font-size:0.9rem;
+  border-left:4px solid var(--c,#64748b);
+}
+.deal-filter em { font-style:normal; font-weight:700; color:var(--c,#0284c7); margin-left:6px; }
+.deal-filter.active { background:#e0f2fe; box-shadow:0 0 0 1px var(--c,#0284c7); color:#0f172a; }
+.deal-panel { margin-bottom:16px; }
+.deal-panel-head {
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  margin-bottom:12px; padding-bottom:8px; border-bottom:2px solid var(--c,#0284c7);
+}
+.deal-panel-head h3 { margin:0; font-size:1.15rem; }
+.deal-panel-head small { color:var(--muted); font-weight:400; margin-left:8px; }
+.deal-panel-count { color:var(--c,#0284c7); font-weight:700; font-size:1rem; }
+.deal-card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; }
+.deal-card {
+  display:flex; background:#fff; border:1px solid var(--border); border-radius:12px; overflow:hidden;
+  min-height:140px; box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+.deal-card-bar { width:6px; flex-shrink:0; }
+.deal-card-body { padding:14px 16px; flex:1; }
+.deal-card .deal-title { font-size:1.05rem; line-height:1.45; margin-bottom:6px; }
+.deal-card .deal-sum { font-size:0.92rem; line-height:1.5; color:#475569; }
+.deal-link { display:inline-block; margin-top:10px; font-weight:600; color:var(--accent); }
+.deal-nav { display:flex; flex-wrap:wrap; gap:8px; }
+.deal-nav-btn {
+  display:flex; align-items:center; gap:8px; text-decoration:none; color:var(--text);
+  background:#fff; border:1px solid var(--border); border-left:4px solid var(--c,#0284c7);
+  border-radius:10px; padding:8px 12px; font-size:0.85rem;
+}
+.deal-nav-btn span { color:var(--c,#0284c7); font-weight:700; font-size:1.05rem; }
+.deal-section-v2 { scroll-margin-top:90px; }
+footer { margin-top:28px; text-align:center; color:var(--muted); font-size:0.85rem; }
+@media (max-width:600px){ .module-grid { grid-template-columns:repeat(3,1fr); } }
+</style>
+  
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <a href="index.html" class="">홈</a>
+      <a href="domestic.html" class="">국내</a>
+      <a href="international.html" class="">해외</a>
+      <a href="markets.html" class="">지수/환율</a>
+      <a href="power.html" class="active">전력시장</a>
+      <a href="mega_projects.html" class="">메가 프로젝트</a>
+      <a href="interest_topic.html" class="">관심주제 주간 브리핑</a>
+    </nav>
+    
+    <h1 class="brand-title">전력시장</h1>
+    <p class="sub">국내 주간 뉴스 · 해외 권역별 · 갱신 2026-07-27 09:16 · AI 요약 2026-07-27 09:19</p>
+    <p class="deal-meta">수집·요약:
+      <code>python scripts/refresh_power_markets.py --ai --portal</code></p>
+    <div class="tabs">
+      <button class="active" data-tab="tab-power-kr">국내</button>
+      <button data-tab="tab-power-intl">해외</button>
+    </div>
+    <div id="tab-power-kr" class="tab-panel active"><p class='tab-desc'>한국 전력시장 · 주간(7일) 뉴스 · 갱신 2026-07-27 09:16</p><details class='power-card power-overview-fold' open><summary class='power-overview-sum'><span class='power-overview-title'>한국 전력시장</span><span class='power-overview-hint' data-when-open='접기' data-when-closed='펼치기'></span></summary><div class='power-overview-body'><p class='deal-sum'>한국은 한국전력(KEPCO) 중심의 송배전과 전력거래소(KPX) 현물시장 구조입니다. RE100·AI 데이터센터 수요, 원전 활용, 재생에너지 계통 접속, 제12차 전력수급기본계획(전기본)이 핵심 이슈입니다.</p><div class='power-label'>송배전 · 계통</div><ul class='power-list'><li>송배전: 한전 독점 송·배전망 · 지역 배전 안정성·노후설비 교체 지속</li><li>계통: 재생에너지 출력제한(curtailment)·접속 대기 물량 관리가 과제</li><li>수요: 데이터센터·반도체·전기화로 전력수요 구조 변화</li></ul><div class='power-label'>에너지 믹스</div><ul class='power-list'><li>원전·석탄·LNG·재생(태양광·풍력) 믹스 — 정책 방향에 따라 비중 조정</li><li>ESS·VPP·수요반응(DR) 등 유연성 자원 확대 논의</li></ul><div class='power-label'>정책·이슈 포인트</div><ul class='power-list'><li>제12차 전력수급기본계획(12차 전기본) 확정·이행 동향</li><li>전력시장 제도 개편·요금·PPA·직접전력거래 관련 정책 동향</li><li>해상풍력·원전 수명연장·SMR 등 공급 측 정책</li></ul><div class='power-label'>참고</div><div class='tag-row'><a class='src' href='https://www.kpx.or.kr' target='_blank'>한국전력거래소(KPX)</a><a class='src' href='https://www.motie.go.kr' target='_blank'>산업통상자원부 에너지</a></div></div></details><div class='mega-ind-box'><div class='card-head'><h3>주간 브리프</h3><span class='tag'>36건</span></div><p class='deal-meta'>뉴스 요약 기반 · 2026-07-27 09:18 · 불렛 옆 <em>뉴스</em> 링크</p><ul class='mega-ai-ul power-digest-ul'><li>[12차 전기본] 메가프로젝트 전력수요(15GW) 우선 반영에 따른 계획 전면 수정 및 신규 원전·SMR·유연성 설비(ESS·양수) 재편 <a class='ai-news' href='https://news.google.com/rss/articles/CBMibEFVX3lxTE9pb09CbmhMYU0xOTRYaUlGNEl2dk5PbGlPeVVNdnY0cGM2NndHazc5VDdqWl8zSUdPcUhadm1FQUtDSFVPcGxWc0ZZRy1JTVU2YUthUE9xcGR5dGV2WlF2VTNMd0VYMkhTNUU2WA?oc=5' target='_blank' rel='noopener'>뉴스</a></li><li>[거버넌스 개편] 전력시장 참여자 8,000개 돌파에 대응한 독립적 전문 감독기구 &#x27;전력감독원&#x27; 설립 논의 본격화 <a class='ai-news' href='https://news.google.com/rss/articles/CBMiW0FVX3lxTE5BajJYVW9pazRZSnV0SVdaQl9SUXhGWEF6b0pqek1VQmlfQmJYSmRHdnJIVldZU1VuZ25hV19hellmVFpidERFazZDemJMNlFRcVR2WVdQSU5YQk0?oc=5' target='_blank' rel='noopener'>뉴스</a></li><li>[발전·정비 생태계] 한전 5개 발전자회사 통합 논의 급물살 및 전력 기자재·정비 시장 내 공정성·투명성 제고 <a class='ai-news' href='https://news.google.com/rss/articles/CBMigwFBVV95cUxQMjFKNHhrbDNHc0w5MDhaZ25tamZwaVA4UjBLYm13ejVoS1VYSWJjUElJY0pnVm5BOWhWMUpucTVIaEs1Y1BSR3pCeG1TOEdEZWxEUWVvd05BNFJfeWhkNHB3aEFBYTVhdWtZRWtLNV9zUU9nVWo2MmVUTDI4QmFvbWFaVQ?oc=5' target='_blank' rel='noopener'>뉴스</a></li><li>[유연성 자원 및 해외 확장] AI 전력 수요 급증 대응을 위한 전기차 V2X 전력망 연계 및 K-전력 인프라의 해외 진출 확대 <a class='ai-news' href='https://news.google.com/rss/articles/CBMiakFVX3lxTE5SSThJcEttYmY5NXdLZ2E2YUI0VG0zc3NWTEMzbXBvZHpicFhycjdQZEdTczNFVENZWGFiQWNleXJ6b2h3NGloM0lEbkpITU1GMVpRRDI2WE1Cekd0TFpSQkxtcXVtTGVmelHSAWxBVV95cUxPTC1zLVotUDU5ZGRoODRnU0FXZjMtam9rRERsWURTZm5vXzh2YXhNUm8tSkVPTGxkOGdfdjdMUWlfYkllbVdoZW8yWk9rV3BpQUlzbkhjcUxqNHFrekxjd1JfRjBYVWVVZlpxamQ?oc=5' target='_blank' rel='noopener'>뉴스</a></li></ul></div><div class='power-12th-panel'><div class='card-head'><h3>12차 전기본 · 시사점</h3><span class='power-badge'>제12차 전력수급기본계획</span></div><p class='deal-meta'>국내 전력시장 전용 · 뉴스·주간브리프 기반 · LS 그룹 관점</p><ul class='ls-metal-ul'><li>제12차 전력수급기본계획(12차 전기본)은 중장기 전원·송배전·수요 전망의 법정 로드맵으로, 국내 전력기자재·계통 투자 파이프라인의 기준선이 됩니다.</li><li>메가데이터센터·AI 전력수요가 계획에 반영되면, 초고압 케이블·변압기·배전 기자재 (LS전선·일렉트릭) 수주 가시성이 중장기적으로 높아집니다.</li><li>신규 ESS·계통안정화 설비 반영은 LLBS·전력솔루션 쪽 저장·제어 사업과 직접 맞닿는 수요 신호입니다.</li><li>신규 원전·SMR이 전원믹스에 올라오면 건설·기자재·주변 송전 연계 투자가 따라붙는 구조입니다 — 장기 캡엑스 모멘텀으로 읽습니다.</li><li>재생에너지·지역 클러스터 확대는 간헐성 대응·송전망 보강과 한 세트로 움직이므로 전선·변전·ESS 패키지 수요를 함께 봅니다.</li><li>계획 확정·국회·산업부 후속 고시 일정을 추적하면, 입찰·CAPEX 공고 타이밍을 선제적으로 잡을 수 있습니다.</li><li>[12차 전기본] 메가프로젝트 전력수요(15GW) 우선 반영에 따른 계획 전면 수정 및 신규 원전·SMR·유연성 설비(ESS·양수) 재편</li><li>제12차 전력수급기본계획(12차 전기본)에 메가프로젝트 전력수요 15GW 우선 반영 추진</li></ul><h4 class='fin-sub'>12차 전기본 관련 뉴스 · 6건</h4><div class='mega-news-grid'><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMibEFVX3lxTE9pb09CbmhMYU0xOTRYaUlGNEl2dk5PbGlPeVVNdnY0cGM2NndHazc5VDdqWl8zSUdPcUhadm1FQUtDSFVPcGxWc0ZZRy1JTVU2YUthUE9xcGR5dGV2WlF2VTNMd0VYMkhTNUU2WA?oc=5' target='_blank' rel='noopener'>[단독] ‘전력수요 급증’ 메가프로젝트…12차 전기본에 15GW 우선 반영할 듯</a><div class='deal-meta'><span class='power-badge'>12차 전기본</span> · Tue, 21 Jul 2026 10:32:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>제12차 전력수급기본계획(12차 전기본)에 메가프로젝트 전력수요 15GW 우선 반영 추진</li><li>첨단산업 급증으로 인한 대규모 전력 demand를 12차 전기본 수립 단계에서 적극 반영</li><li>급증하는 전력 수요에 맞춰 전력망 및 발전 설비 수급 계획 수정</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMibEFVX3lxTE8zUWtkcmI3SFN3RWpVS24ydFF2NHFZYnBDdGhzMW1ZY1NnQzlJaXgxaXdvT3BaODVIUHdkV05iWXVwd05TbDUzNVJobnRUT04xMUZkaTQ5cDc0TFdaN3ZYZF9FVlU2aFNkaTZraNIBcEFVX3lxTE8wWE9WWWdad2VvZ2owbG95YW5RYmg2X0pkM0JlZG1RRHJkcWEzcUp4S1hYRzNoOEotM245MVdnMkhHNmRJMU1BY3RSR2s2X0RickJVUXVFQ2FkcTB5V3NwdXh6LVprbjdBVHhhLVlieTQ?oc=5' target='_blank' rel='noopener'>수요부터 설비까지 12차 전기본 전면 수정 예고…연내 수립 지연 가능성</a><div class='deal-meta'><span class='power-badge'>12차 전기본</span> · Tue, 07 Jul 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>제12차 전력수급기본계획(12차 전기본)의 수요 예측부터 설비 계획까지 전면 수정 예고</li><li>첨단산업 전력 수요 재산정 영향으로 연내 12차 전기본 수립 지연 가능성 제기</li><li>변화된 전력 환경에 맞춰 12차 전기본의 전원 구성 및 설비 확충안 재검토</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMihgFBVV95cUxPQk5KN2g4akh0NUQyLThyWGxMb05IbXc1QlVkM3hiaFcyalJ3WEpBcHNSaWx6dThTdURFV19UWTJVeDhvYnlGejJ3VWVFU3BNSnZRaFJHbWktSjhoQUM2Q0hxUVlySFlQWEpvanhENWk3U20zYnlvYVg3Yjd1TFJscEVOTFhyQdIBmgFBVV95cUxPUkF6ekNrRzB3UENGNUE3SzVTdW10UVZneU1nZG1ZVElySDhBYVhyRm1KZC1TZXMwRExGakJBM1RVcnM1bWp6aENVQkxkUS1WeHFVMXJHTzk0Q0tJV1BoUFFpeDd5U3VwYVRZX3Z6Tjg4Q0VtbHhJMElmTFZIekpfVUNXbDI4bWVLWDRVMnVpTVByanU5RDhzMVNn?oc=5' target='_blank' rel='noopener'>정부, ‘신규 원전·SMR’ 검토 공식화… “12차 전기본에 반영” - 조선비즈</a><div class='deal-meta'><span class='power-badge'>12차 전기본</span> · Mon, 13 Jul 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>정부가 신규 대형 원전 및 소형모듈원자로(SMR) 건설 검토를 공식화</li><li>신규 원전 검토 결과를 제12차 전력수급기본계획(12차 전기본)에 반영 추진</li><li>안정적인 무탄소 전력 공급망 구축을 위한 12차 전기본 내 발전원 구성 재편</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiWkFVX3lxTE1zMXdMYmFUV0ZPWk5wdmswZ2tUc2FidEYta2JJSVVFRlNqVlVsMC03Qms3eVRqWXR2MWh1eENfaXpqLVh5enQ5d1FwNmNVbGxVcnFWUmdZS3MyUQ?oc=5' target='_blank' rel='noopener'>&#x27;3대 메가프로젝트&#x27;에 12차 전기본 다시 짠다…추가 원전 가능성도</a><div class='deal-meta'><span class='power-badge'>12차 전기본</span> · Mon, 13 Jul 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>대 메가프로젝트 전력 수요에 맞춰 제12차 전력수급기본계획(12차 전기본) 재수립 추진</li><li>대규모 전력 수급 안정을 위해 12차 전기본 내 추가 원전 반영 가능성 제기</li><li>첨단산업 전력 demand 급증에 대응하는 12차 전기본 설비 계획 수정</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMicEFVX3lxTE8zanh6cEgwVXhVUmh2RlVtMm9jdjIyUkcxM1hYRzE2T1lBY19JWERjc05RSEk5ZXhxS09CY0djYXlzQlFuOTRFWjRqLXQ5UTBBRVdhOTk0MEF4b2I5cjJBSUt5eXpaQWpFSk45SWpHNHA?oc=5' target='_blank' rel='noopener'>2030년까지 &#x27;호남 반도체&#x27; 전력 공급…12차 전기본에 신규 ESS·양수발전</a><div class='deal-meta'><span class='power-badge'>12차 전기본</span> · Wed, 08 Jul 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>년까지 호남 지역 반도체 단지에 필요한 전력 공급 인프라 구축 추진</li><li>제12차 전력수급기본계획(12차 전기본)에 신규 ESS 및 양수발전 설비 반영</li><li>차 전기본을 통한 호남권 전력망 안정화 및 유연성 자원 확충 계획 제기</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiU0FVX3lxTE5tUHhHMzNuWXYyVV9ScFEwRk41UXlqbjQ1OHNWdE5CQ3VkUlVsSERidGRXRUlmY0ZRR0paSnRNenhkaWN2ckxJX3BkRzlNdmY5WGtF?oc=5' target='_blank' rel='noopener'>[단독] &#x27;전력수요 급증&#x27; 메가프로젝트…12차 전기본에 15GW 우선 반영할 듯</a><div class='deal-meta'><span class='power-badge'>12차 전기본</span> · Tue, 21 Jul 2026 06:50:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><p class='empty'>AI 요약 대기 — scripts/refresh_power_markets.py --ai</p></div></div></div></div><h4 class='fin-sub'>기타 관련 뉴스</h4><div class='mega-news-grid'><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMibkFVX3lxTFB2MlhSLV9qckxVUVk5alppdzZPWXdGd1BhUGY0ZnRoTjg0Z1JhUzY1ZjhsSlItb0pMLWZNUEFpRzd4QXJWSVRGR1NDQzk1M1ZlNTVCQUxnRUhQbVNUTzM4c2FoLTBZVEtEMlItUnZn?oc=5' target='_blank' rel='noopener'>KFTC Fines Seven Companies for Bid-Rigging in KEPCO Cable Duct Contracts</a><div class='deal-meta'>Sun, 26 Jul 2026 21:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>공정거래위원회가 한국전력의 케이블 덕트 구매 입찰에서 담합한 7개 사에 과징금 부과</li><li>한전 관련 입찰 시장 내 불공정 담합 행위에 대한 제재 조치 시행</li><li>전력 기자재 구매 시장의 공정한 경쟁 환경 조성 추진</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiW0FVX3lxTE5BajJYVW9pazRZSnV0SVdaQl9SUXhGWEF6b0pqek1VQmlfQmJYSmRHdnJIVldZU1VuZ25hV19hellmVFpidERFazZDemJMNlFRcVR2WVdQSU5YQk0?oc=5' target='_blank' rel='noopener'>전력시장 참여자 8000개 시대…‘전력감독원’ 신설 힘받는다</a><div class='deal-meta'>Wed, 22 Jul 2026 08:03:06</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>전력시장 참여자가 8,000개를 넘어서며 시장 관리 및 감독 수요 급증</li><li>전력시장 감시와 관리 전문성을 강화하기 위한 &#x27;전력감독원&#x27; 신설 논의 본격화</li><li>시장 규모 확대에 대응하는 독립적이고 공정한 감독 체계 구축 추진</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMicEFVX3lxTE5jUjcwVmtOZjJVX1RHXzl3RHA4dHpNSVdGMlpIVEI3cm9PWFEyR3dnRnRWYS1WNlVzOGhOUGZOWndQYVZqdHozcTB5MUNtSUx4SzlTWl80QUh0dHRHMWRpb3dZdmxaZ2pWLVVWRy1NRlPSAXBBVV95cUxOY1I3MFZrTmYyVV9UR185d0RwOHR6TUlXRjJaSFRCN3JvT1hRMkd3Z0Z0VmEtVjZVczhoTlBmTlp3UGFWanR6M3EweTFDbUlMeEs5U1pfNEFIdHR0RzFkaW93WXZsWmdqVi1VVkctTUZT?oc=5' target='_blank' rel='noopener'>(월요객석) AI 혁명과 울산, 전력 시장의 새로운 패러다임을 열다</a><div class='deal-meta'>Fri, 24 Jul 2026 00:13:45</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>AI 기술 확산에 따른 전력 수요 급증과 울산 전력 시장의 패러다임 변화 논의</li><li>첨단 산업 및 데이터센터 유치를 위한 안정적 전력 공급 인프라의 중요성 증대</li><li>지역 전력 시장 중심의 유연하고 새로운 대응 전략 마련 필요성 강조</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiW0FVX3lxTFBjTzRQSkJPeklYMk1WeEhVNS1BNGh1MzUycFFianY2YjNxTUh6cmRma09hQ1I0TFJwSTkyT3hBYzV3RDhJRUlESHlrS3QxQ3RJNnNQNW9GX3ZMeEnSAWBBVV95cUxObG5DMUFtUnJ4cm1VMXdId19jZTFEX285MG1falNOLWJ6T0NrX1JLWVNCYWFKOHJJaFBiaDY4N2pDVzVoSUpDVmJQSWo3QjdneTRSUm5xOUN6anhWdG1HZ1U?oc=5' target='_blank' rel='noopener'>&#x27;샌프란 AI 선언&#x27; 실행 시험대…GPU·전력·시장이 관건</a><div class='deal-meta'>Sat, 25 Jul 2026 02:03:03</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>&#x27;샌프란 AI 선언&#x27; 이행을 결정짓는 핵심 요인으로 GPU, 전력, 시장 환경 부각</li><li>AI 산업 확장에 필수적인 전력 수급 및 공급망 구축이 주요 관건으로 제시</li><li>인프라 준비 수준이 AI 관련 정책 실행력의 시험대가 될 것으로 전망</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiTEFVX3lxTFB5Wm1kOTBMVllsaUlXRzlXUVAwempfYUNxLVFwal82elFzUUdFV29fd0VLYWEtQlo0UklMcE1ETHROWkEyYzZDaU0wcDg?oc=5' target='_blank' rel='noopener'>전력시장 심판 세운다…전력감독원 설립 논의 본격화</a><div class='deal-meta'>Wed, 22 Jul 2026 00:14:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>전력시장 내 감독 및 분쟁 조정을 전담할 전력감독원 설립 논의 본격 가시화</li><li>복잡해진 전력 거래 구조에 대응해 독립적인 &#x27;전력시장 심판&#x27; 역할 정립 추진</li><li>전력망 및 시장 감시 강화를 통한 시장 투명성과 신뢰도 제고</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMia0FVX3lxTE52MG1LQ2pwa0F1cTZlZkxwOTdZYkdZMmFjVEJMeWx1SzlzZmZ2Vk1Fd0NsN1Z5aWYyZ1lMOGlSZ1lLX3RGdmZHUjVCRmhFQzB1eVRLMDFRZjRnQUc5UjN5U2d4RkZycWR4d2tj?oc=5' target='_blank' rel='noopener'>[포토뉴스]한전, 제4기 &#x27;KEPCO 청(년)청(렴) Auditor&#x27; 발대식 개최</a><div class='deal-meta'>Fri, 24 Jul 2026 04:54:22</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>한국전력이 제4기 &#x27;KEPCO 청(년)청(렴) Auditor&#x27; 발대식 개최</li><li>청년들의 시각을 반영하여 한전 내부 청렴도와 조직 투명성 강화 추진</li><li>청년 오디터 활동을 통한 청렴 문화 확산 및 현장 개선 도모</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMidkFVX3lxTE5UT0FaaEdWWXFNaDBlcGpubG5aTUtpS1ZmcWQ2bHp0OVk1VkM2MU5fNWR4aVZ6TGpmWkZmZXlhbTZuZ3hoMTlDTlR5c3JPeVZmbnpTUjNneHdHZFFvUlc4SVppR25Wdm02dmh1UDhubzNNRl8wWEHSAWZBVV95cUxNWWFWeGJpVWRKTDhEU0pKdGZZN2dncXhRTU83RWhZWDBQdElYbHJ4UVg5MWhOTFdjaTVqZGZEY1ZIX3FxR3MwU21hcUdvR25UcmRmT1B3V0NOSG1CYWNZU3o3aUFxVVE?oc=5' target='_blank' rel='noopener'>‘전력시장 감시-전력망 감독’ 전력감독원 신설</a><div class='deal-meta'>Tue, 21 Jul 2026 15:30:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>전력시장 감시 및 전력망 감독 기능을 전담할 전력감독원 신설 추진</li><li>전력계통의 안정적 운영과 전력 거래의 공정성 확보를 목표로 설정</li><li>시장 확대에 맞춘 전력 감독 전문 기구 설립 논의 본격화</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiakFVX3lxTE5SSThJcEttYmY5NXdLZ2E2YUI0VG0zc3NWTEMzbXBvZHpicFhycjdQZEdTczNFVENZWGFiQWNleXJ6b2h3NGloM0lEbkpITU1GMVpRRDI2WE1Cekd0TFpSQkxtcXVtTGVmelHSAWxBVV95cUxPTC1zLVotUDU5ZGRoODRnU0FXZjMtam9rRERsWURTZm5vXzh2YXhNUm8tSkVPTGxkOGdfdjdMUWlfYkllbVdoZW8yWk9rV3BpQUlzbkhjcUxqNHFrekxjd1JfRjBYVWVVZlpxamQ?oc=5' target='_blank' rel='noopener'>현대차, 전기차를 전력시장으로…유럽·미국·중국 V2X 경쟁 가속</a><div class='deal-meta'>Wed, 22 Jul 2026 03:07:25</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>현대자동차가 전기차 배터리를 전력망과 연계하는 V2X 기술의 전력시장 활용 추진</li><li>유럽, 미국, 중국 등 주요 글로벌 시장에서 전기차 기반 전력 연계 경쟁 가속화</li><li>전기차 자원을 이동수단에서 전력망 유연성 자원으로 확대 적용</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMicEFVX3lxTE9lY1V2MF9VOXpteDNTcVR3QUl2TlpXNHhTTE50N3NXS3MxdmllWG5PVzBqNEFhTkZUNXB4VE5GcXNYU0NlVjVyV3BnYjJ1c2lseUlvNGhkU05aQ3Z1NDJSd2RGTTNyT1pBU0VFUkl3OGPSAXRBVV95cUxNYndGSTdWcDNFYU9JOE1sT0I2RTdFZUpBTGxCdW5IT1FWcS1Nck93czNDaFc2VWVOa0N5VDE4YnpyRXVmQTktbWRQX3lUTzRGYjVrTHpjOGljRzJFN0tCcWUxSHlxN3RoQkZsNXg3S013WGlEVA?oc=5' target='_blank' rel='noopener'>AI 시대의 핵심 동력… KIND, 美 전력 시장 진출 성과</a><div class='deal-meta'>Mon, 13 Jul 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>한국해외인프라도시개발지원공사(KIND)가 미국 전력 시장 진출 성과 달성</li><li>AI 시대 급증하는 전력 수요에 대응하여 해외 전력 인프라 시장 공략</li><li>글로벌 전력 인프라 개발 및 투자 참여 기반 확대</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiZkFVX3lxTE5QWkNGcV9mSnMxNEV3R3hCYXdhMVk2aW9LWTVvUFk1MjRONmprZVFiQlNPZGxLck91SkZ5VlR4TmRETmRONkdfUWJERDNGR1hfaFJLUnBfLTlGRTZyYnNjZ3l2NWIxQQ?oc=5' target='_blank' rel='noopener'>ELECS VIETNAM 2026, 아세안 전력시장의 허브··· K-일렉트릭 글로벌 입지 확대하며 성료</a><div class='deal-meta'>Tue, 21 Jul 2026 00:28:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>베트남 전력산업 전시회(ELECS VIETNAM 2026)의 성공적 성료</li><li>아세안 전력 시장의 허브로서 국내 전력 기업들의 글로벌 입지 강화</li><li>K-일렉트릭 기술력을 바탕으로 아세안 시장 진출 및 해외 네트워크 확대</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiU0FVX3lxTE5TbEEtdzZiMWNxbFEzaFNJM2ItcXV6ekt2aWhCYy16WmJuLVJiblFjV1JlN25fNGxGaVlIY1JxcGhYajUzem9iU1dlSnlQaVFMSEw4?oc=5' target='_blank' rel='noopener'>2038년 천연가스 수요 연평균 0.94%↓…메가프로젝트 시 상승 가능성</a><div class='deal-meta'>Mon, 27 Jul 2026 00:08:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>년까지 국내 천연가스 수요가 연평균 0.94% 감소할 것으로 전망</li><li>반도체·AI 등 메가프로젝트 추진 상황에 따라 천연가스 수요가 다시 상승할 가능성 제기</li><li>에너지 전환 정책과 첨단산업 전력 demand 증가 간 변수 상존</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMigAFBVV95cUxNYnlaNHI5X3pHRHR1enR4azEwdy1JNlp5TkNrbDRMVUU2bUpvLXh5RFZ5NEFiNmFDU2xRekg2MjVWYUs5aGx5cGZoalZ6ZHFVOGM0Zk03VHdMY0VpS1pqRTEzRWhLMkh4QzJtMTZ4a240WVdtS29HSFl1dmRMTy00Wg?oc=5' target='_blank' rel='noopener'>정부, 원전 확대 속 LNG 수요 줄인다…AI 전력수요는 변수</a><div class='deal-meta'>Mon, 27 Jul 2026 00:00:04</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>정부의 원자력 발전 확대 기조에 따라 LNG 발전 수요 감소 전망</li><li>AI 데이터센터 등 급증하는 전력 수요가 발전원 조합의 주요 변수로 부각</li><li>무탄소 전원 확대와 전력 수급 안정을 동시에 고려한 발전원 조정 추진</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiaEFVX3lxTE5ldUktQ0Q3X0JXTGsxSVBWMzlBUVQ4dUVoOE1BeEtkemJSWjhYZkNlTjEyMHB4V0Rpak1QdHBrS3V0NURKYzd0aWhZN3ZnbENlcy1vaThENXRYSXUyX0JRR0ZrQ05IUzB50gFsQVVfeXFMT3pkUmF0OE9qZUIzU21GY2dOTDZ0QVByb3JGTTM3XzVGMDNEdWpvYVFiaTcyem5xdm1TanhXOWl3ZHNOcHN2V2RvcTRVWmVFaFJRR0YzTHh6bEhkOUVVWXJrOUQ0S19JemVtTy1O?oc=5' target='_blank' rel='noopener'>7월 4주차 국내 ESG 핫클립</a><div class='deal-meta'>Thu, 23 Jul 2026 02:42:51</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>월 4주차 국내 주요 ESG 관련 이슈 및 시장 동향 종합 정리</li><li>국내 기업 및 에너지 산업의 지속가능경영 모범 사례 조명</li><li>ESG 정책 및 친환경 전력 생태계 구축 관련 최신 정보 제공</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiZ0FVX3lxTE90UEJaSTBFclc1SGNBdjdwNFdaVjAwOFBXYmFBRXhoQjJsWVRBcGtyekRoSGFrMEdmYURYR2E1ZXYyS3gxdm1rTmIzOURIZHlZWkV5V2taNHlYUFFVaUJhMWhBX0J5TFE?oc=5' target='_blank' rel='noopener'>[창간 13주년 특집 인터뷰] 김성진 전력거래소 이사장...취임 두 달 “AI·첨단산업 도약, 전력 공급 안정성이 성패 가른다”</a><div class='deal-meta'>Fri, 24 Jul 2026 06:51:36</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>김성진 전력거래소(KPX) 이사장이 AI 및 첨단산업 도약의 성패 요소로 전력 공급 안정성 강조</li><li>급증하는 전력 수요에 대응하기 위한 안정적 전력 시장 운영 방안 제시</li><li>전력계통의 안정성 확보 및 전력 시장 제도 개선 의지 피력</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiT0FVX3lxTE5oYmhFaG5yRkxrb2E2cXVyM2xoVmhHT2t0ekstcDVLdHlnWGdmYUtGRjQzRDA4T09zRHJKOHpOd0VqUWxDMUQ5eFZvbUNIYWc?oc=5' target='_blank' rel='noopener'>기후장관 “추가 원전 건설, 12차 전력계획에 반영 검토” [국가재정전략회의]</a><div class='deal-meta'>Mon, 13 Jul 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>기후장관이 국가재정전략회의에서 추가 원전 건설의 12차 전력수급계획 반영 검토 언급</li><li>안정적 전력 공급과 기후 목표 달성을 위한 원자력 발전 활용 확대 논의</li><li>국가 차원의 무탄소 전원 확충 정책 방향 제시</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiggFBVV95cUxOSXdMSF8wUERLcFdyLWRIOFRKRlhrMWxGNzY1d3ZuR0tsTThkQ0hCdURCY2pMa1otRlU2Nk15UVZUMlNNWk9GRmZub1RKaXB3dzRoN1o0T3pNQmJrQTFFQmxIcjMwdXZUUmFjR01VRGZCQ25hcjFSaTJ4ZHBSTllscFRn?oc=5' target='_blank' rel='noopener'>정부, 하청 직고용한 한전KPS에 일감 몰아준다</a><div class='deal-meta'>Thu, 23 Jul 2026 15:47:33</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>정부가 하청 노동자를 직고용한 한전KPS에 정비 일감 수의계약 등 우대 지원 추진</li><li>공공기관의 정규직 전환 및 직고용 이행에 대한 정책적 혜택 부여</li><li>발전 정비 시장 내 한전KPS의 일감 확보 및 안정적 운영 지원</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMigwFBVV95cUxQMjFKNHhrbDNHc0w5MDhaZ25tamZwaVA4UjBLYm13ejVoS1VYSWJjUElJY0pnVm5BOWhWMUpucTVIaEs1Y1BSR3pCeG1TOEdEZWxEUWVvd05BNFJfeWhkNHB3aEFBYTVhdWtZRWtLNV9zUU9nVWo2MmVUTDI4QmFvbWFaVQ?oc=5' target='_blank' rel='noopener'>한전 5개 발전자회사 통합 급물살…몸집만큼 커질 채권시장 존재감</a><div class='deal-meta'>Wed, 22 Jul 2026 22:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>한국전력 산하 5개 발전자회사 간 통합 논의 급물살</li><li>발고자회사 통합 시 대규모 자산 보유로 금융 및 채권시장에서 존재감 확대 전망</li><li>전력 그룹사 구조개편에 따른 시장 영향 및 채권 발행 규모 변화 주목</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiYEFVX3lxTFBQbHU0c19qVS1WWldBUGZ5aXBYdkpraUo0aU85NDFPbVJnOWZpZVNNeEtSbTZ3V3BiZmJkbXRZMUJ3QkZxNzV5cWQ3al96Qm9Na0c4eENwakhHcF9keHpaetIBYEFVX3lxTFBQbHU0c19qVS1WWldBUGZ5aXBYdkpraUo0aU85NDFPbVJnOWZpZVNNeEtSbTZ3V3BiZmJkbXRZMUJ3QkZxNzV5cWQ3al96Qm9Na0c4eENwakhHcF9keHpaeg?oc=5' target='_blank' rel='noopener'>한전KPS-국립 목포대, AI·디지털 전문인재 양성 &#x27;맞손&#x27;</a><div class='deal-meta'>Fri, 24 Jul 2026 00:52:12</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>한전KPS와 국립목포대학교가 AI 및 디지털 전문인재 양성 협약 체결</li><li>전력 정비 분야의 디지털 전환에 대응하는 지역 산학협력 체계 구축</li><li>AI 기반 전력 설비 정비 기술 향상 및 전문 인력 육성 추진</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiTkFVX3lxTE81WXVLQU55UThEYl95cVBzOFAzM2R4N3Izd3BBLVRaeDlOdDBMS0l0WmR5TXc3NXVJTVk1R0xIRi1PbmxVengtSDN5U2w5QQ?oc=5' target='_blank' rel='noopener'>&#x27;기술혁신·창업 투자 확대·앵커기업 유치&#x27;…한전, 전남광주 에너지산업 생태계 새로 짠다</a><div class='deal-meta'>Fri, 24 Jul 2026 01:38:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>한국전력이 전남·광주 지역의 에너지산업 생태계 개편 추진</li><li>기술혁신, 창업 투자 확대, 앵커기업 유치를 통한 에너지 클러스터 육성</li><li>지역 상생 및 에너지 신산업 성장을 도모하는 한전 중심의 전략 실행</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMicEFVX3lxTE9Xd05OcHNlaEVETXNpbmRCYXBvNEVBV2QzVkR4dEg5bzNvTzBCSDE0Wm5kb3hpcFZyVk5wRjFqNm9hNkE1UXRpNmtIZzdnMWxiNS1HTlFsbXhJZmh5d2VLQmdmZ3RPWjkyWUFOVXlBTkc?oc=5' target='_blank' rel='noopener'>공정위, 한전 전력케이블 보호관 입찰담합 적발…과징금 9억원</a><div class='deal-meta'>Sun, 26 Jul 2026 03:00:28</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><p class='empty'>AI 요약 대기 — scripts/refresh_power_markets.py --ai</p></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiZ0FVX3lxTE92SjFQbE9pb1lzZ0hmYmQ0eHBMRDR1dHAzeDNEZ1FRRkRDTUMwbnE1RGQ1SlAxYmdhcVlVVFl3TzhKVUJxdVpYbW5EbUk1SlllMXpTQzBzcVVTZWZUN0swMHd0MVZZSUE?oc=5' target='_blank' rel='noopener'>전기료 폭탄 막는다…한전, 누진 3단계 전 알림</a><div class='deal-meta'>Tue, 21 Jul 2026 03:48:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><p class='empty'>AI 요약 대기 — scripts/refresh_power_markets.py --ai</p></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMia0FVX3lxTE5ZQUJrbXJyWG9jc2JvZEpXdklUUThYVHp2UXAxdWJKUmF1WkZsYlA0VXZNTHZwek54M3JDdndxU0VnRlNKaTNNYjZLdVJ0cVU0eUthMjNYQ0ZaYjJwdWQ0eTI1UnhPTDBvcFBn0gFrQVVfeXFMTllBQmttcnJYb2NzYm9kSld2SVRROFhUenZRcDF1YkpSYXVaRmxiUDRVdk1MdnB6TngzckN2d3FTRWdGU0ppM01iNkt1UnRxVTR5S2EyM1hDRlpiMnB1ZDR5MjVSeE9MMG9wUGc?oc=5' target='_blank' rel='noopener'>송·배전 독점한 한전, 마이크로그리드까지 욕심</a><div class='deal-meta'>Sun, 26 Jul 2026 21:26:10</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><p class='empty'>AI 요약 대기 — scripts/refresh_power_markets.py --ai</p></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMickFVX3lxTE5ZcThndHJmSlBSbTJUSWRIMU5qOG1EekFNOERacE1ZbVdwSWNJM1lEZVRHUndaMmFGNXQtX0ctc2xnVHNVanRBUHRMX282MW0yZWlPOHQyNFVnLUsxZGlVX05xLXBqVUhLZUFydVJTaDZDUQ?oc=5' target='_blank' rel='noopener'>한전KDN, 노사합동 안전 캠페인 및 시민 참여형 체험존 시행</a><div class='deal-meta'>Thu, 23 Jul 2026 08:04:37</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><p class='empty'>AI 요약 대기 — scripts/refresh_power_markets.py --ai</p></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiW0FVX3lxTE4wNlJURHNROUZqSDE2cGlBczdOcXNXZ202YU1mbTVVVnRwdnNLanNaeGZWaFZlS3lvQW9Nd2k3SjRpQUNTSXJsN2JidUdpdXkzN2ZlVVM0UVRlZm8?oc=5' target='_blank' rel='noopener'>송전탑 갈등 수년째…홍천군·한전, 주변 마을 지원 나선다</a><div class='deal-meta'>Thu, 23 Jul 2026 23:33:52</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><p class='empty'>AI 요약 대기 — scripts/refresh_power_markets.py --ai</p></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiUEFVX3lxTE9FblNsUmFEcmFMS1loVGdyUlI3cEFmdklhaGktLVNkRVhGTHRmTEZydkhrckNuM2dKY0tUQkw1VlNQZG8wOE9OWjdxSExLaU5t?oc=5' target='_blank' rel='noopener'>[속보]한전공대 건물 옥상서 투신 소동…당국 구조작업 중</a><div class='deal-meta'>Wed, 22 Jul 2026 05:27:50</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><p class='empty'>AI 요약 대기 — scripts/refresh_power_markets.py --ai</p></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMibEFVX3lxTE0ySXp1azVyeDctNHpfOFhvMFlsUjhsX2JxdDQxUzZLUFNBNW5jOU9sdE5uQTdSNEpiSVFYcDA4ZGptWmFyeWdMRGk5R29ta01lLWk5Q2Q2UEoyNVBxV3lVaF9SYjdOSWZnVU1Fbw?oc=5' target='_blank' rel='noopener'>한전 흑자 전환했지만…화석연료 의존에 재무위기 재발 우려</a><div class='deal-meta'>Fri, 24 Jul 2026 07:48:57</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><p class='empty'>AI 요약 대기 — scripts/refresh_power_markets.py --ai</p></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiVEFVX3lxTE9wS21SVnpiQlBINnpOaEg3LTFhUVVoR09SWHl5Vk1oaFV2Y1o1aXJPS0F5UHVJTjhweTJrSjU0WExYWFVuLVZlYm5Zcy1LcmQxU21kOA?oc=5' target='_blank' rel='noopener'>[李 정부 경제팀 1년] 기후·에너지 한 지붕 만든 김성환…전력·용수 확충, 에너지믹스가 과제</a><div class='deal-meta'>Tue, 21 Jul 2026 09:46:52</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><p class='empty'>AI 요약 대기 — scripts/refresh_power_markets.py --ai</p></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiYkFVX3lxTE9CUjNLdF9GcU5pb2V0UHhySWt5U2Qta291NkhsVmhUZ0k0b0tTdEhnWUFPdkFZSVdZaEh4dHktRU5IaFR6WjJXUUREa3Y5ckRqRXFteldCaTRuN0dKck5hWkVn?oc=5' target='_blank' rel='noopener'>대구, 차세대 SMR 유치전 시동…&quot;군위 내륙형 입지로 2호기 도전&quot;</a><div class='deal-meta'>Tue, 21 Jul 2026 06:42:30</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><p class='empty'>AI 요약 대기 — scripts/refresh_power_markets.py --ai</p></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiTkFVX3lxTE1nWmJpcEhxb0dzQ05RZ2Q1cXlrNzZDc1JYb1J6NllGQ2VWOVhueWhvRVcwNVk2NjRuaGp3am0wUXlvYlNXSTFMMlduTUVDZw?oc=5' target='_blank' rel='noopener'>경마축산고 전청조 을 효과적으로 배우는 방법: 학습 전략과 자원 - 장단점 비교 분석 - Калининградский морской рыбопромышленный колледж</a><div class='deal-meta'>Tue, 21 Jul 2026 20:25:38</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><p class='empty'>AI 요약 대기 — scripts/refresh_power_markets.py --ai</p></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiU0FVX3lxTE11V0ZHVXg3dHl4U2RMa1hhUndXSjZrR1lkZTFJNDVmUUZQbmRVc1dRQ2QzaUJmb0YtOXplcWlBVnFrUUE2eW5XUnp6OUdFYnpPSlpZ?oc=5' target='_blank' rel='noopener'>&#x27;메가 프로젝트&#x27; 힘받는 원전…환경단체 &quot;숨은 비용까지 따져야&quot;</a><div class='deal-meta'>Mon, 20 Jul 2026 03:05:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><p class='empty'>AI 요약 대기 — scripts/refresh_power_markets.py --ai</p></div></div></div></div>
+    <div id="tab-power-intl" class="tab-panel"><p class='tab-desc'>해외 전력시장 · 미국 / 유럽 / 일본 / 기타 · 갱신 2026-07-27 09:16</p><div class='power-card'><h3>해외 전력시장 개요</h3><p class='deal-sum'>글로벌 전력시장은 탈탄소·전기화·AI 전력수요가 동시에 작용합니다. 송배전 병목, 재생에너지 간헐성, 가스·석탄 백업, 원자력 재평가가 공통 테마입니다.</p><div class='power-label'>정책·이슈 포인트</div><ul class='power-list'><li>송전망 투자·허가 지연이 재생에너지 병목의 핵심</li><li>데이터센터·수소·전기화가 피크·기저 수요를 동시에 끌어올림</li><li>지역별로 원전·가스·석탄·재생 믹스와 시장제도(용량시장·PPA)가 상이</li></ul></div><div class='tabs mega-tabs power-subtabs'><button class='active' data-tab='tab-pwr-us'>미국 <em>11</em></button><button class='' data-tab='tab-pwr-europe'>유럽 <em>10</em></button><button class='' data-tab='tab-pwr-japan'>일본 <em>11</em></button><button data-tab='tab-pwr-other'>기타 <em>18</em></button></div><div id='tab-pwr-us' class='tab-panel active'><div class='power-card'><h3>미국</h3><p class='deal-sum'>미국은 지역 ISO/RTO(PJM, ERCOT, CAISO 등) 중심. 데이터센터·AI 수요와 송전망 확충, IRA 인센티브, 가스·원전·재생 믹스가 핵심입니다.</p><div class='power-label'>송배전 · 계통</div><ul class='power-list'><li>송전: 주간(州間) 송전 허가·투자 지연이 병목</li><li>시장: 용량시장·에너지시장·보조서비스 구조가 ISO별로 상이</li></ul><div class='power-label'>에너지 믹스</div><ul class='power-list'><li>가스·재생 확대, 석탄 축소, 원전 수명연장·SMR 관심</li></ul><div class='power-label'>정책·이슈 포인트</div><ul class='power-list'><li>연방·주 단위 송전 개혁, IRA/세액공제, 데이터센터 요금·접속</li></ul><div class='power-label'>참고</div><div class='tag-row'><a class='src' href='https://www.eia.gov' target='_blank'>EIA</a><a class='src' href='https://www.ferc.gov' target='_blank'>FERC</a></div></div><h4 class='fin-sub'>관련 뉴스</h4><div class='mega-news-grid'><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiywFBVV95cUxOb2gzVF9UczhlcEdtc2p6RldGcUFLdE4tWkVYNTdqOHNzUFdPYU9jMnE1czB4TUk1blRSbmIzM1ljdmhtME5aRl9NeGJ0a2Z1VmV5bExCbUlERmlCTlVYRlR6QnR6bGZMMVd5UFVVTTlSbDNCdk9wNDFtVF9TQ2RxVXlmVXBnWlE5RlhtQTg2X0tZLTg0WWVkQXM2QzNKVnhENzA0NXc4dlRyQmE3Z0xBSk0zajNjZGNhbFBNQnUtcTM4RmFuRUNLdHJ0bw?oc=5' target='_blank' rel='noopener'>US energy officials consider power shift in PJM electric grid</a><div class='deal-meta'>Thu, 23 Jul 2026 22:35:42</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>미 에너지 당국이 PJM 전력망 내 권한 및 운영 구조 전환을 검토</li><li>미국 최대 계통인 PJM의 거버넌스 및 정책 방향 변화 가능성 제기</li><li>전력 시장 신뢰성 확보 및 정책적 개입 강화를 모색</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiTkFVX3lxTFAyOTJOeHRrY1lNc0Vhb1l4MHU3ZmRaNmRUMUVLWncxU0VJUk8tMC1TN0JLd0dKR2loN2ZJVTJKTEwyZGY2QnJnMkpFQW1EQQ?oc=5' target='_blank' rel='noopener'>Speed to Power</a><div class='deal-meta'>Thu, 23 Jul 2026 14:53:33</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>전력망 연결 및 공급 속도(Speed to Power) 확보가 핵심 과제로 부상</li><li>급증하는 전력 수요에 대응하기 위한 신속한 인프라 구축 필요성 강조</li><li>전력망 연계 지연 해소를 위한 송전 인프라 조기 확충 요구</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMinwFBVV95cUxOcGc5TEw0YTdCQlhVT1V5cFVaMkw3bEtpMHF4MzFtSld0eHhDQlVpTHUtRm5sWExVVkFvMWpQM3pmWm04VUxBN1pnaGxaRlhjbGYybXN4RjE2VHY5bjNFMHlsdGthcHB1MHk2a2RZVlVWLXFCWUFDWS1wdkVETkVITk0xNTlOei1PV05CMi1mcnp3Z21sMFJJWXlIeUFHZ1E?oc=5' target='_blank' rel='noopener'>Data centers are actually making your electric bill cheaper—but sinking AI demand could change that</a><div class='deal-meta'>Sun, 26 Jul 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>데이터센터 유입이 고정비 분산을 통해 일반 소비자 전기요금을 낮추는 효과 제공</li><li>향후 AI 전력 수요가 감소할 경우 요금 인하 효과가 반전될 가능성 존재</li><li>데이터센터 전력 수요와 일반 가구의 전기요금 구조 간 연계성 부각</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiygFBVV95cUxOakdqWndmV1ZSUDFzN1YzZkRDa3dhakU2NUItUnBuTjhrWk1IY09TcjhjdVN6YUJDdUU3NS1FanZLZUxoMkstUnBWdFJBYlpjODFpdnpQOGhpNFNSc0hJSy1ac3FTakxROVREbmJUQXJWdlRDY2pIOUhqR1FwVVlPUzRxMkpEVjZpQ1UzTkJvd2hfUG9PVC16Z0JaM2V1R2pzekwwQUpvU1ZWU080ejJySnRGc3B0cE55cmIyUEEzR3ZXYjNQcFo3QVRB?oc=5' target='_blank' rel='noopener'>America’s Demand for Power Is Soaring—and So Are the Costs of Building Out the Grid</a><div class='deal-meta'>Fri, 24 Jul 2026 15:10:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>미국 전역의 급격한 전력 수요 폭증 현상 지속</li><li>전력망 확충 및 계통 보강에 필요한 건설 비용 고공행진</li><li>인프라 투자 비용 상승에 따른 계통 건설 부담 급증</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMi6AFBVV95cUxPSTRjVkt1cEtNRWlZdWlnNk95b01vLXBWVnF4T0VlS2pWazhPZHBPNG42ZXBMUUxsdGpKSkdfZDhUVV95bjdoSmRLT0ZRYjhVZER4TnBJVXhxUFlSUWZBMWxNWkNxdFItMFVtU2R5NFVpNWVCVUhQT3NfeTMzNnFWUW9kMzBIcnk5Um1faVdpYWVNblRSd3BuRUdMWkFWRUN6TjRUQUdiMHlpdjlkRm0xNXpDNGI5S3lVd2VDZHNNQkV0VlkzZVJMTVJfWmJNc1JfSzI2Z2VCUTY4cEttZ1dLb2NQdllhZUJs?oc=5' target='_blank' rel='noopener'>State Action Is Accelerating Distributed Energy to Build the Electric Grid of the Future</a><div class='deal-meta'>Thu, 23 Jul 2026 16:05:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>미 주 정부 차원에서 분산에너지(DER) 도입 정책 추진 가속화</li><li>미래형 전력망 구축을 위한 각 지자체의 자율적 대응 확대</li><li>전력망 유연성 및 계통 신뢰성 향상을 위한 분산전원 활용</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMi2AFBVV95cUxPYThleV9WT2oxdlUxMmdMbVhaMlF4YjVmajY3Z2NEZEtuOU9feXpvR3d5LVF1VGNQYTdVS0lsMHhfRGRUUmU2b1A2NW9FNlFzNnhKd3czbXVpVDdtekt6Y2dobGUxY0VsM2RVbEljOUdwYVMtTmlTTlpZU1ZNZFdvZERvYlQ4Zk9VcDZlT2pka1RLS01XRHpMcXpHRlRyYjlDZTBjOWNaTkpJUXVNQ3J3OWRsdzYxa2dGcDdvYmRhUXJOWGZLSElFWnFKbDQ4OE5ES2FvNVd1dWo?oc=5' target='_blank' rel='noopener'>To maintain the electric grid, massive corporations will pay – not American citizens. 🇺🇸</a><div class='deal-meta'>Thu, 23 Jul 2026 19:13:52</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>전력망 유지보수 및 확충 비용을 일반 시민 대신 거대 기업이 부담하도록 추진</li><li>대규모 전력 소비 기업의 인프라 투자 비용 책무 강조</li><li>일반 소비자의 요금 부담을 경감하기 위한 재원 분담 구조 전환</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMi5AFBVV95cUxOZkU3d2VLT2FJRnRvUy0yRmJCX1kzNkt4T0tkVEpQQTFCNGVZRVdyT2pjaFhYZEdyZmV2a2xwLVp4dzlobDFwemU2VzBGWkR0RWg3cW9fZzFmWnNrQkJrV0VmdUN1TEFSY3l4RU1rRF9WanRpN0FoZGJuTUxnWnNiczA4bUlYSU83XzZybWtKb2FyRXJZMHA3akhzbVZIRTJ5Wi1IelRCcXlnbElrYnJ4a2l4ZkU0cmliZk9WWlp0QVh4MUpFcFlVT2ZSbGhMNWxKX3R2YWQ4MHYtZXJiTHoyekVmREXSAewBQVVfeXFMTU9OR1RzcWowWjA5ZXJOZTdnRjdfRnJNcEFocjRub0FTa0JGaDYyQWN6VGZISFdDeVhzOExJcFZUTDdHTzBBbS0yMXFQbDBfRTdfM3h1Z0xvRkFxZ0NDM3VDMU85VmdpeXRIalFKb3J6NHZ2N1lxTG1jSGhONXFxeWw0RFEwNjhteWdwc3pQaEFHemFsZzN5NFhCZGNzMkhidXdNMFVGY3U5U1dGSHBsb1VESXdMSHM4SVZrLV9zNEw1MzFIQVJaZk01X0tKQmJkTmlfZE5IQ1VBLVdWa0kxWXNYckwtNDF5clJTZTQ?oc=5' target='_blank' rel='noopener'>How Loudoun County data centers are linked to power flickering across half the U.S.</a><div class='deal-meta'>Sat, 25 Jul 2026 00:28:50</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>라우든 카운티의 데이터센터 집적지가 미 광역 전력망의 전압 불안정 현상과 연계</li><li>대규모 데이터센터의 집중 부하가 계통 안정성에 미치는 부작용 우려</li><li>전력망 신뢰성 유지를 위한 데이터센터 부하 관리 필요성 부각</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMimgJBVV95cUxQb3owZFdfYV9OYXMwS2ZadjlHSlc4QkdHZHlSRnlOQXk4NmRIRENZZDZPU3k5dWMzRDNTYzljQUNTZEtweVdJdlVlUGhtMzRmekdpeHpERjZqWE5EMEVXQTZaQTlob1Y1X3NmamplV0lnbDJPYWV1T2hBZnBSNkp5ZE9KN2Q3SU5Vd3MtdVZUSFZkYjN0VEJzU0U0VTdScFZKSzBHdlV4U0JUZnBBbG9iVm54b200ak82b1NwZ01sbENlc053M0I0RUotLV81SUZXYUJ3Ri0xQzN2MHhsN09YUE9reE9qeVd3UmNwQjVYYzl4Yy1UVjR6TTU5ZkpPMW1hU1Zwcm9EVmFGVHJEQmRhQ0t0Tmg1bERJUEE?oc=5' target='_blank' rel='noopener'>Environment Northwest: Hotter summers may reshape the Northwest&#x27;s power grid as electricity demand grows</a><div class='deal-meta'>Sat, 25 Jul 2026 01:06:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>여름철 폭염으로 미국 태평양 북서부 지역의 전력 수요 급증</li><li>기후 변화에 따른 냉방 수요 증가가 지역 전력망 구조 재편을 촉발</li><li>변화하는 수요 패턴에 맞춘 계통 대응력 강화 요구</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMirAFBVV95cUxOUjFndXZmUjhhRkxoWGJlcXJYcENrcjFoQWlxTE1oQ1JycWlMSkM0YWh5TERMVW5HaXFoWk85R212SDNTeWRERGpaOEFCMnFMdlFpbUdUX3VISmYwdUdud3JJQ2Q3RHBqaEw2VzF2WkFIbU9kN0R6SEtkRmRaM2Iwd05nRVhubEFUbmRJeHNlSmNRLVBsa01PeHZZOHVVLU01bW50RlU4VkROTld5?oc=5' target='_blank' rel='noopener'>Massive disconnect of power roils largest US electric grid</a><div class='deal-meta'>Wed, 22 Jul 2026 22:26:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>미국 최대 전력망에서 대규모 전력 분리 및 차단 현상 발생</li><li>갑작스러운 전력 차단으로 계통 운영의 신뢰성에 타격</li><li>전력망 안정성 확보 및 원인 규명을 위한 대책 마련 시급</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiiAFBVV95cUxNUzhZeHdUYnBCZmlBa0ZWTGFRVU81dDJsTlJsbV9SRkdqanNaVmFQU2R3TEFOZEFWelVOQzJYZ2RVZkF3S3Zjd1duX0Raa2ozRm5LdWJvT0h3Z3hkaG1RQkt4UWdDU0lFWEY3aERVQXZXWWY1LVIwdTl0WXMwbkRPUmp2Rl84eE1k?oc=5' target='_blank' rel='noopener'>New software detects 300 GW of hidden power on the US electric grid</a><div class='deal-meta'>Thu, 09 Jul 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>새로운 소프트웨어를 통해 미국 전력망 내 300GW의 숨겨진 전력 용량 감지</li><li>기존 송전 인프라의 여유 수송 능력을 재발견하여 효율성 극대화</li><li>디지털 솔루션을 통한 전력망 제약 완화 가능성 제시</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiY0FVX3lxTE01YmZEZVVKMTNzWGdRd1pnbkFybnZMejFGa0pVNWJ4bUo1cl85MnptWU5PSkR5cFpPMFV2MWFiTDl6UWw1MFh1RVVfQmNwM21hTTRTYWxtUFpvSENqUTBHN1o0Zw?oc=5' target='_blank' rel='noopener'>New York imports more electricity from Canada after high-voltage transmission line opens - U.S. Energy Information Administration (EIA) (.gov)</a><div class='deal-meta'>Mon, 20 Jul 2026 13:05:07</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>신규 고압 송전선 개통으로 뉴욕주의 캐나다산 전력 수입량 증가(EIA 발표)</li><li>국경 간 송전 인프라 확충을 통한 지역 전력 공급 안정화 도모</li><li>외부 청정에너지 수입을 통한 뉴욕주 전력 수급 여건 개선</li></ul></div></div></div></div><div id='tab-pwr-europe' class='tab-panel'><div class='power-card'><h3>유럽</h3><p class='deal-sum'>EU 전력시장은 국경간 연계·ETS·Fit for 55 하에 재생 확대와 가스 의존 축소가 진행됩니다.</p><div class='power-label'>송배전 · 계통</div><ul class='power-list'><li>송전: 북해·남유럽 연계선·해상풍력 그리드 확충</li></ul><div class='power-label'>에너지 믹스</div><ul class='power-list'><li>풍력·태양광 비중 상승, 가스 백업, 원전은 국가별 상이</li></ul><div class='power-label'>정책·이슈 포인트</div><ul class='power-list'><li>전력시장 설계 개혁, 용량메커니즘, CBAM·산업 지원</li></ul><div class='power-label'>참고</div><div class='tag-row'><a class='src' href='https://www.entsoe.eu' target='_blank'>ENTSO-E</a></div></div><h4 class='fin-sub'>관련 뉴스</h4><div class='mega-news-grid'><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMi1gFBVV95cUxOTzZHUnB0ZFJlYUliY2EzNk5USXdGN1dxUHlPX2RfZ0FTZzhlbUZxWS1FWTl0ajV5X0pyMFA0Y0t3Y0w0REZYOUdvR1F1YTN2SmRYakpDd2tZQTVadWIzcW5pTEk5bmFXbmlNM2U1eV9zODY2Nzk5elJrWEo5Q2xQZmoxWjRDQzA4UWppZHhkZkVrWVc0Qm93aFEtNXVsNXVmYkZOemNqQ0JrOXdzbnJDdkxGdmhBSGpSNVRKUm9CNTYzY083aC0waVhMd2tUdjNHSk5QOXFR?oc=5' target='_blank' rel='noopener'>Europe turns to Africa to strengthen its power grid as Portugal and Morocco revive electricity link</a><div class='deal-meta'>Mon, 20 Jul 2026 15:37:26</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>포르투갈과 모로코 간 해저 전력망 연계 사업 재추진</li><li>유럽 전력망 강화를 위해 아프리카 대륙과의 전력 연계 확대</li><li>국경 간 전력 연계망을 통한 에너지 안보 및 계통 유연성 확보</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMivgFBVV95cUxPdGN6emNzN3JIb2poeGlaRXVfckdNMDZsYTNtZC1UZm13M3M1eTlfUUd5M2lrUDRsWWJCOE1CLUJ6MjNWUUFOOTNnVEZsbUpNNFR1ME1xVGpwUl9lUDJQT00xME5TenhmVktqdDFzWjlsMjA1ZHBVY0drUGVZdXVjRkxxbmJFaGZUNWxlRmRzN3l6N0ZuTXRHb1BpbjFadG5HdFR1MEx0NV9MMEptTWdmZVFxU1Vua1RIcWh4ekJn?oc=5' target='_blank' rel='noopener'>Quarterly reports show a surge in solar energy and e-vehicles, with record highs in 2025</a><div class='deal-meta'>Mon, 06 Jul 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>년 태양광 발전 및 전기차 보급량이 역대 최고치 기록</li><li>분기별 보고서를 통해 확인된 재생에너지 및 전기차의 급격한 성장세</li><li>전력 소비의 전기화 및 무탄소 전원 비중의 가속화</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiuAFBVV95cUxNWDJOajJYaC1mNWM4bm9PWmdhOEh6cUU0b2F1UnE1ZGFNZkcteXk5YWpHTjl4cmVMNkNyazNZbjYyRThVVjlISV90NlQxXy1UV2Z2RDkxYWliRVFVVGdmekc2Yl85YlNxX09EcmxjT01nbmtzaTlQOXplbEtETEwyaDhINVV6cEo1RjBFenRBbkpfX3pfbGtWNHl2WEhUa0RXOS1teEloNnRyVUhNVzF5Q2hvaEI1cXBl?oc=5' target='_blank' rel='noopener'>Weakening CO₂ standards undermines the Vehicle-to-Grid potential of EVs</a><div class='deal-meta'>Mon, 20 Jul 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>CO₂ 배출 기준 완화 정책이 전기차의 V2G(전력망 연계) 잠재력 저해</li><li>규제 약화로 인한 전기차의 전력망 유연성 자원 활용 제약 우려</li><li>수송 부문 배출 규제와 전력계통 지원 기능 간의 연계성 부각</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMitgFBVV95cUxPRktmVG5kWDNqdmVBc1JkeWxISHZXcWFmaGhJcF9tWjJmOXBmZHhyb2h0RFFpNTVmVDN4QjF5ZzRiRGYtM2gtTml1WXF6U0tjaEpqNElFTVJNR2hTRkkxNkdPa1dXTEhhWTlUVW04ZllGMWM2WU95MlcwZ3N1YkFvRVlyUUREVldkVWtvcmZNOGpiZUd1OTB2ME9DdFJKN251MFpHdGJ3b21BWkd6aHprYmhrVzlPUQ?oc=5' target='_blank' rel='noopener'>Europe Turns to Water Batteries as Grid Pressure Builds Fast</a><div class='deal-meta'>Thu, 09 Jul 2026 20:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>전력망 과부하 급증에 따라 대안으로 양수발전(수력 배터리) 주목</li><li>재생에너지 변동성 대응을 위한 장기 에너지 저장 수단 확보 추진</li><li>유럽 전력계통의 유연성 확보 및 수급 불균형 완화 시도</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiowFBVV95cUxOMU9MQkVSZkRrMVhQTzZRbVZXYm9JdDQtMzdIY1FkRkpJOGgxOFYtTXZrclc1alMtZjE1N2tJWjRsVlZ5MWpJOTJ5eWVUN2NiS0lXd0FzcWlFOE1IaTJJTHF0QlU0M19kVVVuSVJJTzJ1ZHhWMTJZR2FkRGVMWkQ2OHIwRTN0UXB6VnVRcHhiVS1vVGxLenlYV0FjdFpZUlJvM000?oc=5' target='_blank' rel='noopener'>Europe’s Power Grid Challenge: A Make-or-Break for Accelerating Electrification - Institut français des relations internationales (Ifri)</a><div class='deal-meta'>Tue, 26 May 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>전기화 가속화의 성패를 좌우할 핵심 과제로 유럽 전력망 문제 부각</li><li>전력망 적기 확충 및 현대화가 에너지 전환 추진의 성패 결정</li><li>프랑스국제관계연구소(Ifri)의 유럽 전력계통 인프라 도전 과제 분석</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiqwFBVV95cUxOMWFHOFBMZXdGTXZMaDh1R0t2U2YwNGp6QUtrYVdlWS1HQko3RW1NMGxOcU13WkxULU5VRGlTOTRZOWh0NHdnWWVfQlF2RkJzaDF4eW5KeDF4UDUxSjV3VUthMjZMU1V1MDU0WnVYNnU4TGVQaEdkQThIYVlhb1ZNaE9EV1p1aGF2eE9xWGVVcVVxS01LZm13dERwVVBvNXJFNndCTG1mTENTQVE?oc=5' target='_blank' rel='noopener'>European electricity markets have too much power</a><div class='deal-meta'>Thu, 04 Jun 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>재생에너지 급증 등으로 유럽 전력 시장 내 전력 과잉 공급 발생</li><li>과잉 전력 심화에 따른 전력 가격 하락 및 계통 운영 부담 증가</li><li>시장 균형 유지를 위한 유연성 자원 및 에너지 저장 장치 필요성 증대</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiygFBVV95cUxQeFpjWlp4d0x6YVdlMVFXT29YZUFSVGhHS0hXSUdoa210Z09LQWVyVDJhNXEyandNXzVKR3JNQWJaQjB6OU9INGstSmd4VHRxS2F3ZGpOdFl5YmVoOTNqekFWYWFpTTB1UVZhZjFOdEFEaF8wclBwRlhOeGpMNHJ1VEx2MHptcjdzSWxGanRoeG95VVZaQ2lmb0JRSWlvX1Znc0NJRTNxYk96UGVkazVncGhmZ0pyazJZclZZS1NMNG9yRlRmUmh5SHNB?oc=5' target='_blank' rel='noopener'>Europe&#x27;s power grid buckles under record heat: outages, nuclear cuts, and soaring prices</a><div class='deal-meta'>Sun, 28 Jun 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>기록적 폭염으로 인한 유럽 전력망 과부하 및 정전 발생</li><li>용수 온도 상승 등에 따른 원자력 발전소 감발 운전 및 출력 제한</li><li>전력 수급 불안정 심화로 인한 도매 전력 가격의 급등</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiXEFVX3lxTE9uQi1tQnFIVGlaWENYRVdCbXF2X2pqaFBGRFBGcW1JVzJubDdrcE1WRzVYV3VyMHpPdWtNb3JlT3pDeldaRE9tbE55cVN0cnZjZVo4MDdkM1pVUDlR?oc=5' target='_blank' rel='noopener'>A Home Battery Revolution Is Reshaping the Power Grid</a><div class='deal-meta'>Wed, 01 Jul 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>가정용 배터리(ESS) 보급 확산이 전력망 운영 구조 재편</li><li>분산형 에너지 자원을 활용한 가계 단위의 전력 유연성 확보</li><li>소비자 주도형 저장 자원이 중앙 전력계통 안정화에 기여</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMisAFBVV95cUxNZ1JvcTJkRl9oenZnRGxIcHRGS1hKWTk4MjI2dkp5S0hTa0NoMlNtT3dFZnJvQVpFZTZockt2dGlzeWhjbkhTTkRJTXl6VmhmNGdxZlNLc0l3LWIzN2doZlNpd0Vnb3BIRTY1UmVkOFJURlFSWDJKMF9oelFRWlVDQTFyU3g1MC1wenZXblIxaDN0NUQ3Qk9Rb3YzdVZKVWhWWDVWc0xmaFFqQzlVTUpJSQ?oc=5' target='_blank' rel='noopener'>Reform of the EU Electricity Market Design: A Step in the Right Direction?</a><div class='deal-meta'>Tue, 07 Jul 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>EU 전력 시장 구조 개혁안의 실효성 및 추진 방향 점검</li><li>재생에너지 확대와 소비자 가격 안정성을 조화시키기 위한 제도 개선</li><li>시장 개혁이 전력망 투자 유인 및 계통 안정성에 미치는 영향 평가</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMif0FVX3lxTE1yQk9jMEhEZkN1UEtzeUtEZW1UaTFDQWlIRkpZYzJlNXp1OWpCVlZGd0FWdnVaVXM1SEpJc05pX3dNQlJvamhhdkxtV05lOVV2OHo1NkcwOTlzNngwRDZnRXYwclVyQ3ZqZV9tWXJXNkp1VDUwV29Bck1LdlB2UUnSAYQBQVVfeXFMUEJlTk43eW9sMjdXWTd1cDJGN2pZMEdTQkVaQzdCQUJ1cDgyNHJXTDhfTndMNXdLdHc1Q1pEdGlnelhNZVNTa0xjeDE3dWtvVDdzSHM4azZaQmlhVHpjN0RsMGhNbjZVTGdrUnRPUWYzdEoyTVF2ZHdweEtMdXQ2blExMzNt?oc=5' target='_blank' rel='noopener'>What Europe’s heat wave means for the power grid</a><div class='deal-meta'>Thu, 25 Jun 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>유럽 지역 폭염이 전력계통 및 전력망 운영에 미치는 영향 조명</li><li>냉방 수요 급증과 발전 설비 제약에 따른 수급 리스크 분석</li><li>이상 기후 현상 증가에 따른 전력망 회복탄력성 확보 과제</li></ul></div></div></div></div><div id='tab-pwr-japan' class='tab-panel'><div class='power-card'><h3>일본</h3><p class='deal-sum'>일본은 원전 재가동·재생에너지 확대와 함께 송배전 분리·용량시장 제도가 진행 중입니다. 데이터센터·반도체 수요와 전력요금·연료비 조정이 이슈입니다.</p><div class='power-label'>송배전 · 계통</div><ul class='power-list'><li>송배전: 지역전력·송전망 운영 고도화, 재생 접속 확대</li></ul><div class='power-label'>에너지 믹스</div><ul class='power-list'><li>원전 재가동, LNG·재생, 석탄 축소 논의</li></ul><div class='power-label'>정책·이슈 포인트</div><ul class='power-list'><li>용량시장, GX(그린트랜스포메이션), 원전·SMR 정책</li></ul><div class='power-label'>참고</div><div class='tag-row'><a class='src' href='https://www.meti.go.jp' target='_blank'>METI</a></div></div><h4 class='fin-sub'>관련 뉴스</h4><div class='mega-news-grid'><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiwgFBVV95cUxOTjhZTndqSjRtNnBRSjdFRktpMVI3b0ZSZ05HVHZab29BelplaGwzdWVreWxZVnN0bllNckhxSWZEZ1cwTjVLVk1VNjJuc2x4c3BWcW00dDZISUh6QU5HVkdGbW9CNUNKQ2otalQya3dHMHFMSEg1T3NRa1g0T3N1ZWxwVms3djRjS1FNaG1XUG1Sdlp3UjV2bUlRdFlTeWRQSXMtdl9ld0FDdHlUa0h4ZndTUXIta3QtV3hyUGlyM04tUQ?oc=5' target='_blank' rel='noopener'>Japan proposes rebuilding ageing nuclear plants to meet power demand</a><div class='deal-meta'>Thu, 04 Jun 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>전력 수요 증가 대응을 위한 노후 원자력 발전소 개체(재건축) 제안</li><li>원전 리빌딩을 통한 안정적 기저 전력 확보 및 에너지 안보 강화</li><li>전력 수급 불균형 해소와 탄소중립 목표 동시 달성 추진</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiekFVX3lxTE14bF9jSnhZUC0tRlNRYmJRUTNnQlh3bEhPR3B0RVVITDczaURQZUFURDFKbFVhMlV2bHhSbVBBSlVWVHdNNzJnby02QWNCMEJEWkpDWnlQYnE1WG5HSWlLb3RGNmRUTHlWQUZxcnk4SGRlSGpCN2VlOVl3?oc=5' target='_blank' rel='noopener'>AI 2026: Gas Turbine Demand Pushes Data Centers to Become Power Plants</a><div class='deal-meta'>Wed, 24 Jun 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>AI 데이터센터의 전력 수요 폭증으로 가스터빈 도입 확대</li><li>데이터센터가 직접 발전 설비를 갖추는 자체 발전소 형태로 진화</li><li>전력망 부담 완화 및 안정적 전력 공급을 위한 분산형 발전 활용</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMi0wFBVV95cUxOTnkxLS1ZUzdod05HSUZUZm1GLThKdFhZekdsRnYxMGNxajJWcXFiZHJ5SGdlUzZPLWxXYVRLQWVmcWdqSGdkeXBsZURJWUZ5NzNuMUlMVjBEOVJmWEd0ellJeHVNZm1GZVlNWTJxQ0xJcUNHdF9qbTF5LXRyMHhGUTZJS19zVGtKaHpYdE1nV1RPejdXUG96Z3hjRTlqeVM0LUIyN1NHcU1jREM4S0lPbkt1NkNpYXJURi1Wck1JVU9YSGdWSE5Na3VRdGlOdzlDYTlB?oc=5' target='_blank' rel='noopener'>Nuclear Power Is the Only Real Answer to AI Electricity Demand and These 3 ETFs Own the Trade - 24/7 Wall St.</a><div class='deal-meta'>Thu, 28 May 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>AI 전력 수요 급증에 대응할 실질적 해법으로 원자력 발전 부각</li><li>원자력 벨류체인 관련 ETF 및 자산 시장의 투자 관심 증대</li><li>기저 전력원으로서 원전의 가치 재평가 및 금융 시장 자금 유입</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMib0FVX3lxTFBTZ0doVUU0dmU1cDJOOVhyU2tVMnlfcWtXVmZhRG13Wno3X1VMVnI3RFRhcnp2RUZaRVgwX0dGMElyZklRT1psTHdBVHBiZTZjczBfY0lEVGZCeFZ2NGotcnk3b2lmd2JnTklrRk1LSQ?oc=5' target='_blank' rel='noopener'>Executive summary – Electricity 2026 – Analysis</a><div class='deal-meta'>Fri, 06 Feb 2026 10:26:52</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>년 글로벌 전력 시장 전망 및 수요 분석 보고서 요약</li><li>전 세계 전력 수요 증가세와 에너지 전환 트렌드 종합 점검</li><li>전력망 투자 확대 및 공급 안정성 확보를 위한 정책 과제 제시</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiZkFVX3lxTE5FVTlITUt6WXdUR2Q4dGYyWmhVU1VpYW8zcktveC1TbW1UOGVXekVkYk04cTZMaXhQQm5STDBwc3E3V2JIdVVyZFkwbjhOUHgwb09YUHpQd05jNlZMbnF5Z2hZa01YUQ?oc=5' target='_blank' rel='noopener'>Investing in Heron Power</a><div class='deal-meta'>Wed, 18 Feb 2026 08:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>헤론 파워(Heron Power)에 대한 투자 진행 및 사업 확대</li><li>전력 자산 투자를 통한 에너지 포트폴리오 강화 모색</li><li>발전 및 전력 시장 내 투자 기회 확보와 성장 기반 마련</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMirAJBVV95cUxQa0UyYnVQbmRzYWRhRzRfWUhtQUQ1aWFhSWs1V0ZLSHA0SVNfWlllV1pkLUpKQ3N6RkhpdWdiWW9BXzRERmdUUlJQNXhhZHBYRV94b0JmUUhQbHYwNDdkNWxpNTVBaWxFYVNNVHF6S2t3TExWbVJuX01KY2M4MnlpTkRFcEx0RThaX2VxYkxYNTZNaVFNcTlLc256eldOUldpYmlSd3JXY1g1UUt6Qkc3RmlHSG1fU2xUOXpYN05jcE1SeERHRVJRbVM5ZzRBMG5qclE0dnVMSWVtckNCTEt2SlJTZUpuaUE2eFVoX0pwSVNKYkRnQTRaaU9FMzhvXzM1RDFsVnlpOWQyeGVuQTl6QmhGRDdyQ2ZrNTZQU2dZbnhGMUV6a01ZUHZELW8?oc=5' target='_blank' rel='noopener'>Hitachi Energy and Samsung C&amp;T expand strategic collaboration to accelerate grid infrastructure and reinforce energy security</a><div class='deal-meta'>Tue, 14 Apr 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>히타치 에너지와 삼성물산의 전력망 인프라 확충 전략적 협력 확대</li><li>에너지 안보 강화 및 글로벌 전력망 현대화 프로젝트 공조</li><li>재생에너지 연계 강화를 위한 계통 연계 기술 협력 심화</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiY0FVX3lxTE8wcnJhcC1iVGFYMWtSUzBSajhnM2xOM29jTUk5MjY1QnZ0X3BYcVBhdTF4b1p6TFdjVUQ0NmxIcGR0Y3dIYUkyZ21HUE04OGx4MGUzMEQ5eTFwSFhacWtlYzJONA?oc=5' target='_blank' rel='noopener'>20 Renewable Energy Stocks to Buy as National Policy Shifts Away from Middle East Dependence: Government&#x27;s Alternative Energy Procurement Provides a Tailwind｜日本個別株デューデリジェンスセンター</a><div class='deal-meta'>Wed, 15 Apr 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>중동 의존 탈피를 위한 일본 정부의 대체 에너지 조달 정책 전환</li><li>국가 에너지 정책 변화에 따른 재생에너지 관련 종목 수혜 기대</li><li>에너지 안보 강화 및 국내 재생에너지 시장 성장 모멘텀 형성</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMie0FVX3lxTE9nWHNlWHdNUWNzNWxkVDNFWHRGZTJ5RGFfSDFqd0NIVV9UXy04eEl1ZFNKalg4NmhOTU5Nakp2dFhiNHhrU0hTZl94YVR3OFY0ZS1abFczSVcxZGxvbjctUDFnanFsaHJhb081RUVfSmswNEtKV0liRzF2MA?oc=5' target='_blank' rel='noopener'>Japan&#x27;s data centre boom to drive 60% of power demand growth as US$28 billion hyperscaler investment reshapes grid</a><div class='deal-meta'>Tue, 26 Aug 2025 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>일본 데이터센터 붐으로 전체 전력 수요 증가량의 60% 차지 전망</li><li>억 달러 규모의 하이퍼스케일러 투자로 일본 전력망 지형 개편</li><li>급증하는 데이터센터 전력 수요에 대응한 송배전망 확충 필요성</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiakFVX3lxTFB3UXFUR1FmaUZkcXBxVERZU08xVXB3U2Y1dGNvNTNvbkVOdThJNGVXMGhFMU12LWc4Z2pDbFp3YnNBUDNSZTZnM1JpUUNka29tVkpma3R6ZmhYbmlrNThqUWxRLU56cG5LM3c?oc=5' target='_blank' rel='noopener'>&#x27;Think about Nuclear Energy&#x27; - Thinking about energy that will shape the future and nuclear power</a><div class='deal-meta'>Mon, 31 Mar 2025 03:56:50</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>미래 에너지 구도와 원자력 발전의 역할에 대한 정책적 논의</li><li>기후변화 대응 및 에너지 안보 관점에서의 원전 필요성 재조명</li><li>전력 수급 안정화를 위한 원자력 에너지의 장기적 비중 모색</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiqwFBVV95cUxNYmg4YkNDSEdrd25rMVNKS0RLdnhWRG1PbEs5LUNENEU5YkQzZnM5YkhrVGtZSnRwSVFyTXN6RDBmZ2E0cWFrTFJtbno5YU9TZlBFT1BQeWF2WEZuRFktMWdXdjM5T1lxU3dBYXhPZkxRRGpqem9FUjZnVVZodUNPdk9qV2hNdWRSNFdFZWtHUkx4R1VKb25SdlNXQTZEaTRURmFtRHJqUmVqVkk?oc=5' target='_blank' rel='noopener'>New GE Vernova H-Class technology to modernize power plant in Japan</a><div class='deal-meta'>Tue, 08 Oct 2024 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>GE 버노바의 H급 고효율 가스터빈 기술을 활용한 일본 발전소 현대화</li><li>발전 효율 개선 및 탄소 배출 저감을 통한 친환경 발전 전환</li><li>노후 가스 발전소 리커버링을 통한 일본 내 전력 수급 안정화 기여</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMivAFBVV95cUxPWmpqRlpJeTlpRDRvbzNmWEQ0TlRiazBlWmY3aC1qclBiMHQ3aF9Vd2ZKYzRkQVJpd0JIV1RRbzh5amdxUGlGMFRCUGZkS1lfdWZvWENHUmg3bVQ4ZDB3WDBELTUtVUVvS3BoaDN5SVZSOV9DVld2Q3NoTEhVSHpNWV92UGJnWmYtVUFONzRhYmRqYWRnaGRSSmphVURpWVgxTHlGekJfLVJXcElsaTJxRGRpX1BaQzAwZk1oRNIBwgFBVV95cUxNZ3RzS00wRGM1X28tTEt0RFF0SVYzaGZRVTNHdEpjNmt5T0hLWnlVUFVmc1ZybkE2MTdOX0lZVGd3Z1dFVDhzSzJjRFJ1QzJuWjAtOUlsR3RFbVBIX25QaWRwZE1idG95NHI3TVZMdmhJM0RhX2tYLTUwb3J1Z09xUk0wR1kzaDVCb0RZOUJYZ0VQU0MyUzVvcWxRYkQ5UGdNX2pvUERURTZWckN6eGJKc0xMaVlZdENkd2RzdGxDUWNfQQ?oc=5' target='_blank' rel='noopener'>Japanese Banks Commit $496 Million to India&#x27;s Power Grid Expansion</a><div class='deal-meta'>Thu, 02 Jul 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>일본 은행단의 인도 전력망 확장 사업 대상 4억 9,600만 달러 투자 지원</li><li>신흥국 전력 인프라 구축 참여를 통한 일본 금융기관의 해외 진출</li><li>글로벌 계통 연계 및 에너지 전환 지원을 위한 전력 금융 확대</li></ul></div></div></div></div><div id='tab-pwr-other' class='tab-panel'><p class='tab-desc'>미국·유럽·일본 외 국가 — 국가 라벨 표시</p><div class='mega-news-grid'><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMifkFVX3lxTE9nRTN1TC1GcWZWc2U1aDZKSHJVbVlmb2FSYzZSMXljbUpLa00xcGlxMzJPdTBQbVE0b3VRV0VWMmh5S0tLSkxUQnMxczhXYUx0TFhucWVIcXg5bldTRjZMZWh3a1YxVUQ2elhyYnAtTXRRRGhFLTZSa0dNTGN5UdIBgwFBVV95cUxQT1NrN2lFbG5RY1pSLWVmSFF6T3U3cThfNXVnX0dFenlfSGY2TDJWbGNtU3dqdlZKVXRFVmJjZHJQV2VCckpQakZFNlg0M3c1WWt3eDVRVG9abVl0MUh4MFdTMGY1NkQ4clFfNEtuU0I0RDl5V3hVRnNDZExmTWdfcGc4OA?oc=5' target='_blank' rel='noopener'>The power line that could reshape New York’s grid is hitting snags</a><div class='deal-meta'><span class='tag'>기타</span> · Thu, 23 Jul 2026 09:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>뉴욕 전력망 개편을 위한 신규 송전선 건설 사업이 차질을 겪음</li><li>송전선 프로젝트 지연으로 인해 지역 계통 개선에 난항 발생</li><li>송전망 연계 문제 해결 및 전력망 안정화 과제 부각</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMizAFBVV95cUxNQWsyUWJfMHhwSTEta3Z4bDJBUF82LW5Fbk9vbWVZNF9MS3lhSnRIQmNNUEtYV2pPcFdJd3dHRHZGY1h6dFQxM2NXRWVGUUtVRjRnZVpRcFhaaWNpQnhwbDh5N2hleThOTmVOdURHamV6V3czY25fVHdNUFNLSHhtS1FTNVcyWndDbVhZaUp2LVJDNUlxRTdDcUFfMUNta3psM3pLLWRYVG1UZ2d2MkJhVkVwbEp1UXhHQ0JLQXV3bFMxNllyXzdQZUhuUlbSAcwBQVVfeXFMUFpFRmNjUGY0cDRBRlk4UFBXemZVQ3ZiMzhIbFVNMHU2YUoxWjN2RXNSS3lXcXdldm5uZDBja0xHaG1hVHFPNDIzblpyczJzUUZwX0VCVVhESl9vRXE2ZGZkLVBvbW9NZzFWclRsY2lmX2laeGtxb1V5MGVHdWJFQUowV3lrYmluYTg0SDd5WnJVQWJZODQybmFYLU9Jc0dxN0ZzelJBRG1uMktsUXRiRVUzX0hzakxfemx2QnNlclA2bElhdTRqYUpQbjJz?oc=5' target='_blank' rel='noopener'>China’s power grid no longer keeping up with green energy capacity: study</a><div class='deal-meta'><span class='tag'>중국</span> · Thu, 23 Jul 2026 03:00:11</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>중국의 전력망이 급증하는 친환경 에너지 발전 용량을 수용하지 못한다는 연구 결과 발표</li><li>신재생에너지 설비 증설 속도 대비 송배전 인프라 확충 부족 심화</li><li>중국 내 그린 에너지 연계 및 송전 병목 현상 해결 필요성 증대</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMivgFBVV95cUxOdDZhUGxGaTduTjdNRlU3TWpYazZ4QWJ5ZXFkZFNWMGh2ZEJsRVpObC12bGtvck5ic05HczBNZ2dFZkluUWMydmFvWE9tWnhGTElnRjE3ZVYyWkRaUlFjdFEzSlk2aVNzNEE4NHZuRkwtZTVvdjRDY1VzdFhvTDlVY2VCZk5rOVpudS04WXYtS01ZM0pLSUhPVFROcjZfUnlqWkNkTkxYT0tHdFNvVktwYTFDdURoNUZ4MUpnamF3?oc=5' target='_blank' rel='noopener'>India tells clean energy firms to lose grid connection or generate power</a><div class='deal-meta'><span class='tag'>인도</span> · Mon, 13 Jul 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>인도 정부가 청정에너지 기업에 계통 접속권을 포기하거나 실제 전력을 생산하라고 통보</li><li>전력망 접속 용량만 확보하고 전력을 생산하지 않는 미사용 용량 차단 추진</li><li>인도 전력망 연계 효율성을 높이고 계통 병목 현상을 완화하기 위한 정비 조치</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMijgFBVV95cUxQSVF3SXNFZVVqYkE1RFF1X0d5Yi1HMDJVdThaeW95cHRlaGpLYzVxY01DRmtRYWdYQVo4aXJBM0dpODlzU2FPMXhuTzladHdjR2lUcGlLN3FIdW5TSHAza3p4RnhoZjhEYkNQbk5GVWt6SmxxU0doNDM5TzZaT1BMcW16YjRjYm05QUhKR3d3?oc=5' target='_blank' rel='noopener'>Canada Has Named Five Interties. It Still Has To Build A National Grid</a><div class='deal-meta'><span class='tag'>캐나다</span> · Mon, 13 Jul 2026 21:47:50</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>캐나다가 주 간 전력 연계를 위한 5개 연계선(Interties)을 지정함</li><li>전국 단위의 통합 전력망을 완공하기 위해서는 여전히 추가 건설이 필요함</li><li>캐나다 내 지역 간 전력 유통 및 계통 연계 강화를 위한 인프라 과제 지속</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiqAFBVV95cUxPQmtYaGZsTGplVGRDbTNFRU1BS0RFcjN1TDBWc1JPMkFheEtWSFE1ZUJEY2RaZFppNXFpZUFTLTNDR09UZS1xWFdXMGFUeGpPUWg1RnZBQldkdFlEX3IzSEJ3MHRlU0pHb0FsbDRQMDVydEk0Y0tjdHdTaERyajYySHJRdmVxYUhIVllSazY2SXNrdDAwUzJKamYzU0pRc3hlb244eHBuQUs?oc=5' target='_blank' rel='noopener'>India&#x27;s Power Grid Is a New Site Selection Variable</a><div class='deal-meta'><span class='tag'>인도</span> · Wed, 15 Jul 2026 14:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>인도의 전력망 상태가 신규 산업 시설 입지 선정의 새로운 핵심 변수로 떠오름</li><li>원활하고 안정적인 전력망 연계 여부가 기업의 투자 결정에 영향 미침</li><li>인도 내 지역별 전력 인프라 격차가 기업 입지 전략 수립에 중요 요인으로 작용</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMisgFBVV95cUxQRU9Yc3hwZjlQRmxNR09BYkVraVZFbkVzWjdZWW1RUWxfdW5zYWxHNGVpUVZvdUxlWHdrc1ZneHRFM2VEOGwtUWw2U3d4RDZPYU1xVExVcnA0b1N0LUtHSjd1MDhmSC1WWTFpR3BseWtXNHFVZ3JldmYwaHdkOUVDVFZUSHgzdmRTaFR4b3JfZHRYZUp2S2ZNZTY0MUIzcWRnRmY3aXNHamtrX1BvTWxPWkp3?oc=5' target='_blank' rel='noopener'>Maritime provinces to consider regional electricity operator</a><div class='deal-meta'><span class='tag'>기타</span> · Thu, 23 Jul 2026 18:55:07</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>캐나다 연해주 지역이 광역 전력계통 운영사(Regional Electricity Operator) 설립을 검토</li><li>지역 간 전력망 연계 강화 및 효율적인 전력 수급 관리 도모</li><li>광역 계통 운영을 통한 에너지 전환 대응 및 전력 공급 안정성 향상 제고</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMigwFBVV95cUxQWWZnN3ItcUk0QmlBVm9xS0pNVC1lZjA4S1NKVWxTYU9HenplR204a0ZEM2hic1h5ckRCaGRmeWotQnBMTjZhX1lIMTgwOGhKN3FYWlU4anlkdVktZU5UR1NnRGNtUFpuNGh1VU1xVWpLeXNnY01saUh0UVFkRk12ZFFEVQ?oc=5' target='_blank' rel='noopener'>Unlocking Indonesia&#x27;s transmission grid investment - Institute for Energy Economics and Financial Analysis (IEEFA)</a><div class='deal-meta'><span class='tag'>인도네시아</span> · Tue, 12 May 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>에너지경제·재무분석연구소(IEEFA)가 인도네시아의 송전망 투자 활성화 필요성 제기</li><li>인도네시아의 재생에너지 수용성 확대를 위한 송전 인프라 투자 유치 강조</li><li>전력망 투자 장애요인 해소 및 계통 현대화를 위한 정책적 지원 촉구</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMioAFBVV95cUxPVzV2U0JWRDlTdVdnSUR4LUZDNUFXLWdKLXlwaXlMcDJIaG9EcjJ0Yzd0ZXVDNFdUWDc0SkdEQm1jamxXNGtjNVd5MzZLZ2hhZnlTWXpEY215Z3h4MDQzY0xrTTZzTmEwZGg4SEpQY1d5bEl1VHBseU4wUkhhUTR0VExQTGxTdFpJcFl4RDJHUFAwektQdFpqYXYwbmh6N3Vl?oc=5' target='_blank' rel='noopener'>Transmission line stopped sending hydropower during Arctic storm</a><div class='deal-meta'><span class='tag'>기타</span> · Fri, 23 Jan 2026 08:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>북극 폭풍 동안 송전선 작동이 중단되어 수력발전 전력 수송에 차질 발생</li><li>극심한 기상 악화 시 전력망 취약성 및 송전 인프라 중단 문제 노출</li><li>기후 변화 및 기상 이변에 대응한 전력망 복원력 강화 필요성 부각</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMibEFVX3lxTE9GMzBoRnl3dEs4czVYdE9zVElhOG5YQUFBaVJ1R3BlelYxMnBUZGRIazRTSjRFc19ndmNpSlZQWFpxRlM0SmhiaXVVWjZjdjMwWUtWZ2ItMDJ0dFBrY3VoQlVpVGJkd183X2tZZg?oc=5' target='_blank' rel='noopener'>제주, AI로 전력 생산 소비 한눈에…&#x27;차세대 분산전력망&#x27; 구축 시동</a><div class='deal-meta'><span class='tag'>기타</span> · Fri, 24 Jul 2026 08:37:23</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>제주도가 AI 기반으로 전력 생산과 소비를 실시간 관리하는 차세대 분산전력망 구축 추진</li><li>분산자원의 효율적 제어를 통해 재생에너지 출력 제어 및 계통 불안정 해소 도모</li><li>데이터 기반 전력 관리 모델을 도입하여 스마트 전력계통 구현 가속화</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMihAFBVV95cUxPMlBWSV9XTmpfbkFvWHZmRTBrQkFvRTh5NGFSMFlSUWlEMXFUb2dxSmJOTjVYZjdIOTUtQm9YTjE2SU9XLUs2OG9SU2RjR1BaQUVTOEZtTGtSN2hVWGN5Znk4b3Z3a3laX2FmdUJIRi1GQjdCM25ENGtVWlVhdXlVb2ZBRWjSAZgBQVVfeXFMTmJpRXZoTlllb0pNZmhTbndhQTc3NUphMjdtalBoRUsxZU95b0l1V3N4X2o0STAtMkNFbXdDN1dzVFNJeENBcmpheElUd081aFRjWUxWdWJmaXp6Rnk4MlRjYm1YWTJFTGIyMDQtMllJaTVPOFV5b09pZ0VFTW5vRm91U0hyRHhEWHFzMjBvWXhxWVdOU0k5ckI?oc=5' target='_blank' rel='noopener'>재생에너지·데이터센터 확대에 ‘교류’ 시대 저무나… 전력 3사 ‘직류 송배전’ 기술 확보 ‘사활’ - 조선비즈</a><div class='deal-meta'><span class='tag'>기타</span> · Tue, 07 Jul 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>재생에너지와 데이터센터 확대로 전력 손실이 적은 직류(DC) 송배전 기술 중요성 급증</li><li>기존 교류(AC) 방식의 한계를 극복하기 위해 국내 전력 3사가 직류 기술 개발에 집중</li><li>고효율 직류 전력 전송 인프라 구축을 통한 차세대 전력망 시장 선점 경쟁 본격화</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMinwFBVV95cUxPU2ZfVUx4ejVRQVBwYlRGWE5MazdEWnMyZzJwNjFCUUFCcDk2UW9fNVRGaHVYbnhaR1g0SU56QmV5Szk0RmdXcG9wTDl6OE1DWTNrdjAydHk0dHFUY0NiOERCaUxpdm95OHc2MWJUOTA4dGRFcGpQa0w2cVpfei1HWjBVRWJoakJzbEZQdnpjc3AtN1ZqckJrLU44WGx5cm8?oc=5' target='_blank' rel='noopener'>송배전 시장 보고서 [2034]</a><div class='deal-meta'><span class='tag'>기타</span> · Mon, 06 Jul 2026 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>년까지의 글로벌 송배전 시장 전망 및 성장 동향을 다룬 보고서 발간</li><li>전력 수요 증가와 신재생에너지 연계를 위한 글로벌 송배전 인프라 투자 확대 전망</li><li>노후 전력망 현대화 및 디지털 전력망 전환에 따른 시장 성장세 분석</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMib0FVX3lxTE5NTDdfYUFlbTJpTnRQRkt1UEVQU3owRFdRdVVXdG45RWEtdHBTRUdzbG1hU0NGSTlGMVZ5ZjFpX2NTOXdIUTg1aHFEcWlTbVQ3dmJsd3dWZ2JkTUdWamQwU2NLTzNyT1FZaDhFV2hRYw?oc=5' target='_blank' rel='noopener'>“한전 ‘독식’ 의사결정 구조가 재생에너지 확대 막는다”</a><div class='deal-meta'><span class='tag'>기타</span> · Wed, 26 Nov 2025 08:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>한국전력의 독점적 의사결정 구조가 재생에너지 확대를 저해한다는 지적 제기</li><li>전력망 운영의 공정성 및 투명성 확보를 위한 구조 개편 필요성 주장</li><li>계통 접속 지연 및 재생에너지 연계 병목 문제 해결을 위한 제도 개선 요구</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMidkFVX3lxTE9lMFI0QVBKVzlVZzhqZktONlZsWE1SU09ReGFONDlMMEJNV2tfUnhfYVAzXzBpS240NnpqY2NQLW1yc3ZqT0lTVVlKLWd5RXhaR0dpUkdMbmluM05kMXQyeVZmTUtVQlJWdXlHcHkxNGVnQ01pUUHSAXpBVV95cUxOYTFiLXozNWl0dkZpRFVrRWx4ZS1DeWhHM1JoTnJVSjVodmxMZ0duaWExdVp4c3RxbjZlNWwwWXpSZVI4UjlMdUNsZy11TEgxcTlMRl90RWlyOXJLYXVFUHNUR29aY29mdjlvR2J0NDlrdTk0ZEhETHRpUQ?oc=5' target='_blank' rel='noopener'>국내 기업 脫한전 확산···전력 시장 독점 구조 흔들리나</a><div class='deal-meta'><span class='tag'>기타</span> · Mon, 08 Dec 2025 08:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>국내 기업들의 직접 PPA 등 탈한전 움직임으로 기존 전력 시장 독점 구조 변화 가능성 제기</li><li>기업들의 재생에너지 직접 조달 증가에 따른 전력 거래 시장 개편 움직임</li><li>독점적 전력 공급 체계 변화에 맞춘 전력 시장 경쟁 도입 및 제도 정비 필요성 증대</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiVEFVX3lxTE9NT2kwX2ZFakZlOGNrdUdxc09xQy1lNllGQXpRUHY5dE94SWVod3JqWWRGX1MxX3B6R2N6LWFVejY3T3BFV3lsYUIteXUxenkxSkZuNg?oc=5' target='_blank' rel='noopener'>&#x27;재생에너지 연계&#x27; 직류 송배전용 고효율 차단기 개발</a><div class='deal-meta'><span class='tag'>기타</span> · Mon, 20 Oct 2025 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>재생에너지 전력계통 연계를 지원하는 직류(DC) 송배전용 고효율 차단기 개발 성공</li><li>직류 전력망의 안전성과 신뢰성을 확보할 수 있는 핵심 전력기기 기술 확보</li><li>차세대 직류 전력망 인프라 구축 및 계통 사고 예방 기술력 향상</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMingFBVV95cUxQbXEzUEE2V21DaGxNSW1OYkpyU0hWUjdqTEZzMy1sTHQ4N3hHWERiODQ3RmctSXZOa0haN2F2N21makhyUnNRdWVFZC1jVXVya21Ba1hsMDVJV3JsLTRSSGRPVkk3VERRa210Q0hJZTB3UFdmN1p2c1MxdHdvd1hhdU5FQ1pCQnMwWUY1c3RvcjlDcERSakRsQ1d6V3ZmQdIBsgFBVV95cUxPZFREYU9aNldUXzl6VFZjUVEzZ1p6aDJLVDdDTUg5V21oRlkxWWZ3TnRPT2lvYlowVVdTYmtfU3hrR08xV05vSGtqTGk5Rk1vdGQyTVBScmkzSlliUHFiVDhpVkJ1aFlXSDdWQmwzSjVZSFNsVGphNnMzQ3lRTlFIMUxURVloaXA0TFNReWo5VTdibWxtODI4NWxzWW9aSDVVNDVxS3JoaWFMZzFxVjBNQU9R?oc=5' target='_blank' rel='noopener'>中, 전력시스템 확대에 5년 간 840兆 쏟는다 - 조선비즈</a><div class='deal-meta'><span class='tag'>기타</span> · Fri, 16 Jan 2026 08:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>중국이 전력 시스템 확충 및 현대화를 위해 5년간 약 840조 원 투입 계획 발표</li><li>신재생에너지 수용력 확대 및 차세대 초고압 전력망 구축에 대규모 자금 투자</li><li>에너지 전환 촉진 및 전력 공급 안정성 향상을 위한 국가적 인프라 투자 본격화</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiigFBVV95cUxOYjNCOVZKc3AwVFdBTVh4YnU1TDJqMHZad3ktSTZPTV9nMFYzSk9ZWS1NWXN1Zm5WS0xfb3l3dVcwQTJySzVCTXR3c0gyd1lpMU1zWXRKZkVVcEkwc2xVOTBvakhvemwta0I2SF9nMW45VlBybFNraGJCbVNHNGhlX1dUNlQtRXZNOWc?oc=5' target='_blank' rel='noopener'>[전력설비] “전력 부족이 곧 기회!” 초고압·배전기기 대장주 라인업</a><div class='deal-meta'><span class='tag'>기타</span> · Wed, 10 Sep 2025 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>글로벌 전력 부족 현상으로 초고압 및 배전기기 등 전력 설비 기업의 성장 기회 확대</li><li>전력망 확충 및 현대화 수요 급증에 따른 관련 설비 제조 기업들의 수혜 전망</li><li>전력 인프라 투자 확대에 발맞춰 글로벌 시장 진출 및 공급 증대 기대</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiXEFVX3lxTE9qQXpuU2NvVnpxTHhnRUVBTWVnWFg1WmlMYmNnVXhPZHZWaXBMLTVQVUVSdzFJNkhHZ285bEZ5OXRVOTVhMEpnMlJyQmZ6cjVzUnQzaElfRjFLUElo?oc=5' target='_blank' rel='noopener'>[재생에너지 비상]한전, 재생에너지 송변전설비 부족할 줄 알면서 7년간 &#x27;방치&#x27;</a><div class='deal-meta'><span class='tag'>기타</span> · Thu, 08 Aug 2024 07:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>한국전력이 재생에너지용 송변전 설비 부족을 인지하고도 방치했다는 비판 제기</li><li>발전소 완공 후에도 전력망에 연결하지 못하는 계통 병목 현상 지속</li><li>송변전 인프라에 대한 적기 투자 미비로 신재생에너지 보급 차질 우려</li></ul></div></div><div class='mega-news-card'><a class='mega-news-title' href='https://news.google.com/rss/articles/CBMiXkFVX3lxTFBlVlF3TjlkdS1oZzhlVjhDWTFGcWVSLUZNeVlpS0g1SUFZTk1Ga0Z4TGFSUmlYZEQwNkE4eC1lMS1WRnRzMGZWWDZJa193MlEzY1FYZkwtd0FJTDQxWmc?oc=5' target='_blank' rel='noopener'>[길 잃은 RE100⑱] 전력수요 98% 늘 때 송전설비 26% 증가 그쳐</a><div class='deal-meta'><span class='tag'>기타</span> · Mon, 09 Dec 2024 08:00:00</div><div class='power-sum-label'>뉴스 요약</div><div class='mega-news-sum'><ul class='mega-ai-ul'><li>전력 수요가 98% 급증하는 동안 송전 설비는 26% 증가에 그쳐 전력망 불균형 심화</li><li>송전망 확충 지연이 국내 기업들의 RE100 이행과 재생에너지 확보에 걸림돌로 작용</li><li>전력 수요 증가에 대응하는 원활한 송전 인프라 적기 구축의 시급성 부각</li></ul></div></div></div></div></div>
+    
+<div class='export-box'>
+  <h3>전력시장 리포트 다운로드</h3>
+  <p class='deal-meta'>국내 전력시장 주간 브리프 · 12차 전기본 시사점 및 관련 뉴스</p>
+  <p class='deal-meta'>서버 주소 <code>http://127.0.0.1:8765</code> 로 연 뒤 다운로드하세요.</p>
+  <div class='export-actions'>
+    <a class='btn' href='http://127.0.0.1:8765/exports/latest_power_report.txt' download>텍스트 다운로드</a>
+    <a class='btn secondary' href='http://127.0.0.1:8765/exports/latest_power_report.doc' download>Word 다운로드</a>
+  </div>
+</div>
+
+    <footer>갱신 2026-07-30 07:31 · 2026-Q3 · 기업 전략 동향 AI 트래커</footer>
+  </div>
+  <script>
+    function activateTab(id) {
+      if (!id) return;
+      const panel = document.getElementById(id);
+      if (!panel) return;
+      const btn = document.querySelector('button[data-tab="' + id + '"]');
+      if (!btn) return;
+      const scope = btn.closest('.tabs');
+      if (!scope) return;
+      const panelIds = [...scope.querySelectorAll(':scope > button[data-tab]')].map(b => b.dataset.tab);
+      scope.querySelectorAll(':scope > button[data-tab]').forEach(b => b.classList.remove('active'));
+      panelIds.forEach(pid => {
+        const p = document.getElementById(pid);
+        if (p && !p.classList.contains('hist-panel')) p.classList.remove('active');
+      });
+      btn.classList.add('active');
+      panel.classList.add('active');
+      requestAnimationFrame(() => {
+        if (typeof Chart === 'undefined') return;
+        panel.querySelectorAll('canvas').forEach(c => {
+          const ch = Chart.getChart(c);
+          if (ch) ch.resize();
+        });
+      });
+    }
+    document.querySelectorAll('.tabs').forEach(scope => {
+      scope.querySelectorAll(':scope > button[data-tab]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activateTab(btn.dataset.tab);
+          if (btn.dataset.tab) history.replaceState(null, '', '#' + btn.dataset.tab);
+        });
+      });
+    });
+    if (location.hash) activateTab(location.hash.replace(/^#/, ''));
+  </script>
+  
+</body>
+</html>
