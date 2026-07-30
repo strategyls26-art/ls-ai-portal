@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Siemens — 2026-Q3</title>
+  <style>
+:root {
+  --bg: #f5f7fb; --panel: #ffffff; --card: #ffffff; --text: #1e293b;
+  --muted: #64748b; --accent: #0284c7; --accent-2: #059669; --border: #e2e8f0;
+  --soft: #f1f5f9; --soft-2: #eef2ff; --brand-navy: #1e3a5f;
+}
+* { box-sizing: border-box; }
+body { margin:0; font-family:"Segoe UI","Malgun Gothic",sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
+.wrap { max-width: 1140px; margin: 0 auto; padding: 28px 20px 48px; }
+h1 { margin: 0 0 6px; font-size: 1.85rem; color:#0f172a; }
+h1.brand-title { color: var(--brand-navy); }
+.sub { color: var(--muted); margin-bottom: 20px; }
+.nav { display:flex; gap:8px; flex-wrap:wrap; margin-bottom: 20px; }
+.nav a { padding:8px 12px; border-radius:10px; background:var(--card); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.85rem; }
+.nav a.active, .nav a:hover { border-color:var(--brand-navy); color:var(--brand-navy); background:#eef2ff; }
+.home-section {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:18px 20px; margin-bottom:16px; box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+.home-section-head { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px; flex-wrap:wrap; }
+.home-section-head h2 { margin:0; font-size:1.15rem; color:var(--brand-navy); }
+.home-co-list { display:flex; flex-direction:column; gap:10px; }
+.home-co-row {
+  display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+  padding:12px 14px; border:1px solid var(--border); border-radius:12px; background:#fff;
+}
+.home-co-main { display:flex; align-items:center; gap:8px; flex:1; min-width:160px; }
+.home-co-links { display:flex; gap:8px; flex-wrap:wrap; }
+.home-co-links a {
+  padding:6px 10px; border-radius:8px; border:1px solid var(--border);
+  text-decoration:none; color:var(--brand-navy); font-size:0.82rem; background:var(--soft);
+}
+.home-co-links a:hover { border-color:var(--accent); background:#e0f2fe; }
+.co-logo { width:28px; height:28px; border-radius:6px; object-fit:contain; background:#fff; border:1px solid var(--border); }
+.co-logo-fallback {
+  width:28px; height:28px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center;
+  background:var(--brand-navy); color:#fff; font-size:0.85rem; font-weight:700;
+}
+.home-hist-stats { display:flex; gap:18px; margin-top:8px; color:var(--muted); }
+.home-hist-stats strong { color:var(--brand-navy); font-size:1.2rem; margin-right:4px; }
+.mega-notes { margin:8px 0 12px; padding-left:18px; color:var(--muted); font-size:0.88rem; }
+.ai-summary-box {
+  background:#f8fafc; border:1px solid var(--border); border-left:4px solid var(--brand-navy);
+  border-radius:12px; padding:14px 16px; margin:14px 0;
+}
+.ai-summary-box pre { white-space:pre-wrap; font-family:inherit; font-size:0.9rem; color:#334155; margin:8px 0 0; }
+.ai-summary-box.compact { padding:10px 12px; margin:8px 0 0; }
+.home-ai-ul { margin:8px 0 0; padding-left:18px; color:#334155; font-size:0.88rem; }
+.home-ai-ul li { margin:4px 0; }
+.home-ai-ul .ai-k {
+  display:inline-block; min-width:5.5rem; color:var(--brand-navy); font-weight:600; font-size:0.8rem;
+}
+.hero {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 55%, #ecfdf5 100%);
+  border:1px solid var(--border); border-radius:16px; padding:28px; margin-bottom:24px;
+  box-shadow:0 1px 2px rgba(15,23,42,.04);
+}
+.entry-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin-top:18px; }
+.entry {
+  display:block; background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:22px; text-decoration:none; color:inherit; transition:border-color .15s, box-shadow .15s;
+  box-shadow:0 1px 2px rgba(15,23,42,.04);
+}
+.entry:hover { border-color: var(--accent); box-shadow:0 4px 12px rgba(2,132,199,.08); }
+.entry h2 { margin:0 0 8px; font-size:1.35rem; color:var(--accent-2); }
+.entry p { margin:0; color:var(--muted); font-size:0.92rem; }
+.entry .count { margin-top:12px; font-size:1.6rem; font-weight:700; color:var(--accent); }
+.tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; position:sticky; top:0; z-index:5;
+  background:rgba(245,247,251,.94); backdrop-filter:blur(8px); padding:10px 0; border-bottom:1px solid var(--border); }
+.tabs button {
+  border:1px solid var(--border); background:var(--card); color:var(--text);
+  padding:8px 12px; border-radius:8px; cursor:pointer; font-size:0.85rem;
+}
+.tabs button.active { border-color:var(--accent); color:var(--accent); background:#e0f2fe; }
+.tab-panel { display:none; }
+.tab-panel.active { display:block; }
+.tab-desc { color:var(--muted); font-size:0.9rem; margin-bottom:14px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; }
+.card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px; box-shadow:0 1px 2px rgba(15,23,42,.03); }
+.card-head { display:flex; justify-content:space-between; gap:8px; margin-bottom:10px; }
+.card h3 { margin:0; font-size:1rem; }
+.tag { font-size:0.7rem; background:#e0f2fe; color:#0369a1; padding:3px 8px; border-radius:6px; white-space:nowrap; }
+.tag.intl { background:#d1fae5; color:#047857; }
+.module-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; margin-bottom:12px; }
+.mod-stat { background:var(--soft); border-radius:8px; padding:8px 6px; text-align:center; font-size:0.72rem; color:var(--muted); }
+.mod-stat strong { display:block; font-size:1.05rem; color:var(--text); }
+.btn { display:inline-block; padding:9px 12px; border-radius:10px; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; font-size:0.88rem; border:none; cursor:pointer; }
+.btn.secondary { background:#10b981; color:#fff; }
+.empty { color:var(--muted); font-style:italic; }
+.deal-kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px; margin-bottom:18px; }
+.deal-kpi { background:var(--card); border:1px solid var(--border); border-left:4px solid var(--c,#0284c7);
+  border-radius:10px; padding:12px 14px; text-decoration:none; color:inherit; }
+.deal-kpi-label { font-size:0.85rem; }
+.deal-kpi-count { font-size:1.7rem; font-weight:700; color:var(--c,#0284c7); }
+.deal-kpi-en { font-size:0.72rem; color:var(--muted); }
+.deal-section { background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:16px 18px; margin-bottom:14px; scroll-margin-top:70px; }
+.deal-section h3 { margin:0 0 12px; font-size:1.05rem; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.deal-section h3 .dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
+.deal-section h3 small { color:var(--muted); font-weight:400; font-size:0.8rem; }
+.deal-section h3 em { margin-left:auto; font-style:normal; color:var(--accent); font-size:0.85rem; }
+.deal-item { padding:12px 0; border-bottom:1px solid var(--border); }
+.deal-item:last-child { border-bottom:none; }
+.deal-item-top { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:4px; }
+.pill { color:#fff; font-size:0.7rem; padding:2px 8px; border-radius:4px; }
+.src { font-size:0.72rem; color:var(--muted); background:var(--soft); padding:2px 6px; border-radius:4px; }
+.co { font-size:0.78rem; color:var(--accent-2); }
+.deal-title { font-weight:600; margin-bottom:4px; }
+.deal-meta { font-size:0.8rem; color:var(--muted); margin-bottom:4px; }
+.deal-sum { font-size:0.88rem; color:#475569; margin:6px 0; }
+a { color:var(--accent); }
+.chart-box { background:var(--soft); border-radius:10px; padding:10px; margin:8px 0 12px; border:1px solid var(--border); }
+table.fin { width:100%; border-collapse:collapse; font-size:0.8rem; }
+table.fin th, table.fin td { border-bottom:1px solid var(--border); padding:0.4rem 0.3rem; text-align:right; }
+table.fin th:first-child, table.fin td:first-child { text-align:left; }
+table.fin th { color:var(--muted); }
+.price-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; margin-top:14px; }
+.price-chip { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px; }
+.price-chip.intl { border-color:#a7f3d0; }
+.pc-name { font-size:0.78rem; color:var(--muted); margin-bottom:4px; }
+.pc-price { font-size:1.15rem; font-weight:700; }
+.pc-chg { font-size:0.8rem; margin-top:2px; }
+.pc-chg.up { color:#059669; }
+.pc-chg.down { color:#dc2626; }
+.mod-stat em { display:block; font-size:0.65rem; color:#d97706; font-style:normal; }
+.geo-tag { display:inline-block; background:#ffedd5; color:#9a3412; font-size:0.7rem; padding:2px 8px; border-radius:4px; font-weight:600; }
+.bm-banner { background:#fff7ed; border:1px solid #fdba74; border-radius:12px; padding:12px 14px; margin-bottom:14px; }
+table.fin tr.bm-row td { background:#fffbeb; color:#92400e; font-weight:600; }
+.debt-ratio { color:#d97706; font-weight:700; }
+.markets-panel {
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 45%, #f0f9ff 100%);
+  border:1px solid var(--border); border-radius:16px; padding:20px 22px; margin-bottom:20px;
+}
+.markets-head { display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
+.markets-section-label { font-size:0.78rem; color:#047857; margin:12px 0 8px; letter-spacing:0.02em; }
+.mkt-chip { background:#fff; border:1px solid var(--border); border-radius:12px; padding:12px; }
+.mkt-chip.commodity { border-color:#f59e0b; }
+.mkt-chip.index { border-color:#38bdf8; }
+.mkt-chip.fx { border-color:#06b6d4; }
+.mkt-chip.rate { border-color:#8b5cf6; }
+.mkt-unit { font-size:0.72rem; color:var(--muted); font-weight:500; }
+.mkt-note { font-size:0.7rem; color:var(--muted); margin-top:6px; line-height:1.35; }
+.power-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px 18px; margin-bottom:14px; }
+.power-card h3 { margin:0 0 8px; font-size:1.05rem; color:var(--accent-2); }
+.power-label { font-size:0.78rem; color:#047857; margin:12px 0 6px; }
+.power-list { margin:0; padding-left:1.1rem; color:#334155; font-size:0.9rem; }
+.power-list li { margin-bottom:4px; }
+.export-box { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px; margin:14px 0 20px; }
+.export-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+.email-form { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:10px; }
+.email-form input[type=email],
+.email-form input[type=text],
+.email-form select {
+  flex:1; min-width:180px; padding:10px 12px; border-radius:8px;
+  border:1px solid var(--border); background:#fff; color:var(--text);
+}
+.email-form button { border:none; cursor:pointer; }
+.briefing-list { margin-top:12px; display:flex; flex-direction:column; gap:12px; }
+.briefing-card {
+  background:#fff; border:1px solid var(--border); border-radius:12px; padding:14px 16px;
+}
+.briefing-card-head { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:6px; }
+.briefing-badge {
+  font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:6px;
+  background:#e0f2fe; color:#0369a1;
+}
+.briefing-badge.status-pending { color:#b45309; background:#fef3c7; }
+.briefing-badge.status-sent { color:#047857; background:#d1fae5; }
+.briefing-badge.status-rejected { color:#b91c1c; background:#fee2e2; }
+.briefing-badge.status-failed { color:#c2410c; background:#ffedd5; }
+.briefing-preview {
+  white-space:pre-wrap; font-size:0.78rem; color:#475569; background:var(--soft);
+  border:1px solid var(--border); border-radius:8px; padding:10px; margin:8px 0; max-height:140px; overflow:auto;
+}
+.tag-row { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+.impact-hint { font-size:0.78rem; color:#b45309; margin:4px 0 6px; }
+.focus-line { color:#047857; font-size:0.9rem; margin:0 0 10px; }
+.fin-sub { margin:14px 0 8px; font-size:0.95rem; color:var(--accent-2); }
+.mkt-chart-card { background:#fff; border:1px solid var(--border); border-radius:12px; padding:12px; }
+.mkt-chart-card.commodity { border-color:#f59e0b; }
+.mkt-chart-card.fx { border-color:#06b6d4; }
+.mkt-chart-card.rate { border-color:#8b5cf6; }
+.mkt-chart-card.index { border-color:#38bdf8; }
+.mkt-mini-chart { height:110px; margin-top:8px; }
+.deal-wrap-v2 .deal-hero {
+  display:flex; flex-wrap:wrap; justify-content:space-between; gap:14px; align-items:flex-end;
+  background:linear-gradient(135deg,#ffffff,#f0f9ff); border:1px solid var(--border);
+  border-radius:14px; padding:16px 18px; margin-bottom:12px;
+}
+.deal-hero-title { margin:0 0 6px; font-size:1.25rem; color:var(--accent-2); }
+.deal-filter-bar {
+  position:sticky; top:8px; z-index:20; display:flex; flex-wrap:wrap; gap:8px;
+  background:rgba(255,255,255,.96); border:1px solid var(--border); border-radius:12px;
+  padding:10px 12px; margin-bottom:14px; backdrop-filter:blur(6px);
+}
+.deal-filter {
+  border:1px solid var(--border); background:#fff; color:var(--text);
+  border-radius:10px; padding:10px 14px; cursor:pointer; font-size:0.9rem;
+  border-left:4px solid var(--c,#64748b);
+}
+.deal-filter em { font-style:normal; font-weight:700; color:var(--c,#0284c7); margin-left:6px; }
+.deal-filter.active { background:#e0f2fe; box-shadow:0 0 0 1px var(--c,#0284c7); color:#0f172a; }
+.deal-panel { margin-bottom:16px; }
+.deal-panel-head {
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  margin-bottom:12px; padding-bottom:8px; border-bottom:2px solid var(--c,#0284c7);
+}
+.deal-panel-head h3 { margin:0; font-size:1.15rem; }
+.deal-panel-head small { color:var(--muted); font-weight:400; margin-left:8px; }
+.deal-panel-count { color:var(--c,#0284c7); font-weight:700; font-size:1rem; }
+.deal-card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; }
+.deal-card {
+  display:flex; background:#fff; border:1px solid var(--border); border-radius:12px; overflow:hidden;
+  min-height:140px; box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+.deal-card-bar { width:6px; flex-shrink:0; }
+.deal-card-body { padding:14px 16px; flex:1; }
+.deal-card .deal-title { font-size:1.05rem; line-height:1.45; margin-bottom:6px; }
+.deal-card .deal-sum { font-size:0.92rem; line-height:1.5; color:#475569; }
+.deal-link { display:inline-block; margin-top:10px; font-weight:600; color:var(--accent); }
+.deal-nav { display:flex; flex-wrap:wrap; gap:8px; }
+.deal-nav-btn {
+  display:flex; align-items:center; gap:8px; text-decoration:none; color:var(--text);
+  background:#fff; border:1px solid var(--border); border-left:4px solid var(--c,#0284c7);
+  border-radius:10px; padding:8px 12px; font-size:0.85rem;
+}
+.deal-nav-btn span { color:var(--c,#0284c7); font-weight:700; font-size:1.05rem; }
+.deal-section-v2 { scroll-margin-top:90px; }
+footer { margin-top:28px; text-align:center; color:var(--muted); font-size:0.85rem; }
+@media (max-width:600px){ .module-grid { grid-template-columns:repeat(3,1fr); } }
+
+.hist-arch-grid { display:flex; flex-wrap:wrap; gap:14px; align-items:center; }
+.hist-arch-col { flex:1; min-width:200px; background:var(--soft); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+.hist-arch-arrow { color:var(--accent); font-weight:700; font-size:0.85rem; }
+.hist-kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; margin:14px 0 18px; }
+.hist-kpi { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px 14px; }
+.hist-kpi strong { display:block; font-size:1.5rem; color:var(--accent); }
+.hist-kpi span { font-size:0.78rem; color:var(--muted); }
+.hist-event-head { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:6px; }
+.hist-details { margin-top:10px; }
+.hist-details summary { cursor:pointer; color:var(--accent); font-weight:600; font-size:0.9rem; }
+.hist-src-block { margin-top:10px; padding-top:8px; border-top:1px solid var(--border); }
+.hist-src-label { font-size:0.8rem; color:var(--accent-2); margin-bottom:6px; font-weight:600; }
+.hist-src-label em { font-style:normal; color:var(--accent); margin-left:4px; }
+.hist-ev-list { margin:0; padding-left:1.1rem; }
+.hist-ev-item { margin-bottom:8px; }
+.hist-co h3 { font-size:1.05rem; }
+.hist-cat-tabs { margin-bottom:14px; }
+.hist-cat-tab {
+  border:1px solid var(--border); background:var(--card); color:var(--text);
+  padding:10px 14px; border-radius:10px; cursor:pointer; font-size:0.9rem;
+  border-left:4px solid var(--c,#64748b);
+}
+.hist-cat-tab small { color:var(--muted); margin-left:4px; font-size:0.75rem; }
+.hist-cat-tab em { font-style:normal; font-weight:700; color:var(--c,#0284c7); margin-left:6px; }
+.hist-cat-tab.active { background:#e0f2fe; box-shadow:0 0 0 1px var(--c,#0284c7); color:#0f172a; }
+.hist-year-focus {
+  display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:0 0 14px;
+}
+.hist-focus-btn {
+  border:1px solid var(--border); background:#fff; color:var(--text);
+  border-radius:8px; padding:6px 12px; cursor:pointer; font-size:0.82rem;
+}
+.hist-focus-btn.active { border-color:var(--accent); color:var(--accent); background:#e0f2fe; }
+.hist-basis {
+  display:inline-block; font-size:0.72rem; font-weight:600;
+  background:#e0f2fe; color:#0369a1; padding:2px 8px; border-radius:6px;
+}
+.hist-tl { margin-top:8px; }
+.hist-tl-year { margin-bottom:22px; }
+.hist-tl-year-label {
+  display:inline-block; font-size:1.05rem; font-weight:700; color:var(--accent-2);
+  background:#ecfdf5; border:1px solid var(--border); border-radius:8px;
+  padding:4px 12px; margin-bottom:12px;
+}
+.hist-tl-year-label em { font-style:normal; color:var(--accent); margin-left:6px; font-size:0.9rem; }
+.hist-tl-empty { color:var(--muted); font-size:0.85rem; font-style:italic; margin:0 0 0 12px; }
+.hist-tl-rail {
+  position:relative; margin-left:12px; padding-left:28px;
+  border-left:2px solid #cbd5e1;
+}
+.hist-tl-item {
+  position:relative; margin-bottom:16px;
+}
+.hist-tl-item::before {
+  content:''; position:absolute; left:-36px; top:10px;
+  width:12px; height:12px; border-radius:50%;
+  background:var(--c,#0284c7); border:2px solid #fff;
+  box-shadow:0 0 0 2px var(--c,#0284c7);
+}
+.hist-tl-date {
+  font-size:0.8rem; color:var(--muted); font-weight:600; margin-bottom:4px;
+  letter-spacing:0.02em;
+}
+.hist-tl-card {
+  background:#fff; border:1px solid var(--border); border-radius:12px;
+  padding:12px 14px; border-left:3px solid var(--c,#0284c7);
+  box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+</style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <a href="../index.html" class="">홈</a>
+      <a href="../domestic.html" class="">국내</a>
+      <a href="../international.html" class="">해외</a>
+      <a href="../markets.html" class="">시장</a>
+      <a href="../power.html" class="">전력시장</a>
+      <a href="../mega_projects.html" class="">메가 프로젝트</a>
+      <a href="../history.html" class="active">히스토리 DB</a>
+    </nav>
+    
+        <p><a href="../history.html">← 히스토리 DB 목록</a></p>
+        <h1>Siemens</h1>
+        <p class="sub"><span class="tag intl">해외</span>
+          INTL:SIE.DE · 실적 4년 · 이벤트 9건</p>
+        
+    <div class="ai-summary-box">
+      <strong>Gemini AI 요약</strong>
+      <span class="deal-meta"> · gemini-flash-latest · 2026-07-23T09:56:46Z</span>
+      <pre>제공된 DB 자료를 바탕으로 작성한 지멘스(Siemens, INTL:SIE.DE)의 전략 방향성 요약입니다.
+
+---
+
+### 1) 한줄 요약
+지멘스는 &#x27;ONE Tech&#x27; 전략을 바탕으로 **산업용 AI·디지털 쌍둥이(Digital Twin) 등 디지털 비즈니스(Siemens Xcelerator)를 확장**하고, **청정 에너지 파트너십과 스마트 인프라·모빌리티 수주 성장**을 통해 수익성 있는 성장을 추진하고 있습니다. (근거: IR, 뉴스)
+
+---
+
+### 2) 핵심 전략 축 (4개)
+
+1. **산업용 AI(Industrial AI) 및 디지털 기술 혁신**
+   - CES 2026에서 Industrial AI 혁신 가속화를 위한 신기술, 클라우드 연계 엔지니어링, 몰입형 시뮬레이션 및 &#x27;Digital Twin Composer&#x27; 소프트웨어를 출시했습니다. (근거: IR)
+   - 파트너십 확대를 통해 산업용 AI 심화 및 구축을 추진하고 있습니다. (근거: IR, 뉴스)
+
+2. **Siemens Xcelerator 기반 디지털 비즈니스 확장 (ONE Tech 전략)**
+   - &#x27;ONE Tech&#x27; 전략을 통해 디지털 비즈니스 매출을 지속 확장하고 파트너 생태계를 늘려가고 있습니다. (근거: IR)
+
+3. **청정 에너지 및 지속가능성 파트너십 강화**
+   - FuelCell Energy와 전략적 협력(MOU)을 맺고 청정 전력 솔루션의 스케일업을 추진하고 있습니다. (근거: 뉴스)
+   - 호주 Vulcan Energy와 유럽의 지속 가능한 리튬 공급을 위한 파트너십(Project Lionheart)을 진행하고 있습니다. (근거: IR)
+
+4. **스마트 인프라 및 모빌리티 부문 수주 모멘텀**
+   - Smart Infrastructure(역대 최고 수주 달성) 및 Mobility 사업부를 중심으로 두 자릿수 신규 수주 성장을 달성하고 있습니다. (근거: IR)
+
+---
+
+### 3) 실적과의 연결
+
+* **매출 및 이익 성장 흐름**
+  - **연간 실적**: 매출은 2022년 720억에서 2025년 789억으로 지속 성장했습니다. 영업이익은 2022년 73억에서 2024년 95억으로 증가한 뒤 2025년 91억을 기록했습니다. (근거: yahoo)
+  - **분기 실적**: 2025 Q2(매출 194억/영업이익 26억)부터 2026 Q1(매출 198억/영업이익 27억)까지 분기별 20억대 중후반의 영업이익을 유지하고 있습니다. (근거: yahoo)
+* **수주 모멘텀 기반 실적 견인**
+  - 2026년 Q2 신규 수주는 전년 동기 대비 18% 증가한 241억 유로를 기록했으며, 매출 또한 비교 기준 6% 증가한 198억 유로를 달성하여 강력한 수주 잔고(Backlog)가 탑라인 성장을 밑받침하고 있습니다. (근거: IR)
+  - 견조한 Q1 실적 성과를 바탕으로 2026 회계연도 전체 실적 전망(Outlook)을 상향 조정했습니다. (근거: IR)
+
+---
+
+### 4) 리스크 / 관찰 포인트
+
+* **영업이익률 세부 수치 미비**: 연간 영업이익률 수치가 제공된 데이터상 &#x27;-%&#x27;로 나와 있어 세부 이익률 추이 파악 불가 (근거: yahoo / 자료 없음).
+* **청정 에너지 및 AI 파트너십의 실질 수익화 시점**: FuelCell Energy 및 Vulcan Energy 등 신규 전략 협력/MOU 사업이 실제 매출 및 이익 성장에 실질적으로 기여하는지 관찰 필요. (근거: 뉴스, IR)
+* **시장 환경 변화 및 디지털 산업 부문 성장 지속성**: 거시적 시장 환경 속에서 디지털 산업(Digital Industries) 및 자동화 부문 시장 점유율 확대가 지속되는지 주시 필요. (근거: IR)</pre>
+      
+    </div>
+    
+        
+    <div class="card" style="margin-bottom:14px">
+      <h3 style="margin:0 0 8px">연도별 실적 <span class="sub">(원 단위(소스) · 막대=매출/영업이익, 선=영업이익률)</span></h3>
+      <div class="chart-box"><canvas id="fin_INTL_SIE_DE" height="140"></canvas></div>
+      <table class="fin">
+        <thead><tr>
+          <th>연도</th><th>매출</th><th>영업이익</th><th>순이익</th><th>영업이익률</th><th>출처</th>
+        </tr></thead>
+        <tbody><tr><td>2022</td><td>71,977,000,000</td><td>7,276,000,000</td><td>3,723,000,000</td><td>10.11%</td><td>yahoo</td></tr><tr><td>2023</td><td>74,882,000,000</td><td>9,402,000,000</td><td>7,949,000,000</td><td>12.56%</td><td>yahoo</td></tr><tr><td>2024</td><td>75,930,000,000</td><td>9,498,000,000</td><td>8,301,000,000</td><td>12.51%</td><td>yahoo</td></tr><tr><td>2025</td><td>78,914,000,000</td><td>9,092,000,000</td><td>9,620,000,000</td><td>11.52%</td><td>yahoo</td></tr></tbody>
+      </table>
+      <p class="sub" style="margin:8px 0 0">영업이익률 = 영업이익 ÷ 매출 × 100 (DB 값 없으면 계산)</p>
+    </div>
+    
+        
+    <div class="card hist-timeline-card">
+      <h3 style="margin:0 0 10px">전략 이벤트 타임라인</h3>
+      <p class="tab-desc">기본: <strong>전체</strong> 탭 · 데이터 전 기간(2026–2026).
+        기간 보기에서 <strong>2026 / 2025 / 2024 …</strong> 연도별로 좁힐 수 있습니다.</p>
+      <div class="tabs hist-cat-tabs"><button type='button' class='hist-cat-tab active' data-tab='hist-tab-all' style='--c:#38bdf8'>전체 <small>전 기간</small> <em>9</em></button><button type='button' class='hist-cat-tab' data-tab='hist-tab-orders' style='--c:#3d8bfd'>수주 <small>계약·수주</small> <em>3</em></button><button type='button' class='hist-cat-tab' data-tab='hist-tab-strategy' style='--c:#9b59b6'>전략 <small>MOU·제휴·인수</small> <em>6</em></button><button type='button' class='hist-cat-tab' data-tab='hist-tab-investment' style='--c:#20c997'>투자 <small>투자·지분</small> <em>0</em></button></div>
+      <div id='hist-tab-all' class='tab-panel active'><p class='tab-desc'>전체 · 데이터 기준 2026–2026 (오래된 → 최근). 날짜가 불명확하면 뉴스·애널 등 <strong>자료 기준</strong>을 표시합니다.</p><div class='hist-year-focus' data-panel='hist-tab-all'><span class='sub'>기간 보기:</span> <button type='button' class='hist-focus-btn active' data-focus='all'>전체</button><button type='button' class='hist-focus-btn' data-focus='2026'>2026</button><button type='button' class='hist-focus-btn' data-focus='undated'>날짜 미상</button></div><div class="hist-tl">
+                <section class="hist-tl-year" data-year="2026">
+                  <div class="hist-tl-year-label">2026 <em>1</em></div>
+                  <div class="hist-tl-rail">
+    <article class="hist-tl-item" data-event-year="2026" style="--c:#e67e22">
+      <div class="hist-tl-date">2026-07-09（뉴스 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#e67e22">MOU·협약</span>
+          <span class='hist-basis'>뉴스 기준</span>
+          <span class="src">근거 2건 · 뉴스 · 웹</span>
+        </div>
+        <div class="deal-title">FuelCell Energy Shares Surge After Strategic Collaboration With Siemens (FCEL)</div>
+        <div class='deal-sum'>Press Munich, May 13, 2026 Siemens continues path of profitable growth • Orders in Q2 2026 climbed 18 percent on a comparable basis to €24.1 billion (Q2 2025: €21.6 billion) • Revenue increased 6 percent on a comparable basis to €19.8 billion (Q2 2025: €19.8 billion) • Profit Industrial Business totaled €3.0 billion; in Q2 2025, Profit Industrial Business of €3.2 billion had benefited from a €0.3 </div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>뉴스 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://investorshub.advfn.com/market-news/article/31600/fuelcell-energy-shares-surge-after-strategic-collaboration-with-siemens-fcel" target="_blank" rel="noopener">FuelCell Energy Shares Surge After Strategic Collaboration With Siemens (FCEL)</a><div class='deal-meta'>2026-07-09</div></li></ul></div><div class='hist-src-block'><div class='hist-src-label'>웹 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://assets.new.siemens.com/siemens/assets/api/uuid:b776bca3-2e57-41cb-bac4-319e0829bcfd/2026-q2-press-release-en.pdf" target="_blank" rel="noopener">Press Release “Siemens continues path of profitable growth”</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\SIE_DE\intl_web\Press_Release__Siemens_continues_path_of_profitable_growth_.pdf</div><div class='deal-sum'>Press Munich, May 13, 2026 Siemens continues path of profitable growth • Orders in Q2 2026 climbed 18 percent on a comparable basis to €24.1 billion (Q2 2025: €21.6 billion) • Revenue increased 6 percent on a comparable basis to €19.8 billion (Q2 2025: €19.8 billion) • Profit Ind</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    </div>
+                </section>
+                
+            <section class="hist-tl-year" data-year="undated">
+              <div class="hist-tl-year-label">날짜 미상 <em>8</em></div>
+              <div class="hist-tl-rail">
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#e67e22">
+      <div class="hist-tl-date">날짜 미상（IR 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#e67e22">MOU·협약</span>
+          <span class='hist-basis'>IR 자료 기준</span>
+          <span class="src">근거 5건 · IR</span>
+        </div>
+        <div class="deal-title"></div>
+        <div class='deal-sum'>Q4 Highlights Strong finish to fiscal 2022 – excellent starting position for fiscal 2023 • Ongoing order momentum: Book-to-bill 1.06, record high backlog of €102bn Excellent topline • Strong revenue growth: up 12%, driven by volume and price • Further gaining market share in DI Automation: Revenue up 23% • Record profit Industrial Business: First time &gt;€3bn in a quarter Great execution • Again, ou</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>IR <em>5</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://assets.new.siemens.com/siemens/assets/api/uuid:fd41cb37-28dc-4fa9-940f-6fe1a3fc3f8e/2026-q2-HY-report-en.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>The carrying amounts of investments accounted for using the equity method at SFS total €627 million and €565 million, respectively, as of March 31, 2026, and September 30, 2025, the resulting gains of those investments at SFS are €110 million and €321 million, respectively, in th</div></li><li class='hist-ev-item'><a href="https://assets.ctfassets.net/17si5cpawjzf/sEROmmIiNcP65YuAQ241v/eb9fa808f2a820c62b2a16e0daaba90d/2022-q4-presentation-en-2.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>Q4 Highlights Strong finish to fiscal 2022 – excellent starting position for fiscal 2023 • Ongoing order momentum: Book-to-bill 1.06, record high backlog of €102bn Excellent topline • Strong revenue growth: up 12%, driven by volume and price • Further gaining market share in DI A</div></li><li class='hist-ev-item'><a href="https://assets.ctfassets.net/17si5cpawjzf/52NE5FyU0mM0VkrOcrcOtp/de5d11549dca55971db44c46116dd8b4/2022-q3-earnings-release-en.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>In addition, we consistently and successfully implemented our portfolio optimization and sharply accelerated our share buyback program,” said Ralf P.</div></li><li class='hist-ev-item'><a href="https://assets.new.siemens.com/siemens/assets/api/uuid:b333927d-5456-44f7-b410-e7fe5b4b7f9b/2026-q2-presentation-en.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>Hanover Fair Industrial AI is revolutionizing manufacturing to increase resilience and competitiveness NEXT-LEVEL INDUSTRIAL AI PHYSICAL AI Eigen Engineering Agent Automating the unknown • Moving industrial AI from assistance to • Automation of complex and unpredictable tasks aut</div></li><li class='hist-ev-item'><a href="https://assets.ctfassets.net/17si5cpawjzf/1liUz1NDLySSAIx9eMEu9D/26247a6526b6e3e9e2a4cf3e3549363e/2026-q1-earnings-release-en.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>We are continuing to rigorously execute our strategy, and our accelerated share buyback program is consistently creating value for shareholders,” said Ralf P.</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#3d8bfd">
+      <div class="hist-tl-date">날짜 미상（IR 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#3d8bfd">수주·계약</span>
+          <span class='hist-basis'>IR 자료 기준</span>
+          <span class="src">근거 3건 · IR</span>
+        </div>
+        <div class="deal-title"></div>
+        <div class='deal-sum'>9.4 Key levers for profitable growth ONE Tech strategy delivering results Grow Digital Digital business revenue Grow Regions (€bn) Digital business growth driven by +19% Siemens &amp; Australian Vulcan Energy expansion of Siemens Xcelerator partner to scale Europe’s sustainable offerings lithium supply – Project Lionheart 5.0 4.2 Strong growth trajectory of Software Preferred supplier for automation,…</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>IR <em>3</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://assets.new.siemens.com/siemens/assets/api/uuid:6e946435-a71f-4654-a2bc-52340bc20104/2026-q2-earnings-release-en.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>Earnings Release Q2 FY 2026 | Siemens Siemens • Double-digit order growth in most industrial businesses included substantial increases at Smart Infrastructure – once again with Q2 % Change record-high order intake – and at Mobility; Digital Industries (in millions of €) FY 2026 F</div></li><li class='hist-ev-item'><a href="https://assets.ctfassets.net/17si5cpawjzf/52NE5FyU0mM0VkrOcrcOtp/de5d11549dca55971db44c46116dd8b4/2022-q3-earnings-release-en.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>We also acquired Brightly Software, an outstanding software-as-a-service player in the building space, which perfectly complements our leading position in smart buildings.” “Our continued top line momentum translated into a record, high-quality and high-quantity order backlog of </div></li><li class='hist-ev-item'><a href="https://assets.new.siemens.com/siemens/assets/api/uuid:b333927d-5456-44f7-b410-e7fe5b4b7f9b/2026-q2-presentation-en.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>9.4 Key levers for profitable growth ONE Tech strategy delivering results Grow Digital Digital business revenue Grow Regions (€bn) Digital business growth driven by +19% Siemens &amp; Australian Vulcan Energy expansion of Siemens Xcelerator partner to scale Europe’s sustainable offer</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#9b59b6">
+      <div class="hist-tl-date">날짜 미상（웹 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#9b59b6">제휴</span>
+          <span class='hist-basis'>웹 자료 기준</span>
+          <span class="src">근거 1건 · 웹</span>
+        </div>
+        <div class="deal-title">Q1</div>
+        <div class='deal-sum'>CES 2026: Siemens unveils technologies to accelerate the Industrial AI revolution Expanded partnerships to drive industrial AI, cloud-connected engineering &amp; immersive simulation Launch of Digital Twin Composer software • Expanded partnership to build the Industrial AI • Pilot customer in consumer packaged • Bridging the world of IT &amp; operations Operating System goods industry • Expanding the Indu</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>웹 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://assets.ctfassets.net/17si5cpawjzf/5rco127090t290qwEBD8rO/5309551d670c3da49338b2be613b2220/2026-q1-presentation-en.pdf" target="_blank" rel="noopener">Q1</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\SIE_DE\intl_web\Q1.pdf</div><div class='deal-sum'>CES 2026: Siemens unveils technologies to accelerate the Industrial AI revolution Expanded partnerships to drive industrial AI, cloud-connected engineering &amp; immersive simulation Launch of Digital Twin Composer software • Expanded partnership to build the Industrial AI • Pilot cu</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#a855f7">
+      <div class="hist-tl-date">날짜 미상（웹 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#a855f7">인수·M&amp;A</span>
+          <span class='hist-basis'>웹 자료 기준</span>
+          <span class="src">근거 1건 · 웹</span>
+        </div>
+        <div class="deal-title">Presentation “Siemens continues path of profitable growth”</div>
+        <div class='deal-sum'>9.4 Key levers for profitable growth ONE Tech strategy delivering results Grow Digital Digital business revenue Grow Regions (€bn) Digital business growth driven by +19% Siemens &amp; Australian Vulcan Energy expansion of Siemens Xcelerator partner to scale Europe’s sustainable offerings lithium supply – Project Lionheart 5.0 4.2 Strong growth trajectory of Software Preferred supplier for automation, </div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>웹 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://assets.new.siemens.com/siemens/assets/api/uuid:b333927d-5456-44f7-b410-e7fe5b4b7f9b/2026-q2-presentation-en.pdf" target="_blank" rel="noopener">Presentation “Siemens continues path of profitable growth”</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\SIE_DE\intl_web\Presentation__Siemens_continues_path_of_profitable_growth_.pdf</div><div class='deal-sum'>9.4 Key levers for profitable growth ONE Tech strategy delivering results Grow Digital Digital business revenue Grow Regions (€bn) Digital business growth driven by +19% Siemens &amp; Australian Vulcan Energy expansion of Siemens Xcelerator partner to scale Europe’s sustainable offer</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#3d8bfd">
+      <div class="hist-tl-date">날짜 미상（웹 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#3d8bfd">수주·계약</span>
+          <span class='hist-basis'>웹 자료 기준</span>
+          <span class="src">근거 1건 · 웹</span>
+        </div>
+        <div class="deal-title">Q3</div>
+        <div class='deal-sum'>Earnings Release Q3 FY 2022 APRIL 1 TO JUNE 30, 2022 Munich, Germany, August 11, 2022 Strong top line momentum and solid execution – outstanding Free cash flow “We captured significant opportunities in a market environment with ongoing high demand. Our strong top line momentum continued, with a comparable order growth of 20 percent since the beginning of fiscal 2022. This shows: Our business is at</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>웹 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://assets.ctfassets.net/17si5cpawjzf/52NE5FyU0mM0VkrOcrcOtp/de5d11549dca55971db44c46116dd8b4/2022-q3-earnings-release-en.pdf" target="_blank" rel="noopener">Q3</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\SIE_DE\intl_web\Q3.pdf</div><div class='deal-sum'>Earnings Release Q3 FY 2022 APRIL 1 TO JUNE 30, 2022 Munich, Germany, August 11, 2022 Strong top line momentum and solid execution – outstanding Free cash flow “We captured significant opportunities in a market environment with ongoing high demand. Our strong top line momentum co</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#e67e22">
+      <div class="hist-tl-date">날짜 미상（웹 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#e67e22">MOU·협약</span>
+          <span class='hist-basis'>웹 자료 기준</span>
+          <span class="src">근거 2건 · 웹</span>
+        </div>
+        <div class="deal-title">Q4</div>
+        <div class='deal-sum'>Q4 Highlights Strong finish to fiscal 2022 – excellent starting position for fiscal 2023 • Ongoing order momentum: Book-to-bill 1.06, record high backlog of €102bn Excellent topline • Strong revenue growth: up 12%, driven by volume and price • Further gaining market share in DI Automation: Revenue up 23% • Record profit Industrial Business: First time &gt;€3bn in a quarter Great execution • Again, ou</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>웹 <em>2</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://assets.ctfassets.net/17si5cpawjzf/sEROmmIiNcP65YuAQ241v/eb9fa808f2a820c62b2a16e0daaba90d/2022-q4-presentation-en-2.pdf" target="_blank" rel="noopener">Q4</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\SIE_DE\intl_web\Q4.pdf</div><div class='deal-sum'>Q4 Highlights Strong finish to fiscal 2022 – excellent starting position for fiscal 2023 • Ongoing order momentum: Book-to-bill 1.06, record high backlog of €102bn Excellent topline • Strong revenue growth: up 12%, driven by volume and price • Further gaining market share in DI A</div></li><li class='hist-ev-item'><a href="https://assets.ctfassets.net/17si5cpawjzf/1liUz1NDLySSAIx9eMEu9D/26247a6526b6e3e9e2a4cf3e3549363e/2026-q1-earnings-release-en.pdf" target="_blank" rel="noopener">Q1</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\SIE_DE\intl_web\Q1.pdf</div><div class='deal-sum'>Earnings Release Q1 FY 2026 October 1 to December 31, 2025 Munich, Germany, February 12, 2026 Strong start to fiscal 2026 – Outlook raised “Our strong first-quarter performance shows that we’re delivering on our strategy. Siemens is very well positioned in its growth markets. Art</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#9b59b6">
+      <div class="hist-tl-date">날짜 미상（웹 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#9b59b6">제휴</span>
+          <span class='hist-basis'>웹 자료 기준</span>
+          <span class="src">근거 1건 · 웹</span>
+        </div>
+        <div class="deal-title">H1 FY26 Half-year financial report</div>
+        <div class='deal-sum'>Segment information is disclosed for continuing operations. Segment measurement principles are those described in the Siemens Report for fiscal 2025. Revenue includes revenue from contracts with customers and revenue from leasing activities. In each of the half-years ended March 31, 2026, and 2025, lease revenue is €0.4 billion. In the six months ended March 31, 2026, and 2025, expenses for person</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>웹 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://assets.new.siemens.com/siemens/assets/api/uuid:fd41cb37-28dc-4fa9-940f-6fe1a3fc3f8e/2026-q2-HY-report-en.pdf" target="_blank" rel="noopener">H1 FY26 Half-year financial report</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\SIE_DE\intl_web\H1_FY26_Half_year_financial_report.pdf</div><div class='deal-sum'>Segment information is disclosed for continuing operations. Segment measurement principles are those described in the Siemens Report for fiscal 2025. Revenue includes revenue from contracts with customers and revenue from leasing activities. In each of the half-years ended March </div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#3d8bfd">
+      <div class="hist-tl-date">날짜 미상（웹 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#3d8bfd">수주·계약</span>
+          <span class='hist-basis'>웹 자료 기준</span>
+          <span class="src">근거 1건 · 웹</span>
+        </div>
+        <div class="deal-title">Q2 FY26 Earnings Release and Financial Results</div>
+        <div class='deal-sum'>Earnings Release Q2 FY 2026 | Siemens Siemens • Double-digit order growth in most industrial businesses included substantial increases at Smart Infrastructure – once again with Q2 % Change record-high order intake – and at Mobility; Digital Industries (in millions of €) FY 2026 FY 2025 Actual Comp. recorded significant growth Orders 24,114 21,643 11% 18% • Digital Industries and Smart Infrastructu</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>웹 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://assets.new.siemens.com/siemens/assets/api/uuid:6e946435-a71f-4654-a2bc-52340bc20104/2026-q2-earnings-release-en.pdf" target="_blank" rel="noopener">Q2 FY26 Earnings Release and Financial Results</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\SIE_DE\intl_web\Q2_FY26_Earnings_Release_and_Financial_Results.pdf</div><div class='deal-sum'>Earnings Release Q2 FY 2026 | Siemens Siemens • Double-digit order growth in most industrial businesses included substantial increases at Smart Infrastructure – once again with Q2 % Change record-high order intake – and at Mobility; Digital Industries (in millions of €) FY 2026 F</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    </div>
+            </section>
+            </div></div><div id='hist-tab-orders' class='tab-panel'><p class='tab-desc'>수주 · 데이터 기준 날짜 미상 포함 (오래된 → 최근). 날짜가 불명확하면 뉴스·애널 등 <strong>자료 기준</strong>을 표시합니다.</p><div class='hist-year-focus' data-panel='hist-tab-orders'><span class='sub'>기간 보기:</span> <button type='button' class='hist-focus-btn active' data-focus='all'>전체</button><button type='button' class='hist-focus-btn' data-focus='undated'>날짜 미상</button></div><div class="hist-tl">
+            <section class="hist-tl-year" data-year="undated">
+              <div class="hist-tl-year-label">날짜 미상 <em>3</em></div>
+              <div class="hist-tl-rail">
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#3d8bfd">
+      <div class="hist-tl-date">날짜 미상（IR 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#3d8bfd">수주·계약</span>
+          <span class='hist-basis'>IR 자료 기준</span>
+          <span class="src">근거 3건 · IR</span>
+        </div>
+        <div class="deal-title"></div>
+        <div class='deal-sum'>9.4 Key levers for profitable growth ONE Tech strategy delivering results Grow Digital Digital business revenue Grow Regions (€bn) Digital business growth driven by +19% Siemens &amp; Australian Vulcan Energy expansion of Siemens Xcelerator partner to scale Europe’s sustainable offerings lithium supply – Project Lionheart 5.0 4.2 Strong growth trajectory of Software Preferred supplier for automation,…</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>IR <em>3</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://assets.new.siemens.com/siemens/assets/api/uuid:6e946435-a71f-4654-a2bc-52340bc20104/2026-q2-earnings-release-en.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>Earnings Release Q2 FY 2026 | Siemens Siemens • Double-digit order growth in most industrial businesses included substantial increases at Smart Infrastructure – once again with Q2 % Change record-high order intake – and at Mobility; Digital Industries (in millions of €) FY 2026 F</div></li><li class='hist-ev-item'><a href="https://assets.ctfassets.net/17si5cpawjzf/52NE5FyU0mM0VkrOcrcOtp/de5d11549dca55971db44c46116dd8b4/2022-q3-earnings-release-en.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>We also acquired Brightly Software, an outstanding software-as-a-service player in the building space, which perfectly complements our leading position in smart buildings.” “Our continued top line momentum translated into a record, high-quality and high-quantity order backlog of </div></li><li class='hist-ev-item'><a href="https://assets.new.siemens.com/siemens/assets/api/uuid:b333927d-5456-44f7-b410-e7fe5b4b7f9b/2026-q2-presentation-en.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>9.4 Key levers for profitable growth ONE Tech strategy delivering results Grow Digital Digital business revenue Grow Regions (€bn) Digital business growth driven by +19% Siemens &amp; Australian Vulcan Energy expansion of Siemens Xcelerator partner to scale Europe’s sustainable offer</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#3d8bfd">
+      <div class="hist-tl-date">날짜 미상（웹 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#3d8bfd">수주·계약</span>
+          <span class='hist-basis'>웹 자료 기준</span>
+          <span class="src">근거 1건 · 웹</span>
+        </div>
+        <div class="deal-title">Q3</div>
+        <div class='deal-sum'>Earnings Release Q3 FY 2022 APRIL 1 TO JUNE 30, 2022 Munich, Germany, August 11, 2022 Strong top line momentum and solid execution – outstanding Free cash flow “We captured significant opportunities in a market environment with ongoing high demand. Our strong top line momentum continued, with a comparable order growth of 20 percent since the beginning of fiscal 2022. This shows: Our business is at</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>웹 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://assets.ctfassets.net/17si5cpawjzf/52NE5FyU0mM0VkrOcrcOtp/de5d11549dca55971db44c46116dd8b4/2022-q3-earnings-release-en.pdf" target="_blank" rel="noopener">Q3</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\SIE_DE\intl_web\Q3.pdf</div><div class='deal-sum'>Earnings Release Q3 FY 2022 APRIL 1 TO JUNE 30, 2022 Munich, Germany, August 11, 2022 Strong top line momentum and solid execution – outstanding Free cash flow “We captured significant opportunities in a market environment with ongoing high demand. Our strong top line momentum co</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#3d8bfd">
+      <div class="hist-tl-date">날짜 미상（웹 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#3d8bfd">수주·계약</span>
+          <span class='hist-basis'>웹 자료 기준</span>
+          <span class="src">근거 1건 · 웹</span>
+        </div>
+        <div class="deal-title">Q2 FY26 Earnings Release and Financial Results</div>
+        <div class='deal-sum'>Earnings Release Q2 FY 2026 | Siemens Siemens • Double-digit order growth in most industrial businesses included substantial increases at Smart Infrastructure – once again with Q2 % Change record-high order intake – and at Mobility; Digital Industries (in millions of €) FY 2026 FY 2025 Actual Comp. recorded significant growth Orders 24,114 21,643 11% 18% • Digital Industries and Smart Infrastructu</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>웹 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://assets.new.siemens.com/siemens/assets/api/uuid:6e946435-a71f-4654-a2bc-52340bc20104/2026-q2-earnings-release-en.pdf" target="_blank" rel="noopener">Q2 FY26 Earnings Release and Financial Results</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\SIE_DE\intl_web\Q2_FY26_Earnings_Release_and_Financial_Results.pdf</div><div class='deal-sum'>Earnings Release Q2 FY 2026 | Siemens Siemens • Double-digit order growth in most industrial businesses included substantial increases at Smart Infrastructure – once again with Q2 % Change record-high order intake – and at Mobility; Digital Industries (in millions of €) FY 2026 F</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    </div>
+            </section>
+            </div></div><div id='hist-tab-strategy' class='tab-panel'><p class='tab-desc'>전략 · 데이터 기준 2026–2026 (오래된 → 최근). 날짜가 불명확하면 뉴스·애널 등 <strong>자료 기준</strong>을 표시합니다.</p><div class='hist-year-focus' data-panel='hist-tab-strategy'><span class='sub'>기간 보기:</span> <button type='button' class='hist-focus-btn active' data-focus='all'>전체</button><button type='button' class='hist-focus-btn' data-focus='2026'>2026</button><button type='button' class='hist-focus-btn' data-focus='undated'>날짜 미상</button></div><div class="hist-tl">
+                <section class="hist-tl-year" data-year="2026">
+                  <div class="hist-tl-year-label">2026 <em>1</em></div>
+                  <div class="hist-tl-rail">
+    <article class="hist-tl-item" data-event-year="2026" style="--c:#e67e22">
+      <div class="hist-tl-date">2026-07-09（뉴스 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#e67e22">MOU·협약</span>
+          <span class='hist-basis'>뉴스 기준</span>
+          <span class="src">근거 2건 · 뉴스 · 웹</span>
+        </div>
+        <div class="deal-title">FuelCell Energy Shares Surge After Strategic Collaboration With Siemens (FCEL)</div>
+        <div class='deal-sum'>Press Munich, May 13, 2026 Siemens continues path of profitable growth • Orders in Q2 2026 climbed 18 percent on a comparable basis to €24.1 billion (Q2 2025: €21.6 billion) • Revenue increased 6 percent on a comparable basis to €19.8 billion (Q2 2025: €19.8 billion) • Profit Industrial Business totaled €3.0 billion; in Q2 2025, Profit Industrial Business of €3.2 billion had benefited from a €0.3 </div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>뉴스 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://investorshub.advfn.com/market-news/article/31600/fuelcell-energy-shares-surge-after-strategic-collaboration-with-siemens-fcel" target="_blank" rel="noopener">FuelCell Energy Shares Surge After Strategic Collaboration With Siemens (FCEL)</a><div class='deal-meta'>2026-07-09</div></li></ul></div><div class='hist-src-block'><div class='hist-src-label'>웹 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://assets.new.siemens.com/siemens/assets/api/uuid:b776bca3-2e57-41cb-bac4-319e0829bcfd/2026-q2-press-release-en.pdf" target="_blank" rel="noopener">Press Release “Siemens continues path of profitable growth”</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\SIE_DE\intl_web\Press_Release__Siemens_continues_path_of_profitable_growth_.pdf</div><div class='deal-sum'>Press Munich, May 13, 2026 Siemens continues path of profitable growth • Orders in Q2 2026 climbed 18 percent on a comparable basis to €24.1 billion (Q2 2025: €21.6 billion) • Revenue increased 6 percent on a comparable basis to €19.8 billion (Q2 2025: €19.8 billion) • Profit Ind</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    </div>
+                </section>
+                
+            <section class="hist-tl-year" data-year="undated">
+              <div class="hist-tl-year-label">날짜 미상 <em>5</em></div>
+              <div class="hist-tl-rail">
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#e67e22">
+      <div class="hist-tl-date">날짜 미상（IR 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#e67e22">MOU·협약</span>
+          <span class='hist-basis'>IR 자료 기준</span>
+          <span class="src">근거 5건 · IR</span>
+        </div>
+        <div class="deal-title"></div>
+        <div class='deal-sum'>Q4 Highlights Strong finish to fiscal 2022 – excellent starting position for fiscal 2023 • Ongoing order momentum: Book-to-bill 1.06, record high backlog of €102bn Excellent topline • Strong revenue growth: up 12%, driven by volume and price • Further gaining market share in DI Automation: Revenue up 23% • Record profit Industrial Business: First time &gt;€3bn in a quarter Great execution • Again, ou</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>IR <em>5</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://assets.new.siemens.com/siemens/assets/api/uuid:fd41cb37-28dc-4fa9-940f-6fe1a3fc3f8e/2026-q2-HY-report-en.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>The carrying amounts of investments accounted for using the equity method at SFS total €627 million and €565 million, respectively, as of March 31, 2026, and September 30, 2025, the resulting gains of those investments at SFS are €110 million and €321 million, respectively, in th</div></li><li class='hist-ev-item'><a href="https://assets.ctfassets.net/17si5cpawjzf/sEROmmIiNcP65YuAQ241v/eb9fa808f2a820c62b2a16e0daaba90d/2022-q4-presentation-en-2.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>Q4 Highlights Strong finish to fiscal 2022 – excellent starting position for fiscal 2023 • Ongoing order momentum: Book-to-bill 1.06, record high backlog of €102bn Excellent topline • Strong revenue growth: up 12%, driven by volume and price • Further gaining market share in DI A</div></li><li class='hist-ev-item'><a href="https://assets.ctfassets.net/17si5cpawjzf/52NE5FyU0mM0VkrOcrcOtp/de5d11549dca55971db44c46116dd8b4/2022-q3-earnings-release-en.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>In addition, we consistently and successfully implemented our portfolio optimization and sharply accelerated our share buyback program,” said Ralf P.</div></li><li class='hist-ev-item'><a href="https://assets.new.siemens.com/siemens/assets/api/uuid:b333927d-5456-44f7-b410-e7fe5b4b7f9b/2026-q2-presentation-en.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>Hanover Fair Industrial AI is revolutionizing manufacturing to increase resilience and competitiveness NEXT-LEVEL INDUSTRIAL AI PHYSICAL AI Eigen Engineering Agent Automating the unknown • Moving industrial AI from assistance to • Automation of complex and unpredictable tasks aut</div></li><li class='hist-ev-item'><a href="https://assets.ctfassets.net/17si5cpawjzf/1liUz1NDLySSAIx9eMEu9D/26247a6526b6e3e9e2a4cf3e3549363e/2026-q1-earnings-release-en.pdf" target="_blank" rel="noopener">(제목 없음)</a><div class='deal-sum'>We are continuing to rigorously execute our strategy, and our accelerated share buyback program is consistently creating value for shareholders,” said Ralf P.</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#9b59b6">
+      <div class="hist-tl-date">날짜 미상（웹 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#9b59b6">제휴</span>
+          <span class='hist-basis'>웹 자료 기준</span>
+          <span class="src">근거 1건 · 웹</span>
+        </div>
+        <div class="deal-title">Q1</div>
+        <div class='deal-sum'>CES 2026: Siemens unveils technologies to accelerate the Industrial AI revolution Expanded partnerships to drive industrial AI, cloud-connected engineering &amp; immersive simulation Launch of Digital Twin Composer software • Expanded partnership to build the Industrial AI • Pilot customer in consumer packaged • Bridging the world of IT &amp; operations Operating System goods industry • Expanding the Indu</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>웹 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://assets.ctfassets.net/17si5cpawjzf/5rco127090t290qwEBD8rO/5309551d670c3da49338b2be613b2220/2026-q1-presentation-en.pdf" target="_blank" rel="noopener">Q1</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\SIE_DE\intl_web\Q1.pdf</div><div class='deal-sum'>CES 2026: Siemens unveils technologies to accelerate the Industrial AI revolution Expanded partnerships to drive industrial AI, cloud-connected engineering &amp; immersive simulation Launch of Digital Twin Composer software • Expanded partnership to build the Industrial AI • Pilot cu</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#a855f7">
+      <div class="hist-tl-date">날짜 미상（웹 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#a855f7">인수·M&amp;A</span>
+          <span class='hist-basis'>웹 자료 기준</span>
+          <span class="src">근거 1건 · 웹</span>
+        </div>
+        <div class="deal-title">Presentation “Siemens continues path of profitable growth”</div>
+        <div class='deal-sum'>9.4 Key levers for profitable growth ONE Tech strategy delivering results Grow Digital Digital business revenue Grow Regions (€bn) Digital business growth driven by +19% Siemens &amp; Australian Vulcan Energy expansion of Siemens Xcelerator partner to scale Europe’s sustainable offerings lithium supply – Project Lionheart 5.0 4.2 Strong growth trajectory of Software Preferred supplier for automation, </div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>웹 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://assets.new.siemens.com/siemens/assets/api/uuid:b333927d-5456-44f7-b410-e7fe5b4b7f9b/2026-q2-presentation-en.pdf" target="_blank" rel="noopener">Presentation “Siemens continues path of profitable growth”</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\SIE_DE\intl_web\Presentation__Siemens_continues_path_of_profitable_growth_.pdf</div><div class='deal-sum'>9.4 Key levers for profitable growth ONE Tech strategy delivering results Grow Digital Digital business revenue Grow Regions (€bn) Digital business growth driven by +19% Siemens &amp; Australian Vulcan Energy expansion of Siemens Xcelerator partner to scale Europe’s sustainable offer</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#e67e22">
+      <div class="hist-tl-date">날짜 미상（웹 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#e67e22">MOU·협약</span>
+          <span class='hist-basis'>웹 자료 기준</span>
+          <span class="src">근거 2건 · 웹</span>
+        </div>
+        <div class="deal-title">Q4</div>
+        <div class='deal-sum'>Q4 Highlights Strong finish to fiscal 2022 – excellent starting position for fiscal 2023 • Ongoing order momentum: Book-to-bill 1.06, record high backlog of €102bn Excellent topline • Strong revenue growth: up 12%, driven by volume and price • Further gaining market share in DI Automation: Revenue up 23% • Record profit Industrial Business: First time &gt;€3bn in a quarter Great execution • Again, ou</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>웹 <em>2</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://assets.ctfassets.net/17si5cpawjzf/sEROmmIiNcP65YuAQ241v/eb9fa808f2a820c62b2a16e0daaba90d/2022-q4-presentation-en-2.pdf" target="_blank" rel="noopener">Q4</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\SIE_DE\intl_web\Q4.pdf</div><div class='deal-sum'>Q4 Highlights Strong finish to fiscal 2022 – excellent starting position for fiscal 2023 • Ongoing order momentum: Book-to-bill 1.06, record high backlog of €102bn Excellent topline • Strong revenue growth: up 12%, driven by volume and price • Further gaining market share in DI A</div></li><li class='hist-ev-item'><a href="https://assets.ctfassets.net/17si5cpawjzf/1liUz1NDLySSAIx9eMEu9D/26247a6526b6e3e9e2a4cf3e3549363e/2026-q1-earnings-release-en.pdf" target="_blank" rel="noopener">Q1</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\SIE_DE\intl_web\Q1.pdf</div><div class='deal-sum'>Earnings Release Q1 FY 2026 October 1 to December 31, 2025 Munich, Germany, February 12, 2026 Strong start to fiscal 2026 – Outlook raised “Our strong first-quarter performance shows that we’re delivering on our strategy. Siemens is very well positioned in its growth markets. Art</div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    
+    <article class="hist-tl-item" data-event-year="undated" style="--c:#9b59b6">
+      <div class="hist-tl-date">날짜 미상（웹 자료 기준）</div>
+      <div class="hist-tl-card">
+        <div class="hist-event-head">
+          <span class="pill" style="background:#9b59b6">제휴</span>
+          <span class='hist-basis'>웹 자료 기준</span>
+          <span class="src">근거 1건 · 웹</span>
+        </div>
+        <div class="deal-title">H1 FY26 Half-year financial report</div>
+        <div class='deal-sum'>Segment information is disclosed for continuing operations. Segment measurement principles are those described in the Siemens Report for fiscal 2025. Revenue includes revenue from contracts with customers and revenue from leasing activities. In each of the half-years ended March 31, 2026, and 2025, lease revenue is €0.4 billion. In the six months ended March 31, 2026, and 2025, expenses for person</div>
+        <details class="hist-details">
+          <summary>공시 · 뉴스 · 애널 등 근거 보기</summary>
+          <div class='hist-src-block'><div class='hist-src-label'>웹 <em>1</em></div><ul class='hist-ev-list'><li class='hist-ev-item'><a href="https://assets.new.siemens.com/siemens/assets/api/uuid:fd41cb37-28dc-4fa9-940f-6fe1a3fc3f8e/2026-q2-HY-report-en.pdf" target="_blank" rel="noopener">H1 FY26 Half-year financial report</a><div class='deal-meta'>C:\Users\USER\Desktop\ai_project\data\international\SIE_DE\intl_web\H1_FY26_Half_year_financial_report.pdf</div><div class='deal-sum'>Segment information is disclosed for continuing operations. Segment measurement principles are those described in the Siemens Report for fiscal 2025. Revenue includes revenue from contracts with customers and revenue from leasing activities. In each of the half-years ended March </div></li></ul></div>
+        </details>
+      </div>
+    </article>
+    </div>
+            </section>
+            </div></div><div id='hist-tab-investment' class='tab-panel'><p class='empty'>투자 관련 이벤트가 없습니다.</p></div>
+    </div>
+    <script>
+      (function() {
+        function applyFocus(panel, mode) {
+          if (!panel) return;
+          panel.querySelectorAll('.hist-focus-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.focus === mode);
+          });
+          panel.querySelectorAll('.hist-tl-year').forEach(sec => {
+            const y = sec.dataset.year;
+            if (mode === 'all') {
+              sec.style.display = '';
+              return;
+            }
+            sec.style.display = (y === mode) ? '' : 'none';
+          });
+        }
+        document.querySelectorAll('.hist-year-focus').forEach(bar => {
+          bar.querySelectorAll('.hist-focus-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+              const panel = document.getElementById(bar.dataset.panel);
+              applyFocus(panel, btn.dataset.focus);
+            });
+          });
+        });
+      })();
+    </script>
+    
+        
+    <footer>갱신 2026-07-24 16:28 · 2026-Q3 · 기업 전략 동향 AI 트래커</footer>
+  </div>
+  <script>
+    function activateTab(id) {
+      if (!id) return;
+      const btn = document.querySelector('.tabs button[data-tab="' + id + '"]');
+      const panel = document.getElementById(id);
+      if (!btn || !panel) return;
+      document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      panel.classList.add('active');
+    }
+    document.querySelectorAll('.tabs button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activateTab(btn.dataset.tab);
+        if (btn.dataset.tab) history.replaceState(null, '', '#' + btn.dataset.tab);
+      });
+    });
+    if (location.hash) activateTab(location.hash.replace(/^#/, ''));
+  </script>
+  <script>
+    (function(){
+      const el = document.getElementById("fin_INTL_SIE_DE");
+      if (!el || typeof Chart === 'undefined') return;
+      const d = {"labels": ["2022", "2023", "2024", "2025"], "revenue": [71977000000.0, 74882000000.0, 75930000000.0, 78914000000.0], "op": [7276000000.0, 9402000000.0, 9498000000.0, 9092000000.0], "margin": [10.11, 12.56, 12.51, 11.52], "unit": "원 단위(소스)"};
+      new Chart(el, {
+        data: {
+          labels: d.labels,
+          datasets: [
+            {
+              type: 'bar',
+              label: '매출',
+              data: d.revenue,
+              backgroundColor: 'rgba(56,189,248,0.55)',
+              borderColor: '#38bdf8',
+              borderWidth: 1,
+              yAxisID: 'y',
+              order: 2
+            },
+            {
+              type: 'bar',
+              label: '영업이익',
+              data: d.op,
+              backgroundColor: 'rgba(52,211,153,0.55)',
+              borderColor: '#34d399',
+              borderWidth: 1,
+              yAxisID: 'y',
+              order: 2
+            },
+            {
+              type: 'line',
+              label: '영업이익률(%)',
+              data: d.margin,
+              borderColor: '#fbbf24',
+              backgroundColor: 'rgba(251,191,36,0.15)',
+              tension: 0.25,
+              pointRadius: 4,
+              pointBackgroundColor: '#fbbf24',
+              yAxisID: 'y1',
+              order: 1
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: { labels: { color: '#9ca3af' } },
+            tooltip: {
+              callbacks: {
+                label: function(ctx) {
+                  const v = ctx.parsed.y;
+                  if (v == null) return ctx.dataset.label + ': —';
+                  if (ctx.dataset.yAxisID === 'y1') return ctx.dataset.label + ': ' + v.toFixed(2) + '%';
+                  return ctx.dataset.label + ': ' + Number(v).toLocaleString(undefined, {maximumFractionDigits: 1});
+                }
+              }
+            }
+          },
+          scales: {
+            x: { ticks: { color: '#9ca3af' }, grid: { color: '#1f2937' } },
+            y: {
+              position: 'left',
+              ticks: { color: '#9ca3af' },
+              grid: { color: '#1f2937' },
+              title: { display: true, text: d.unit, color: '#9ca3af' }
+            },
+            y1: {
+              position: 'right',
+              ticks: {
+                color: '#fbbf24',
+                callback: function(v) { return v + '%'; }
+              },
+              grid: { drawOnChartArea: false },
+              title: { display: true, text: '영업이익률 (%)', color: '#fbbf24' }
+            }
+          }
+        }
+      });
+    })();
+    </script>
+</body>
+</html>
