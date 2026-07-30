@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Siemens — 2026-Q3</title>
+  <style>
+:root {
+  --bg: #f5f7fb; --panel: #ffffff; --card: #ffffff; --text: #1e293b;
+  --muted: #64748b; --accent: #0284c7; --accent-2: #059669; --border: #e2e8f0;
+  --soft: #f1f5f9; --soft-2: #eef2ff; --brand-navy: #1e3a5f;
+}
+* { box-sizing: border-box; }
+body { margin:0; font-family:"Segoe UI","Malgun Gothic",sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
+.wrap { max-width: 1140px; margin: 0 auto; padding: 28px 20px 48px; }
+h1 { margin: 0 0 6px; font-size: 1.85rem; color:#0f172a; }
+h1.brand-title { color: var(--brand-navy); }
+.sub { color: var(--muted); margin-bottom: 20px; }
+.nav { display:flex; gap:8px; flex-wrap:wrap; margin-bottom: 20px; }
+.nav a { padding:8px 12px; border-radius:10px; background:var(--card); border:1px solid var(--border); color:var(--text); text-decoration:none; font-size:0.85rem; }
+.nav a.active, .nav a:hover { border-color:var(--brand-navy); color:var(--brand-navy); background:#eef2ff; }
+.home-section {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:18px 20px; margin-bottom:16px; box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+.home-section-head { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px; flex-wrap:wrap; }
+.home-section-head h2 { margin:0; font-size:1.15rem; color:var(--brand-navy); }
+.home-co-list { display:flex; flex-direction:column; gap:10px; }
+.home-co-row {
+  display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+  padding:12px 14px; border:1px solid var(--border); border-radius:12px; background:#fff;
+}
+.home-co-main { display:flex; align-items:center; gap:8px; flex:1; min-width:160px; }
+.home-co-links { display:flex; gap:8px; flex-wrap:wrap; }
+.home-co-links a {
+  padding:6px 10px; border-radius:8px; border:1px solid var(--border);
+  text-decoration:none; color:var(--brand-navy); font-size:0.82rem; background:var(--soft);
+}
+.home-co-links a:hover { border-color:var(--accent); background:#e0f2fe; }
+.co-logo { width:28px; height:28px; border-radius:6px; object-fit:contain; background:#fff; border:1px solid var(--border); }
+.co-logo-fallback {
+  width:28px; height:28px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center;
+  background:var(--brand-navy); color:#fff; font-size:0.85rem; font-weight:700;
+}
+.home-hist-stats { display:flex; gap:18px; margin-top:8px; color:var(--muted); }
+.home-hist-stats strong { color:var(--brand-navy); font-size:1.2rem; margin-right:4px; }
+.mega-notes { margin:8px 0 12px; padding-left:18px; color:var(--muted); font-size:0.88rem; }
+.ai-summary-box {
+  background:#f8fafc; border:1px solid var(--border); border-left:4px solid var(--brand-navy);
+  border-radius:12px; padding:14px 16px; margin:14px 0;
+}
+.ai-summary-box pre { white-space:pre-wrap; font-family:inherit; font-size:0.9rem; color:#334155; margin:8px 0 0; }
+.hero {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 55%, #ecfdf5 100%);
+  border:1px solid var(--border); border-radius:16px; padding:28px; margin-bottom:24px;
+  box-shadow:0 1px 2px rgba(15,23,42,.04);
+}
+.entry-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin-top:18px; }
+.entry {
+  display:block; background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:22px; text-decoration:none; color:inherit; transition:border-color .15s, box-shadow .15s;
+  box-shadow:0 1px 2px rgba(15,23,42,.04);
+}
+.entry:hover { border-color: var(--accent); box-shadow:0 4px 12px rgba(2,132,199,.08); }
+.entry h2 { margin:0 0 8px; font-size:1.35rem; color:var(--accent-2); }
+.entry p { margin:0; color:var(--muted); font-size:0.92rem; }
+.entry .count { margin-top:12px; font-size:1.6rem; font-weight:700; color:var(--accent); }
+.tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; position:sticky; top:0; z-index:5;
+  background:rgba(245,247,251,.94); backdrop-filter:blur(8px); padding:10px 0; border-bottom:1px solid var(--border); }
+.tabs button {
+  border:1px solid var(--border); background:var(--card); color:var(--text);
+  padding:8px 12px; border-radius:8px; cursor:pointer; font-size:0.85rem;
+}
+.tabs button.active { border-color:var(--accent); color:var(--accent); background:#e0f2fe; }
+.tab-panel { display:none; }
+.tab-panel.active { display:block; }
+.tab-desc { color:var(--muted); font-size:0.9rem; margin-bottom:14px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; }
+.card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px; box-shadow:0 1px 2px rgba(15,23,42,.03); }
+.card-head { display:flex; justify-content:space-between; gap:8px; margin-bottom:10px; }
+.card h3 { margin:0; font-size:1rem; }
+.tag { font-size:0.7rem; background:#e0f2fe; color:#0369a1; padding:3px 8px; border-radius:6px; white-space:nowrap; }
+.tag.intl { background:#d1fae5; color:#047857; }
+.module-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; margin-bottom:12px; }
+.mod-stat { background:var(--soft); border-radius:8px; padding:8px 6px; text-align:center; font-size:0.72rem; color:var(--muted); }
+.mod-stat strong { display:block; font-size:1.05rem; color:var(--text); }
+.btn { display:inline-block; padding:9px 12px; border-radius:10px; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; font-size:0.88rem; border:none; cursor:pointer; }
+.btn.secondary { background:#10b981; color:#fff; }
+.empty { color:var(--muted); font-style:italic; }
+.deal-kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px; margin-bottom:18px; }
+.deal-kpi { background:var(--card); border:1px solid var(--border); border-left:4px solid var(--c,#0284c7);
+  border-radius:10px; padding:12px 14px; text-decoration:none; color:inherit; }
+.deal-kpi-label { font-size:0.85rem; }
+.deal-kpi-count { font-size:1.7rem; font-weight:700; color:var(--c,#0284c7); }
+.deal-kpi-en { font-size:0.72rem; color:var(--muted); }
+.deal-section { background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:16px 18px; margin-bottom:14px; scroll-margin-top:70px; }
+.deal-section h3 { margin:0 0 12px; font-size:1.05rem; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.deal-section h3 .dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
+.deal-section h3 small { color:var(--muted); font-weight:400; font-size:0.8rem; }
+.deal-section h3 em { margin-left:auto; font-style:normal; color:var(--accent); font-size:0.85rem; }
+.deal-item { padding:12px 0; border-bottom:1px solid var(--border); }
+.deal-item:last-child { border-bottom:none; }
+.deal-item-top { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:4px; }
+.pill { color:#fff; font-size:0.7rem; padding:2px 8px; border-radius:4px; }
+.src { font-size:0.72rem; color:var(--muted); background:var(--soft); padding:2px 6px; border-radius:4px; }
+.co { font-size:0.78rem; color:var(--accent-2); }
+.deal-title { font-weight:600; margin-bottom:4px; }
+.deal-meta { font-size:0.8rem; color:var(--muted); margin-bottom:4px; }
+.deal-sum { font-size:0.88rem; color:#475569; margin:6px 0; }
+a { color:var(--accent); }
+.chart-box { background:var(--soft); border-radius:10px; padding:10px; margin:8px 0 12px; border:1px solid var(--border); }
+table.fin { width:100%; border-collapse:collapse; font-size:0.8rem; }
+table.fin th, table.fin td { border-bottom:1px solid var(--border); padding:0.4rem 0.3rem; text-align:right; }
+table.fin th:first-child, table.fin td:first-child { text-align:left; }
+table.fin th { color:var(--muted); }
+.price-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; margin-top:14px; }
+.price-chip { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px; }
+.price-chip.intl { border-color:#a7f3d0; }
+.pc-name { font-size:0.78rem; color:var(--muted); margin-bottom:4px; }
+.pc-price { font-size:1.15rem; font-weight:700; }
+.pc-chg { font-size:0.8rem; margin-top:2px; }
+.pc-chg.up { color:#059669; }
+.pc-chg.down { color:#dc2626; }
+.mod-stat em { display:block; font-size:0.65rem; color:#d97706; font-style:normal; }
+.geo-tag { display:inline-block; background:#ffedd5; color:#9a3412; font-size:0.7rem; padding:2px 8px; border-radius:4px; font-weight:600; }
+.bm-banner { background:#fff7ed; border:1px solid #fdba74; border-radius:12px; padding:12px 14px; margin-bottom:14px; }
+table.fin tr.bm-row td { background:#fffbeb; color:#92400e; font-weight:600; }
+.debt-ratio { color:#d97706; font-weight:700; }
+.markets-panel {
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 45%, #f0f9ff 100%);
+  border:1px solid var(--border); border-radius:16px; padding:20px 22px; margin-bottom:20px;
+}
+.markets-head { display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
+.markets-section-label { font-size:0.78rem; color:#047857; margin:12px 0 8px; letter-spacing:0.02em; }
+.mkt-chip { background:#fff; border:1px solid var(--border); border-radius:12px; padding:12px; }
+.mkt-chip.commodity { border-color:#f59e0b; }
+.mkt-chip.index { border-color:#38bdf8; }
+.mkt-chip.fx { border-color:#06b6d4; }
+.mkt-chip.rate { border-color:#8b5cf6; }
+.mkt-unit { font-size:0.72rem; color:var(--muted); font-weight:500; }
+.mkt-note { font-size:0.7rem; color:var(--muted); margin-top:6px; line-height:1.35; }
+.power-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px 18px; margin-bottom:14px; }
+.power-card h3 { margin:0 0 8px; font-size:1.05rem; color:var(--accent-2); }
+.power-label { font-size:0.78rem; color:#047857; margin:12px 0 6px; }
+.power-list { margin:0; padding-left:1.1rem; color:#334155; font-size:0.9rem; }
+.power-list li { margin-bottom:4px; }
+.export-box { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px; margin:14px 0 20px; }
+.export-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+.email-form { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:10px; }
+.email-form input[type=email],
+.email-form input[type=text],
+.email-form select {
+  flex:1; min-width:180px; padding:10px 12px; border-radius:8px;
+  border:1px solid var(--border); background:#fff; color:var(--text);
+}
+.email-form button { border:none; cursor:pointer; }
+.briefing-list { margin-top:12px; display:flex; flex-direction:column; gap:12px; }
+.briefing-card {
+  background:#fff; border:1px solid var(--border); border-radius:12px; padding:14px 16px;
+}
+.briefing-card-head { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:6px; }
+.briefing-badge {
+  font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:6px;
+  background:#e0f2fe; color:#0369a1;
+}
+.briefing-badge.status-pending { color:#b45309; background:#fef3c7; }
+.briefing-badge.status-sent { color:#047857; background:#d1fae5; }
+.briefing-badge.status-rejected { color:#b91c1c; background:#fee2e2; }
+.briefing-badge.status-failed { color:#c2410c; background:#ffedd5; }
+.briefing-preview {
+  white-space:pre-wrap; font-size:0.78rem; color:#475569; background:var(--soft);
+  border:1px solid var(--border); border-radius:8px; padding:10px; margin:8px 0; max-height:140px; overflow:auto;
+}
+.tag-row { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+.impact-hint { font-size:0.78rem; color:#b45309; margin:4px 0 6px; }
+.focus-line { color:#047857; font-size:0.9rem; margin:0 0 10px; }
+.fin-sub { margin:14px 0 8px; font-size:0.95rem; color:var(--accent-2); }
+.mkt-chart-card { background:#fff; border:1px solid var(--border); border-radius:12px; padding:12px; }
+.mkt-chart-card.commodity { border-color:#f59e0b; }
+.mkt-chart-card.fx { border-color:#06b6d4; }
+.mkt-chart-card.rate { border-color:#8b5cf6; }
+.mkt-chart-card.index { border-color:#38bdf8; }
+.mkt-mini-chart { height:110px; margin-top:8px; }
+.deal-wrap-v2 .deal-hero {
+  display:flex; flex-wrap:wrap; justify-content:space-between; gap:14px; align-items:flex-end;
+  background:linear-gradient(135deg,#ffffff,#f0f9ff); border:1px solid var(--border);
+  border-radius:14px; padding:16px 18px; margin-bottom:12px;
+}
+.deal-hero-title { margin:0 0 6px; font-size:1.25rem; color:var(--accent-2); }
+.deal-filter-bar {
+  position:sticky; top:8px; z-index:20; display:flex; flex-wrap:wrap; gap:8px;
+  background:rgba(255,255,255,.96); border:1px solid var(--border); border-radius:12px;
+  padding:10px 12px; margin-bottom:14px; backdrop-filter:blur(6px);
+}
+.deal-filter {
+  border:1px solid var(--border); background:#fff; color:var(--text);
+  border-radius:10px; padding:10px 14px; cursor:pointer; font-size:0.9rem;
+  border-left:4px solid var(--c,#64748b);
+}
+.deal-filter em { font-style:normal; font-weight:700; color:var(--c,#0284c7); margin-left:6px; }
+.deal-filter.active { background:#e0f2fe; box-shadow:0 0 0 1px var(--c,#0284c7); color:#0f172a; }
+.deal-panel { margin-bottom:16px; }
+.deal-panel-head {
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  margin-bottom:12px; padding-bottom:8px; border-bottom:2px solid var(--c,#0284c7);
+}
+.deal-panel-head h3 { margin:0; font-size:1.15rem; }
+.deal-panel-head small { color:var(--muted); font-weight:400; margin-left:8px; }
+.deal-panel-count { color:var(--c,#0284c7); font-weight:700; font-size:1rem; }
+.deal-card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; }
+.deal-card {
+  display:flex; background:#fff; border:1px solid var(--border); border-radius:12px; overflow:hidden;
+  min-height:140px; box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+.deal-card-bar { width:6px; flex-shrink:0; }
+.deal-card-body { padding:14px 16px; flex:1; }
+.deal-card .deal-title { font-size:1.05rem; line-height:1.45; margin-bottom:6px; }
+.deal-card .deal-sum { font-size:0.92rem; line-height:1.5; color:#475569; }
+.deal-link { display:inline-block; margin-top:10px; font-weight:600; color:var(--accent); }
+.deal-nav { display:flex; flex-wrap:wrap; gap:8px; }
+.deal-nav-btn {
+  display:flex; align-items:center; gap:8px; text-decoration:none; color:var(--text);
+  background:#fff; border:1px solid var(--border); border-left:4px solid var(--c,#0284c7);
+  border-radius:10px; padding:8px 12px; font-size:0.85rem;
+}
+.deal-nav-btn span { color:var(--c,#0284c7); font-weight:700; font-size:1.05rem; }
+.deal-section-v2 { scroll-margin-top:90px; }
+footer { margin-top:28px; text-align:center; color:var(--muted); font-size:0.85rem; }
+@media (max-width:600px){ .module-grid { grid-template-columns:repeat(3,1fr); } }
+</style>
+  
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <a href="../index.html" class="">홈</a>
+      <a href="../domestic.html" class="">국내</a>
+      <a href="../international.html" class="active">해외</a>
+      <a href="../markets.html" class="">시장</a>
+      <a href="../power.html" class="">전력시장</a>
+      <a href="../mega_projects.html" class="">메가 프로젝트</a>
+      <a href="../history.html" class="">히스토리 DB</a>
+    </nav>
+    
+        <p class="deal-meta"><a href="../index.html">← 홈</a> · <a href="../international.html">해외 전체</a></p>
+        <h1>Siemens</h1>
+        <p class="sub">Siemens · 수주 · 투자·MOU · 정책</p>
+        <div class="tabs">
+          <button class="active" data-tab="tab-orders">수주</button>
+          <button data-tab="tab-invest">투자·MOU</button>
+          <button data-tab="tab-policy">정책</button>
+        </div>
+        <div id="tab-orders" class="tab-panel active"><div class='deal-wrap deal-wrap-v2' id='deal-root'><div class='deal-hero'><div><h2 class='deal-hero-title'>수주 · 투자 · MOU</h2><p class='tab-desc' style='margin:0'>Siemens 수주 뉴스·공시·IR 자동 분류 · 총 <strong>2</strong>건 — 분류 버튼을 눌러 한 화면에서 확인</p></div></div><div class='deal-filter-bar' role='tablist'><button type='button' class='deal-filter' data-deal-filter='all'>전체 <em>2</em></button><button type='button' class='deal-filter' data-deal-filter='contract_docs' style='--c:#e67e22'>협약·계약 문서 <em>0</em></button><button type='button' class='deal-filter active' data-deal-filter='orders' style='--c:#3d8bfd'>수주·사업 진행 <em>2</em></button><button type='button' class='deal-filter' data-deal-filter='investment' style='--c:#20c997'>투자·금융 <em>0</em></button><button type='button' class='deal-filter' data-deal-filter='alliance' style='--c:#9b59b6'>제휴·사업구조 <em>0</em></button></div><div class='deal-panels'><section class='deal-panel' hidden data-deal-cat='contract_docs'><div class='deal-panel-head' style='--c:#e67e22'><h3>협약·계약 문서 <small>Letter / Memorandum / Agreement</small></h3><span class='deal-panel-count'>0건</span></div><div class='deal-card-grid'><p class='empty'>해당 분류 이벤트가 없습니다.</p></div></section><section class='deal-panel' data-deal-cat='orders'><div class='deal-panel-head' style='--c:#3d8bfd'><h3>수주·사업 진행 <small>Order / Business</small></h3><span class='deal-panel-count'>2건</span></div><div class='deal-card-grid'><article class='deal-card'><div class='deal-card-bar' style='background:#3d8bfd'></div><div class='deal-card-body'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수주·사업 진행</span><span class='src'>web</span><span class='co'>Siemens</span></div><div class='deal-title'>Q2 FY26 Earnings Release and Financial Results</div><div class='deal-meta'> · order intake</div><div class='deal-sum'>Earnings Release Q2 FY 2026 | Siemens Siemens • Double-digit order growth in most industrial businesses included substantial increases at Smart Infrastructure – once again with Q2 % Change record-high order intake – and at Mobility; Digital Industries (in millions of €) FY 2026 FY 2025 Actual Comp. recorded significant growth Orders 24,114 21,643 11% 18% • Digital Industries and Smart Infrastructu</div><a class='deal-link' href='https://assets.new.siemens.com/siemens/assets/api/uuid:6e946435-a71f-4654-a2bc-52340bc20104/2026-q2-earnings-release-en.pdf' target='_blank'>원문 보기 →</a></div></article><article class='deal-card'><div class='deal-card-bar' style='background:#3d8bfd'></div><div class='deal-card-body'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수주·사업 진행</span><span class='src'>web</span><span class='co'>Siemens</span></div><div class='deal-title'>Q3</div><div class='deal-meta'> · order backlog</div><div class='deal-sum'>Earnings Release Q3 FY 2022 APRIL 1 TO JUNE 30, 2022 Munich, Germany, August 11, 2022 Strong top line momentum and solid execution – outstanding Free cash flow “We captured significant opportunities in a market environment with ongoing high demand. Our strong top line momentum continued, with a comparable order growth of 20 percent since the beginning of fiscal 2022. This shows: Our business is at</div><a class='deal-link' href='https://assets.ctfassets.net/17si5cpawjzf/52NE5FyU0mM0VkrOcrcOtp/de5d11549dca55971db44c46116dd8b4/2022-q3-earnings-release-en.pdf' target='_blank'>원문 보기 →</a></div></article></div></section><section class='deal-panel' hidden data-deal-cat='investment'><div class='deal-panel-head' style='--c:#20c997'><h3>투자·금융 <small>Investment / Finance</small></h3><span class='deal-panel-count'>0건</span></div><div class='deal-card-grid'><p class='empty'>해당 분류 이벤트가 없습니다.</p></div></section><section class='deal-panel' hidden data-deal-cat='alliance'><div class='deal-panel-head' style='--c:#9b59b6'><h3>제휴·사업구조 <small>Alliance / Structure</small></h3><span class='deal-panel-count'>0건</span></div><div class='deal-card-grid'><p class='empty'>해당 분류 이벤트가 없습니다.</p></div></section></div>
+<script>
+(function(){
+  const root = document.getElementById('deal-root');
+  if (!root) return;
+  const filters = root.querySelectorAll('.deal-filter');
+  const panels = root.querySelectorAll('.deal-panel');
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.getAttribute('data-deal-filter');
+      filters.forEach(b => b.classList.toggle('active', b === btn));
+      panels.forEach(p => {
+        const cat = p.getAttribute('data-deal-cat');
+        p.hidden = !(key === 'all' || cat === key);
+      });
+      root.querySelector('.deal-filter-bar')?.scrollIntoView({behavior:'smooth', block:'nearest'});
+    });
+  });
+})();
+</script>
+</div></div>
+        <div id="tab-invest" class="tab-panel"><div class='deal-wrap deal-wrap-v2' id='deal-root'><div class='deal-hero'><div><h2 class='deal-hero-title'>수주 · 투자 · MOU</h2><p class='tab-desc' style='margin:0'>Siemens 투자·MOU 뉴스·공시·IR 자동 분류 · 총 <strong>7</strong>건 — 분류 버튼을 눌러 한 화면에서 확인</p></div></div><div class='deal-filter-bar' role='tablist'><button type='button' class='deal-filter' data-deal-filter='all'>전체 <em>7</em></button><button type='button' class='deal-filter active' data-deal-filter='contract_docs' style='--c:#e67e22'>협약·계약 문서 <em>4</em></button><button type='button' class='deal-filter' data-deal-filter='orders' style='--c:#3d8bfd'>수주·사업 진행 <em>0</em></button><button type='button' class='deal-filter' data-deal-filter='investment' style='--c:#20c997'>투자·금융 <em>0</em></button><button type='button' class='deal-filter' data-deal-filter='alliance' style='--c:#9b59b6'>제휴·사업구조 <em>3</em></button></div><div class='deal-panels'><section class='deal-panel' data-deal-cat='contract_docs'><div class='deal-panel-head' style='--c:#e67e22'><h3>협약·계약 문서 <small>Letter / Memorandum / Agreement</small></h3><span class='deal-panel-count'>4건</span></div><div class='deal-card-grid'><article class='deal-card'><div class='deal-card-bar' style='background:#e67e22'></div><div class='deal-card-body'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>협약·계약 문서</span><span class='src'>yahoo</span><span class='co'>Siemens</span></div><div class='deal-title'>FuelCell Energy Shares Surge After Strategic Collaboration With Siemens (FCEL)</div><div class='deal-meta'>2026-07-09T14:01:10Z · sha</div><a class='deal-link' href='https://investorshub.advfn.com/market-news/article/31600/fuelcell-energy-shares-surge-after-strategic-collaboration-with-siemens-fcel' target='_blank'>원문 보기 →</a></div></article><article class='deal-card'><div class='deal-card-bar' style='background:#e67e22'></div><div class='deal-card-body'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>협약·계약 문서</span><span class='src'>web</span><span class='co'>Siemens</span></div><div class='deal-title'>Q4</div><div class='deal-meta'> · nda, sha</div><div class='deal-sum'>Q4 Highlights Strong finish to fiscal 2022 – excellent starting position for fiscal 2023 • Ongoing order momentum: Book-to-bill 1.06, record high backlog of €102bn Excellent topline • Strong revenue growth: up 12%, driven by volume and price • Further gaining market share in DI Automation: Revenue up 23% • Record profit Industrial Business: First time &gt;€3bn in a quarter Great execution • Again, ou</div><a class='deal-link' href='https://assets.ctfassets.net/17si5cpawjzf/sEROmmIiNcP65YuAQ241v/eb9fa808f2a820c62b2a16e0daaba90d/2022-q4-presentation-en-2.pdf' target='_blank'>원문 보기 →</a></div></article><article class='deal-card'><div class='deal-card-bar' style='background:#e67e22'></div><div class='deal-card-body'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>협약·계약 문서</span><span class='src'>web</span><span class='co'>Siemens</span></div><div class='deal-title'>Press Release “Siemens continues path of profitable growth”</div><div class='deal-meta'> · sha</div><div class='deal-sum'>Press Munich, May 13, 2026 Siemens continues path of profitable growth • Orders in Q2 2026 climbed 18 percent on a comparable basis to €24.1 billion (Q2 2025: €21.6 billion) • Revenue increased 6 percent on a comparable basis to €19.8 billion (Q2 2025: €19.8 billion) • Profit Industrial Business totaled €3.0 billion; in Q2 2025, Profit Industrial Business of €3.2 billion had benefited from a €0.3 </div><a class='deal-link' href='https://assets.new.siemens.com/siemens/assets/api/uuid:b776bca3-2e57-41cb-bac4-319e0829bcfd/2026-q2-press-release-en.pdf' target='_blank'>원문 보기 →</a></div></article><article class='deal-card'><div class='deal-card-bar' style='background:#e67e22'></div><div class='deal-card-body'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>협약·계약 문서</span><span class='src'>web</span><span class='co'>Siemens</span></div><div class='deal-title'>Q1</div><div class='deal-meta'> · sha</div><div class='deal-sum'>Earnings Release Q1 FY 2026 October 1 to December 31, 2025 Munich, Germany, February 12, 2026 Strong start to fiscal 2026 – Outlook raised “Our strong first-quarter performance shows that we’re delivering on our strategy. Siemens is very well positioned in its growth markets. Artificial intelligence is a strong growth driver for our businesses. We’re scaling industrial AI in our core industries to</div><a class='deal-link' href='https://assets.ctfassets.net/17si5cpawjzf/1liUz1NDLySSAIx9eMEu9D/26247a6526b6e3e9e2a4cf3e3549363e/2026-q1-earnings-release-en.pdf' target='_blank'>원문 보기 →</a></div></article></div></section><section class='deal-panel' hidden data-deal-cat='orders'><div class='deal-panel-head' style='--c:#3d8bfd'><h3>수주·사업 진행 <small>Order / Business</small></h3><span class='deal-panel-count'>0건</span></div><div class='deal-card-grid'><p class='empty'>해당 분류 이벤트가 없습니다.</p></div></section><section class='deal-panel' hidden data-deal-cat='investment'><div class='deal-panel-head' style='--c:#20c997'><h3>투자·금융 <small>Investment / Finance</small></h3><span class='deal-panel-count'>0건</span></div><div class='deal-card-grid'><p class='empty'>해당 분류 이벤트가 없습니다.</p></div></section><section class='deal-panel' hidden data-deal-cat='alliance'><div class='deal-panel-head' style='--c:#9b59b6'><h3>제휴·사업구조 <small>Alliance / Structure</small></h3><span class='deal-panel-count'>3건</span></div><div class='deal-card-grid'><article class='deal-card'><div class='deal-card-bar' style='background:#9b59b6'></div><div class='deal-card-body'><div class='deal-item-top'><span class='pill' style='background:#9b59b6'>제휴·사업구조</span><span class='src'>web</span><span class='co'>Siemens</span></div><div class='deal-title'>H1 FY26 Half-year financial report</div><div class='deal-meta'> · joint venture</div><div class='deal-sum'>Segment information is disclosed for continuing operations. Segment measurement principles are those described in the Siemens Report for fiscal 2025. Revenue includes revenue from contracts with customers and revenue from leasing activities. In each of the half-years ended March 31, 2026, and 2025, lease revenue is €0.4 billion. In the six months ended March 31, 2026, and 2025, expenses for person</div><a class='deal-link' href='https://assets.new.siemens.com/siemens/assets/api/uuid:fd41cb37-28dc-4fa9-940f-6fe1a3fc3f8e/2026-q2-HY-report-en.pdf' target='_blank'>원문 보기 →</a></div></article><article class='deal-card'><div class='deal-card-bar' style='background:#9b59b6'></div><div class='deal-card-body'><div class='deal-item-top'><span class='pill' style='background:#9b59b6'>제휴·사업구조</span><span class='src'>web</span><span class='co'>Siemens</span></div><div class='deal-title'>Presentation “Siemens continues path of profitable growth”</div><div class='deal-meta'> · acquisition, partnership</div><div class='deal-sum'>9.4 Key levers for profitable growth ONE Tech strategy delivering results Grow Digital Digital business revenue Grow Regions (€bn) Digital business growth driven by +19% Siemens &amp; Australian Vulcan Energy expansion of Siemens Xcelerator partner to scale Europe’s sustainable offerings lithium supply – Project Lionheart 5.0 4.2 Strong growth trajectory of Software Preferred supplier for automation, </div><a class='deal-link' href='https://assets.new.siemens.com/siemens/assets/api/uuid:b333927d-5456-44f7-b410-e7fe5b4b7f9b/2026-q2-presentation-en.pdf' target='_blank'>원문 보기 →</a></div></article><article class='deal-card'><div class='deal-card-bar' style='background:#9b59b6'></div><div class='deal-card-body'><div class='deal-item-top'><span class='pill' style='background:#9b59b6'>제휴·사업구조</span><span class='src'>web</span><span class='co'>Siemens</span></div><div class='deal-title'>Q1</div><div class='deal-meta'> · spin-off, partnership</div><div class='deal-sum'>CES 2026: Siemens unveils technologies to accelerate the Industrial AI revolution Expanded partnerships to drive industrial AI, cloud-connected engineering &amp; immersive simulation Launch of Digital Twin Composer software • Expanded partnership to build the Industrial AI • Pilot customer in consumer packaged • Bridging the world of IT &amp; operations Operating System goods industry • Expanding the Indu</div><a class='deal-link' href='https://assets.ctfassets.net/17si5cpawjzf/5rco127090t290qwEBD8rO/5309551d670c3da49338b2be613b2220/2026-q1-presentation-en.pdf' target='_blank'>원문 보기 →</a></div></article></div></section></div>
+<script>
+(function(){
+  const root = document.getElementById('deal-root');
+  if (!root) return;
+  const filters = root.querySelectorAll('.deal-filter');
+  const panels = root.querySelectorAll('.deal-panel');
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.getAttribute('data-deal-filter');
+      filters.forEach(b => b.classList.toggle('active', b === btn));
+      panels.forEach(p => {
+        const cat = p.getAttribute('data-deal-cat');
+        p.hidden = !(key === 'all' || cat === key);
+      });
+      root.querySelector('.deal-filter-bar')?.scrollIntoView({behavior:'smooth', block:'nearest'});
+    });
+  });
+})();
+</script>
+</div></div>
+        <div id="tab-policy" class="tab-panel"><p class='tab-desc'>수주와 별도로, 사업에 영향을 줄 수 있는 <strong>수요·정책·공급망</strong> 시그널을 정리합니다. 총 <strong>33</strong>건.</p><div class='deal-kpis'><a class='deal-kpi' href='#policy-demand' style='--c:#3d8bfd'><div class='deal-kpi-label'>수요·시장</div><div class='deal-kpi-count'>11</div><div class='deal-kpi-en'>사업 영향 모니터링</div></a><a class='deal-kpi' href='#policy-policy' style='--c:#e67e22'><div class='deal-kpi-label'>정책·규제</div><div class='deal-kpi-count'>20</div><div class='deal-kpi-en'>사업 영향 모니터링</div></a><a class='deal-kpi' href='#policy-supply_chain' style='--c:#20c997'><div class='deal-kpi-label'>공급망·원료</div><div class='deal-kpi-count'>2</div><div class='deal-kpi-en'>사업 영향 모니터링</div></a></div><section class='deal-section' id='policy-demand'><h3><span class='dot' style='background:#3d8bfd'></span>수요·시장<em>11건</em></h3><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>quarterly_ir</span><span class='co'>Siemens</span></div><div class='deal-title'>Q2 FY26 Earnings Release and Financial Results</div><div class='deal-meta'> · ess</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><div class='deal-sum'>Earnings Release Q2 FY 2026 | Siemens Siemens • Double-digit order growth in most industrial businesses included substantial increases at Smart Infrastructure – once again with Q2 % Change record-high order intake – and at Mobility; Digital Industries (in millions of €) FY 2026 FY 2025 Actual Comp.</div><a href='https://assets.new.siemens.com/siemens/assets/api/uuid:6e946435-a71f-4654-a2bc-52340bc20104/2026-q2-earnings-release-en.pdf' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>quarterly_ir</span><span class='co'>Siemens</span></div><div class='deal-title'>H1 FY26 Half-year financial report</div><div class='deal-meta'> · ess</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><div class='deal-sum'>In the six months ended March 31, 2026, and 2025, expenses for personnel measures for continuing operations are €189 million and €173 million, respectively, thereof at Industrial Business €163 million and €131 million, respectively.</div><a href='https://assets.new.siemens.com/siemens/assets/api/uuid:fd41cb37-28dc-4fa9-940f-6fe1a3fc3f8e/2026-q2-HY-report-en.pdf' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>quarterly_ir</span><span class='co'>Siemens</span></div><div class='deal-title'>Q4</div><div class='deal-meta'> · ess, backlog</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><div class='deal-sum'>Q4 Highlights Strong finish to fiscal 2022 – excellent starting position for fiscal 2023 • Ongoing order momentum: Book-to-bill 1.06, record high backlog of €102bn Excellent topline • Strong revenue growth: up 12%, driven by volume and price • Further gaining market share in DI Automation: Revenue up 23% • Record profit Industrial Business: First t</div><a href='https://assets.ctfassets.net/17si5cpawjzf/sEROmmIiNcP65YuAQ241v/eb9fa808f2a820c62b2a16e0daaba90d/2022-q4-presentation-en-2.pdf' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>quarterly_ir</span><span class='co'>Siemens</span></div><div class='deal-title'>Q3</div><div class='deal-meta'> · demand</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><div class='deal-sum'>Earnings Release Q3 FY 2022 APRIL 1 TO JUNE 30, 2022 Munich, Germany, August 11, 2022 Strong top line momentum and solid execution – outstanding Free cash flow “We captured significant opportunities in a market environment with ongoing high demand.</div><a href='https://assets.ctfassets.net/17si5cpawjzf/52NE5FyU0mM0VkrOcrcOtp/de5d11549dca55971db44c46116dd8b4/2022-q3-earnings-release-en.pdf' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>quarterly_ir</span><span class='co'>Siemens</span></div><div class='deal-title'>Press Release “Siemens continues path of profitable growth”</div><div class='deal-meta'> · ess</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><div class='deal-sum'>Press Munich, May 13, 2026 Siemens continues path of profitable growth • Orders in Q2 2026 climbed 18 percent on a comparable basis to €24.1 billion (Q2 2025: €21.6 billion) • Revenue increased 6 percent on a comparable basis to €19.8 billion (Q2 2025: €19.8 billion) • Profit Industrial Business totaled €3.0 billion; in Q2 2025, Profit Industrial B</div><a href='https://assets.new.siemens.com/siemens/assets/api/uuid:b776bca3-2e57-41cb-bac4-319e0829bcfd/2026-q2-press-release-en.pdf' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>quarterly_ir</span><span class='co'>Siemens</span></div><div class='deal-title'>Presentation “Siemens continues path of profitable growth”</div><div class='deal-meta'> · ess</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><div class='deal-sum'>Hanover Fair Industrial AI is revolutionizing manufacturing to increase resilience and competitiveness NEXT-LEVEL INDUSTRIAL AI PHYSICAL AI Eigen Engineering Agent Automating the unknown • Moving industrial AI from assistance to • Automation of complex and unpredictable tasks autonomous task execution end-to-end with robots, tackling skilled labor </div><a href='https://assets.new.siemens.com/siemens/assets/api/uuid:b333927d-5456-44f7-b410-e7fe5b4b7f9b/2026-q2-presentation-en.pdf' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>quarterly_ir</span><span class='co'>Siemens</span></div><div class='deal-title'>Q1</div><div class='deal-meta'> · ess</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><div class='deal-sum'>First quarter orders were up 10% on a comparable basis, excluding currency translation and portfolio effects, with double-digit increases in most industrial businesses; comparable revenue rose 8%, including growth in all industrial businesses • On a nominal basis, orders rose 7% to €21.4 billion, and revenue was up 4% to €19.1 billion; the book-to-</div><a href='https://assets.ctfassets.net/17si5cpawjzf/1liUz1NDLySSAIx9eMEu9D/26247a6526b6e3e9e2a4cf3e3549363e/2026-q1-earnings-release-en.pdf' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>power_news</span><span class='co'>글로벌 전력</span></div><div class='deal-title'>Canada Risks ‘Turning Away Investment’ Unless Grids Deliver Clean Power - The Energy Mix</div><div class='deal-meta'>Wed, 17 Jun 2026 07:00:00 · ess</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><div class='deal-sum'>Canada Risks ‘Turning Away Investment’ Unless Grids Deliver Clean Power&amp;nbsp;&amp;nbsp;The Energy Mix</div><a href='https://news.google.com/rss/articles/CBMioAFBVV95cUxPVHdqUHduQS00ZVlZUmZ4LW14eTM0WnJhR0gtVDczR3lWQzFXY3NYT0VVQldwSWFWc0NST1B4Uk50dGw0MzdWdDNwdlJNRWpwaGxlaDJ6REpTY3BwQlJQNzJETTdiUy0yUld5aHYxME9MNlZKSnRJLW1LZGxKZ3VKYmtvNWhCYXNpbVRRWFhyV1JkZXYxbmVXMkJWVzNWZjc0?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>power_news</span><span class='co'>글로벌 전력</span></div><div class='deal-title'>India’s solar paradox: How sunlight drives peak demand and provides a solution - Institute for Energy Economics and Financial Analysis (IEEFA)</div><div class='deal-meta'>Mon, 04 May 2026 07:00:00 · demand</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><div class='deal-sum'>India’s solar paradox: How sunlight drives peak demand and provides a solution&amp;nbsp;&amp;nbsp;Institute for Energy Economics and Financial Analysis (IEEFA)</div><a href='https://news.google.com/rss/articles/CBMipAFBVV95cUxPX1VES2J5MlhvSXdOUklDQVpQTkNyMThrc0VyUU5MWkZMTUw0MzdFak9NczFsX0ZpOFV1ZEpFWFBmM0FYR1VDbjQ2U251RWVhejJpRGh5RjNfVWdSaXRTNG5YUUYwMm56M3YzdnBTS2ZiU3o4djZrUU9JWEU0WnI3dVNEUi1qY0dLOTk3MGs3VHBEdWNMc2pPYUJUUFZjRlBpM1Q3Ug?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>power_news</span><span class='co'>글로벌 전력</span></div><div class='deal-title'>재생에너지·데이터센터 확대에 ‘교류’ 시대 저무나… 전력 3사 ‘직류 송배전’ 기술 확보 ‘사활’ - 조선비즈 - Chosunbiz</div><div class='deal-meta'>Mon, 06 Jul 2026 21:00:00 · 데이터센터</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><div class='deal-sum'>재생에너지·데이터센터 확대에 ‘교류’ 시대 저무나… 전력 3사 ‘직류 송배전’ 기술 확보 ‘사활’ - 조선비즈&amp;nbsp;&amp;nbsp;Chosunbiz</div><a href='https://news.google.com/rss/articles/CBMihAFBVV95cUxPMlBWSV9XTmpfbkFvWHZmRTBrQkFvRTh5NGFSMFlSUWlEMXFUb2dxSmJOTjVYZjdIOTUtQm9YTjE2SU9XLUs2OG9SU2RjR1BaQUVTOEZtTGtSN2hVWGN5Znk4b3Z3a3laX2FmdUJIRi1GQjdCM25ENGtVWlVhdXlVb2ZBRWjSAZgBQVVfeXFMTmJpRXZoTlllb0pNZmhTbndhQTc3NUphMjdtalBoRUsxZU95b0l1V3N4X2o0STAtMkNFbXdDN1dzVFNJeENBcmpheElUd081aFRjWUxWdWJmaXp6Rnk4MlRjYm1YWTJFTGIyMDQtMllJaTVPOFV5b09pZ0VFTW5vRm91U0hyRHhEWHFzMjBvWXhxWVdOU0k5ckI?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#3d8bfd'>수요·시장</span><span class='src'>power_news</span><span class='co'>글로벌 전력</span></div><div class='deal-title'>송배전 시장 보고서 [2034] - Fortune Business Insights</div><div class='deal-meta'>Mon, 22 Jun 2026 07:00:00 · ess</div><div class='impact-hint'>수요·출하·시장 규모 변화 → 수주/가동률에 영향 가능</div><div class='deal-sum'>송배전 시장 보고서 [2034]&amp;nbsp;&amp;nbsp;Fortune Business Insights</div><a href='https://news.google.com/rss/articles/CBMinwFBVV95cUxPU2ZfVUx4ejVRQVBwYlRGWE5MazdEWnMyZzJwNjFCUUFCcDk2UW9fNVRGaHVYbnhaR1g0SU56QmV5Szk0RmdXcG9wTDl6OE1DWTNrdjAydHk0dHFUY0NiOERCaUxpdm95OHc2MWJUOTA4dGRFcGpQa0w2cVpfei1HWjBVRWJoakJzbEZQdnpjc3AtN1ZqckJrLU44WGx5cm8?oc=5' target='_blank'>원문 →</a></div></section><section class='deal-section' id='policy-policy'><h3><span class='dot' style='background:#e67e22'></span>정책·규제<em>20건</em></h3><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>quarterly_ir</span><span class='co'>Siemens</span></div><div class='deal-title'>Q2 FY26 Earnings Release and Financial Results</div><div class='deal-meta'> · tariff</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>severance 15.9% 17.2% Industries; Smart Infrastructure delivered another excellent profit Income from performance, its profit in Q2 FY 2025 had been even higher due to continuing operations 2,134 2,441 (13)% a €0.3 billion gain from exiting a business; Siemens Healthineers therein: severance (111) (90) and Mobility, which were impacted by tariffs, </div><a href='https://assets.new.siemens.com/siemens/assets/api/uuid:6e946435-a71f-4654-a2bc-52340bc20104/2026-q2-earnings-release-en.pdf' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>quarterly_ir</span><span class='co'>Siemens</span></div><div class='deal-title'>Press Release “Siemens continues path of profitable growth”</div><div class='deal-meta'> · 지역전략</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>“With our Eigen Engineering Agent, we’re further expanding Siemens AG Werner-von-Siemens-Strasse 1 Communications 80333 Munich Head: Christiane Ribeiro Germany R eference number: HQCOPR202605117393EN Page 1/5</div><a href='https://assets.new.siemens.com/siemens/assets/api/uuid:b776bca3-2e57-41cb-bac4-319e0829bcfd/2026-q2-press-release-en.pdf' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>ir_pdf</span><span class='co'>Siemens</span></div><div class='deal-title'>H1 FY26 Half-year financial report</div><div class='deal-meta'> · ets, tariff</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>Segment information is disclosed for continuing operations. Segment measurement principles are those described in the Siemens Report for fiscal 2025. Revenue includes revenue from contracts with customers and revenue from leasing activities. In each of the half-years ended March 31, 2026, and 2025, lease revenue is €0.4 billion. In the six months e</div><a href='https://assets.new.siemens.com/siemens/assets/api/uuid:fd41cb37-28dc-4fa9-940f-6fe1a3fc3f8e/2026-q2-HY-report-en.pdf' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_market</span><span class='co'>글로벌 전력</span></div><div class='deal-title'>송전망 투자·허가 지연이 재생에너지 병목의 핵심</div><div class='deal-meta'> · 전력정책</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>송전망 투자·허가 지연이 재생에너지 병목의 핵심</div></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_market</span><span class='co'>글로벌 전력</span></div><div class='deal-title'>데이터센터·수소·전기화가 피크·기저 수요를 동시에 끌어올림</div><div class='deal-meta'> · 전력정책</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>데이터센터·수소·전기화가 피크·기저 수요를 동시에 끌어올림</div></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_market</span><span class='co'>글로벌 전력</span></div><div class='deal-title'>지역별로 원전·가스·석탄·재생 믹스와 시장제도(용량시장·PPA)가 상이</div><div class='deal-meta'> · 전력정책</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>지역별로 원전·가스·석탄·재생 믹스와 시장제도(용량시장·PPA)가 상이</div></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>글로벌 전력</span></div><div class='deal-title'>Transmission Will Define the Future of the Power System in Latin America and the Caribbean - Inter-American Development Bank</div><div class='deal-meta'>Fri, 27 Mar 2026 07:00:00 · 전력</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>Transmission Will Define the Future of the Power System in Latin America and the Caribbean&amp;nbsp;&amp;nbsp;Inter-American Development Bank</div><a href='https://news.google.com/rss/articles/CBMirAFBVV95cUxQcTlsNUpvaG1RTmZUZXl6bnhjSVkyR1FUbVN0TzIxa09WYnh2TjhfemxTU3dOSUxLQ0pRVnlWTm9hZzJXV2ktWXFES3l6YnI4NjhVd1hvLW9OMHNsWnYwOHRacGtPTkppNVg4OHYtOVk0V01uZkhJakZ0Y2ItbWQ3RFBmTjFNZUxBREpaaXZ5dDhaQVhScjVXdVptaVFiUkdQUHNkME0tQUUwNzlY?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>글로벌 전력</span></div><div class='deal-title'>Egypt Secures €690 Million EIB Financing to Modernize Its Electricity Grid - energynews.pro</div><div class='deal-meta'>Thu, 18 Jun 2026 07:00:00 · 전력</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>Egypt Secures €690 Million EIB Financing to Modernize Its Electricity Grid&amp;nbsp;&amp;nbsp;energynews.pro</div><a href='https://news.google.com/rss/articles/CBMioAFBVV95cUxQamxhY3N0UkVsVEpCVEF5aGRrdV9MSzJtU3RaMUhiV1RpUV84NFg1RzNWazM5dE05eEJsRkU1MkREdVY0aVh0MS1QbGVyeFM4SE5KeEhOaVlhVy1EYWJqQ1ZTTHpPZFlsTm5VazFYNVBPTlVVRnJ6TVZQaVdWQ2pMNkdieGItUERvWDNQaDRHdkN5VGZpRzdUVlJEc3VvVnBJ?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>글로벌 전력</span></div><div class='deal-title'>EU And Egypt Secure €690 Million To Expand Power Grid And Integrate 22 GW Of Renewable Energy By 2030 - SolarQuarter</div><div class='deal-meta'>Tue, 16 Jun 2026 07:00:00 · eu , renewable</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>EU And Egypt Secure €690 Million To Expand Power Grid And Integrate 22 GW Of Renewable Energy By 2030&amp;nbsp;&amp;nbsp;SolarQuarter</div><a href='https://news.google.com/rss/articles/CBMi1AFBVV95cUxPaHJzZy00NmNnRTNRZUdQdnUxdlNNNlFCR3lHWEphZlJ3SlBjRm5nSy14dFFnejZod1FCRlljS3lsOTFsQWNzWHJQd0p6WDVES0ZXZXlwZmtlOXo0NHNTMXhPdHd5LTRobk5Vd3NZeDloX3VTT0Vrd2R5WC1nZFgzUmtBU1ZJRTc5TWlzOFVEQklfYnROeUtFZ3Q2SUZub0lSUW9BY0tqOGRrRGZmb01WSUlnSUw4aGZodVhNQW5QaE96SVV2U3pyRFNhbHJ2bnJxYzM1dA?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>글로벌 전력</span></div><div class='deal-title'>Renewable energy transmission: overcoming the grid challenge for a successful transition - Vinci</div><div class='deal-meta'>Fri, 03 Oct 2025 07:00:00 · renewable</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>Renewable energy transmission: overcoming the grid challenge for a successful transition&amp;nbsp;&amp;nbsp;Vinci</div><a href='https://news.google.com/rss/articles/CBMiqwFBVV95cUxNdFFadFlQOGo5a213QUxyVVlYanhXVGYtOHJiTjQ1S3BRaS1aRkcxVTU5bDFaYU1FelJjYjk1QVd0Uk8wd0Y3LUhKcVpLZWFzbURnbWU4Qk9OTk5TdzVXVzFNRzJlVjBucy1MZm5PNFVlMmRlR3N1X19DdkcxVXNjRDBoYmlJTmg1cG1aQXlzV1lrZERUaVo3OXJidDdReWpYcW94LS16a1FvbzQ?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>글로벌 전력</span></div><div class='deal-title'>Liberalisation alone won’t power Indonesia’s energy transition - East Asia Forum</div><div class='deal-meta'>Fri, 02 Jan 2026 08:00:00 · 전력</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>Liberalisation alone won’t power Indonesia’s energy transition&amp;nbsp;&amp;nbsp;East Asia Forum</div><a href='https://news.google.com/rss/articles/CBMinwFBVV95cUxQbkhsZHBZaDVKT3VNcU9QdlJMVjF5YnlEZFJwdTZQU1k2cE85dGphcndqbGVvX0owWlVvdEVKaUU3TDlzZnNkTjk0TkxiSF84aWVFS2NfTVY4WWFKMjNmaUM3cmxSRnh4QXJhV2hqTlFjMWxLdVB1NFR6YWp0dXF2VTVXYklDQVIxRkx5Zk1WZ1JpR3psVXZSMFh6S2xGZWM?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>글로벌 전력</span></div><div class='deal-title'>전기요금 지역별 차등화 법제화 추진… “전력 자급률·송배전 비용 반영” - 에너지데일리</div><div class='deal-meta'>Tue, 09 Jun 2026 07:00:00 · 요금, 전기요금</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>전기요금 지역별 차등화 법제화 추진… “전력 자급률·송배전 비용 반영”&amp;nbsp;&amp;nbsp;에너지데일리</div><a href='https://news.google.com/rss/articles/CBMickFVX3lxTE9fY3dkOW5KdkZ3UjREVmZpWGdpbEtPdGVYLVg2X2dTRGNKTTlYd3JVRE9MbUNtSGdLTURwekRieTdvbkxZZEVjamZ0ZG5PbGdXcERONjBocnNlUjB1UW9tYUFQYko5UERBRmdaSlQxSXNfdw?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>글로벌 전력</span></div><div class='deal-title'>“한전 ‘독식’ 의사결정 구조가 재생에너지 확대 막는다” - 뉴스펭귄</div><div class='deal-meta'>Wed, 26 Nov 2025 08:00:00 · 재생에너지</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>“한전 ‘독식’ 의사결정 구조가 재생에너지 확대 막는다”&amp;nbsp;&amp;nbsp;뉴스펭귄</div><a href='https://news.google.com/rss/articles/CBMib0FVX3lxTE5NTDdfYUFlbTJpTnRQRkt1UEVQU3owRFdRdVVXdG45RWEtdHBTRUdzbG1hU0NGSTlGMVZ5ZjFpX2NTOXdIUTg1aHFEcWlTbVQ3dmJsd3dWZ2JkTUdWamQwU2NLTzNyT1FZaDhFV2hRYw?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>글로벌 전력</span></div><div class='deal-title'>국내 기업 脫한전 확산···전력 시장 독점 구조 흔들리나 - 그린포스트코리아</div><div class='deal-meta'>Mon, 08 Dec 2025 08:00:00 · 전력</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>국내 기업 脫한전 확산···전력 시장 독점 구조 흔들리나&amp;nbsp;&amp;nbsp;그린포스트코리아</div><a href='https://news.google.com/rss/articles/CBMidkFVX3lxTE9lMFI0QVBKVzlVZzhqZktONlZsWE1SU09ReGFONDlMMEJNV2tfUnhfYVAzXzBpS240NnpqY2NQLW1yc3ZqT0lTVVlKLWd5RXhaR0dpUkdMbmluM05kMXQyeVZmTUtVQlJWdXlHcHkxNGVnQ01pUUHSAXpBVV95cUxOYTFiLXozNWl0dkZpRFVrRWx4ZS1DeWhHM1JoTnJVSjVodmxMZ0duaWExdVp4c3RxbjZlNWwwWXpSZVI4UjlMdUNsZy11TEgxcTlMRl90RWlyOXJLYXVFUHNUR29aY29mdjlvR2J0NDlrdTk0ZEhETHRpUQ?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>글로벌 전력</span></div><div class='deal-title'>&#x27;재생에너지 연계&#x27; 직류 송배전용 고효율 차단기 개발 - 동아사이언스</div><div class='deal-meta'>Mon, 20 Oct 2025 07:00:00 · 재생에너지</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>&#x27;재생에너지 연계&#x27; 직류 송배전용 고효율 차단기 개발&amp;nbsp;&amp;nbsp;동아사이언스</div><a href='https://news.google.com/rss/articles/CBMiVEFVX3lxTE9NT2kwX2ZFakZlOGNrdUdxc09xQy1lNllGQXpRUHY5dE94SWVod3JqWWRGX1MxX3B6R2N6LWFVejY3T3BFV3lsYUIteXUxenkxSkZuNg?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_news</span><span class='co'>글로벌 전력</span></div><div class='deal-title'>2035년 전력 송배전 설비 시장 규모 보고서 - Research Nester</div><div class='deal-meta'>Tue, 02 Dec 2025 08:00:00 · 전력</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>2035년 전력 송배전 설비 시장 규모 보고서&amp;nbsp;&amp;nbsp;Research Nester</div><a href='https://news.google.com/rss/articles/CBMirAFBVV95cUxOMkRzU2Vkby1oRVd1bFEweFBjMW1mMW9QdXFZV2xodGhrS1VXNVdyeE83TnZpSzRSVFFwQ040c0VKMGVKcFBUbnpQdENscWtLSUhuVlR3ZnRZaDVhaUFRWlZfOTJ4TDZrOWxaY3d0V20tMmNtQXEzREJMbEphZ1VwREYyaWI5QlhLY3pCWC1qYmRNbTJreENqSTNCT1NsUm9weGo1TExZdUpEWVlS?oc=5' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_market</span><span class='co'>북미 (North America)</span></div><div class='deal-title'>연방·주 단위 송전 개혁, IRA/세액공제, 데이터센터 요금·접속</div><div class='deal-meta'> · 전력정책</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>연방·주 단위 송전 개혁, IRA/세액공제, 데이터센터 요금·접속</div></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_market</span><span class='co'>유럽 (Europe)</span></div><div class='deal-title'>전력시장 설계 개혁, 용량메커니즘, CBAM·산업 지원</div><div class='deal-meta'> · 전력정책</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>전력시장 설계 개혁, 용량메커니즘, CBAM·산업 지원</div></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_market</span><span class='co'>중앙아시아 (Central Asia)</span></div><div class='deal-title'>에너지 안보, 수출 인프라, 외국인 투자·PPP</div><div class='deal-meta'> · 전력정책</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>에너지 안보, 수출 인프라, 외국인 투자·PPP</div></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#e67e22'>정책·규제</span><span class='src'>power_market</span><span class='co'>호주 (Australia)</span></div><div class='deal-title'>Capacity Investment Scheme, 주정부 재생 목표, 석탄 폐쇄 일정</div><div class='deal-meta'> · 전력정책</div><div class='impact-hint'>정책·규제·보조금 → 투자·입지·마진 구조에 영향 가능</div><div class='deal-sum'>Capacity Investment Scheme, 주정부 재생 목표, 석탄 폐쇄 일정</div></div></section><section class='deal-section' id='policy-supply_chain'><h3><span class='dot' style='background:#20c997'></span>공급망·원료<em>2건</em></h3><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#20c997'>공급망·원료</span><span class='src'>quarterly_ir</span><span class='co'>Siemens</span></div><div class='deal-title'>Presentation “Siemens continues path of profitable growth”</div><div class='deal-meta'> · lithium</div><div class='impact-hint'>원료·공급망 → 원가·조달·경쟁력에 영향 가능</div><div class='deal-sum'>9.4 Key levers for profitable growth ONE Tech strategy delivering results Grow Digital Digital business revenue Grow Regions (€bn) Digital business growth driven by +19% Siemens &amp; Australian Vulcan Energy expansion of Siemens Xcelerator partner to scale Europe’s sustainable offerings lithium supply – Project Lionheart 5.0 4.2 Strong growth trajecto</div><a href='https://assets.new.siemens.com/siemens/assets/api/uuid:b333927d-5456-44f7-b410-e7fe5b4b7f9b/2026-q2-presentation-en.pdf' target='_blank'>원문 →</a></div><div class='deal-item'><div class='deal-item-top'><span class='pill' style='background:#20c997'>공급망·원료</span><span class='src'>power_news</span><span class='co'>글로벌 전력</span></div><div class='deal-title'>China-Laos mega power project opens channel for clean energy collaboration - Asia News Network</div><div class='deal-meta'>Mon, 09 Feb 2026 08:00:00 · china</div><div class='impact-hint'>원료·공급망 → 원가·조달·경쟁력에 영향 가능</div><div class='deal-sum'>China-Laos mega power project opens channel for clean energy collaboration&amp;nbsp;&amp;nbsp;Asia News Network</div><a href='https://news.google.com/rss/articles/CBMiogFBVV95cUxQa21pdEN3a3g0NXVnOWNiZUdndjVuYlR4LXBLVERPcmRzdHJKVFJUQkV4QVFGTlhZZ0liMEJSenJVU1Y3TkhrQk0zeWFNcEdpVGFKVmg3YVJMUDBGM2xkbmpEOTNwemtUQjllTUZRaGxPaVlxN040VW5ud0x2N2NSeEtWRWNZdzkyTkVzbnI4bFNVa0RScndWY0hjRXBMbEZBUkE?oc=5' target='_blank'>원문 →</a></div></section></div>
+        
+    <footer>갱신 2026-07-23 14:10 · 2026-Q3 · 기업 전략 동향 AI 트래커</footer>
+  </div>
+  <script>
+    function activateTab(id) {
+      if (!id) return;
+      const btn = document.querySelector('.tabs button[data-tab="' + id + '"]');
+      const panel = document.getElementById(id);
+      if (!btn || !panel) return;
+      document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      panel.classList.add('active');
+    }
+    document.querySelectorAll('.tabs button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activateTab(btn.dataset.tab);
+        if (btn.dataset.tab) history.replaceState(null, '', '#' + btn.dataset.tab);
+      });
+    });
+    if (location.hash) activateTab(location.hash.replace(/^#/, ''));
+  </script>
+  
+</body>
+</html>
